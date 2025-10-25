@@ -1,0 +1,60 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxo54nwos0e53"]
+
+[ext_resource type="PackedScene" uid="uid://dnngs3f0x460f" path="res://PlayerCharacter/PlayerCharacter.tscn" id="1_b51rp"]
+[ext_resource type="Texture2D" uid="uid://b1rjwbiwqsgpc" path="res://Dev/Materials/dev_uv_grid.png" id="1_trq3l"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b51rp"]
+albedo_texture = ExtResource("1_trq3l")
+uv1_scale = Vector3(0.2, 0.2, 0.2)
+uv1_triplanar = true
+point_size = 119.4
+
+[node name="TestMap" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.859038, 0, -0.29804468)
+material_override = SubResource("StandardMaterial3D_b51rp")
+use_collision = true
+size = Vector3(59.356842, 1, 26.961021)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.66955, 2.2678223, 5.276048)
+material_override = SubResource("StandardMaterial3D_b51rp")
+use_collision = true
+size = Vector3(1.2172241, 5.5356445, 15.812836)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.295041, 2.2678223, -0.4532838)
+material_override = SubResource("StandardMaterial3D_b51rp")
+use_collision = true
+size = Vector3(3.50914, 5.5356445, 4.3541718)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.582239, 1.1768799, -0.4532838)
+material_override = SubResource("StandardMaterial3D_b51rp")
+use_collision = true
+size = Vector3(9.665215, 3.3537598, 4.3541718)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.402996, 3.352254, -0.4532838)
+material_override = SubResource("StandardMaterial3D_b51rp")
+use_collision = true
+size = Vector3(3.3067284, 0.85113525, 4.3541718)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.139444, 1.1351838, 3.4428353)
+material_override = SubResource("StandardMaterial3D_b51rp")
+use_collision = true
+size = Vector3(3.3067284, 1.0538483, 2.989708)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.905791, 2.2678223, 13.276049)
+material_override = SubResource("StandardMaterial3D_b51rp")
+use_collision = true
+size = Vector3(1.2172241, 5.5356445, 15.812836)
+
+[node name="PlayerCharacter" parent="." instance=ExtResource("1_b51rp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.371891, 0.49124408, 0.43900585)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.057703447, 0.99833375, 0, -0.99833375, 0.057703447, 0, 2.2799501, 0)
