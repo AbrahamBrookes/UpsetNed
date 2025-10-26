@@ -21,6 +21,10 @@ var playback: AnimationNodeStateMachinePlayback
 # debug if ya wanna
 @export var debug_mode: bool = false
 
+# aimspaces for arms when shooting is done using the 
+# ClickShoot component. States need a reference to it
+@export var click_shoot: ClickShoot
+
 var states : Dictionary = {}
 var current_state : State
 var previous_state : State
@@ -78,8 +82,12 @@ func TransitionTo(new_state_name: String, extra_data = null) -> bool:
 	if current_state:
 		current_state.Exit()
 	
+	# allowing states to override the animation played
 	if playback:
-		playback.travel(new_state_name)
+		if new_state.animation_override != "":
+			playback.travel(new_state.animation_override)
+		else:
+			playback.travel(new_state_name)
 
 	new_state.Enter(extra_data)
 	

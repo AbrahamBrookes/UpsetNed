@@ -9,11 +9,19 @@ var jump_power_left = 0.0
 @export var mesh: Node3D
 
 func Enter(_extra_data = null):
+	# toggle animation blend spaces for in-game pointy arms
+	state_machine.click_shoot.sliding = false
 	# Apply immediate upward impulse
 	player_character.velocity.y = jump_velocity
 	jump_power_left = max_jump_power
 	
 func Physics_Update(delta: float):
+		
+	# if the player presses dive, dive
+	if Input.is_action_just_pressed("dive"):
+		state_machine.TransitionTo("Diving")
+		return
+		
 	# Handle horizontal movement while jumping
 	var input_direction = Vector2(
 		Input.get_action_strength("run_l") - Input.get_action_strength("run_r"),

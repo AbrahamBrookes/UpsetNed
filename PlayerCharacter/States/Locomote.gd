@@ -4,6 +4,10 @@ extends State
 
 @export var mesh: Node3D
 
+func Enter(_extra_data = null):
+	# toggle animation blend spaces for in-game pointy arms
+	state_machine.click_shoot.sliding = false
+
 func Physics_Update(_delta: float):
 	# if the previous state was jumping and the player is holding squat
 	# and we have lateral velocity, go to sliding
@@ -22,6 +26,11 @@ func Physics_Update(_delta: float):
 	# if the player presses jump, jump
 	if Input.is_action_just_pressed("jump"):
 		state_machine.TransitionTo("Jumping")
+		return
+		
+	# if the player presses dive, dive
+	if Input.is_action_just_pressed("dive"):
+		state_machine.TransitionTo("Diving")
 		return
 	
 	if not player_character.is_on_floor():

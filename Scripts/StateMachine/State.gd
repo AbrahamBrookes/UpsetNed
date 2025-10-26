@@ -9,6 +9,9 @@ signal Transitioned(new_state_name: String, extra_data)
 # playercharacter is the immediate scene root
 @onready var player_character = owner
 
+# allow states to declare their own animation name if they wanna
+var animation_override: String = ""
+
 # the state machine is always the immediate parent of the state it is managing
 var state_machine : StateMachine
 

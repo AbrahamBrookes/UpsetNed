@@ -5,6 +5,10 @@ var jump_power_left = 0.0
 @export var jump_decay_rate: float = 5.0
 @export var jump_velocity: float = 5.0
 @export var move_speed: float = 5.0
+
+func Enter(_extra_data = null):
+	# toggle animation blend spaces for in-game pointy arms
+	state_machine.click_shoot.sliding = false
 	
 func Physics_Update(delta: float):
 	# Handle horizontal movement while jumping

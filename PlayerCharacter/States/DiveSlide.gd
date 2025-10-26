@@ -4,29 +4,35 @@ extends State
 @export var slide_force: float = 0.0
 @export var slide_decay: float = 5.0
 
+# how much boost we give the player on the slide
+@export var slide_boost: float = 1.5
+
 @export var mesh: Node3D
+
+func _ready():
+	animation_override = "Diving"
 
 func Enter(_extra_data = null):
 	# toggle animation blend spaces for in-game pointy arms
 	state_machine.click_shoot.sliding = true
 	# set initial slide force based on current horizontal speed
 	var horizontal_velocity = Vector3(player_character.velocity.x, 0.0, player_character.velocity.z)
-	slide_force = horizontal_velocity.length() * 2.0  # arbitrary multiplier for slide power
+	slide_force = horizontal_velocity.length() * slide_boost  # multiplier for slide power
 	# rotate the mesh to the velocity when we enter the slide
 	if horizontal_velocity.length() > 0.1:
 		var mesh_rotation = mesh.global_transform.basis.get_euler()
-		mesh_rotation.y = atan2(horizontal_velocity.x, horizontal_velocity.z)
+		mesh_rotation.y = atan2(-horizontal_velocity.x, -horizontal_velocity.z)
 		mesh.rotation = mesh_rotation
 	
 
 func Physics_Update(delta: float):
 	# if slide force is less than the threshold, back to locomote
-	if slide_force < 1.0:
+	if slide_force < 0.01:
 		state_machine.TransitionTo("Prone")
 		return
 
 	# if the player isn't holding squat, back to locomote
-	if not Input.is_action_pressed("squat"):
+	if not Input.is_action_pressed("dive"):
 		state_machine.TransitionTo("Locomote")
 		return
 	

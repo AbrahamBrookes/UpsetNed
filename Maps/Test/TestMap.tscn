@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dxo54nwos0e53"]
+[gd_scene load_steps=9 format=3 uid="uid://dxo54nwos0e53"]
 
 [ext_resource type="PackedScene" uid="uid://dnngs3f0x460f" path="res://PlayerCharacter/PlayerCharacter.tscn" id="1_b51rp"]
 [ext_resource type="Texture2D" uid="uid://b1rjwbiwqsgpc" path="res://Dev/Materials/dev_uv_grid.png" id="1_trq3l"]
@@ -8,6 +8,28 @@ albedo_texture = ExtResource("1_trq3l")
 uv1_scale = Vector3(0.2, 0.2, 0.2)
 uv1_triplanar = true
 point_size = 119.4
+
+[sub_resource type="Gradient" id="Gradient_trq3l"]
+interpolation_color_space = 2
+offsets = PackedFloat32Array(0, 0.9972973)
+colors = PackedColorArray(0, 0, 0, 1, 0.034859177, 0.25678298, 0.29375637, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_eg64c"]
+gradient = SubResource("Gradient_trq3l")
+fill_from = Vector2(0.6666667, 0.7307692)
+fill_to = Vector2(0.67094016, 0.16239317)
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_4b0uu"]
+panorama = SubResource("GradientTexture2D_eg64c")
+
+[sub_resource type="Sky" id="Sky_i2sle"]
+sky_material = SubResource("PanoramaSkyMaterial_4b0uu")
+
+[sub_resource type="Environment" id="Environment_trq3l"]
+background_mode = 2
+background_color = Color(0.5572356, 0.8106783, 0.44699305, 1)
+background_energy_multiplier = 2.16
+sky = SubResource("Sky_i2sle")
 
 [node name="TestMap" type="Node3D"]
 
@@ -55,6 +77,9 @@ size = Vector3(1.2172241, 5.5356445, 15.812836)
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("1_b51rp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.371891, 0.49124408, 0.43900585)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="PlayerCharacter"]
+environment = SubResource("Environment_trq3l")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.057703447, 0.99833375, 0, -0.99833375, 0.057703447, 0, 2.2799501, 0)

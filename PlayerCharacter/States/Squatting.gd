@@ -2,6 +2,10 @@ extends State
 
 @export var move_speed: float = 5.0
 
+func Enter(_extra_data = null):
+	# toggle animation blend spaces for in-game pointy arms
+	state_machine.click_shoot.sliding = false
+
 func Physics_Update(_delta: float):
 	# if our velocity is greater than something, slide instead
 	var horizontal_velocity = Vector3(player_character.velocity.x, 0.0, player_character.velocity.z)
