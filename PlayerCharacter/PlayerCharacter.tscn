@@ -1,10 +1,11 @@
-[gd_scene load_steps=101 format=4 uid="uid://dnngs3f0x460f"]
+[gd_scene load_steps=102 format=4 uid="uid://dnngs3f0x460f"]
 
 [ext_resource type="Script" uid="uid://7islvmlck2q0" path="res://PlayerCharacter/PlayerCharacter.gd" id="1_pult7"]
 [ext_resource type="Script" uid="uid://bt5sy4tn4uif6" path="res://Components/ClickShoot/ClickShoot.gd" id="2_hs44b"]
 [ext_resource type="Script" uid="uid://dth0jeom0jlgg" path="res://Components/Mouselook/Mouselook.gd" id="2_jglra"]
 [ext_resource type="Script" uid="uid://b8tm2dsp5o0p4" path="res://Scripts/StateMachine/StateMachine.gd" id="3_52dax"]
 [ext_resource type="AnimationLibrary" uid="uid://camq2lt6iffif" path="res://PlayerCharacter/Import/PlayerCharacterAnimationLibrary.res" id="3_nbdcw"]
+[ext_resource type="PackedScene" uid="uid://loaloee7is73" path="res://Weapons/HandCannon/HandCannon.tscn" id="4_i84k0"]
 [ext_resource type="Script" uid="uid://diod80vqkfsxv" path="res://PlayerCharacter/States/Locomote.gd" id="4_u1221"]
 [ext_resource type="Script" uid="uid://c4jce4gpe7paa" path="res://PlayerCharacter/States/Jumping.gd" id="5_4hmw5"]
 [ext_resource type="Script" uid="uid://bkr343ojv8ewn" path="res://PlayerCharacter/States/Falling.gd" id="6_phx8k"]
@@ -497,9 +498,11 @@ camera = NodePath("CameraPivot/Camera3D")
 camera_target_offset = Vector3(0, 1, 0)
 mouselook = NodePath("Mouselook")
 
-[node name="ClickShoot" type="Node" parent="." node_paths=PackedStringArray("anim_tree")]
+[node name="ClickShoot" type="Node" parent="." node_paths=PackedStringArray("anim_tree", "l_weapon", "r_weapon")]
 script = ExtResource("2_hs44b")
 anim_tree = NodePath("../Upset Ned/AnimationTree")
+l_weapon = NodePath("../Upset Ned/rig/Skeleton3D/LPistolBoneAttachment/HandCannon")
+r_weapon = NodePath("../Upset Ned/rig/Skeleton3D/RPistolBoneAttachment/HandCannon")
 metadata/_custom_type_script = "uid://bt5sy4tn4uif6"
 
 [node name="l_timer" type="Timer" parent="ClickShoot"]
@@ -769,6 +772,22 @@ bones/33/scale = Vector3(1, 0.99999976, 0.99999994)
 [node name="basemesh" type="MeshInstance3D" parent="Upset Ned/rig/Skeleton3D"]
 mesh = SubResource("ArrayMesh_kew1b")
 skin = SubResource("Skin_mxphr")
+
+[node name="RPistolBoneAttachment" type="BoneAttachment3D" parent="Upset Ned/rig/Skeleton3D"]
+transform = Transform3D(-0.7810676, -0.61439484, -0.11158683, 0.6224938, -0.7802123, -0.06139668, -0.049339715, -0.11741706, 0.99185604, -0.2910375, 0.45623413, -0.06883997)
+bone_name = "DEF-hand.R"
+bone_idx = 31
+
+[node name="HandCannon" parent="Upset Ned/rig/Skeleton3D/RPistolBoneAttachment" instance=ExtResource("4_i84k0")]
+transform = Transform3D(0.2, 0, 0, 0, -8.742278e-09, -0.2, 0, 0.2, -8.742278e-09, 0, 0.07, 0.025)
+
+[node name="LPistolBoneAttachment" type="BoneAttachment3D" parent="Upset Ned/rig/Skeleton3D"]
+transform = Transform3D(-0.78106767, 0.6143951, 0.11158687, -0.6224938, -0.78021264, -0.061396338, 0.049339943, -0.11741694, 0.99185604, 0.29103753, 0.45623404, -0.06884004)
+bone_name = "DEF-hand.L"
+bone_idx = 25
+
+[node name="HandCannon" parent="Upset Ned/rig/Skeleton3D/LPistolBoneAttachment" instance=ExtResource("4_i84k0")]
+transform = Transform3D(0.2, 0, 0, 0, -8.742278e-09, -0.2, 0, 0.2, -8.742278e-09, 0, 0.07, 0.025)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Upset Ned"]
 libraries = {
