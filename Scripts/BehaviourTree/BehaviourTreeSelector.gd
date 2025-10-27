@@ -8,6 +8,9 @@ class_name BehaviourTreeSelector
 ## If a child returns RUNNING, the selector returns RUNNING and will resume from that child
 ## on the next tick.
 
+# a reference that gets set by the behaviour tree on ready
+var behaviour_tree: BehaviourTree
+
 # Cache the tickable children of this node so we're not querying them every tick
 var tickable_children: Array = []
 

@@ -6,7 +6,7 @@ class_name DeterministicPlayerCharacter
 # using move_and_slide.
 
 # since we are rotating the mesh separately we need a reference to it
-@export var mesh: Node3D
+@export var mesh: MeshInstance3D
 # child scripts and the state machine require a reference to the anim tree
 @export var animTree : AnimationTree
 # the state machine is our custom rolled state manager
@@ -20,6 +20,8 @@ class_name DeterministicPlayerCharacter
 @export var mouselook: Mouselook
 
 func _ready() -> void:
+	if not mesh:
+		print("not mesh")
 	#stateMachine.TransitionTo("Prone")
 	pass;
 	
@@ -28,3 +30,7 @@ func _physics_process(_delta):
 
 func receive_damage() -> void:
 	pass
+
+# proxy the get_aabb down to our mesh
+func get_aabb() -> AABB:
+	return mesh.get_aabb()

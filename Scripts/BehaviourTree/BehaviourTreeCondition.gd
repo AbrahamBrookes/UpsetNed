@@ -7,6 +7,9 @@ class_name BehaviourTreeCondition
 ## such as checking if an enemy is in range, if health is above a certain
 ## threshold, or if a specific item is available.
 
+# a reference that gets set by the behaviour tree on ready
+var behaviour_tree: BehaviourTree
+
 func tick(_blackboard: BehaviourTreeBlackboard) -> int:
 	# Override this method in subclasses to implement specific condition logic.
 	# Return SUCCESS if the condition is met, otherwise return FAILURE.

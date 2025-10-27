@@ -8,10 +8,10 @@ class_name TurnToFaceTargetAction
 
 @export var node_to_rotate: Node3D
 
-func tick(blackboard: BehaviourTreeBlackboard):
+func tick(blackboard: BehaviourTreeBlackboard) -> int:
 	var target: Node3D = blackboard.get_blackboard_value(blackboard_key)
-	print('sdf')
-	if not target.has_property("global_position"):
+	
+	if not "global_position" in target:
 		push_error("Target does not have a global_position")
 		return BehaviourTreeResult.Status.FAILURE
 	
@@ -19,9 +19,11 @@ func tick(blackboard: BehaviourTreeBlackboard):
 		push_error("must set node to rotate in behaviour tree turn to face target action")
 		return BehaviourTreeResult.Status.FAILURE
 	
-	# turn the node to rotate to face the target
-	var look_at_transform = node_to_rotate.global_transform.looking_at(target.global_transform.origin, Vector3.UP)
+	# turn the node to rotate to face the target, but only around the Y axis
+	var from = node_to_rotate.global_transform.origin
+	var to = target.global_transform.origin
+	to.y = from.y  # Ignore vertical difference for yaw-only rotation
+	var look_at_transform = node_to_rotate.global_transform.looking_at(to, Vector3.UP)
 	node_to_rotate.global_transform = look_at_transform
 	
 	return BehaviourTreeResult.Status.SUCCESS
-	

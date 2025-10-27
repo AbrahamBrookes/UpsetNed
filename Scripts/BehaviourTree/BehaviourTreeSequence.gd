@@ -8,6 +8,9 @@ class_name BehaviourTreeSequence
 ## sequence fails and stops executing further children. If all conditions
 ## are met, the actions are executed in order, resulting in an action.
 
+# a reference that gets set by the behaviour tree on ready
+var behaviour_tree: BehaviourTree
+
 # Cache the tickable children of this node so we're not querying them every tick
 var tickable_children: Array = []
 
@@ -22,7 +25,6 @@ func _ready():
 func tick(blackboard: BehaviourTreeBlackboard) -> int:
 	for child in tickable_children:
 		var result = child.tick(blackboard)
-			
 		match result:
 			BehaviourTreeResult.Status.FAILURE:
 				return BehaviourTreeResult.Status.FAILURE

@@ -64,18 +64,27 @@ func tick(blackboard: BehaviourTreeBlackboard) -> int:
 	# record last checked time 
 	last_check_time = current_time
 	
+	print("can see target", can_see_target == BehaviourTreeResult.Status.SUCCESS)
 	return can_see_target
 
 # perform the LOS check via raycast
 func _perform_raycast_check() -> bool:
+	# don't look at origins as they are in the floor. instead, look at center of aabb
+	var local_aabb: AABB = target.get_aabb()
+	var target_center: Vector3 = local_aabb.position + (local_aabb.size * 0.5) + target.global_position
+	
 	# no idea what this shit means, thanks Claude!
 	var space_state = thinker.get_world_3d().direct_space_state
 	var query = PhysicsRayQueryParameters3D.create(
 		head.global_position,
-		target.global_position
+		target_center
 	)
 	query.exclude = [head, thinker]
 	query.collision_mask = collision_mask
 	
 	var result = space_state.intersect_ray(query)
+	
+	if behaviour_tree and behaviour_tree.debug:
+		DebugDraw3D.draw_line(head.global_position, target_center, Color(1, 1, 0))
+	
 	return result.is_empty() or result.collider == target

@@ -490,12 +490,12 @@ nodes/SlidingAimRHandBlend/node = SubResource("AnimationNodeBlend2_l6drw")
 nodes/SlidingAimRHandBlend/position = Vector2(60, 100)
 node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"SlidingAimLHandBlend", &"StandingAimLHandBlend", 0, &"Locomotion", &"StandingAimLHandBlend", 1, &"StandingAimLHandBlendSpace", &"StandingAimRHandBlend", 0, &"StandingAimLHandBlend", &"StandingAimRHandBlend", 1, &"StandingAimRHandBlendSpace", &"SlidingAimLHandBlend", 0, &"SlidingAimRHandBlend", &"SlidingAimLHandBlend", 1, &"SlidingAimLHandBlendSpace", &"SlidingAimRHandBlend", 0, &"StandingAimRHandBlend", &"SlidingAimRHandBlend", 1, &"SlidingAimRHandBlendSpace"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_jqwj6"]
+size = Vector3(12, 1, 12)
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_me38b"]
 radius = 0.18652344
 height = 1.0236816
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_jqwj6"]
-size = Vector3(12, 1, 12)
 
 [node name="EnemyCharacter" type="CharacterBody3D" node_paths=PackedStringArray("mesh")]
 script = ExtResource("1_0ojtv")
@@ -506,6 +506,7 @@ mesh = NodePath("Upset Ned")
 [node name="rig" type="Node3D" parent="Upset Ned"]
 
 [node name="Skeleton3D" type="Skeleton3D" parent="Upset Ned/rig"]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
 bones/0/name = "DEF-spine"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 0.9683388, -0.24963985, 0, 0.24963982, 0.9683389, 0, 0.393861, -0.021528006)
@@ -798,6 +799,15 @@ parameters/SlidingAimLHandBlendSpace/blend_position = Vector2(0, 0)
 parameters/SlidingAimRHandBlendSpace/blend_position = Vector2(0, 0)
 parameters/SlidingAimRHandBlend/blend_amount = 0.0
 
+[node name="Agrozone" parent="Upset Ned" node_paths=PackedStringArray("blackboard") instance=ExtResource("8_bbos0")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+collision_mask = 2
+blackboard = NodePath("../../BehaviourTreeBlackboard")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Upset Ned/Agrozone"]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 0, 0, -7.7781744)
+shape = SubResource("BoxShape3D_jqwj6")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("CapsuleShape3D_me38b")
@@ -806,6 +816,7 @@ shape = SubResource("CapsuleShape3D_me38b")
 script = ExtResource("4_5411f")
 blackboard = NodePath("../BehaviourTreeBlackboard")
 anim_tree = NodePath("../Upset Ned/AnimationTree")
+debug = true
 metadata/_custom_type_script = "uid://c28bssdvxad2h"
 
 [node name="RootSelector" type="Node" parent="BehaviourTree"]
@@ -831,13 +842,9 @@ script = ExtResource("9_c7rar")
 head = NodePath("../../../../Upset Ned/rig/Skeleton3D/EyesAttachment/Eyes")
 metadata/_custom_type_script = "uid://csxhom132d36v"
 
-[node name="Invert since we are in a selector and we want to run the next action" type="Node" parent="BehaviourTree/RootSelector/Look At Target"]
-script = ExtResource("10_01n7w")
-metadata/_custom_type_script = "uid://cn7xj52gibn83"
-
-[node name="Turn to face target action" type="Node" parent="BehaviourTree/RootSelector/Look At Target/Invert since we are in a selector and we want to run the next action" node_paths=PackedStringArray("node_to_rotate")]
+[node name="Turn to face target action" type="Node" parent="BehaviourTree/RootSelector/Look At Target" node_paths=PackedStringArray("node_to_rotate")]
 script = ExtResource("10_8aww5")
-node_to_rotate = NodePath("../../../../../Upset Ned")
+node_to_rotate = NodePath("../../../../Upset Ned")
 metadata/_custom_type_script = "uid://dhlcglftj6i0q"
 
 [node name="Select a target as current_target" type="Node" parent="BehaviourTree/RootSelector"]
@@ -892,10 +899,3 @@ metadata/_custom_type_script = "uid://dhlcglftj6i0q"
 [node name="BehaviourTreeBlackboard" type="Node" parent="."]
 script = ExtResource("5_to1wh")
 metadata/_custom_type_script = "uid://cvd84fakj0hs1"
-
-[node name="Agrozone" parent="." node_paths=PackedStringArray("blackboard") instance=ExtResource("8_bbos0")]
-blackboard = NodePath("../BehaviourTreeBlackboard")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Agrozone"]
-transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 0, 0, -7.7781744)
-shape = SubResource("BoxShape3D_jqwj6")

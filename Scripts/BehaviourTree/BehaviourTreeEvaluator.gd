@@ -18,6 +18,9 @@ class_name BehaviourTreeEvaluator
 ## "TargetDamageEvaluator", "TargetSpeedEvaluator", etc that each return
 ## a float score based on the blackboard input.
 
+# a reference that gets set by the behaviour tree on ready
+var behaviour_tree: BehaviourTree
+
 func evaluate(_blackboard: BehaviourTreeBlackboard) -> float:
 	# Override this method in subclasses to implement specific evaluation logic.
 	# Return a float score based on the blackboard input.

@@ -9,6 +9,9 @@ class_name BehaviourTreeEvaluatorGate
 ## which ticks back up to its selector or sequence node parent as a normal
 ## BehaviourTree node would and so its next sibling node can be ticked.
 
+# a reference that gets set by the behaviour tree on ready
+var behaviour_tree: BehaviourTree
+
 # The threshold score to pass
 @export var threshold: float = 0.5
 

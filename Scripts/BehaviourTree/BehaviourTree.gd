@@ -11,6 +11,9 @@ class_name BehaviourTree
 var playback: AnimationNodeStateMachinePlayback
 var root_node: Node
 
+# debug if ya wanna
+@export var debug: bool = false
+
 func _ready():
 	# if we don't have our required nodes throw a configuration error
 	if not blackboard:
@@ -32,6 +35,14 @@ func _ready():
 	for node in action_nodes:
 		if node.has_signal("ChangeState"):
 			node.connect("ChangeState", change_animation)
+	
+	# traverse all children and give them a reference to self
+	var children = find_children("*")
+	for child in children:
+		if 'behaviour_tree' in child:
+			child.behaviour_tree = self
+		if 'blackboard' in child:
+			child.blackboard = self
 	
 func change_animation(animation_name: String):
 	playback.travel(animation_name)
