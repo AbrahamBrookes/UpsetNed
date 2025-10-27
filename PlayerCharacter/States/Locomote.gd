@@ -6,7 +6,8 @@ extends State
 
 func Enter(_extra_data = null):
 	# toggle animation blend spaces for in-game pointy arms
-	state_machine.click_shoot.sliding = false
+	if state_machine.click_shoot:
+		state_machine.click_shoot.sliding = false
 
 func Physics_Update(_delta: float):
 	# if the previous state was jumping and the player is holding squat

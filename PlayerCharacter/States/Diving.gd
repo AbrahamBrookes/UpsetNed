@@ -15,7 +15,8 @@ func _ready():
 
 func Enter(_extra_data = null):
 	# toggle animation blend spaces for in-game pointy arms
-	state_machine.click_shoot.sliding = true
+	if state_machine.click_shoot:
+		state_machine.click_shoot.sliding = true
 	# Apply immediate upward impulse
 	player_character.velocity.y = jump_velocity
 	jump_power_left = max_jump_power

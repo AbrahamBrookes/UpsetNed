@@ -8,7 +8,8 @@ extends State
 
 func Enter(_extra_data = null):
 	# toggle animation blend spaces for in-game pointy arms
-	state_machine.click_shoot.sliding = true
+	if state_machine.click_shoot:
+		state_machine.click_shoot.sliding = true
 	# set initial slide force based on current horizontal speed
 	var horizontal_velocity = Vector3(player_character.velocity.x, 0.0, player_character.velocity.z)
 	slide_force = horizontal_velocity.length() * 2.0  # arbitrary multiplier for slide power

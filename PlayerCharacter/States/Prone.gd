@@ -5,7 +5,8 @@ func _ready():
 
 func Enter(_extra_data = null):
 	# toggle animation blend spaces for in-game pointy arms
-	state_machine.click_shoot.sliding = true
+	if state_machine.click_shoot:
+		state_machine.click_shoot.sliding = true
 
 func Physics_Update(_delta: float):
 	# if the player isn't holding squat, back to locomote

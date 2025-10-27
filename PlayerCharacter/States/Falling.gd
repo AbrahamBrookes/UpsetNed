@@ -8,7 +8,8 @@ var jump_power_left = 0.0
 
 func Enter(_extra_data = null):
 	# toggle animation blend spaces for in-game pointy arms
-	state_machine.click_shoot.sliding = false
+	if state_machine.click_shoot:
+		state_machine.click_shoot.sliding = false
 	
 func Physics_Update(delta: float):
 	# Handle horizontal movement while jumping

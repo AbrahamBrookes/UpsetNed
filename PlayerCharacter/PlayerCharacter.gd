@@ -19,9 +19,6 @@ class_name DeterministicPlayerCharacter
 # the mouselook component acts like a mixin
 @export var mouselook: Mouselook
 
-# the team this entity is on - 1 = player, 2 = enemy
-var team = 1
-
 func _ready() -> void:
 	#stateMachine.TransitionTo("Prone")
 	pass;
