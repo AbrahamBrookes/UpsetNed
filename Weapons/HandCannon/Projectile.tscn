@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://c05p43eba23uu"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_my30o"]
+radius = 0.05
+height = 0.2
+
+[node name="Projectile" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_my30o")

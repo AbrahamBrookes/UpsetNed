@@ -1,0 +1,72 @@
+[gd_scene load_steps=9 format=3 uid="uid://loaloee7is73"]
+
+[ext_resource type="Script" uid="uid://bp8rr2vked8co" path="res://Weapons/HandCannon/HandCannon.gd" id="1_8k6pl"]
+[ext_resource type="PackedScene" uid="uid://cvxrvxyo7dnbf" path="res://Weapons/HandCannon/hand cannon.glb" id="1_c8767"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_c8767"]
+direction = Vector3(0, 2, 0)
+spread = 60.0
+flatness = 0.652
+initial_velocity_max = 36.43
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8k6pl"]
+shading_mode = 0
+albedo_color = Color(1, 0.8509804, 0.34117648, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_8k6pl"]
+material = SubResource("StandardMaterial3D_8k6pl")
+size = Vector2(0.01, 0.01)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_12cgr"]
+particle_flag_align_y = true
+direction = Vector3(0, 0, -1)
+spread = 0.0
+initial_velocity_min = 400.0
+initial_velocity_max = 400.0
+gravity = Vector3(0, -2, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_12cgr"]
+shading_mode = 0
+albedo_color = Color(0.7702005, 0.5520428, 0.42727214, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_f8wcb"]
+material = SubResource("StandardMaterial3D_12cgr")
+radius = 0.03
+height = 0.075
+radial_segments = 4
+
+[node name="HandCannon" type="Node3D" node_paths=PackedStringArray("light", "particles", "projectile_particles")]
+script = ExtResource("1_8k6pl")
+light = NodePath("muzzle_flash")
+particles = NodePath("GPUParticles3D")
+projectile_particles = NodePath("ProjectileParticles")
+
+[node name="hand cannon" parent="." instance=ExtResource("1_c8767")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+
+[node name="muzzle_flash" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09425944, -1.1729923)
+light_color = Color(1, 0.8392157, 0.16078432, 1)
+light_energy = 0.1
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.14185031, -0.7820376)
+emitting = false
+lifetime = 0.13
+one_shot = true
+speed_scale = 2.12
+explosiveness = 1.0
+randomness = 1.0
+transform_align = 3
+process_material = SubResource("ParticleProcessMaterial_c8767")
+draw_pass_1 = SubResource("QuadMesh_8k6pl")
+
+[node name="ProjectileParticles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.16302752, -0.8550843)
+emitting = false
+amount = 1
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_12cgr")
+draw_pass_1 = SubResource("CapsuleMesh_f8wcb")

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://upt88jveqp7o"]
+
+[ext_resource type="Script" uid="uid://d0wujnd4cggbe" path="res://Components/Enemies/Agrozone/Agrozone.gd" id="1_7qov1"]
+
+[node name="Agrozone" type="Area3D"]
+script = ExtResource("1_7qov1")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
