@@ -1,28 +1,30 @@
-[gd_scene load_steps=103 format=4 uid="uid://dnngs3f0x460f"]
+[gd_scene load_steps=110 format=4 uid="uid://cmqdnrhniysvv"]
 
-[ext_resource type="Script" uid="uid://7islvmlck2q0" path="res://PlayerCharacter/PlayerCharacter.gd" id="1_pult7"]
-[ext_resource type="Script" uid="uid://bt5sy4tn4uif6" path="res://Components/Player/ClickShoot/ClickShoot.gd" id="2_hs44b"]
-[ext_resource type="Script" uid="uid://dth0jeom0jlgg" path="res://Components/Player/Mouselook/Mouselook.gd" id="2_jglra"]
-[ext_resource type="Script" uid="uid://b8tm2dsp5o0p4" path="res://Scripts/StateMachine/StateMachine.gd" id="3_52dax"]
-[ext_resource type="AnimationLibrary" uid="uid://camq2lt6iffif" path="res://PlayerCharacter/Import/PlayerCharacterAnimationLibrary.res" id="3_nbdcw"]
-[ext_resource type="PackedScene" uid="uid://loaloee7is73" path="res://Weapons/HandCannon/HandCannon.tscn" id="4_i84k0"]
-[ext_resource type="Script" uid="uid://diod80vqkfsxv" path="res://PlayerCharacter/States/Locomote.gd" id="4_u1221"]
-[ext_resource type="Script" uid="uid://c4jce4gpe7paa" path="res://PlayerCharacter/States/Jumping.gd" id="5_4hmw5"]
-[ext_resource type="Script" uid="uid://bkr343ojv8ewn" path="res://PlayerCharacter/States/Falling.gd" id="6_phx8k"]
-[ext_resource type="Script" uid="uid://baa3x3dsalu7j" path="res://PlayerCharacter/States/Sliding.gd" id="7_jglra"]
-[ext_resource type="Script" uid="uid://0icfsg86sdp" path="res://PlayerCharacter/States/Squatting.gd" id="7_oaojh"]
-[ext_resource type="Script" uid="uid://dfjgki2b5syp1" path="res://PlayerCharacter/States/Prone.gd" id="9_5vfnn"]
-[ext_resource type="Script" uid="uid://e65mjlvi5sr" path="res://PlayerCharacter/States/Diving.gd" id="11_6mx01"]
-[ext_resource type="Script" uid="uid://v1p622apney7" path="res://PlayerCharacter/States/DiveSlide.gd" id="12_hs44b"]
-[ext_resource type="Script" uid="uid://cf63mfde4ddvh" path="res://PlayerCharacter/States/DiveProne.gd" id="13_i84k0"]
-
-[sub_resource type="SphereMesh" id="SphereMesh_i84k0"]
-radius = 0.05
-height = 0.1
+[ext_resource type="Script" uid="uid://c3ul7slyr67i1" path="res://Enemies/EnemyCharacter.gd" id="1_0ojtv"]
+[ext_resource type="PackedScene" uid="uid://loaloee7is73" path="res://Weapons/HandCannon/HandCannon.tscn" id="2_ibj4g"]
+[ext_resource type="Script" uid="uid://bt5sy4tn4uif6" path="res://Components/Player/ClickShoot/ClickShoot.gd" id="2_m4lhg"]
+[ext_resource type="AnimationLibrary" uid="uid://camq2lt6iffif" path="res://PlayerCharacter/Import/PlayerCharacterAnimationLibrary.res" id="3_c7rar"]
+[ext_resource type="Script" uid="uid://c28bssdvxad2h" path="res://Scripts/BehaviourTree/BehaviourTree.gd" id="4_5411f"]
+[ext_resource type="Script" uid="uid://bjfgd4244csap" path="res://Scripts/BehaviourTree/BehaviourTreeSelector.gd" id="5_2memc"]
+[ext_resource type="Script" uid="uid://cvd84fakj0hs1" path="res://Scripts/BehaviourTree/BehaviourTreeBlackboard.gd" id="5_to1wh"]
+[ext_resource type="Script" uid="uid://dqi5do4e53acs" path="res://Scripts/BehaviourTree/BehaviourTreeActions/GoToStateAction.gd" id="6_bbos0"]
+[ext_resource type="Script" uid="uid://dec4sxqtyr8fg" path="res://Scripts/BehaviourTree/BehaviourTreeConditions/BlackboardValueIsSetCondition.gd" id="7_ibj4g"]
+[ext_resource type="Script" uid="uid://da8hiin4spe61" path="res://Scripts/BehaviourTree/BehaviourTreeSequence.gd" id="7_n6i84"]
+[ext_resource type="PackedScene" uid="uid://upt88jveqp7o" path="res://Components/Enemies/Agrozone/Agrozone.tscn" id="8_bbos0"]
+[ext_resource type="Script" uid="uid://cmsjwp685csra" path="res://Scripts/BehaviourTree/BehaviourTreeConditions/TargetInRangeCondition.gd" id="8_c7rar"]
+[ext_resource type="Script" uid="uid://bua0kd12grmrt" path="res://Scripts/BehaviourTree/BehaviourTreeActions/SelectATargetAction.gd" id="8_egt66"]
+[ext_resource type="Script" uid="uid://c0uouybh5cpyh" path="res://Scripts/BehaviourTree/BehaviourTreeConditions/CanSeeTargetCondition.gd" id="9_c7rar"]
+[ext_resource type="Script" uid="uid://cn7xj52gibn83" path="res://Scripts/BehaviourTree/BehaviourTreeDecorators/InversionDecorator.gd" id="10_01n7w"]
+[ext_resource type="Script" uid="uid://bki0w3hjswsn0" path="res://Scripts/BehaviourTree/BehaviourTreeActions/TurnToFaceTargetAction.gd" id="10_8aww5"]
+[ext_resource type="Script" uid="uid://b0g7obsju3xki" path="res://Scripts/BehaviourTree/BehaviourTreeConditions/BlackboardValueHasMinCountCondition.gd" id="11_c7rar"]
+[ext_resource type="Script" uid="uid://bh7weu5h2cdlo" path="res://Scripts/BehaviourTree/BehaviourTreeActions/ReturnSuccessAction.gd" id="14_01n7w"]
+[ext_resource type="Script" uid="uid://b8tm2dsp5o0p4" path="res://Scripts/StateMachine/StateMachine.gd" id="19_e2n8e"]
+[ext_resource type="Script" uid="uid://djwm836pdbrwl" path="res://Enemies/States/PathTo.gd" id="20_obq0g"]
+[ext_resource type="Script" uid="uid://c8eahflp5nxpj" path="res://Enemies/States/Idle.gd" id="21_e2n8e"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tc8uu"]
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_kew1b"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_uy2rn"]
 resource_name = "Upset Ned_Plane"
 _surfaces = [{
 "aabb": AABB(-0.37398544, 0.004687661, -0.15192159, 0.7479709, 1.0372603, 0.3233251),
@@ -41,7 +43,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="Skin" id="Skin_mxphr"]
+[sub_resource type="Skin" id="Skin_pd6wd"]
 resource_name = "Skin"
 bind_count = 34
 bind/0/name = &"DEF-spine"
@@ -146,6 +148,11 @@ bind/32/pose = Transform3D(-1, -7.105428e-15, -2.1175834e-22, 2.3092281e-14, -1.
 bind/33/name = &"DEF-breast.R"
 bind/33/bone = -1
 bind/33/pose = Transform3D(-1, -7.105428e-15, -2.1175834e-22, 2.3092281e-14, -1.6763812e-07, 1.0000002, -3.552714e-14, 1.0000001, 5.3290722e-15, -0.073881604, 0.018915094, -0.5692441)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_c7rar"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tbdv8"]
 animation = &"PlayerCharacter/slide_b"
@@ -462,8 +469,7 @@ blend_mode = 1
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_i84k0"]
 
-[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_0nfi7"]
-graph_offset = Vector2(-87.55791, 299.7577)
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_sik18"]
 nodes/output/position = Vector2(1080, 140)
 nodes/Locomotion/node = SubResource("AnimationNodeStateMachine_hs44b")
 nodes/Locomotion/position = Vector2(-880, 140)
@@ -487,25 +493,20 @@ nodes/SlidingAimRHandBlend/node = SubResource("AnimationNodeBlend2_l6drw")
 nodes/SlidingAimRHandBlend/position = Vector2(60, 100)
 node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"SlidingAimLHandBlend", &"StandingAimLHandBlend", 0, &"Locomotion", &"StandingAimLHandBlend", 1, &"StandingAimLHandBlendSpace", &"StandingAimRHandBlend", 0, &"StandingAimLHandBlend", &"StandingAimRHandBlend", 1, &"StandingAimRHandBlendSpace", &"SlidingAimLHandBlend", 0, &"SlidingAimRHandBlend", &"SlidingAimLHandBlend", 1, &"SlidingAimLHandBlendSpace", &"SlidingAimRHandBlend", 0, &"StandingAimRHandBlend", &"SlidingAimRHandBlend", 1, &"SlidingAimRHandBlendSpace"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jglra"]
-radius = 0.19140625
-height = 0.991333
+[sub_resource type="BoxShape3D" id="BoxShape3D_jqwj6"]
+size = Vector3(12, 1, 12)
 
-[node name="PlayerCharacter" type="CharacterBody3D" node_paths=PackedStringArray("mesh", "animTree", "stateMachine", "camera", "mouselook")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
-collision_layer = 2
-script = ExtResource("1_pult7")
-mesh = NodePath("Upset Ned/rig/Skeleton3D/basemesh")
-animTree = NodePath("Upset Ned/AnimationTree")
-stateMachine = NodePath("StateMachine")
-camera = NodePath("CameraPivot/Camera3D")
-camera_target_offset = Vector3(0, 1, 0)
-mouselook = NodePath("Mouselook")
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_me38b"]
+radius = 0.18652344
+height = 1.0236816
 
-[node name="ClickShoot" type="Node" parent="." node_paths=PackedStringArray("anim_tree", "mouselook", "l_weapon", "r_weapon")]
-script = ExtResource("2_hs44b")
+[node name="EnemyCharacter" type="CharacterBody3D" node_paths=PackedStringArray("mesh")]
+script = ExtResource("1_0ojtv")
+mesh = NodePath("Upset Ned")
+
+[node name="ClickShoot" type="Node" parent="." node_paths=PackedStringArray("anim_tree", "l_weapon", "r_weapon")]
+script = ExtResource("2_m4lhg")
 anim_tree = NodePath("../Upset Ned/AnimationTree")
-mouselook = NodePath("../Mouselook")
 l_weapon = NodePath("../Upset Ned/rig/Skeleton3D/LPistolBoneAttachment/HandCannon")
 r_weapon = NodePath("../Upset Ned/rig/Skeleton3D/RPistolBoneAttachment/HandCannon")
 metadata/_custom_type_script = "uid://bt5sy4tn4uif6"
@@ -516,30 +517,12 @@ autostart = true
 [node name="r_timer" type="Timer" parent="ClickShoot"]
 autostart = true
 
-[node name="Mouselook" type="Node" parent="." node_paths=PackedStringArray("camera", "camera_pivot", "mesh", "anim_tree", "raycast", "target_node", "skeleton")]
-script = ExtResource("2_jglra")
-camera = NodePath("../CameraPivot/Camera3D")
-camera_pivot = NodePath("../CameraPivot")
-camera_target_offset = Vector3(0, 1.2, 0)
-mesh = NodePath("../Upset Ned")
-anim_tree = NodePath("../Upset Ned/AnimationTree")
-raycast = NodePath("../CameraPivot/Camera3D/Hitscan")
-target_node = NodePath("MouselookTarget")
-skeleton = NodePath("../Upset Ned/rig/Skeleton3D")
-debug = true
-metadata/_custom_type_script = "uid://dth0jeom0jlgg"
-
-[node name="MouselookTarget" type="Node3D" parent="Mouselook"]
-visible = false
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Mouselook/MouselookTarget"]
-mesh = SubResource("SphereMesh_i84k0")
-
 [node name="Upset Ned" type="Node3D" parent="."]
 
 [node name="rig" type="Node3D" parent="Upset Ned"]
 
 [node name="Skeleton3D" type="Skeleton3D" parent="Upset Ned/rig"]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
 bones/0/name = "DEF-spine"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 0.9683388, -0.24963985, 0, 0.24963982, 0.9683389, 0, 0.393861, -0.021528006)
@@ -780,34 +763,41 @@ bones/33/rotation = Quaternion(5.6522017e-15, 0.7071067, 0.7071068, -1.2560738e-
 bones/33/scale = Vector3(1, 0.99999976, 0.99999994)
 
 [node name="basemesh" type="MeshInstance3D" parent="Upset Ned/rig/Skeleton3D"]
-mesh = SubResource("ArrayMesh_kew1b")
-skin = SubResource("Skin_mxphr")
+mesh = SubResource("ArrayMesh_uy2rn")
+skin = SubResource("Skin_pd6wd")
 
 [node name="RPistolBoneAttachment" type="BoneAttachment3D" parent="Upset Ned/rig/Skeleton3D"]
 transform = Transform3D(-0.7810676, -0.61439484, -0.11158683, 0.6224938, -0.7802123, -0.06139668, -0.049339715, -0.11741706, 0.99185604, -0.2910375, 0.45623413, -0.06883997)
 bone_name = "DEF-hand.R"
 bone_idx = 31
 
-[node name="HandCannon" parent="Upset Ned/rig/Skeleton3D/RPistolBoneAttachment" node_paths=PackedStringArray("mouselook") instance=ExtResource("4_i84k0")]
+[node name="HandCannon" parent="Upset Ned/rig/Skeleton3D/RPistolBoneAttachment" instance=ExtResource("2_ibj4g")]
 transform = Transform3D(0.2, 0, 0, 0, -8.742278e-09, -0.2, 0, 0.2, -8.742278e-09, 0, 0.07, 0.025)
-mouselook = NodePath("../../../../../Mouselook")
 
 [node name="LPistolBoneAttachment" type="BoneAttachment3D" parent="Upset Ned/rig/Skeleton3D"]
 transform = Transform3D(-0.78106767, 0.6143951, 0.11158687, -0.6224938, -0.78021264, -0.061396338, 0.049339943, -0.11741694, 0.99185604, 0.29103753, 0.45623404, -0.06884004)
 bone_name = "DEF-hand.L"
 bone_idx = 25
 
-[node name="HandCannon" parent="Upset Ned/rig/Skeleton3D/LPistolBoneAttachment" node_paths=PackedStringArray("mouselook") instance=ExtResource("4_i84k0")]
+[node name="HandCannon" parent="Upset Ned/rig/Skeleton3D/LPistolBoneAttachment" instance=ExtResource("2_ibj4g")]
 transform = Transform3D(0.2, 0, 0, 0, -8.742278e-09, -0.2, 0, 0.2, -8.742278e-09, 0, 0.07, 0.025)
-mouselook = NodePath("../../../../../Mouselook")
+
+[node name="EyesAttachment" type="BoneAttachment3D" parent="Upset Ned/rig/Skeleton3D"]
+transform = Transform3D(1, -1.5551264e-14, 2.3841858e-07, 4.4488733e-08, 0.982436, -0.1865992, -2.3423104e-07, 0.18659912, 0.98243624, -3.2654687e-16, 0.6706831, 0.005070055)
+bone_name = "DEF-spine.005"
+bone_idx = 5
+
+[node name="Eyes" type="MeshInstance3D" parent="Upset Ned/rig/Skeleton3D/EyesAttachment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.484375e-08, 0.2015574, 0.14614528)
+mesh = SubResource("CylinderMesh_c7rar")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Upset Ned"]
 libraries = {
-&"PlayerCharacter": ExtResource("3_nbdcw")
+&"PlayerCharacter": ExtResource("3_c7rar")
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="Upset Ned"]
-tree_root = SubResource("AnimationNodeBlendTree_0nfi7")
+tree_root = SubResource("AnimationNodeBlendTree_sik18")
 anim_player = NodePath("../AnimationPlayer")
 parameters/Locomotion/Diving/blend_position = Vector2(0, 0)
 parameters/Locomotion/Falling/blend_position = 0.0
@@ -825,68 +815,127 @@ parameters/SlidingAimLHandBlendSpace/blend_position = Vector2(0, 0)
 parameters/SlidingAimRHandBlendSpace/blend_position = Vector2(0, 0)
 parameters/SlidingAimRHandBlend/blend_amount = 0.0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5043335, 0)
-shape = SubResource("CapsuleShape3D_jglra")
+[node name="Agrozone" parent="Upset Ned" node_paths=PackedStringArray("blackboard") instance=ExtResource("8_bbos0")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+collision_mask = 2
+blackboard = NodePath("../../BehaviourTreeBlackboard")
 
-[node name="StateMachine" type="Node3D" parent="." node_paths=PackedStringArray("anim_tree", "initial_state", "click_shoot")]
-script = ExtResource("3_52dax")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Upset Ned/Agrozone"]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 0, 0, -7.7781744)
+shape = SubResource("BoxShape3D_jqwj6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CapsuleShape3D_me38b")
+
+[node name="BehaviourTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "anim_tree")]
+script = ExtResource("4_5411f")
+blackboard = NodePath("../BehaviourTreeBlackboard")
 anim_tree = NodePath("../Upset Ned/AnimationTree")
-initial_state = NodePath("Prone")
+enabled = false
+debug = true
+metadata/_custom_type_script = "uid://c28bssdvxad2h"
+
+[node name="RootSelector" type="Node" parent="BehaviourTree"]
+script = ExtResource("5_2memc")
+metadata/_custom_type_script = "uid://bjfgd4244csap"
+
+[node name="Look At Target" type="Node" parent="BehaviourTree/RootSelector"]
+script = ExtResource("7_n6i84")
+metadata/_custom_type_script = "uid://da8hiin4spe61"
+
+[node name="current_target BB value set" type="Node" parent="BehaviourTree/RootSelector/Look At Target"]
+script = ExtResource("7_ibj4g")
+key_name = "current_target"
+metadata/_custom_type_script = "uid://csxhom132d36v"
+
+[node name="current_target within attack range" type="Node" parent="BehaviourTree/RootSelector/Look At Target"]
+script = ExtResource("8_c7rar")
+range_distance = 30.0
+metadata/_custom_type_script = "uid://csxhom132d36v"
+
+[node name="current_target visible" type="Node" parent="BehaviourTree/RootSelector/Look At Target" node_paths=PackedStringArray("head")]
+script = ExtResource("9_c7rar")
+head = NodePath("../../../../Upset Ned/rig/Skeleton3D/EyesAttachment/Eyes")
+metadata/_custom_type_script = "uid://csxhom132d36v"
+
+[node name="Turn to face target action" type="Node" parent="BehaviourTree/RootSelector/Look At Target" node_paths=PackedStringArray("node_to_rotate")]
+script = ExtResource("10_8aww5")
+node_to_rotate = NodePath("../../../../Upset Ned")
+metadata/_custom_type_script = "uid://dhlcglftj6i0q"
+
+[node name="Select a target as current_target" type="Node" parent="BehaviourTree/RootSelector"]
+script = ExtResource("7_n6i84")
+metadata/_custom_type_script = "uid://da8hiin4spe61"
+
+[node name="Has Targets" type="Node" parent="BehaviourTree/RootSelector/Select a target as current_target"]
+script = ExtResource("11_c7rar")
+key_name = "targets"
+metadata/_custom_type_script = "uid://csxhom132d36v"
+
+[node name="Select a Target" type="Node" parent="BehaviourTree/RootSelector/Select a target as current_target"]
+script = ExtResource("8_egt66")
+metadata/_custom_type_script = "uid://dhlcglftj6i0q"
+
+[node name="Invert since we are in a selector and we want to run the next action" type="Node" parent="BehaviourTree/RootSelector/Select a target as current_target"]
+script = ExtResource("10_01n7w")
+metadata/_custom_type_script = "uid://cn7xj52gibn83"
+
+[node name="Return success" type="Node" parent="BehaviourTree/RootSelector/Select a target as current_target/Invert since we are in a selector and we want to run the next action"]
+script = ExtResource("14_01n7w")
+metadata/_custom_type_script = "uid://dhlcglftj6i0q"
+
+[node name="ShouldAttackTarget" type="Node" parent="BehaviourTree/RootSelector"]
+script = ExtResource("7_n6i84")
+metadata/_custom_type_script = "uid://da8hiin4spe61"
+
+[node name="current_target BB value set" type="Node" parent="BehaviourTree/RootSelector/ShouldAttackTarget"]
+script = ExtResource("7_ibj4g")
+key_name = "current_target"
+metadata/_custom_type_script = "uid://csxhom132d36v"
+
+[node name="current_target within attack range" type="Node" parent="BehaviourTree/RootSelector/ShouldAttackTarget"]
+script = ExtResource("8_c7rar")
+range_distance = 30.0
+metadata/_custom_type_script = "uid://csxhom132d36v"
+
+[node name="current_target visible" type="Node" parent="BehaviourTree/RootSelector/ShouldAttackTarget" node_paths=PackedStringArray("head")]
+script = ExtResource("9_c7rar")
+head = NodePath("../../../../Upset Ned/rig/Skeleton3D/EyesAttachment/Eyes")
+metadata/_custom_type_script = "uid://csxhom132d36v"
+
+[node name="Go to attacking state" type="Node" parent="BehaviourTree/RootSelector/ShouldAttackTarget"]
+script = ExtResource("6_bbos0")
+metadata/_custom_type_script = "uid://dhlcglftj6i0q"
+
+[node name="IdleAction" type="Node" parent="BehaviourTree/RootSelector"]
+script = ExtResource("6_bbos0")
+state_name = "Locomote"
+metadata/_custom_type_script = "uid://dhlcglftj6i0q"
+
+[node name="BehaviourTreeBlackboard" type="Node" parent="."]
+script = ExtResource("5_to1wh")
+metadata/_custom_type_script = "uid://cvd84fakj0hs1"
+
+[node name="StateMachine" type="Node3D" parent="." node_paths=PackedStringArray("anim_tree", "initial_state", "locomotor", "click_shoot")]
+script = ExtResource("19_e2n8e")
+anim_tree = NodePath("../Upset Ned/AnimationTree")
+initial_state = NodePath("Idle")
+locomotor = NodePath("..")
 click_shoot = NodePath("../ClickShoot")
 metadata/_custom_type_script = "uid://b8tm2dsp5o0p4"
 
-[node name="Locomote" type="Node3D" parent="StateMachine" node_paths=PackedStringArray("mesh")]
-script = ExtResource("4_u1221")
+[node name="Idle" type="Node3D" parent="StateMachine"]
+script = ExtResource("21_e2n8e")
+metadata/_custom_type_script = "uid://bjmyb3rnkdsof"
+
+[node name="PathTo" type="Node3D" parent="StateMachine" node_paths=PackedStringArray("mesh", "nav_agent")]
+script = ExtResource("20_obq0g")
 mesh = NodePath("../../Upset Ned")
+nav_agent = NodePath("../../NavigationAgent3D")
 metadata/_custom_type_script = "uid://bjmyb3rnkdsof"
 
-[node name="Jumping" type="Node3D" parent="StateMachine" node_paths=PackedStringArray("mesh")]
-script = ExtResource("5_4hmw5")
-mesh = NodePath("../../Upset Ned")
-metadata/_custom_type_script = "uid://bjmyb3rnkdsof"
-
-[node name="Falling" type="Node3D" parent="StateMachine"]
-script = ExtResource("6_phx8k")
-metadata/_custom_type_script = "uid://bjmyb3rnkdsof"
-
-[node name="Squatting" type="Node3D" parent="StateMachine"]
-script = ExtResource("7_oaojh")
-metadata/_custom_type_script = "uid://bjmyb3rnkdsof"
-
-[node name="Sliding" type="Node3D" parent="StateMachine" node_paths=PackedStringArray("mesh")]
-script = ExtResource("7_jglra")
-mesh = NodePath("../../Upset Ned")
-metadata/_custom_type_script = "uid://bjmyb3rnkdsof"
-
-[node name="Prone" type="Node3D" parent="StateMachine"]
-script = ExtResource("9_5vfnn")
-metadata/_custom_type_script = "uid://bjmyb3rnkdsof"
-
-[node name="Diving" type="Node3D" parent="StateMachine" node_paths=PackedStringArray("mesh")]
-script = ExtResource("11_6mx01")
-jump_velocity = 4.0
-mesh = NodePath("../../Upset Ned")
-metadata/_custom_type_script = "uid://bjmyb3rnkdsof"
-
-[node name="DiveSlide" type="Node3D" parent="StateMachine" node_paths=PackedStringArray("mesh")]
-script = ExtResource("12_hs44b")
-mesh = NodePath("../../Upset Ned")
-metadata/_custom_type_script = "uid://bjmyb3rnkdsof"
-
-[node name="DiveProne" type="Node3D" parent="StateMachine"]
-script = ExtResource("13_i84k0")
-metadata/_custom_type_script = "uid://bjmyb3rnkdsof"
-
-[node name="CameraPivot" type="Node3D" parent="."]
-
-[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
-transform = Transform3D(-1, 3.6968583e-08, -7.9221635e-08, 3.369474e-08, 0.9991619, 0.040933967, 8.06685e-08, 0.040933967, -0.9991619, 0, 1.2343175, -1.7668225)
-far = 200.0
-
-[node name="Hitscan" type="RayCast3D" parent="CameraPivot/Camera3D"]
-transform = Transform3D(1, -2.0711829e-07, 1.2602399e-07, 1.2602398e-07, -4.4703484e-08, -1, 2.0711829e-07, 1, -4.4703484e-08, 0, 0, 0)
-target_position = Vector3(0, -100, 0)
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
 [connection signal="timeout" from="ClickShoot/l_timer" to="ClickShoot" method="_on_l_timer_timeout"]
 [connection signal="timeout" from="ClickShoot/r_timer" to="ClickShoot" method="_on_r_timer_timeout"]

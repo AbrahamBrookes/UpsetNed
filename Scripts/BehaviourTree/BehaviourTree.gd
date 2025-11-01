@@ -11,6 +11,9 @@ class_name BehaviourTree
 var playback: AnimationNodeStateMachinePlayback
 var root_node: Node
 
+# for turning off the whole tree
+@export var enabled: bool = true
+
 # debug if ya wanna
 @export var debug: bool = false
 
@@ -48,6 +51,9 @@ func change_animation(animation_name: String):
 	playback.travel(animation_name)
 
 func _process(_delta):
+	if not enabled:
+		return
+	
 	# Execute the tree every frame
 	if root_node and root_node.has_method("tick"):
 		root_node.tick(blackboard)
@@ -61,6 +67,8 @@ func get_blackboard_value(key: String, default = null):
 
 ## Manual tick (for testing or custom control)
 func tick() -> int:
+	if not enabled:
+		return BehaviourTreeResult.Status.FAILURE
 	if root_node and root_node.has_method("tick"):
 		return root_node.tick(blackboard)
 	return BehaviourTreeResult.Status.FAILURE

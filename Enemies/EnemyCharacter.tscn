@@ -1,7 +1,8 @@
-[gd_scene load_steps=106 format=4 uid="uid://cmqdnrhniysvv"]
+[gd_scene load_steps=110 format=4 uid="uid://cmqdnrhniysvv"]
 
 [ext_resource type="Script" uid="uid://c3ul7slyr67i1" path="res://Enemies/EnemyCharacter.gd" id="1_0ojtv"]
 [ext_resource type="PackedScene" uid="uid://loaloee7is73" path="res://Weapons/HandCannon/HandCannon.tscn" id="2_ibj4g"]
+[ext_resource type="Script" uid="uid://bt5sy4tn4uif6" path="res://Components/Player/ClickShoot/ClickShoot.gd" id="2_m4lhg"]
 [ext_resource type="AnimationLibrary" uid="uid://camq2lt6iffif" path="res://PlayerCharacter/Import/PlayerCharacterAnimationLibrary.res" id="3_c7rar"]
 [ext_resource type="Script" uid="uid://c28bssdvxad2h" path="res://Scripts/BehaviourTree/BehaviourTree.gd" id="4_5411f"]
 [ext_resource type="Script" uid="uid://bjfgd4244csap" path="res://Scripts/BehaviourTree/BehaviourTreeSelector.gd" id="5_2memc"]
@@ -17,6 +18,9 @@
 [ext_resource type="Script" uid="uid://bki0w3hjswsn0" path="res://Scripts/BehaviourTree/BehaviourTreeActions/TurnToFaceTargetAction.gd" id="10_8aww5"]
 [ext_resource type="Script" uid="uid://b0g7obsju3xki" path="res://Scripts/BehaviourTree/BehaviourTreeConditions/BlackboardValueHasMinCountCondition.gd" id="11_c7rar"]
 [ext_resource type="Script" uid="uid://bh7weu5h2cdlo" path="res://Scripts/BehaviourTree/BehaviourTreeActions/ReturnSuccessAction.gd" id="14_01n7w"]
+[ext_resource type="Script" uid="uid://b8tm2dsp5o0p4" path="res://Scripts/StateMachine/StateMachine.gd" id="19_e2n8e"]
+[ext_resource type="Script" uid="uid://djwm836pdbrwl" path="res://Enemies/States/PathTo.gd" id="20_obq0g"]
+[ext_resource type="Script" uid="uid://c8eahflp5nxpj" path="res://Enemies/States/Idle.gd" id="21_e2n8e"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tc8uu"]
 
@@ -466,7 +470,6 @@ blend_mode = 1
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_i84k0"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_sik18"]
-graph_offset = Vector2(-235.06781, 21.452835)
 nodes/output/position = Vector2(1080, 140)
 nodes/Locomotion/node = SubResource("AnimationNodeStateMachine_hs44b")
 nodes/Locomotion/position = Vector2(-880, 140)
@@ -500,6 +503,19 @@ height = 1.0236816
 [node name="EnemyCharacter" type="CharacterBody3D" node_paths=PackedStringArray("mesh")]
 script = ExtResource("1_0ojtv")
 mesh = NodePath("Upset Ned")
+
+[node name="ClickShoot" type="Node" parent="." node_paths=PackedStringArray("anim_tree", "l_weapon", "r_weapon")]
+script = ExtResource("2_m4lhg")
+anim_tree = NodePath("../Upset Ned/AnimationTree")
+l_weapon = NodePath("../Upset Ned/rig/Skeleton3D/LPistolBoneAttachment/HandCannon")
+r_weapon = NodePath("../Upset Ned/rig/Skeleton3D/RPistolBoneAttachment/HandCannon")
+metadata/_custom_type_script = "uid://bt5sy4tn4uif6"
+
+[node name="l_timer" type="Timer" parent="ClickShoot"]
+autostart = true
+
+[node name="r_timer" type="Timer" parent="ClickShoot"]
+autostart = true
 
 [node name="Upset Ned" type="Node3D" parent="."]
 
@@ -816,6 +832,7 @@ shape = SubResource("CapsuleShape3D_me38b")
 script = ExtResource("4_5411f")
 blackboard = NodePath("../BehaviourTreeBlackboard")
 anim_tree = NodePath("../Upset Ned/AnimationTree")
+enabled = false
 debug = true
 metadata/_custom_type_script = "uid://c28bssdvxad2h"
 
@@ -899,3 +916,33 @@ metadata/_custom_type_script = "uid://dhlcglftj6i0q"
 [node name="BehaviourTreeBlackboard" type="Node" parent="."]
 script = ExtResource("5_to1wh")
 metadata/_custom_type_script = "uid://cvd84fakj0hs1"
+
+[node name="StateMachine" type="Node3D" parent="." node_paths=PackedStringArray("anim_tree", "initial_state", "locomotor", "click_shoot")]
+script = ExtResource("19_e2n8e")
+anim_tree = NodePath("../Upset Ned/AnimationTree")
+initial_state = NodePath("Idle")
+debug_mode = true
+locomotor = NodePath("..")
+click_shoot = NodePath("../ClickShoot")
+metadata/_custom_type_script = "uid://b8tm2dsp5o0p4"
+
+[node name="Idle" type="Node3D" parent="StateMachine" node_paths=PackedStringArray("bored_timer")]
+script = ExtResource("21_e2n8e")
+bored_timer = NodePath("BoredTimer")
+metadata/_custom_type_script = "uid://bjmyb3rnkdsof"
+
+[node name="BoredTimer" type="Timer" parent="StateMachine/Idle"]
+
+[node name="PathTo" type="Node3D" parent="StateMachine" node_paths=PackedStringArray("mesh", "nav_agent")]
+script = ExtResource("20_obq0g")
+move_speed = 2.5
+mesh = NodePath("../../Upset Ned")
+nav_agent = NodePath("../../NavigationAgent3D")
+metadata/_custom_type_script = "uid://bjmyb3rnkdsof"
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+avoidance_enabled = true
+
+[connection signal="timeout" from="ClickShoot/l_timer" to="ClickShoot" method="_on_l_timer_timeout"]
+[connection signal="timeout" from="ClickShoot/r_timer" to="ClickShoot" method="_on_r_timer_timeout"]
+[connection signal="velocity_computed" from="NavigationAgent3D" to="StateMachine/PathTo" method="_on_velocity_computed"]

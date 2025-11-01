@@ -21,6 +21,10 @@ var playback: AnimationNodeStateMachinePlayback
 # debug if ya wanna
 @export var debug_mode: bool = false
 
+# the actual thing that drives us - the character body that has the
+# move_and_slide and is_on_floor etc
+@export var locomotor: CharacterBody3D
+
 # aimspaces for arms when shooting is done using the 
 # ClickShoot component. States need a reference to it
 @export var click_shoot: ClickShoot
@@ -28,6 +32,9 @@ var playback: AnimationNodeStateMachinePlayback
 var states : Dictionary = {}
 var current_state : State
 var previous_state : State
+
+# a divisor value for ticking at less that 60fps if needed
+var tick_divisor: int = 1000
 
 func _ready():
 	# protect against misconfiguration
@@ -54,6 +61,17 @@ func _ready():
 
 
 func _process(delta):
+	# only tick if the current time ms divisored by tick_divisor is zero
+	var time_ms = Time.get_ticks_msec()
+	if (time_ms % tick_divisor) == 0:
+		if current_state and current_state.has_method("tick_behaviour_tree"):
+			var btResult: BehaviourTreeResult.Status = current_state.tick_behaviour_tree()
+
+			# if the result of the behaviour tree is not RUNNING that means it has transitioned
+			# to another state, so we should not call Update on the current state
+			if btResult != BehaviourTreeResult.Status.RUNNING:
+				return
+
 	if current_state:
 		current_state.Update(delta)
 
