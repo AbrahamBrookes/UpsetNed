@@ -64,8 +64,12 @@ func _process(delta):
 	# only tick if the current time ms divisored by tick_divisor is zero
 	var time_ms = Time.get_ticks_msec()
 	if (time_ms % tick_divisor) == 0:
-		if current_state and current_state.has_method("tick_behaviour_tree"):
-			var btResult: BehaviourTreeResult.Status = current_state.tick_behaviour_tree()
+		# if the current state has a child node called BehaviourTree, tick it
+		if current_state and current_state.has_node("BehaviourTree"):
+			var bt_node = current_state.get_node("BehaviourTree")
+			var btResult: BehaviourTreeResult.Status
+			if bt_node and bt_node is BehaviourTree:
+				btResult = bt_node.tick()
 
 			# if the result of the behaviour tree is not RUNNING that means it has transitioned
 			# to another state, so we should not call Update on the current state

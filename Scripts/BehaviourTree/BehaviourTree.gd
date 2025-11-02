@@ -8,6 +8,7 @@ class_name BehaviourTree
 
 @export var blackboard: BehaviourTreeBlackboard
 @export var anim_tree: AnimationTree
+@export var state_machine: StateMachine
 var playback: AnimationNodeStateMachinePlayback
 var root_node: Node
 
@@ -37,7 +38,7 @@ func _ready():
 	var action_nodes = find_children("*", "BehaviourTreeAction")
 	for node in action_nodes:
 		if node.has_signal("ChangeState"):
-			node.connect("ChangeState", change_animation)
+			node.connect("ChangeState", change_state)
 	
 	# traverse all children and give them a reference to self
 	var children = find_children("*")
@@ -47,8 +48,8 @@ func _ready():
 		if 'blackboard' in child:
 			child.blackboard = self
 	
-func change_animation(animation_name: String):
-	playback.travel(animation_name)
+func change_state(state_name: String):
+	state_machine.TransitionTo(state_name)
 
 func _process(_delta):
 	if not enabled:

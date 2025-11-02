@@ -7,6 +7,8 @@ extends State
 ## also lets you submit your desired velocity and it will compute a
 ## collision-less velocity for you, so we are using that here via
 ## the velocity_computed signal
+## Optionally, pass in a Node3D for the mesh to look at as it moves
+## to the target point. This creates a strafing effect.
 
 # how fast do we locomote?
 @export var move_speed: float = 5.0
@@ -16,6 +18,9 @@ extends State
 @export var nav_agent: NavigationAgent3D
 # the goal location we deciede to move to when we entered this state
 var navigation_goal: Vector3
+
+# the optional target to look at while moving
+var look_at_target: Node3D = null
 
 func _ready() -> void:
 	# connect the velocity_computed signal from the nav agent
@@ -37,19 +42,48 @@ func _on_velocity_computed(safe_velocity: Vector3):
 		state_machine.locomotor.velocity.x,
 		state_machine.locomotor.velocity.z
 	).length()
+
+	# if we are moving, rotate the mesh to face movement direction or look at target
+	if forward_speed > 0.1:
+		# rotate the mesh to face movement direction or look at target
+		if look_at_target != null:
+			var to_target = (look_at_target.global_transform.origin - mesh.global_transform.origin).normalized()
+			var mesh_rotation = mesh.global_transform.basis.get_euler()
+			mesh_rotation.y = atan2(-to_target.x, -to_target.z)
+			mesh.rotation = mesh_rotation
+		else:
+			var mesh_rotation = mesh.global_transform.basis.get_euler()
+			mesh_rotation.y = atan2(-safe_velocity.x, -safe_velocity.z)
+			mesh.rotation = mesh_rotation
+
+	# our animation is using a Blendspace2D with 5 animations:
+	# idle (0,0), strafe right (1,0), strafe left (-1,0), forward (0,1), backward (0,-1)
+	# so we need to get the blend position based on the velocity vs the rotation of the mesh
+	var local_velocity = mesh.global_transform.basis.inverse() * state_machine.locomotor.velocity
+	var blend_position = Vector2(
+		-local_velocity.x,  # invert X
+		-local_velocity.z   # invert Z
+	).normalized() * (forward_speed / move_speed)
+	
 	
 	# Update animation
-	state_machine.anim_tree.set("parameters/Locomotion/Locomote/blend_position", Vector2(0.0, forward_speed))
+	state_machine.anim_tree.set("parameters/Locomotion/Locomote/blend_position", blend_position)
 
-	# rotate the mesh to face movement direction
-	if safe_velocity.length() > 0.1:
-		var mesh_rotation = mesh.global_transform.basis.get_euler()
-		mesh_rotation.y = atan2(-safe_velocity.x, -safe_velocity.z)
-		mesh.rotation = mesh_rotation
-	
+
 # when an enemy enters locomote they must pass a destination
-func Enter(extra_data = null):
-	navigation_goal = extra_data
+# extra data is the look_at_target Node3D (optional)
+func Enter(extra_data: Dictionary = {}):
+	
+	if "navigation_goal" in extra_data and extra_data.navigation_goal is Vector3:
+		navigation_goal = extra_data.navigation_goal
+	else:
+		push_error("PathTo state requires a navigation_goal Vector3 in extra_data")
+		navigation_goal = state_machine.locomotor.global_position
+	if "look_at_target" in extra_data and extra_data.look_at_target is Node3D:
+		look_at_target = extra_data.look_at_target
+	else:
+		look_at_target = null
+
 	# query the nav agent to get a path
 	nav_agent.set_target_position(navigation_goal)
 	
