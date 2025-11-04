@@ -17,7 +17,7 @@ func _ready():
 	if not state_name:
 		push_warning("GoToStateWithBlackboardValueAction: no state name given, what should we transition to?")
 
-func tick(blackboard: BehaviourTreeBlackboard):
+func _tick(blackboard: BehaviourTreeBlackboard):
 	var data = blackboard.get_blackboard_value(blackboard_key_to_send, null)
 	
 	if not data:

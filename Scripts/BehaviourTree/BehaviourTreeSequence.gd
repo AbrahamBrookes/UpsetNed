@@ -14,6 +14,12 @@ var behaviour_tree: BehaviourTree
 # Cache the tickable children of this node so we're not querying them every tick
 var tickable_children: Array = []
 
+# allow skipping of children via a "dont_tick" property on them
+@export var dont_tick: bool = false
+
+# if checked, will log the nodes name when it is ticked
+@export var debug_log: bool = false
+
 func _ready():
 	tickable_children = []
 	for child in get_children():
@@ -22,8 +28,22 @@ func _ready():
 		else:
 			push_error("BehaviourTreeSelector: Child '%s' does not have tick() method!" % child.name)
 
-func tick(blackboard: BehaviourTreeBlackboard) -> int:
+
+## A wrapper for the tick function so we can print the node name when debugging
+func tick(blackboard: BehaviourTreeBlackboard):
+
+	var result = _tick(blackboard)
+	if debug_log:
+		print(self.name + " " + str(result))
+		
+	return result
+
+func _tick(blackboard: BehaviourTreeBlackboard) -> int:
 	for child in tickable_children:
+		# the child might have a "dont_tick" property set to true
+		if "dont_tick" in child and child.dont_tick:
+			continue
+		
 		var result = child.tick(blackboard)
 		match result:
 			BehaviourTreeResult.Status.FAILURE:

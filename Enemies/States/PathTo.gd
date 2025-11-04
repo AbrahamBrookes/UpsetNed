@@ -16,16 +16,15 @@ extends State
 @export var mesh: Node3D
 # the anv agent for accessing the nav mesh
 @export var nav_agent: NavigationAgent3D
-# the goal location we deciede to move to when we entered this state
+# the goal location we decided to move to when we entered this state
 var navigation_goal: Vector3
+# the linear distance to the target
+var distance_to_goal: float
 
 # the optional target to look at while moving
 var look_at_target: Node3D = null
 
 func _ready() -> void:
-	# connect the velocity_computed signal from the nav agent
-	nav_agent.velocity_computed.connect(_on_velocity_computed)
-	
 	# we want to use the Locomote animation state
 	animation_override = "Locomote"
 
@@ -65,7 +64,6 @@ func _on_velocity_computed(safe_velocity: Vector3):
 		-local_velocity.z   # invert Z
 	).normalized() * (forward_speed / move_speed)
 	
-	
 	# Update animation
 	state_machine.anim_tree.set("parameters/Locomotion/Locomote/blend_position", blend_position)
 
@@ -73,6 +71,8 @@ func _on_velocity_computed(safe_velocity: Vector3):
 # when an enemy enters locomote they must pass a destination
 # extra data is the look_at_target Node3D (optional)
 func Enter(extra_data: Dictionary = {}):
+	# connect the velocity_computed signal from the nav agent
+	nav_agent.velocity_computed.connect(_on_velocity_computed)
 	
 	if "navigation_goal" in extra_data and extra_data.navigation_goal is Vector3:
 		navigation_goal = extra_data.navigation_goal
@@ -91,12 +91,19 @@ func Enter(extra_data: Dictionary = {}):
 	if state_machine.click_shoot:
 		state_machine.click_shoot.sliding = false
 
+func Exit():
+	# disconnect the velocity_computed signal to avoid multiple connections
+	nav_agent.velocity_computed.disconnect(_on_velocity_computed)
+
 func Physics_Update(_delta: float):
 	# classic Navigation Agent pattern
 	if not nav_agent.is_navigation_finished():
 		var next = nav_agent.get_next_path_position()
 		var desired = (next - state_machine.locomotor.global_position).normalized() * move_speed
 		nav_agent.set_velocity(desired)  # preferred velocity -> avoidance solver runs now
+		
+		# calculate distance to goal
+		distance_to_goal = nav_agent.distance_to_target()
 	else:
 		nav_agent.set_velocity(Vector3.ZERO)
 		state_machine.TransitionTo("Idle")

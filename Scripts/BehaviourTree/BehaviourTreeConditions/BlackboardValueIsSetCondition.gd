@@ -8,7 +8,7 @@ class_name BlackboardValueIsSetCondition
 
 @export var debug: bool = false
 
-func tick(blackboard: BehaviourTreeBlackboard) -> int:
+func _tick(blackboard: BehaviourTreeBlackboard) -> int:
 	var value = blackboard.get_blackboard_value(key_name, null)
 	
 	if debug:

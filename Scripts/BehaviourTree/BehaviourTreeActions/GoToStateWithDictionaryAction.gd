@@ -16,7 +16,7 @@ func _ready():
 	if not state_name:
 		push_warning("GoToStateWithBlackboardValueAction: no state name given, what should we transition to?")
 
-func tick(blackboard: BehaviourTreeBlackboard):
+func _tick(_blackboard: BehaviourTreeBlackboard):
 	if not dictionary_data:
 		push_warning("GoToStateWithBlackboardValueAction: No value found in blackboard!")
 		return BehaviourTreeResult.Status.FAILURE

@@ -9,6 +9,9 @@ class_name BehaviourTreeDecorator
 # a reference that gets set by the behaviour tree on ready
 var behaviour_tree: BehaviourTree
 
+# allow skipping of children via a "dont_tick" property on them
+@export var dont_tick: bool = false
+
 func tick(_blackboard: BehaviourTreeBlackboard) -> int:
 	# Override this method in subclasses to implement specific decorator logic.
 	# Return SUCCESS if the decorator allows the child to proceed, otherwise return FAILURE.

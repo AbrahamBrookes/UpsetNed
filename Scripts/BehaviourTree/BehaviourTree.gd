@@ -12,11 +12,11 @@ class_name BehaviourTree
 var playback: AnimationNodeStateMachinePlayback
 var root_node: Node
 
-# for turning off the whole tree
-@export var enabled: bool = true
-
 # debug if ya wanna
 @export var debug: bool = false
+
+# allow skipping of children via a "dont_tick" property on them
+@export var dont_tick: bool = false
 
 func _ready():
 	# if we don't have our required nodes throw a configuration error
@@ -52,7 +52,11 @@ func change_state(state_name: String):
 	state_machine.TransitionTo(state_name)
 
 func _process(_delta):
-	if not enabled:
+	if dont_tick:
+		return
+
+	# the child might have a "dont_tick" property set to true
+	if "dont_tick" in root_node and root_node.dont_tick:
 		return
 	
 	# Execute the tree every frame
@@ -68,7 +72,7 @@ func get_blackboard_value(key: String, default = null):
 
 ## Manual tick (for testing or custom control)
 func tick() -> int:
-	if not enabled:
+	if dont_tick:
 		return BehaviourTreeResult.Status.FAILURE
 	if root_node and root_node.has_method("tick"):
 		return root_node.tick(blackboard)

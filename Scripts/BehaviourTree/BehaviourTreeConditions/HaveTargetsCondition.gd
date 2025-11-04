@@ -7,7 +7,7 @@ class_name BlackboardValueHasMinCount
 @export var blackboard_key: String
 @export var min_count:int = 1
 
-func tick(blackboard: BehaviourTreeBlackboard) -> int:
+func _tick(blackboard: BehaviourTreeBlackboard) -> int:
 	var value = blackboard.get_blackboard_value(blackboard_key, [])
 
 	if not value is Array:

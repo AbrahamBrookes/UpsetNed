@@ -6,5 +6,5 @@ class_name ReturnStatusAction
 
 @export var status: BehaviourTreeResult.Status
 
-func tick(_blackboard: BehaviourTreeBlackboard) -> int:
+func _tick(_blackboard: BehaviourTreeBlackboard) -> int:
 	return status

@@ -26,7 +26,7 @@ var can_see_target: BehaviourTreeResult.Status = BehaviourTreeResult.Status.FAIL
 # the target will change but lets make it a property for access
 var target: Node3D
 
-func tick(blackboard: BehaviourTreeBlackboard) -> int:
+func _tick(blackboard: BehaviourTreeBlackboard) -> int:
 	# if we haven't cached the owner yet, do so now
 	if not thinker:
 		thinker = owner

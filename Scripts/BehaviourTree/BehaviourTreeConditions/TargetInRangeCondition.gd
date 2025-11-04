@@ -9,7 +9,7 @@ class_name TargetInRangeCondition
 # cache the owner as it won't change
 @export var thinker: Node3D
 
-func tick(blackboard: BehaviourTreeBlackboard) -> BehaviourTreeResult.Status:
+func _tick(blackboard: BehaviourTreeBlackboard) -> BehaviourTreeResult.Status:
 	var player: Node3D = blackboard.get_blackboard_value(blackboard_key, null)
 	if not thinker:
 		thinker = owner

@@ -4,7 +4,7 @@ class_name SelectATargetAction
 
 ## Assuming we have a "targets" value in our blackboard, this action 
 
-func tick(blackboard: BehaviourTreeBlackboard):
+func _tick(blackboard: BehaviourTreeBlackboard):
 	var targets = blackboard.get_blackboard_value("targets")
 	
 	if not targets:

@@ -15,6 +15,9 @@ var behaviour_tree: BehaviourTree
 # The threshold score to pass
 @export var threshold: float = 0.5
 
+# allow skipping of children via a "dont_tick" property on them
+@export var dont_tick: bool = false
+
 func tick(blackboard: BehaviourTreeBlackboard) -> int:
 	# get the evaluator child node
 	var evaluator: BehaviourTreeEvaluator = get_child(0) as BehaviourTreeEvaluator

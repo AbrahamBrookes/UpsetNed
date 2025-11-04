@@ -11,6 +11,9 @@ class_name BehaviourTreePrioritiser
 # a reference that gets set by the behaviour tree on ready
 var behaviour_tree: BehaviourTree
 
+# allow skipping of children via a "dont_tick" property on them
+@export var dont_tick: bool = false
+
 func tick(_blackboard: BehaviourTreeBlackboard) -> Array:
 	# Override this method in subclasses to implement specific prioritisation logic.
 	# Return an ordered Array of evaluator names or IDs based on the blackboard input.

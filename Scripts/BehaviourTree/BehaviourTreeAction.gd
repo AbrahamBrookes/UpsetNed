@@ -23,10 +23,25 @@ signal UpdateBlackboardValue(key: String, value: Variant)
 # a reference that gets set by the behaviour tree on ready
 var behaviour_tree: BehaviourTree
 
-func tick(_blackboard: BehaviourTreeBlackboard) -> int:
+# if checked, will log the nodes name when it is ticked
+@export var debug_log: bool = false
+
+# allow skipping of children via a "dont_tick" property on them
+@export var dont_tick: bool = false
+
+## A wrapper for the tick function so we can print the node name when debugging
+func tick(blackboard: BehaviourTreeBlackboard):
+
+	var result = _tick(blackboard)
+	if debug_log:
+		print(self.name + " " + str(result))
+		
+	return result
+
+func _tick(_blackboard: BehaviourTreeBlackboard) -> int:
 	# Override this method in subclasses to implement specific action logic.
 	# Return SUCCESS if the action completed successfully,
 	# FAILURE if the action failed,
 	# or RUNNING if the action needs more time to complete.
-	push_error("BehaviourTreeAction: tick() not implemented!")
+	push_error("BehaviourTreeAction: _tick() not implemented!")
 	return BehaviourTreeResult.Status.FAILURE

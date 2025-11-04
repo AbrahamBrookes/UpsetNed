@@ -11,7 +11,7 @@ func _ready():
 	if not ChangeState.has_connections():
 		push_warning("AttackTargetAction: ChangeState signal is not connected! Can not run attack action")
 
-func tick(blackboard: BehaviourTreeBlackboard):
+func _tick(blackboard: BehaviourTreeBlackboard):
 	var target = blackboard.get_blackboard_value(blackboard_key_to_attack, null)
 	
 	if not target:

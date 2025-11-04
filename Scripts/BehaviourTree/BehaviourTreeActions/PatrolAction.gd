@@ -24,8 +24,6 @@ var has_waited: bool = false
 # shall we wait?
 var shall_wait: bool = false
 
-@export var debug: bool = false
-
 func _ready(_delta = null):
 	if patrol_waypoints.size() < 3:
 		push_error("PatrolAction: Not enough patrol waypoints set - we need at least 3!")
@@ -36,12 +34,6 @@ func _ready(_delta = null):
 # when the timer ends, we have waited
 func _on_WaitTimer_timeout():
 	has_waited = true
-
-func tick(blackboard: BehaviourTreeBlackboard) -> int:
-	var result = _tick(blackboard)
-	if debug:
-		print("PatrolAction: tick result: " + str(result))
-	return result
 
 func _tick(_blackboard: BehaviourTreeBlackboard) -> int:
 	# if the state machine is currently PathingTo, just return RUNNING
@@ -63,7 +55,6 @@ func _tick(_blackboard: BehaviourTreeBlackboard) -> int:
 			
 	# the next time this gets ticked, we will be waiting - the timeout signal will set has_waited to true
 	if not has_waited:
-		print("waiting")
 		# make sure we are running the timer
 		if wait_timer.is_stopped():
 			wait_timer.start()

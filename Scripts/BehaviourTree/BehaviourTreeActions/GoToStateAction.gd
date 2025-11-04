@@ -6,8 +6,11 @@ class_name GoToStateAction
 
 @export var state_name: String = "Idle"
 
-func tick(_blackboard: BehaviourTreeBlackboard):
-	print('ping')
+func _tick(_blackboard: BehaviourTreeBlackboard):
 	# emit our ChangeState signal with the given name - we assume no extra_data to pass
+	if debug_log:
+		var old_state: String = behaviour_tree.state_machine.current_state.name
+		print("Go To State Action: " + old_state + " -> " + state_name)
+		
 	ChangeState.emit(state_name)
 	return BehaviourTreeResult.Status.SUCCESS

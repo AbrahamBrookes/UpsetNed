@@ -1,4 +1,4 @@
-[gd_scene load_steps=112 format=4 uid="uid://cmqdnrhniysvv"]
+[gd_scene load_steps=116 format=4 uid="uid://cmqdnrhniysvv"]
 
 [ext_resource type="Script" uid="uid://c3ul7slyr67i1" path="res://Enemies/EnemyCharacter.gd" id="1_0ojtv"]
 [ext_resource type="PackedScene" uid="uid://loaloee7is73" path="res://Weapons/HandCannon/HandCannon.tscn" id="2_ibj4g"]
@@ -13,16 +13,20 @@
 [ext_resource type="PackedScene" uid="uid://upt88jveqp7o" path="res://Components/Enemies/Agrozone/Agrozone.tscn" id="8_bbos0"]
 [ext_resource type="Script" uid="uid://cmsjwp685csra" path="res://Scripts/BehaviourTree/BehaviourTreeConditions/TargetInRangeCondition.gd" id="8_c7rar"]
 [ext_resource type="Script" uid="uid://bua0kd12grmrt" path="res://Scripts/BehaviourTree/BehaviourTreeActions/SelectATargetAction.gd" id="8_egt66"]
+[ext_resource type="Script" uid="uid://cpt6stlc1xek0" path="res://Scripts/BehaviourTree/BehaviourTreeConditions/StateMachineStatesCondition.gd" id="9_023jj"]
 [ext_resource type="Script" uid="uid://c0uouybh5cpyh" path="res://Scripts/BehaviourTree/BehaviourTreeConditions/CanSeeTargetCondition.gd" id="9_c7rar"]
 [ext_resource type="Script" uid="uid://cn7xj52gibn83" path="res://Scripts/BehaviourTree/BehaviourTreeDecorators/InversionDecorator.gd" id="10_01n7w"]
 [ext_resource type="Script" uid="uid://bki0w3hjswsn0" path="res://Scripts/BehaviourTree/BehaviourTreeActions/TurnToFaceTargetAction.gd" id="10_8aww5"]
+[ext_resource type="Script" uid="uid://babfoosmefuaf" path="res://Scripts/BehaviourTree/BehaviourTreeConditions/DistanceToPathTargetCondition.gd" id="10_nsawg"]
 [ext_resource type="Script" uid="uid://xtblc83r3tof" path="res://Scripts/BehaviourTree/BehaviourTreeActions/PatrolAction.gd" id="11_023jj"]
 [ext_resource type="Script" uid="uid://b0g7obsju3xki" path="res://Scripts/BehaviourTree/BehaviourTreeConditions/BlackboardValueHasMinCountCondition.gd" id="11_c7rar"]
+[ext_resource type="Script" uid="uid://cg2be4d76bxog" path="res://Scripts/BehaviourTree/BehaviourTreeActions/ReturnRunningWhenInStatesAction.gd" id="13_tbdv8"]
 [ext_resource type="Script" uid="uid://bh7weu5h2cdlo" path="res://Scripts/BehaviourTree/BehaviourTreeActions/ReturnSuccessAction.gd" id="14_01n7w"]
 [ext_resource type="Script" uid="uid://b8tm2dsp5o0p4" path="res://Scripts/StateMachine/StateMachine.gd" id="19_e2n8e"]
 [ext_resource type="Script" uid="uid://djwm836pdbrwl" path="res://Enemies/States/PathTo.gd" id="20_obq0g"]
 [ext_resource type="Script" uid="uid://c8eahflp5nxpj" path="res://Enemies/States/Idle.gd" id="21_e2n8e"]
-[ext_resource type="Script" uid="uid://bpugik1l0j6vy" path="res://Scripts/BehaviourTree/BehaviourTreeActions/ReturnStatusAction.gd" id="22_obq0g"]
+[ext_resource type="Script" uid="uid://vwp22o2ahnyv" path="res://Enemies/States/Diving.gd" id="25_er732"]
+[ext_resource type="Script" uid="uid://cfiqn6eh6nlcq" path="res://Enemies/States/DiveSlide.gd" id="26_uy2rn"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tc8uu"]
 
@@ -520,6 +524,7 @@ autostart = true
 autostart = true
 
 [node name="Upset Ned" type="Node3D" parent="."]
+transform = Transform3D(-0.5504808, 0, -0.8348478, 0, 1, 0, 0.8348478, 0, -0.5504808, 0, 0, 0)
 
 [node name="rig" type="Node3D" parent="Upset Ned"]
 
@@ -842,28 +847,72 @@ metadata/_custom_type_script = "uid://c28bssdvxad2h"
 script = ExtResource("5_2memc")
 metadata/_custom_type_script = "uid://bjfgd4244csap"
 
+[node name="MaybeDiveSequence" type="Node" parent="BehaviourTree/RootSelector"]
+script = ExtResource("7_n6i84")
+debug_log = true
+metadata/_custom_type_script = "uid://da8hiin4spe61"
+
+[node name="Return RUNNING if we are already diving" type="Node" parent="BehaviourTree/RootSelector/MaybeDiveSequence"]
+script = ExtResource("13_tbdv8")
+states = Array[String](["Diving", "DiveSlide"])
+metadata/_custom_type_script = "uid://cg2be4d76bxog"
+
+[node name="Are we in PathTo state?" type="Node" parent="BehaviourTree/RootSelector/MaybeDiveSequence"]
+script = ExtResource("9_023jj")
+states = Array[String](["PathTo"])
+debug_log = true
+metadata/_custom_type_script = "uid://cpt6stlc1xek0"
+
+[node name="Are we far enough from the path target?" type="Node" parent="BehaviourTree/RootSelector/MaybeDiveSequence"]
+script = ExtResource("10_nsawg")
+distance = 10.0
+metadata/_custom_type_script = "uid://babfoosmefuaf"
+
+[node name="Go To Diving State Action" type="Node" parent="BehaviourTree/RootSelector/MaybeDiveSequence"]
+script = ExtResource("6_bbos0")
+state_name = "Diving"
+debug_log = true
+metadata/_custom_type_script = "uid://dqi5do4e53acs"
+
 [node name="Patrol Sequence" type="Node" parent="BehaviourTree/RootSelector"]
 script = ExtResource("7_n6i84")
+debug_log = true
 metadata/_custom_type_script = "uid://da8hiin4spe61"
+
+[node name="Return RUNNING if we are already patrolling" type="Node" parent="BehaviourTree/RootSelector/Patrol Sequence"]
+script = ExtResource("13_tbdv8")
+states = Array[String](["PathTo"])
+metadata/_custom_type_script = "uid://cg2be4d76bxog"
+
+[node name="Are we idle condition" type="Node" parent="BehaviourTree/RootSelector/Patrol Sequence"]
+script = ExtResource("9_023jj")
+states = Array[String](["Idle"])
+debug_log = true
+metadata/_custom_type_script = "uid://cpt6stlc1xek0"
 
 [node name="InversionDecorator - we don\'t have a target" type="Node" parent="BehaviourTree/RootSelector/Patrol Sequence"]
 script = ExtResource("10_01n7w")
+dont_tick = true
 metadata/_custom_type_script = "uid://cn7xj52gibn83"
 
-[node name="We have a target" type="Node" parent="BehaviourTree/RootSelector/Patrol Sequence/InversionDecorator - we don\'t have a target"]
+[node name="We have a target - don\'t patrol" type="Node" parent="BehaviourTree/RootSelector/Patrol Sequence/InversionDecorator - we don\'t have a target"]
 script = ExtResource("7_ibj4g")
 key_name = "current_target"
+debug = true
+debug_log = true
 metadata/_custom_type_script = "uid://dec4sxqtyr8fg"
 
 [node name="PatrolAction" type="Node" parent="BehaviourTree/RootSelector/Patrol Sequence" node_paths=PackedStringArray("wait_timer")]
 script = ExtResource("11_023jj")
 wait_timer = NodePath("Timer")
+debug_log = true
 metadata/_custom_type_script = "uid://xtblc83r3tof"
 
 [node name="Timer" type="Timer" parent="BehaviourTree/RootSelector/Patrol Sequence/PatrolAction"]
 
 [node name="Look At Target" type="Node" parent="BehaviourTree/RootSelector"]
 script = ExtResource("7_n6i84")
+dont_tick = true
 metadata/_custom_type_script = "uid://da8hiin4spe61"
 
 [node name="current_target BB value set" type="Node" parent="BehaviourTree/RootSelector/Look At Target"]
@@ -884,10 +933,12 @@ metadata/_custom_type_script = "uid://csxhom132d36v"
 [node name="Turn to face target action" type="Node" parent="BehaviourTree/RootSelector/Look At Target" node_paths=PackedStringArray("node_to_rotate")]
 script = ExtResource("10_8aww5")
 node_to_rotate = NodePath("../../../../Upset Ned")
+debug_log = true
 metadata/_custom_type_script = "uid://dhlcglftj6i0q"
 
 [node name="Select a target as current_target" type="Node" parent="BehaviourTree/RootSelector"]
 script = ExtResource("7_n6i84")
+dont_tick = true
 metadata/_custom_type_script = "uid://da8hiin4spe61"
 
 [node name="Has Targets" type="Node" parent="BehaviourTree/RootSelector/Select a target as current_target"]
@@ -909,6 +960,7 @@ metadata/_custom_type_script = "uid://dhlcglftj6i0q"
 
 [node name="ShouldAttackTarget" type="Node" parent="BehaviourTree/RootSelector"]
 script = ExtResource("7_n6i84")
+dont_tick = true
 metadata/_custom_type_script = "uid://da8hiin4spe61"
 
 [node name="current_target BB value set" type="Node" parent="BehaviourTree/RootSelector/ShouldAttackTarget"]
@@ -919,6 +971,7 @@ metadata/_custom_type_script = "uid://csxhom132d36v"
 [node name="current_target within attack range" type="Node" parent="BehaviourTree/RootSelector/ShouldAttackTarget"]
 script = ExtResource("8_c7rar")
 range_distance = 30.0
+debug_log = true
 metadata/_custom_type_script = "uid://csxhom132d36v"
 
 [node name="current_target visible" type="Node" parent="BehaviourTree/RootSelector/ShouldAttackTarget" node_paths=PackedStringArray("head")]
@@ -928,11 +981,12 @@ metadata/_custom_type_script = "uid://csxhom132d36v"
 
 [node name="Go to attacking state" type="Node" parent="BehaviourTree/RootSelector/ShouldAttackTarget"]
 script = ExtResource("6_bbos0")
+debug_log = true
 metadata/_custom_type_script = "uid://dhlcglftj6i0q"
 
-[node name="IdleAction" type="Node" parent="BehaviourTree/RootSelector"]
+[node name="Idle by default Action" type="Node" parent="BehaviourTree/RootSelector"]
 script = ExtResource("6_bbos0")
-state_name = "Locomote"
+debug_log = true
 metadata/_custom_type_script = "uid://dhlcglftj6i0q"
 
 [node name="BehaviourTreeBlackboard" type="Node" parent="."]
@@ -956,30 +1010,22 @@ metadata/_custom_type_script = "uid://bjmyb3rnkdsof"
 
 [node name="PathTo" type="Node3D" parent="StateMachine" node_paths=PackedStringArray("mesh", "nav_agent")]
 script = ExtResource("20_obq0g")
-move_speed = 2.5
+move_speed = 3.5
 mesh = NodePath("../../Upset Ned")
 nav_agent = NodePath("../../NavigationAgent3D")
 metadata/_custom_type_script = "uid://bjmyb3rnkdsof"
 
-[node name="BehaviourTree" type="Node" parent="StateMachine/PathTo" node_paths=PackedStringArray("blackboard", "anim_tree", "state_machine")]
-script = ExtResource("4_5411f")
-blackboard = NodePath("../../../BehaviourTreeBlackboard")
-anim_tree = NodePath("../../../Upset Ned/AnimationTree")
-state_machine = NodePath("../..")
-metadata/_custom_type_script = "uid://c28bssdvxad2h"
+[node name="Diving" type="Node3D" parent="StateMachine" node_paths=PackedStringArray("mesh")]
+script = ExtResource("25_er732")
+max_jump_power = 5.0
+jump_velocity = 4.0
+mesh = NodePath("../../Upset Ned")
+metadata/_custom_type_script = "uid://bjmyb3rnkdsof"
 
-[node name="RootSelector" type="Node" parent="StateMachine/PathTo/BehaviourTree"]
-script = ExtResource("5_2memc")
-metadata/_custom_type_script = "uid://bjfgd4244csap"
-
-[node name="Continue Pathing To" type="Node" parent="StateMachine/PathTo/BehaviourTree/RootSelector"]
-script = ExtResource("22_obq0g")
-status = 2
-metadata/_custom_type_script = "uid://bpugik1l0j6vy"
-
-[node name="GoToIdleAction" type="Node" parent="StateMachine/PathTo/BehaviourTree/RootSelector"]
-script = ExtResource("6_bbos0")
-metadata/_custom_type_script = "uid://dqi5do4e53acs"
+[node name="DiveSlide" type="Node3D" parent="StateMachine" node_paths=PackedStringArray("mesh")]
+script = ExtResource("26_uy2rn")
+mesh = NodePath("../../Upset Ned")
+metadata/_custom_type_script = "uid://bjmyb3rnkdsof"
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 avoidance_enabled = true

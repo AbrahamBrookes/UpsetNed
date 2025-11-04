@@ -8,7 +8,7 @@ class_name TurnToFaceTargetAction
 
 @export var node_to_rotate: Node3D
 
-func tick(blackboard: BehaviourTreeBlackboard) -> int:
+func _tick(blackboard: BehaviourTreeBlackboard) -> int:
 	var target: Node3D = blackboard.get_blackboard_value(blackboard_key)
 	
 	if not "global_position" in target:

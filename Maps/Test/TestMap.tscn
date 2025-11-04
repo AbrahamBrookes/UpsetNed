@@ -88,7 +88,7 @@ use_collision = true
 size = Vector3(1.2172241, 5.5356445, 15.812836)
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("1_b51rp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.371891, 0.49124408, 0.43900585)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.838412, 0.49124408, 0.43900585)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="PlayerCharacter"]
 environment = SubResource("Environment_trq3l")
@@ -99,40 +99,19 @@ transform = Transform3D(1, 0, 0, 0, 0.057703447, 0.99833375, 0, -0.99833375, 0.0
 [node name="EnemyCharacter" parent="." instance=ExtResource("3_eg64c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.187233, 3.8796635, -4.66212)
 
-[node name="PatrolAction" parent="EnemyCharacter/BehaviourTree/RootSelector/Patrol Sequence" index="1" node_paths=PackedStringArray("patrol_waypoints")]
-patrol_waypoints = [NodePath("../../../../../PatrolWaypoint"), NodePath("../../../../../PatrolWaypoint2"), NodePath("../../../../../PatrolWaypoint3"), NodePath("../../../../../PatrolWaypoint4"), NodePath("../../../../../PatrolWaypoint5"), NodePath("../../../../../PatrolWaypoint6"), NodePath("../../../../../PatrolWaypoint7"), NodePath("../../../../../PatrolWaypoint8"), NodePath("../../../../../PatrolWaypoint9"), NodePath("../../../../../PatrolWaypoint10"), NodePath("../../../../../PatrolWaypoint11")]
-
-[node name="PatrolWaypoint" parent="." instance=ExtResource("4_4b0uu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.322937, 0.5, -5.1192117)
-
-[node name="PatrolWaypoint2" parent="." instance=ExtResource("4_4b0uu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.4377575, 0.5, 1.6128345)
+[node name="PatrolAction" parent="EnemyCharacter/BehaviourTree/RootSelector/Patrol Sequence" index="2" node_paths=PackedStringArray("patrol_waypoints")]
+patrol_waypoints = [NodePath("../../../../../PatrolWaypoint3"), NodePath("../../../../../PatrolWaypoint4"), NodePath("../../../../../PatrolWaypoint6"), NodePath("../../../../../PatrolWaypoint7")]
 
 [node name="PatrolWaypoint3" parent="." instance=ExtResource("4_4b0uu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.001595, 0.5, 9.4603615)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.165268, 0.5, 9.277961)
 
 [node name="PatrolWaypoint4" parent="." instance=ExtResource("4_4b0uu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.87557, 0.5, 4.748327)
-
-[node name="PatrolWaypoint5" parent="." instance=ExtResource("4_4b0uu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.561613, 0.5, 2.3352265)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.457077, 0.5, 9.230534)
 
 [node name="PatrolWaypoint6" parent="." instance=ExtResource("4_4b0uu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.186913, 0.5, -6.0095954)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.082134, 0.5, -7.9362493)
 
 [node name="PatrolWaypoint7" parent="." instance=ExtResource("4_4b0uu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.121941, 0.5, -9.398799)
-
-[node name="PatrolWaypoint8" parent="." instance=ExtResource("4_4b0uu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6197319, 0.5, -9.221039)
-
-[node name="PatrolWaypoint9" parent="." instance=ExtResource("4_4b0uu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3731785, 0.5, -8.597701)
-
-[node name="PatrolWaypoint10" parent="." instance=ExtResource("4_4b0uu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.781819, 0.5, 8.102309)
-
-[node name="PatrolWaypoint11" parent="." instance=ExtResource("4_4b0uu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.86427975, 0.5, 7.5384016)
 
 [editable path="EnemyCharacter"]

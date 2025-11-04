@@ -21,6 +21,9 @@ class_name BehaviourTreeEvaluator
 # a reference that gets set by the behaviour tree on ready
 var behaviour_tree: BehaviourTree
 
+# allow skipping of children via a "dont_tick" property on them
+@export var dont_tick: bool = false
+
 func evaluate(_blackboard: BehaviourTreeBlackboard) -> float:
 	# Override this method in subclasses to implement specific evaluation logic.
 	# Return a float score based on the blackboard input.

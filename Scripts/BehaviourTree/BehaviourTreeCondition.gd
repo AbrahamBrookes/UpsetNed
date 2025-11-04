@@ -10,7 +10,22 @@ class_name BehaviourTreeCondition
 # a reference that gets set by the behaviour tree on ready
 var behaviour_tree: BehaviourTree
 
-func tick(_blackboard: BehaviourTreeBlackboard) -> int:
+# if checked, will log the nodes name when it is ticked
+@export var debug_log: bool = false
+
+# allow skipping of children via a "dont_tick" property on them
+@export var dont_tick: bool = false
+
+## A wrapper for the tick function so we can print the node name when debugging
+func tick(blackboard: BehaviourTreeBlackboard):
+
+	var result = _tick(blackboard)
+	if debug_log:
+		print(self.name + " " + str(result))
+		
+	return result
+
+func _tick(_blackboard: BehaviourTreeBlackboard) -> int:
 	# Override this method in subclasses to implement specific condition logic.
 	# Return SUCCESS if the condition is met, otherwise return FAILURE.
 	push_error("BehaviourTreeCondition: tick() not implemented!")
