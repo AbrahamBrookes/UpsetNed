@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://fx8wr7dcytv7"]
+
+[ext_resource type="Script" uid="uid://ckm8i73s67a66" path="res://Components/Enemies/BlendLook/BlendLook.gd" id="1_jrflc"]
+
+[node name="BlendLook" type="Node"]
+script = ExtResource("1_jrflc")
+metadata/_custom_type_script = "uid://ckm8i73s67a66"

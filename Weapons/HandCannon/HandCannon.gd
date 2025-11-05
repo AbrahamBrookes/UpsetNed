@@ -23,7 +23,7 @@ func fire():
 	start_flash()
 	if particles:
 		particles.restart()
-	if projectile_particles:
+	if projectile_particles and mouselook:
 		# point the projectile particles at the mouselook.target_node global position
 		projectile_particles.look_at(mouselook.target_node.global_transform.origin)
 		projectile_particles.restart()

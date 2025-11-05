@@ -1,8 +1,9 @@
-[gd_scene load_steps=116 format=4 uid="uid://cmqdnrhniysvv"]
+[gd_scene load_steps=120 format=4 uid="uid://cmqdnrhniysvv"]
 
 [ext_resource type="Script" uid="uid://c3ul7slyr67i1" path="res://Enemies/EnemyCharacter.gd" id="1_0ojtv"]
 [ext_resource type="PackedScene" uid="uid://loaloee7is73" path="res://Weapons/HandCannon/HandCannon.tscn" id="2_ibj4g"]
 [ext_resource type="Script" uid="uid://bt5sy4tn4uif6" path="res://Components/Player/ClickShoot/ClickShoot.gd" id="2_m4lhg"]
+[ext_resource type="PackedScene" uid="uid://fx8wr7dcytv7" path="res://Components/Enemies/BlendLook/BlendLook.tscn" id="2_uphb3"]
 [ext_resource type="AnimationLibrary" uid="uid://camq2lt6iffif" path="res://PlayerCharacter/Import/PlayerCharacterAnimationLibrary.res" id="3_c7rar"]
 [ext_resource type="Script" uid="uid://c28bssdvxad2h" path="res://Scripts/BehaviourTree/BehaviourTree.gd" id="4_5411f"]
 [ext_resource type="Script" uid="uid://bjfgd4244csap" path="res://Scripts/BehaviourTree/BehaviourTreeSelector.gd" id="5_2memc"]
@@ -19,6 +20,7 @@
 [ext_resource type="Script" uid="uid://bki0w3hjswsn0" path="res://Scripts/BehaviourTree/BehaviourTreeActions/TurnToFaceTargetAction.gd" id="10_8aww5"]
 [ext_resource type="Script" uid="uid://babfoosmefuaf" path="res://Scripts/BehaviourTree/BehaviourTreeConditions/DistanceToPathTargetCondition.gd" id="10_nsawg"]
 [ext_resource type="Script" uid="uid://xtblc83r3tof" path="res://Scripts/BehaviourTree/BehaviourTreeActions/PatrolAction.gd" id="11_023jj"]
+[ext_resource type="Script" uid="uid://b0hd2rlswbqom" path="res://Scripts/BehaviourTree/BehaviourTreeConditions/RandomChanceCondition.gd" id="11_60yyd"]
 [ext_resource type="Script" uid="uid://b0g7obsju3xki" path="res://Scripts/BehaviourTree/BehaviourTreeConditions/BlackboardValueHasMinCountCondition.gd" id="11_c7rar"]
 [ext_resource type="Script" uid="uid://cg2be4d76bxog" path="res://Scripts/BehaviourTree/BehaviourTreeActions/ReturnRunningWhenInStatesAction.gd" id="13_tbdv8"]
 [ext_resource type="Script" uid="uid://bh7weu5h2cdlo" path="res://Scripts/BehaviourTree/BehaviourTreeActions/ReturnSuccessAction.gd" id="14_01n7w"]
@@ -27,6 +29,7 @@
 [ext_resource type="Script" uid="uid://c8eahflp5nxpj" path="res://Enemies/States/Idle.gd" id="21_e2n8e"]
 [ext_resource type="Script" uid="uid://vwp22o2ahnyv" path="res://Enemies/States/Diving.gd" id="25_er732"]
 [ext_resource type="Script" uid="uid://cfiqn6eh6nlcq" path="res://Enemies/States/DiveSlide.gd" id="26_uy2rn"]
+[ext_resource type="Script" uid="uid://0txbwfrpljtv" path="res://Enemies/States/Prone.gd" id="28_tbdv8"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tc8uu"]
 
@@ -346,6 +349,8 @@ animation = &"PlayerCharacter/squat"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_l6drw"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tbdv8"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_hs44b"]
 states/Diving/node = SubResource("AnimationNodeBlendSpace2D_vby3f")
 states/Diving/position = Vector2(776, 152)
@@ -362,8 +367,8 @@ states/Sliding/position = Vector2(387, 290)
 states/Squatting/node = SubResource("AnimationNodeAnimation_ofxpx")
 states/Squatting/position = Vector2(98, 152)
 states/Start/position = Vector2(2, 31)
-transitions = ["Start", "Locomote", SubResource("AnimationNodeStateMachineTransition_dyuu2"), "Locomote", "Jumping", SubResource("AnimationNodeStateMachineTransition_ofxpx"), "Jumping", "Locomote", SubResource("AnimationNodeStateMachineTransition_6mx01"), "Locomote", "Falling", SubResource("AnimationNodeStateMachineTransition_hs44b"), "Falling", "Locomote", SubResource("AnimationNodeStateMachineTransition_i84k0"), "Jumping", "Falling", SubResource("AnimationNodeStateMachineTransition_0nfi7"), "Falling", "Jumping", SubResource("AnimationNodeStateMachineTransition_glb63"), "Locomote", "Squatting", SubResource("AnimationNodeStateMachineTransition_7qrv0"), "Squatting", "Locomote", SubResource("AnimationNodeStateMachineTransition_uutuo"), "Jumping", "Sliding", SubResource("AnimationNodeStateMachineTransition_oaojh"), "Falling", "Sliding", SubResource("AnimationNodeStateMachineTransition_jglra"), "Locomote", "Sliding", SubResource("AnimationNodeStateMachineTransition_5vfnn"), "Sliding", "Jumping", SubResource("AnimationNodeStateMachineTransition_nbdcw"), "Sliding", "Falling", SubResource("AnimationNodeStateMachineTransition_jj1e1"), "Sliding", "Locomote", SubResource("AnimationNodeStateMachineTransition_6h7vh"), "Sliding", "Squatting", SubResource("AnimationNodeStateMachineTransition_u4e74"), "Squatting", "Prone", SubResource("AnimationNodeStateMachineTransition_4d3id"), "Prone", "Locomote", SubResource("AnimationNodeStateMachineTransition_d5bsx"), "Sliding", "Prone", SubResource("AnimationNodeStateMachineTransition_87y2k"), "Locomote", "Diving", SubResource("AnimationNodeStateMachineTransition_g6tyu"), "Diving", "Locomote", SubResource("AnimationNodeStateMachineTransition_r7c5m"), "Diving", "Prone", SubResource("AnimationNodeStateMachineTransition_et3bv"), "Jumping", "Diving", SubResource("AnimationNodeStateMachineTransition_oaswr"), "Diving", "Falling", SubResource("AnimationNodeStateMachineTransition_l6drw")]
-graph_offset = Vector2(-24, 5.530884)
+transitions = ["Start", "Locomote", SubResource("AnimationNodeStateMachineTransition_dyuu2"), "Locomote", "Jumping", SubResource("AnimationNodeStateMachineTransition_ofxpx"), "Jumping", "Locomote", SubResource("AnimationNodeStateMachineTransition_6mx01"), "Locomote", "Falling", SubResource("AnimationNodeStateMachineTransition_hs44b"), "Falling", "Locomote", SubResource("AnimationNodeStateMachineTransition_i84k0"), "Jumping", "Falling", SubResource("AnimationNodeStateMachineTransition_0nfi7"), "Falling", "Jumping", SubResource("AnimationNodeStateMachineTransition_glb63"), "Locomote", "Squatting", SubResource("AnimationNodeStateMachineTransition_7qrv0"), "Squatting", "Locomote", SubResource("AnimationNodeStateMachineTransition_uutuo"), "Jumping", "Sliding", SubResource("AnimationNodeStateMachineTransition_oaojh"), "Falling", "Sliding", SubResource("AnimationNodeStateMachineTransition_jglra"), "Locomote", "Sliding", SubResource("AnimationNodeStateMachineTransition_5vfnn"), "Sliding", "Jumping", SubResource("AnimationNodeStateMachineTransition_nbdcw"), "Sliding", "Falling", SubResource("AnimationNodeStateMachineTransition_jj1e1"), "Sliding", "Locomote", SubResource("AnimationNodeStateMachineTransition_6h7vh"), "Sliding", "Squatting", SubResource("AnimationNodeStateMachineTransition_u4e74"), "Squatting", "Prone", SubResource("AnimationNodeStateMachineTransition_4d3id"), "Prone", "Locomote", SubResource("AnimationNodeStateMachineTransition_d5bsx"), "Sliding", "Prone", SubResource("AnimationNodeStateMachineTransition_87y2k"), "Locomote", "Diving", SubResource("AnimationNodeStateMachineTransition_g6tyu"), "Diving", "Locomote", SubResource("AnimationNodeStateMachineTransition_r7c5m"), "Diving", "Prone", SubResource("AnimationNodeStateMachineTransition_et3bv"), "Jumping", "Diving", SubResource("AnimationNodeStateMachineTransition_oaswr"), "Diving", "Falling", SubResource("AnimationNodeStateMachineTransition_l6drw"), "Locomote", "Prone", SubResource("AnimationNodeStateMachineTransition_tbdv8")]
+graph_offset = Vector2(-10, -25.469116)
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_0nfi7"]
 filter_enabled = true
@@ -476,6 +481,7 @@ blend_mode = 1
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_i84k0"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_sik18"]
+graph_offset = Vector2(-690.0587, 13.922501)
 nodes/output/position = Vector2(1080, 140)
 nodes/Locomotion/node = SubResource("AnimationNodeStateMachine_hs44b")
 nodes/Locomotion/position = Vector2(-880, 140)
@@ -509,6 +515,10 @@ height = 1.0236816
 [node name="EnemyCharacter" type="CharacterBody3D" node_paths=PackedStringArray("mesh")]
 script = ExtResource("1_0ojtv")
 mesh = NodePath("Upset Ned")
+
+[node name="BlendLook" parent="." node_paths=PackedStringArray("mesh", "state_machine") instance=ExtResource("2_uphb3")]
+mesh = NodePath("../Upset Ned")
+state_machine = NodePath("../StateMachine")
 
 [node name="ClickShoot" type="Node" parent="." node_paths=PackedStringArray("anim_tree", "l_weapon", "r_weapon")]
 script = ExtResource("2_m4lhg")
@@ -857,10 +867,16 @@ script = ExtResource("13_tbdv8")
 states = Array[String](["Diving", "DiveSlide"])
 metadata/_custom_type_script = "uid://cg2be4d76bxog"
 
+[node name="Randomly decide not to dive" type="Node" parent="BehaviourTree/RootSelector/MaybeDiveSequence"]
+script = ExtResource("11_60yyd")
+limit = 0.99
+metadata/_custom_type_script = "uid://b0hd2rlswbqom"
+
 [node name="Are we in PathTo state?" type="Node" parent="BehaviourTree/RootSelector/MaybeDiveSequence"]
 script = ExtResource("9_023jj")
 states = Array[String](["PathTo"])
 debug_log = true
+dont_tick = true
 metadata/_custom_type_script = "uid://cpt6stlc1xek0"
 
 [node name="Are we far enough from the path target?" type="Node" parent="BehaviourTree/RootSelector/MaybeDiveSequence"]
@@ -1025,6 +1041,10 @@ metadata/_custom_type_script = "uid://bjmyb3rnkdsof"
 [node name="DiveSlide" type="Node3D" parent="StateMachine" node_paths=PackedStringArray("mesh")]
 script = ExtResource("26_uy2rn")
 mesh = NodePath("../../Upset Ned")
+metadata/_custom_type_script = "uid://bjmyb3rnkdsof"
+
+[node name="Prone" type="Node3D" parent="StateMachine"]
+script = ExtResource("28_tbdv8")
 metadata/_custom_type_script = "uid://bjmyb3rnkdsof"
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]

@@ -99,8 +99,15 @@ transform = Transform3D(1, 0, 0, 0, 0.057703447, 0.99833375, 0, -0.99833375, 0.0
 [node name="EnemyCharacter" parent="." instance=ExtResource("3_eg64c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.187233, 3.8796635, -4.66212)
 
-[node name="PatrolAction" parent="EnemyCharacter/BehaviourTree/RootSelector/Patrol Sequence" index="2" node_paths=PackedStringArray("patrol_waypoints")]
+[node name="BlendLook" parent="EnemyCharacter" index="0" node_paths=PackedStringArray("target")]
+target = NodePath("../../PlayerCharacter")
+
+[node name="PatrolAction" parent="EnemyCharacter/BehaviourTree/RootSelector/Patrol Sequence" index="3" node_paths=PackedStringArray("patrol_waypoints")]
 patrol_waypoints = [NodePath("../../../../../PatrolWaypoint3"), NodePath("../../../../../PatrolWaypoint4"), NodePath("../../../../../PatrolWaypoint6"), NodePath("../../../../../PatrolWaypoint7")]
+
+[node name="Prone" parent="EnemyCharacter/StateMachine" index="4" node_paths=PackedStringArray("target", "mesh")]
+target = NodePath("../../../PlayerCharacter")
+mesh = NodePath("../../Upset Ned")
 
 [node name="PatrolWaypoint3" parent="." instance=ExtResource("4_4b0uu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.165268, 0.5, 9.277961)
