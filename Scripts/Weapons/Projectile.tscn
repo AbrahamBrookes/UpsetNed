@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://cyruixme7v75k"]
+
+[ext_resource type="Texture2D" uid="uid://bjfqlplgbcwoi" path="res://Weapons/tracer.png" id="1_p8ylb"]
+
+[node name="Projectile" type="Node3D"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Sprite3D2" type="Sprite3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, -2.1855694e-08, -0.01, 0, 0.5, -4.3711387e-10, 0, 0, 0.08053655)
+axis = 0
+texture = ExtResource("1_p8ylb")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(-0.015, -4.371139e-08, -3.821371e-15, 0, -2.1855694e-08, 1, -1.3113416e-09, 0.5, 4.371139e-08, 0, 0, 0.08053655)
+texture = ExtResource("1_p8ylb")

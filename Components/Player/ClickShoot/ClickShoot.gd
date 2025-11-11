@@ -24,8 +24,8 @@ var sliding: bool = false
 @export var mouselook: Mouselook
 
 # a reference to the left and right weapons
-@export var l_weapon: Node3D
-@export var r_weapon: Node3D
+@export var l_weapon_slot: WeaponSlot
+@export var r_weapon_slot: WeaponSlot
 
 func _ready():
 	pass
@@ -63,12 +63,12 @@ func _input(event):
 func fire_r():
 	r_shooting = true
 	r_timer.start()
-	r_weapon.fire()
+	r_weapon_slot.fire(mouselook.target_node.global_position)
 
 func fire_l():
 	l_shooting = true
 	l_timer.start()
-	l_weapon.fire()
+	l_weapon_slot.fire(mouselook.target_node.global_position)
 	
 func _on_r_timer_timeout():
 	r_shooting = false

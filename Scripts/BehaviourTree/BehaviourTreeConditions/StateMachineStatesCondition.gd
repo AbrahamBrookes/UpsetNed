@@ -8,7 +8,7 @@ class_name StateMachineStatesCondition
 @export var states: Array[String] = []
 
 func _tick(_blackboard: BehaviourTreeBlackboard) -> int:
-	if debug_log:
+	if debug_log and behaviour_tree.debug:
 		print("Current state is " + behaviour_tree.state_machine.current_state.name)
 	if behaviour_tree.state_machine and behaviour_tree.state_machine.is_in_states(states):
 		return BehaviourTreeResult.Status.SUCCESS

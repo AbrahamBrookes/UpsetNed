@@ -3,7 +3,7 @@ extends Node3D
 @export var light: OmniLight3D
 @export var particles: GPUParticles3D
 @export var projectile_particles: GPUParticles3D
-@export var mouselook: Mouselook
+@export var target_node: Node3D
 
 # Flash duration in frames
 @export var flash_duration_frames: int = 3
@@ -23,9 +23,9 @@ func fire():
 	start_flash()
 	if particles:
 		particles.restart()
-	if projectile_particles and mouselook:
-		# point the projectile particles at the mouselook.target_node global position
-		projectile_particles.look_at(mouselook.target_node.global_transform.origin)
+	if projectile_particles and target_node:
+		# point the projectile particles at the target_node global position
+		projectile_particles.look_at(target_node.global_transform.origin)
 		projectile_particles.restart()
 
 func start_flash():

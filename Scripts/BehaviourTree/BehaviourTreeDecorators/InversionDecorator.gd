@@ -20,7 +20,7 @@ func _ready():
 
 func tick(blackboard: BehaviourTreeBlackboard) -> int:
 	var result = _tick(blackboard)
-	if debug:
+	if debug and behaviour_tree.debug:
 		print("PatrolAction: tick result: " + str(result))
 	return result
 

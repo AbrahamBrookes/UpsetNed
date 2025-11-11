@@ -8,7 +8,7 @@ class_name GoToStateAction
 
 func _tick(_blackboard: BehaviourTreeBlackboard):
 	# emit our ChangeState signal with the given name - we assume no extra_data to pass
-	if debug_log:
+	if debug_log and behaviour_tree.debug:
 		var old_state: String = behaviour_tree.state_machine.current_state.name
 		print("Go To State Action: " + old_state + " -> " + state_name)
 		

@@ -1,10 +1,9 @@
-[gd_scene load_steps=120 format=4 uid="uid://cmqdnrhniysvv"]
+[gd_scene load_steps=119 format=4 uid="uid://cmqdnrhniysvv"]
 
 [ext_resource type="Script" uid="uid://c3ul7slyr67i1" path="res://Enemies/EnemyCharacter.gd" id="1_0ojtv"]
-[ext_resource type="PackedScene" uid="uid://loaloee7is73" path="res://Weapons/HandCannon/HandCannon.tscn" id="2_ibj4g"]
-[ext_resource type="Script" uid="uid://bt5sy4tn4uif6" path="res://Components/Player/ClickShoot/ClickShoot.gd" id="2_m4lhg"]
 [ext_resource type="PackedScene" uid="uid://fx8wr7dcytv7" path="res://Components/Enemies/BlendLook/BlendLook.tscn" id="2_uphb3"]
 [ext_resource type="AnimationLibrary" uid="uid://camq2lt6iffif" path="res://PlayerCharacter/Import/PlayerCharacterAnimationLibrary.res" id="3_c7rar"]
+[ext_resource type="Script" uid="uid://x8ew2ykbok2f" path="res://Scripts/Weapons/WeaponSlot.gd" id="4_60yyd"]
 [ext_resource type="Script" uid="uid://c28bssdvxad2h" path="res://Scripts/BehaviourTree/BehaviourTree.gd" id="4_5411f"]
 [ext_resource type="Script" uid="uid://bjfgd4244csap" path="res://Scripts/BehaviourTree/BehaviourTreeSelector.gd" id="5_2memc"]
 [ext_resource type="Script" uid="uid://cvd84fakj0hs1" path="res://Scripts/BehaviourTree/BehaviourTreeBlackboard.gd" id="5_to1wh"]
@@ -520,19 +519,6 @@ mesh = NodePath("Upset Ned")
 mesh = NodePath("../Upset Ned")
 state_machine = NodePath("../StateMachine")
 
-[node name="ClickShoot" type="Node" parent="." node_paths=PackedStringArray("anim_tree", "l_weapon", "r_weapon")]
-script = ExtResource("2_m4lhg")
-anim_tree = NodePath("../Upset Ned/AnimationTree")
-l_weapon = NodePath("../Upset Ned/rig/Skeleton3D/LPistolBoneAttachment/HandCannon")
-r_weapon = NodePath("../Upset Ned/rig/Skeleton3D/RPistolBoneAttachment/HandCannon")
-metadata/_custom_type_script = "uid://bt5sy4tn4uif6"
-
-[node name="l_timer" type="Timer" parent="ClickShoot"]
-autostart = true
-
-[node name="r_timer" type="Timer" parent="ClickShoot"]
-autostart = true
-
 [node name="Upset Ned" type="Node3D" parent="."]
 transform = Transform3D(-0.5504808, 0, -0.8348478, 0, 1, 0, 0.8348478, 0, -0.5504808, 0, 0, 0)
 
@@ -788,16 +774,20 @@ transform = Transform3D(-0.7810676, -0.61439484, -0.11158683, 0.6224938, -0.7802
 bone_name = "DEF-hand.R"
 bone_idx = 31
 
-[node name="HandCannon" parent="Upset Ned/rig/Skeleton3D/RPistolBoneAttachment" instance=ExtResource("2_ibj4g")]
-transform = Transform3D(0.2, 0, 0, 0, -8.742278e-09, -0.2, 0, 0.2, -8.742278e-09, 0, 0.07, 0.025)
+[node name="WeaponSlot" type="Node3D" parent="Upset Ned/rig/Skeleton3D/RPistolBoneAttachment"]
+transform = Transform3D(-0.78106797, 0.622494, -0.049339656, -0.61439556, -0.78021294, -0.11741717, -0.11158695, -0.06139665, 0.99185646, -0.5147196, 0.16906464, 0.063814625)
+script = ExtResource("4_60yyd")
+metadata/_custom_type_script = "uid://x8ew2ykbok2f"
 
 [node name="LPistolBoneAttachment" type="BoneAttachment3D" parent="Upset Ned/rig/Skeleton3D"]
 transform = Transform3D(-0.78106767, 0.6143951, 0.11158687, -0.6224938, -0.78021264, -0.061396338, 0.049339943, -0.11741694, 0.99185604, 0.29103753, 0.45623404, -0.06884004)
 bone_name = "DEF-hand.L"
 bone_idx = 25
 
-[node name="HandCannon" parent="Upset Ned/rig/Skeleton3D/LPistolBoneAttachment" instance=ExtResource("2_ibj4g")]
-transform = Transform3D(0.2, 0, 0, 0, -8.742278e-09, -0.2, 0, 0.2, -8.742278e-09, 0, 0.07, 0.025)
+[node name="WeaponSlot" type="Node3D" parent="Upset Ned/rig/Skeleton3D/LPistolBoneAttachment"]
+transform = Transform3D(-0.78106797, 0.622494, -0.049339656, -0.61439556, -0.78021294, -0.11741717, -0.11158695, -0.06139665, 0.99185646, -0.5147196, 0.16906464, 0.063814625)
+script = ExtResource("4_60yyd")
+metadata/_custom_type_script = "uid://x8ew2ykbok2f"
 
 [node name="EyesAttachment" type="BoneAttachment3D" parent="Upset Ned/rig/Skeleton3D"]
 transform = Transform3D(1, -1.5551264e-14, 2.3841858e-07, 4.4488733e-08, 0.982436, -0.1865992, -2.3423104e-07, 0.18659912, 0.98243624, -3.2654687e-16, 0.6706831, 0.005070055)
@@ -850,7 +840,6 @@ script = ExtResource("4_5411f")
 blackboard = NodePath("../BehaviourTreeBlackboard")
 anim_tree = NodePath("../Upset Ned/AnimationTree")
 state_machine = NodePath("../StateMachine")
-debug = true
 metadata/_custom_type_script = "uid://c28bssdvxad2h"
 
 [node name="RootSelector" type="Node" parent="BehaviourTree"]
@@ -1013,9 +1002,8 @@ metadata/_custom_type_script = "uid://cvd84fakj0hs1"
 script = ExtResource("19_e2n8e")
 anim_tree = NodePath("../Upset Ned/AnimationTree")
 initial_state = NodePath("Idle")
-debug_mode = true
 locomotor = NodePath("..")
-click_shoot = NodePath("../ClickShoot")
+click_shoot = NodePath("")
 metadata/_custom_type_script = "uid://b8tm2dsp5o0p4"
 
 [node name="Idle" type="Node3D" parent="StateMachine"]
@@ -1050,6 +1038,4 @@ metadata/_custom_type_script = "uid://bjmyb3rnkdsof"
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 avoidance_enabled = true
 
-[connection signal="timeout" from="ClickShoot/l_timer" to="ClickShoot" method="_on_l_timer_timeout"]
-[connection signal="timeout" from="ClickShoot/r_timer" to="ClickShoot" method="_on_r_timer_timeout"]
 [connection signal="velocity_computed" from="NavigationAgent3D" to="StateMachine/PathTo" method="_on_velocity_computed"]

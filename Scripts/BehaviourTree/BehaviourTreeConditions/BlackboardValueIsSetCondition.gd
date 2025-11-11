@@ -11,7 +11,7 @@ class_name BlackboardValueIsSetCondition
 func _tick(blackboard: BehaviourTreeBlackboard) -> int:
 	var value = blackboard.get_blackboard_value(key_name, null)
 	
-	if debug:
+	if debug and behaviour_tree.debug:
 		print("blackboard value " + key_name + " is: " + str(value))
 
 	if not value:

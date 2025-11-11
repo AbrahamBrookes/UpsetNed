@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://pup6ssjbec18"]
+
+[ext_resource type="Script" uid="uid://chr5g3lj1wgl7" path="res://Scripts/Weapons/Weapon.gd" id="1_x8q2w"]
+[ext_resource type="PackedScene" uid="uid://cyruixme7v75k" path="res://Scripts/Weapons/Projectile.tscn" id="2_sgphf"]
+[ext_resource type="PackedScene" uid="uid://cvxrvxyo7dnbf" path="res://Weapons/HandCannon/hand cannon.glb" id="3_u6vre"]
+
+[node name="BaseWeapon" type="Node3D" node_paths=PackedStringArray("muzzle")]
+script = ExtResource("1_x8q2w")
+projectile_scene = ExtResource("2_sgphf")
+muzzle = NodePath("muzzle")
+metadata/_custom_type_script = "uid://chr5g3lj1wgl7"
+
+[node name="hand cannon" parent="." instance=ExtResource("3_u6vre")]
+transform = Transform3D(0.025, 0, 0, 0, -1.0927848e-09, -0.025, 0, 0.025, -1.0927848e-09, 0, 0, 0)
+
+[node name="muzzle" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.18762097, 0.036561765)

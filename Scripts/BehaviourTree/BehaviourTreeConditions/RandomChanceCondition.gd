@@ -16,7 +16,6 @@ class_name RandomChanceCondition
 func _tick(_blackboard: BehaviourTreeBlackboard) -> int:
 	# generate a random number 0.0 - 1.0
 	var rand_value = randf()
-	print(rand_value)
 	if rand_value <= limit:
 		return result_when_rand_below_limit
 	else:

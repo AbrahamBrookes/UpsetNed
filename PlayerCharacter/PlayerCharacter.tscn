@@ -1,12 +1,13 @@
-[gd_scene load_steps=103 format=4 uid="uid://dnngs3f0x460f"]
+[gd_scene load_steps=104 format=4 uid="uid://dnngs3f0x460f"]
 
 [ext_resource type="Script" uid="uid://7islvmlck2q0" path="res://PlayerCharacter/PlayerCharacter.gd" id="1_pult7"]
 [ext_resource type="Script" uid="uid://bt5sy4tn4uif6" path="res://Components/Player/ClickShoot/ClickShoot.gd" id="2_hs44b"]
 [ext_resource type="Script" uid="uid://dth0jeom0jlgg" path="res://Components/Player/Mouselook/Mouselook.gd" id="2_jglra"]
 [ext_resource type="Script" uid="uid://b8tm2dsp5o0p4" path="res://Scripts/StateMachine/StateMachine.gd" id="3_52dax"]
 [ext_resource type="AnimationLibrary" uid="uid://camq2lt6iffif" path="res://PlayerCharacter/Import/PlayerCharacterAnimationLibrary.res" id="3_nbdcw"]
-[ext_resource type="PackedScene" uid="uid://loaloee7is73" path="res://Weapons/HandCannon/HandCannon.tscn" id="4_i84k0"]
+[ext_resource type="Script" uid="uid://x8ew2ykbok2f" path="res://Scripts/Weapons/WeaponSlot.gd" id="4_i84k0"]
 [ext_resource type="Script" uid="uid://diod80vqkfsxv" path="res://PlayerCharacter/States/Locomote.gd" id="4_u1221"]
+[ext_resource type="PackedScene" uid="uid://pup6ssjbec18" path="res://Scripts/Weapons/BaseWeapon.tscn" id="5_0nfi7"]
 [ext_resource type="Script" uid="uid://c4jce4gpe7paa" path="res://PlayerCharacter/States/Jumping.gd" id="5_4hmw5"]
 [ext_resource type="Script" uid="uid://bkr343ojv8ewn" path="res://PlayerCharacter/States/Falling.gd" id="6_phx8k"]
 [ext_resource type="Script" uid="uid://baa3x3dsalu7j" path="res://PlayerCharacter/States/Sliding.gd" id="7_jglra"]
@@ -502,12 +503,12 @@ camera = NodePath("CameraPivot/Camera3D")
 camera_target_offset = Vector3(0, 1, 0)
 mouselook = NodePath("Mouselook")
 
-[node name="ClickShoot" type="Node" parent="." node_paths=PackedStringArray("anim_tree", "mouselook", "l_weapon", "r_weapon")]
+[node name="ClickShoot" type="Node" parent="." node_paths=PackedStringArray("anim_tree", "mouselook", "l_weapon_slot", "r_weapon_slot")]
 script = ExtResource("2_hs44b")
 anim_tree = NodePath("../Upset Ned/AnimationTree")
 mouselook = NodePath("../Mouselook")
-l_weapon = NodePath("../Upset Ned/rig/Skeleton3D/LPistolBoneAttachment/HandCannon")
-r_weapon = NodePath("../Upset Ned/rig/Skeleton3D/RPistolBoneAttachment/HandCannon")
+l_weapon_slot = NodePath("../Upset Ned/rig/Skeleton3D/LPistolBoneAttachment/WeaponSlot")
+r_weapon_slot = NodePath("../Upset Ned/rig/Skeleton3D/RPistolBoneAttachment/WeaponSlot")
 metadata/_custom_type_script = "uid://bt5sy4tn4uif6"
 
 [node name="l_timer" type="Timer" parent="ClickShoot"]
@@ -788,18 +789,23 @@ transform = Transform3D(-0.7810676, -0.61439484, -0.11158683, 0.6224938, -0.7802
 bone_name = "DEF-hand.R"
 bone_idx = 31
 
-[node name="HandCannon" parent="Upset Ned/rig/Skeleton3D/RPistolBoneAttachment" node_paths=PackedStringArray("mouselook") instance=ExtResource("4_i84k0")]
-transform = Transform3D(0.2, 0, 0, 0, -8.742278e-09, -0.2, 0, 0.2, -8.742278e-09, 0, 0.07, 0.025)
-mouselook = NodePath("../../../../../Mouselook")
+[node name="WeaponSlot" type="Node3D" parent="Upset Ned/rig/Skeleton3D/RPistolBoneAttachment" node_paths=PackedStringArray("weapon")]
+transform = Transform3D(1.0000004, 0, 0, 0, 1.0000002, 0, 0, 0, 1.0000002, 0, 0, 0)
+script = ExtResource("4_i84k0")
+weapon = NodePath("BaseWeapon")
+metadata/_custom_type_script = "uid://x8ew2ykbok2f"
+
+[node name="BaseWeapon" parent="Upset Ned/rig/Skeleton3D/RPistolBoneAttachment/WeaponSlot" instance=ExtResource("5_0nfi7")]
 
 [node name="LPistolBoneAttachment" type="BoneAttachment3D" parent="Upset Ned/rig/Skeleton3D"]
 transform = Transform3D(-0.78106767, 0.6143951, 0.11158687, -0.6224938, -0.78021264, -0.061396338, 0.049339943, -0.11741694, 0.99185604, 0.29103753, 0.45623404, -0.06884004)
 bone_name = "DEF-hand.L"
 bone_idx = 25
 
-[node name="HandCannon" parent="Upset Ned/rig/Skeleton3D/LPistolBoneAttachment" node_paths=PackedStringArray("mouselook") instance=ExtResource("4_i84k0")]
-transform = Transform3D(0.2, 0, 0, 0, -8.742278e-09, -0.2, 0, 0.2, -8.742278e-09, 0, 0.07, 0.025)
-mouselook = NodePath("../../../../../Mouselook")
+[node name="WeaponSlot" type="Node3D" parent="Upset Ned/rig/Skeleton3D/LPistolBoneAttachment"]
+transform = Transform3D(-0.78106797, 0.622494, -0.049339656, -0.61439556, -0.78021294, -0.11741717, -0.11158695, -0.06139665, 0.99185646, -0.5147196, 0.16906464, 0.063814625)
+script = ExtResource("4_i84k0")
+metadata/_custom_type_script = "uid://x8ew2ykbok2f"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Upset Ned"]
 libraries = {

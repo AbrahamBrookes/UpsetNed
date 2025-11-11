@@ -31,7 +31,7 @@ func _ready():
 func tick(blackboard: BehaviourTreeBlackboard):
 
 	var result = _tick(blackboard)
-	if debug_log:
+	if debug_log and behaviour_tree.debug:
 		print(self.name + " " + str(result))
 		
 	return result
