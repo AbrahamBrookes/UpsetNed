@@ -64,7 +64,6 @@ func _tick(blackboard: BehaviourTreeBlackboard) -> int:
 	# record last checked time 
 	last_check_time = current_time
 	
-	print("can see target", can_see_target == BehaviourTreeResult.Status.SUCCESS)
 	return can_see_target
 
 # perform the LOS check via raycast
@@ -84,7 +83,7 @@ func _perform_raycast_check() -> bool:
 	
 	var result = space_state.intersect_ray(query)
 	
-	if behaviour_tree and behaviour_tree.debug:
+	if behaviour_tree and behaviour_tree.debug and debug_log:
 		DebugDraw3D.draw_line(head.global_position, target_center, Color(1, 1, 0))
 	
 	return result.is_empty() or result.collider == target

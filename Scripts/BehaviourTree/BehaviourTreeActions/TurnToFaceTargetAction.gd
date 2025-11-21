@@ -26,4 +26,5 @@ func _tick(blackboard: BehaviourTreeBlackboard) -> int:
 	var look_at_transform = node_to_rotate.global_transform.looking_at(to, Vector3.UP)
 	node_to_rotate.global_transform = look_at_transform
 	
-	return BehaviourTreeResult.Status.SUCCESS
+	# return NOTHING so that we keep executing the tree
+	return BehaviourTreeResult.Status.NOTHING

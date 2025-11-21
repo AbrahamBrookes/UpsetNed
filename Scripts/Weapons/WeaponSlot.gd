@@ -11,6 +11,7 @@ class_name WeaponSlot
 
 # fire the weapon
 func fire(target: Vector3) -> bool:
+	
 	# if we don't have a weapon, we can't fire
 	if not weapon:
 		return false

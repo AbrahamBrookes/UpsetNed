@@ -1,11 +1,13 @@
-[gd_scene load_steps=119 format=4 uid="uid://cmqdnrhniysvv"]
+[gd_scene load_steps=122 format=4 uid="uid://cmqdnrhniysvv"]
 
 [ext_resource type="Script" uid="uid://c3ul7slyr67i1" path="res://Enemies/EnemyCharacter.gd" id="1_0ojtv"]
 [ext_resource type="PackedScene" uid="uid://fx8wr7dcytv7" path="res://Components/Enemies/BlendLook/BlendLook.tscn" id="2_uphb3"]
+[ext_resource type="Script" uid="uid://4flkr0r6y6bu" path="res://Components/Enemies/ThinkShoot/ThinkShoot.gd" id="3_6ap6v"]
 [ext_resource type="AnimationLibrary" uid="uid://camq2lt6iffif" path="res://PlayerCharacter/Import/PlayerCharacterAnimationLibrary.res" id="3_c7rar"]
 [ext_resource type="Script" uid="uid://x8ew2ykbok2f" path="res://Scripts/Weapons/WeaponSlot.gd" id="4_60yyd"]
 [ext_resource type="Script" uid="uid://c28bssdvxad2h" path="res://Scripts/BehaviourTree/BehaviourTree.gd" id="4_5411f"]
 [ext_resource type="Script" uid="uid://bjfgd4244csap" path="res://Scripts/BehaviourTree/BehaviourTreeSelector.gd" id="5_2memc"]
+[ext_resource type="PackedScene" uid="uid://pup6ssjbec18" path="res://Scripts/Weapons/BaseWeapon.tscn" id="5_cbdk4"]
 [ext_resource type="Script" uid="uid://cvd84fakj0hs1" path="res://Scripts/BehaviourTree/BehaviourTreeBlackboard.gd" id="5_to1wh"]
 [ext_resource type="Script" uid="uid://dqi5do4e53acs" path="res://Scripts/BehaviourTree/BehaviourTreeActions/GoToStateAction.gd" id="6_bbos0"]
 [ext_resource type="Script" uid="uid://dec4sxqtyr8fg" path="res://Scripts/BehaviourTree/BehaviourTreeConditions/BlackboardValueIsSetCondition.gd" id="7_ibj4g"]
@@ -15,17 +17,18 @@
 [ext_resource type="Script" uid="uid://bua0kd12grmrt" path="res://Scripts/BehaviourTree/BehaviourTreeActions/SelectATargetAction.gd" id="8_egt66"]
 [ext_resource type="Script" uid="uid://cpt6stlc1xek0" path="res://Scripts/BehaviourTree/BehaviourTreeConditions/StateMachineStatesCondition.gd" id="9_023jj"]
 [ext_resource type="Script" uid="uid://c0uouybh5cpyh" path="res://Scripts/BehaviourTree/BehaviourTreeConditions/CanSeeTargetCondition.gd" id="9_c7rar"]
-[ext_resource type="Script" uid="uid://cn7xj52gibn83" path="res://Scripts/BehaviourTree/BehaviourTreeDecorators/InversionDecorator.gd" id="10_01n7w"]
 [ext_resource type="Script" uid="uid://bki0w3hjswsn0" path="res://Scripts/BehaviourTree/BehaviourTreeActions/TurnToFaceTargetAction.gd" id="10_8aww5"]
 [ext_resource type="Script" uid="uid://babfoosmefuaf" path="res://Scripts/BehaviourTree/BehaviourTreeConditions/DistanceToPathTargetCondition.gd" id="10_nsawg"]
 [ext_resource type="Script" uid="uid://xtblc83r3tof" path="res://Scripts/BehaviourTree/BehaviourTreeActions/PatrolAction.gd" id="11_023jj"]
 [ext_resource type="Script" uid="uid://b0hd2rlswbqom" path="res://Scripts/BehaviourTree/BehaviourTreeConditions/RandomChanceCondition.gd" id="11_60yyd"]
-[ext_resource type="Script" uid="uid://b0g7obsju3xki" path="res://Scripts/BehaviourTree/BehaviourTreeConditions/BlackboardValueHasMinCountCondition.gd" id="11_c7rar"]
 [ext_resource type="Script" uid="uid://cg2be4d76bxog" path="res://Scripts/BehaviourTree/BehaviourTreeActions/ReturnRunningWhenInStatesAction.gd" id="13_tbdv8"]
-[ext_resource type="Script" uid="uid://bh7weu5h2cdlo" path="res://Scripts/BehaviourTree/BehaviourTreeActions/ReturnSuccessAction.gd" id="14_01n7w"]
 [ext_resource type="Script" uid="uid://b8tm2dsp5o0p4" path="res://Scripts/StateMachine/StateMachine.gd" id="19_e2n8e"]
 [ext_resource type="Script" uid="uid://djwm836pdbrwl" path="res://Enemies/States/PathTo.gd" id="20_obq0g"]
+[ext_resource type="Script" uid="uid://balufmxasqicp" path="res://Scripts/BehaviourTree/BehaviourTreeConditions/TimeoutCondition.gd" id="20_uphb3"]
+[ext_resource type="Script" uid="uid://djs7fqe43awl4" path="res://Scripts/BehaviourTree/BehaviourTreeConditions/MultipleTimersNotCountingCondition.gd" id="21_cbdk4"]
 [ext_resource type="Script" uid="uid://c8eahflp5nxpj" path="res://Enemies/States/Idle.gd" id="21_e2n8e"]
+[ext_resource type="Script" uid="uid://brbeqhgm32h1e" path="res://Scripts/BehaviourTree/BehaviourTreeActions/EmitSignalAction.gd" id="24_cbdk4"]
+[ext_resource type="Script" uid="uid://bpugik1l0j6vy" path="res://Scripts/BehaviourTree/BehaviourTreeActions/ReturnStatusAction.gd" id="24_i1mkc"]
 [ext_resource type="Script" uid="uid://vwp22o2ahnyv" path="res://Enemies/States/Diving.gd" id="25_er732"]
 [ext_resource type="Script" uid="uid://cfiqn6eh6nlcq" path="res://Enemies/States/DiveSlide.gd" id="26_uy2rn"]
 [ext_resource type="Script" uid="uid://0txbwfrpljtv" path="res://Enemies/States/Prone.gd" id="28_tbdv8"]
@@ -504,8 +507,8 @@ nodes/SlidingAimRHandBlend/node = SubResource("AnimationNodeBlend2_l6drw")
 nodes/SlidingAimRHandBlend/position = Vector2(60, 100)
 node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"SlidingAimLHandBlend", &"StandingAimLHandBlend", 0, &"Locomotion", &"StandingAimLHandBlend", 1, &"StandingAimLHandBlendSpace", &"StandingAimRHandBlend", 0, &"StandingAimLHandBlend", &"StandingAimRHandBlend", 1, &"StandingAimRHandBlendSpace", &"SlidingAimLHandBlend", 0, &"SlidingAimRHandBlend", &"SlidingAimLHandBlend", 1, &"SlidingAimLHandBlendSpace", &"SlidingAimRHandBlend", 0, &"StandingAimRHandBlend", &"SlidingAimRHandBlend", 1, &"SlidingAimRHandBlendSpace"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_jqwj6"]
-size = Vector3(12, 1, 12)
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_tbdv8"]
+radius = 10.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_me38b"]
 radius = 0.18652344
@@ -519,8 +522,21 @@ mesh = NodePath("Upset Ned")
 mesh = NodePath("../Upset Ned")
 state_machine = NodePath("../StateMachine")
 
+[node name="ThinkShoot" type="Node" parent="." node_paths=PackedStringArray("l_cooldown_timer", "r_cooldown_timer", "anim_tree", "l_weapon_slot", "r_weapon_slot", "blackboard")]
+script = ExtResource("3_6ap6v")
+l_cooldown_timer = NodePath("../BehaviourTree/RootSelector/We do have a target branch/What should we do if we have a target?/Maybe Attack/left or right hand shoot selector/left hand shoot sequence/wait for left hand timer/Left shoot cooldown timer")
+r_cooldown_timer = NodePath("../BehaviourTree/RootSelector/We do have a target branch/What should we do if we have a target?/Maybe Attack/left or right hand shoot selector/right hand shoot sequence/wait for right hand timer/Right shoot cooldown timer")
+anim_tree = NodePath("../Upset Ned/AnimationTree")
+l_weapon_slot = NodePath("../Upset Ned/rig/Skeleton3D/LPistolBoneAttachment/L WeaponSlot")
+r_weapon_slot = NodePath("../Upset Ned/rig/Skeleton3D/RPistolBoneAttachment/R WeaponSlot")
+blackboard = NodePath("../BehaviourTreeBlackboard")
+metadata/_custom_type_script = "uid://4flkr0r6y6bu"
+
+[node name="l_hold_timer" type="Timer" parent="ThinkShoot"]
+
+[node name="r_hold_timer" type="Timer" parent="ThinkShoot"]
+
 [node name="Upset Ned" type="Node3D" parent="."]
-transform = Transform3D(-0.5504808, 0, -0.8348478, 0, 1, 0, 0.8348478, 0, -0.5504808, 0, 0, 0)
 
 [node name="rig" type="Node3D" parent="Upset Ned"]
 
@@ -774,20 +790,28 @@ transform = Transform3D(-0.7810676, -0.61439484, -0.11158683, 0.6224938, -0.7802
 bone_name = "DEF-hand.R"
 bone_idx = 31
 
-[node name="WeaponSlot" type="Node3D" parent="Upset Ned/rig/Skeleton3D/RPistolBoneAttachment"]
-transform = Transform3D(-0.78106797, 0.622494, -0.049339656, -0.61439556, -0.78021294, -0.11741717, -0.11158695, -0.06139665, 0.99185646, -0.5147196, 0.16906464, 0.063814625)
+[node name="R WeaponSlot" type="Node3D" parent="Upset Ned/rig/Skeleton3D/RPistolBoneAttachment" node_paths=PackedStringArray("weapon")]
+transform = Transform3D(1.0000004, 0, 0, 0, 1.0000002, 0, 0, 0, 1.0000002, 0, 0, 0)
 script = ExtResource("4_60yyd")
+weapon = NodePath("BaseWeapon")
 metadata/_custom_type_script = "uid://x8ew2ykbok2f"
+
+[node name="BaseWeapon" parent="Upset Ned/rig/Skeleton3D/RPistolBoneAttachment/R WeaponSlot" instance=ExtResource("5_cbdk4")]
+accuracy_deviation = 1.0
 
 [node name="LPistolBoneAttachment" type="BoneAttachment3D" parent="Upset Ned/rig/Skeleton3D"]
 transform = Transform3D(-0.78106767, 0.6143951, 0.11158687, -0.6224938, -0.78021264, -0.061396338, 0.049339943, -0.11741694, 0.99185604, 0.29103753, 0.45623404, -0.06884004)
 bone_name = "DEF-hand.L"
 bone_idx = 25
 
-[node name="WeaponSlot" type="Node3D" parent="Upset Ned/rig/Skeleton3D/LPistolBoneAttachment"]
-transform = Transform3D(-0.78106797, 0.622494, -0.049339656, -0.61439556, -0.78021294, -0.11741717, -0.11158695, -0.06139665, 0.99185646, -0.5147196, 0.16906464, 0.063814625)
+[node name="L WeaponSlot" type="Node3D" parent="Upset Ned/rig/Skeleton3D/LPistolBoneAttachment" node_paths=PackedStringArray("weapon")]
+transform = Transform3D(1.0000004, 0, 0, 0, 1.0000002, 0, 0, 0, 1.0000002, 0, 0, 0)
 script = ExtResource("4_60yyd")
+weapon = NodePath("BaseWeapon")
 metadata/_custom_type_script = "uid://x8ew2ykbok2f"
+
+[node name="BaseWeapon" parent="Upset Ned/rig/Skeleton3D/LPistolBoneAttachment/L WeaponSlot" instance=ExtResource("5_cbdk4")]
+accuracy_deviation = 1.0
 
 [node name="EyesAttachment" type="BoneAttachment3D" parent="Upset Ned/rig/Skeleton3D"]
 transform = Transform3D(1, -1.5551264e-14, 2.3841858e-07, 4.4488733e-08, 0.982436, -0.1865992, -2.3423104e-07, 0.18659912, 0.98243624, -3.2654687e-16, 0.6706831, 0.005070055)
@@ -796,6 +820,7 @@ bone_idx = 5
 
 [node name="Eyes" type="MeshInstance3D" parent="Upset Ned/rig/Skeleton3D/EyesAttachment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.484375e-08, 0.2015574, 0.14614528)
+visible = false
 mesh = SubResource("CylinderMesh_c7rar")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Upset Ned"]
@@ -828,8 +853,8 @@ collision_mask = 2
 blackboard = NodePath("../../BehaviourTreeBlackboard")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Upset Ned/Agrozone"]
-transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 0, 0, -7.7781744)
-shape = SubResource("BoxShape3D_jqwj6")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_tbdv8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -840,170 +865,206 @@ script = ExtResource("4_5411f")
 blackboard = NodePath("../BehaviourTreeBlackboard")
 anim_tree = NodePath("../Upset Ned/AnimationTree")
 state_machine = NodePath("../StateMachine")
+debug = true
 metadata/_custom_type_script = "uid://c28bssdvxad2h"
 
 [node name="RootSelector" type="Node" parent="BehaviourTree"]
 script = ExtResource("5_2memc")
 metadata/_custom_type_script = "uid://bjfgd4244csap"
 
-[node name="MaybeDiveSequence" type="Node" parent="BehaviourTree/RootSelector"]
+[node name="We do have a target branch" type="Node" parent="BehaviourTree/RootSelector"]
 script = ExtResource("7_n6i84")
-debug_log = true
 metadata/_custom_type_script = "uid://da8hiin4spe61"
 
-[node name="Return RUNNING if we are already diving" type="Node" parent="BehaviourTree/RootSelector/MaybeDiveSequence"]
+[node name="Do we have a target?" type="Node" parent="BehaviourTree/RootSelector/We do have a target branch"]
+script = ExtResource("7_ibj4g")
+key_name = "current_target"
+metadata/_custom_type_script = "uid://dec4sxqtyr8fg"
+
+[node name="What should we do if we have a target?" type="Node" parent="BehaviourTree/RootSelector/We do have a target branch"]
+script = ExtResource("5_2memc")
+metadata/_custom_type_script = "uid://bjfgd4244csap"
+
+[node name="Maybe Dive" type="Node" parent="BehaviourTree/RootSelector/We do have a target branch/What should we do if we have a target?"]
+script = ExtResource("7_n6i84")
+metadata/_custom_type_script = "uid://da8hiin4spe61"
+
+[node name="Return RUNNING if we are already diving" type="Node" parent="BehaviourTree/RootSelector/We do have a target branch/What should we do if we have a target?/Maybe Dive"]
 script = ExtResource("13_tbdv8")
 states = Array[String](["Diving", "DiveSlide"])
 metadata/_custom_type_script = "uid://cg2be4d76bxog"
 
-[node name="Randomly decide not to dive" type="Node" parent="BehaviourTree/RootSelector/MaybeDiveSequence"]
+[node name="Randomly decide not to dive" type="Node" parent="BehaviourTree/RootSelector/We do have a target branch/What should we do if we have a target?/Maybe Dive"]
 script = ExtResource("11_60yyd")
 limit = 0.99
 metadata/_custom_type_script = "uid://b0hd2rlswbqom"
 
-[node name="Are we in PathTo state?" type="Node" parent="BehaviourTree/RootSelector/MaybeDiveSequence"]
+[node name="Are we in PathTo state?" type="Node" parent="BehaviourTree/RootSelector/We do have a target branch/What should we do if we have a target?/Maybe Dive"]
 script = ExtResource("9_023jj")
 states = Array[String](["PathTo"])
-debug_log = true
 dont_tick = true
 metadata/_custom_type_script = "uid://cpt6stlc1xek0"
 
-[node name="Are we far enough from the path target?" type="Node" parent="BehaviourTree/RootSelector/MaybeDiveSequence"]
+[node name="Are we far enough from the path target?" type="Node" parent="BehaviourTree/RootSelector/We do have a target branch/What should we do if we have a target?/Maybe Dive"]
 script = ExtResource("10_nsawg")
 distance = 10.0
 metadata/_custom_type_script = "uid://babfoosmefuaf"
 
-[node name="Go To Diving State Action" type="Node" parent="BehaviourTree/RootSelector/MaybeDiveSequence"]
+[node name="Go To Diving State Action" type="Node" parent="BehaviourTree/RootSelector/We do have a target branch/What should we do if we have a target?/Maybe Dive"]
 script = ExtResource("6_bbos0")
 state_name = "Diving"
 debug_log = true
 metadata/_custom_type_script = "uid://dqi5do4e53acs"
 
-[node name="Patrol Sequence" type="Node" parent="BehaviourTree/RootSelector"]
+[node name="Look At Target" type="Node" parent="BehaviourTree/RootSelector/We do have a target branch/What should we do if we have a target?"]
+script = ExtResource("7_n6i84")
+dont_tick = true
+metadata/_custom_type_script = "uid://da8hiin4spe61"
+
+[node name="current_target BB value set" type="Node" parent="BehaviourTree/RootSelector/We do have a target branch/What should we do if we have a target?/Look At Target"]
+script = ExtResource("7_ibj4g")
+key_name = "current_target"
+metadata/_custom_type_script = "uid://csxhom132d36v"
+
+[node name="current_target within attack range" type="Node" parent="BehaviourTree/RootSelector/We do have a target branch/What should we do if we have a target?/Look At Target"]
+script = ExtResource("8_c7rar")
+range_distance = 30.0
+metadata/_custom_type_script = "uid://csxhom132d36v"
+
+[node name="current_target visible" type="Node" parent="BehaviourTree/RootSelector/We do have a target branch/What should we do if we have a target?/Look At Target" node_paths=PackedStringArray("head")]
+script = ExtResource("9_c7rar")
+head = NodePath("../../../../../../Upset Ned/rig/Skeleton3D/EyesAttachment/Eyes")
+metadata/_custom_type_script = "uid://csxhom132d36v"
+
+[node name="Turn to face target action" type="Node" parent="BehaviourTree/RootSelector/We do have a target branch/What should we do if we have a target?/Look At Target" node_paths=PackedStringArray("node_to_rotate")]
+script = ExtResource("10_8aww5")
+node_to_rotate = NodePath("../../../../../../Upset Ned")
+debug_log = true
+metadata/_custom_type_script = "uid://dhlcglftj6i0q"
+
+[node name="Maybe Attack" type="Node" parent="BehaviourTree/RootSelector/We do have a target branch/What should we do if we have a target?"]
 script = ExtResource("7_n6i84")
 debug_log = true
 metadata/_custom_type_script = "uid://da8hiin4spe61"
 
-[node name="Return RUNNING if we are already patrolling" type="Node" parent="BehaviourTree/RootSelector/Patrol Sequence"]
+[node name="wait for either attack timer" type="Node" parent="BehaviourTree/RootSelector/We do have a target branch/What should we do if we have a target?/Maybe Attack" node_paths=PackedStringArray("timers")]
+script = ExtResource("21_cbdk4")
+timers = [NodePath("../left or right hand shoot selector/right hand shoot sequence/wait for right hand timer/Right shoot cooldown timer"), NodePath("../left or right hand shoot selector/left hand shoot sequence/wait for left hand timer/Left shoot cooldown timer")]
+debug_log = true
+metadata/_custom_type_script = "uid://djs7fqe43awl4"
+
+[node name="current_target within attack range" type="Node" parent="BehaviourTree/RootSelector/We do have a target branch/What should we do if we have a target?/Maybe Attack"]
+script = ExtResource("8_c7rar")
+range_distance = 30.0
+debug_log = true
+metadata/_custom_type_script = "uid://csxhom132d36v"
+
+[node name="current_target visible" type="Node" parent="BehaviourTree/RootSelector/We do have a target branch/What should we do if we have a target?/Maybe Attack" node_paths=PackedStringArray("head")]
+script = ExtResource("9_c7rar")
+head = NodePath("../../../../../../Upset Ned/rig/Skeleton3D/EyesAttachment/Eyes")
+metadata/_custom_type_script = "uid://csxhom132d36v"
+
+[node name="left or right hand shoot selector" type="Node" parent="BehaviourTree/RootSelector/We do have a target branch/What should we do if we have a target?/Maybe Attack"]
+script = ExtResource("5_2memc")
+metadata/_custom_type_script = "uid://bjfgd4244csap"
+
+[node name="left hand shoot sequence" type="Node" parent="BehaviourTree/RootSelector/We do have a target branch/What should we do if we have a target?/Maybe Attack/left or right hand shoot selector"]
+script = ExtResource("7_n6i84")
+metadata/_custom_type_script = "uid://da8hiin4spe61"
+
+[node name="wait for left hand timer" type="Node" parent="BehaviourTree/RootSelector/We do have a target branch/What should we do if we have a target?/Maybe Attack/left or right hand shoot selector/left hand shoot sequence" node_paths=PackedStringArray("timer")]
+script = ExtResource("20_uphb3")
+timer = NodePath("Left shoot cooldown timer")
+metadata/_custom_type_script = "uid://balufmxasqicp"
+
+[node name="Left shoot cooldown timer" type="Timer" parent="BehaviourTree/RootSelector/We do have a target branch/What should we do if we have a target?/Maybe Attack/left or right hand shoot selector/left hand shoot sequence/wait for left hand timer"]
+wait_time = 0.22
+one_shot = true
+autostart = true
+
+[node name="signal fire left action" type="Node" parent="BehaviourTree/RootSelector/We do have a target branch/What should we do if we have a target?/Maybe Attack/left or right hand shoot selector/left hand shoot sequence"]
+script = ExtResource("24_cbdk4")
+debug_log = true
+metadata/_custom_type_script = "uid://brbeqhgm32h1e"
+
+[node name="right hand shoot sequence" type="Node" parent="BehaviourTree/RootSelector/We do have a target branch/What should we do if we have a target?/Maybe Attack/left or right hand shoot selector"]
+script = ExtResource("7_n6i84")
+metadata/_custom_type_script = "uid://da8hiin4spe61"
+
+[node name="wait for right hand timer" type="Node" parent="BehaviourTree/RootSelector/We do have a target branch/What should we do if we have a target?/Maybe Attack/left or right hand shoot selector/right hand shoot sequence" node_paths=PackedStringArray("timer")]
+script = ExtResource("20_uphb3")
+timer = NodePath("Right shoot cooldown timer")
+metadata/_custom_type_script = "uid://csxhom132d36v"
+
+[node name="Right shoot cooldown timer" type="Timer" parent="BehaviourTree/RootSelector/We do have a target branch/What should we do if we have a target?/Maybe Attack/left or right hand shoot selector/right hand shoot sequence/wait for right hand timer"]
+wait_time = 0.22
+one_shot = true
+autostart = true
+
+[node name="signal fire right action" type="Node" parent="BehaviourTree/RootSelector/We do have a target branch/What should we do if we have a target?/Maybe Attack/left or right hand shoot selector/right hand shoot sequence"]
+script = ExtResource("24_cbdk4")
+debug_log = true
+metadata/_custom_type_script = "uid://brbeqhgm32h1e"
+
+[node name="Attempt to select a target" type="Node" parent="BehaviourTree/RootSelector"]
+script = ExtResource("7_n6i84")
+metadata/_custom_type_script = "uid://da8hiin4spe61"
+
+[node name="Do we have any targets in our list?" type="Node" parent="BehaviourTree/RootSelector/Attempt to select a target"]
+script = ExtResource("7_ibj4g")
+metadata/_custom_type_script = "uid://csxhom132d36v"
+
+[node name="Arbitrarily select the first target" type="Node" parent="BehaviourTree/RootSelector/Attempt to select a target"]
+script = ExtResource("8_egt66")
+metadata/_custom_type_script = "uid://dhlcglftj6i0q"
+
+[node name="Return success to yield to the next frame" type="Node" parent="BehaviourTree/RootSelector/Attempt to select a target"]
+script = ExtResource("24_i1mkc")
+status = 1
+metadata/_custom_type_script = "uid://dhlcglftj6i0q"
+
+[node name="We don\'t have a target branch" type="Node" parent="BehaviourTree/RootSelector"]
+script = ExtResource("7_n6i84")
+metadata/_custom_type_script = "uid://da8hiin4spe61"
+
+[node name="Patrol Sequence" type="Node" parent="BehaviourTree/RootSelector/We don\'t have a target branch"]
+script = ExtResource("7_n6i84")
+dont_tick = true
+debug_log = true
+metadata/_custom_type_script = "uid://da8hiin4spe61"
+
+[node name="Return RUNNING if we are already patrolling" type="Node" parent="BehaviourTree/RootSelector/We don\'t have a target branch/Patrol Sequence"]
 script = ExtResource("13_tbdv8")
 states = Array[String](["PathTo"])
 metadata/_custom_type_script = "uid://cg2be4d76bxog"
 
-[node name="Are we idle condition" type="Node" parent="BehaviourTree/RootSelector/Patrol Sequence"]
+[node name="Are we idle?" type="Node" parent="BehaviourTree/RootSelector/We don\'t have a target branch/Patrol Sequence"]
 script = ExtResource("9_023jj")
 states = Array[String](["Idle"])
 debug_log = true
 metadata/_custom_type_script = "uid://cpt6stlc1xek0"
 
-[node name="InversionDecorator - we don\'t have a target" type="Node" parent="BehaviourTree/RootSelector/Patrol Sequence"]
-script = ExtResource("10_01n7w")
-dont_tick = true
-metadata/_custom_type_script = "uid://cn7xj52gibn83"
-
-[node name="We have a target - don\'t patrol" type="Node" parent="BehaviourTree/RootSelector/Patrol Sequence/InversionDecorator - we don\'t have a target"]
-script = ExtResource("7_ibj4g")
-key_name = "current_target"
-debug = true
-debug_log = true
-metadata/_custom_type_script = "uid://dec4sxqtyr8fg"
-
-[node name="PatrolAction" type="Node" parent="BehaviourTree/RootSelector/Patrol Sequence" node_paths=PackedStringArray("wait_timer")]
+[node name="PatrolAction" type="Node" parent="BehaviourTree/RootSelector/We don\'t have a target branch/Patrol Sequence" node_paths=PackedStringArray("wait_timer")]
 script = ExtResource("11_023jj")
 wait_timer = NodePath("Timer")
 debug_log = true
 metadata/_custom_type_script = "uid://xtblc83r3tof"
 
-[node name="Timer" type="Timer" parent="BehaviourTree/RootSelector/Patrol Sequence/PatrolAction"]
+[node name="Timer" type="Timer" parent="BehaviourTree/RootSelector/We don\'t have a target branch/Patrol Sequence/PatrolAction"]
 
-[node name="Look At Target" type="Node" parent="BehaviourTree/RootSelector"]
-script = ExtResource("7_n6i84")
-dont_tick = true
-metadata/_custom_type_script = "uid://da8hiin4spe61"
-
-[node name="current_target BB value set" type="Node" parent="BehaviourTree/RootSelector/Look At Target"]
-script = ExtResource("7_ibj4g")
-key_name = "current_target"
-metadata/_custom_type_script = "uid://csxhom132d36v"
-
-[node name="current_target within attack range" type="Node" parent="BehaviourTree/RootSelector/Look At Target"]
-script = ExtResource("8_c7rar")
-range_distance = 30.0
-metadata/_custom_type_script = "uid://csxhom132d36v"
-
-[node name="current_target visible" type="Node" parent="BehaviourTree/RootSelector/Look At Target" node_paths=PackedStringArray("head")]
-script = ExtResource("9_c7rar")
-head = NodePath("../../../../Upset Ned/rig/Skeleton3D/EyesAttachment/Eyes")
-metadata/_custom_type_script = "uid://csxhom132d36v"
-
-[node name="Turn to face target action" type="Node" parent="BehaviourTree/RootSelector/Look At Target" node_paths=PackedStringArray("node_to_rotate")]
-script = ExtResource("10_8aww5")
-node_to_rotate = NodePath("../../../../Upset Ned")
-debug_log = true
-metadata/_custom_type_script = "uid://dhlcglftj6i0q"
-
-[node name="Select a target as current_target" type="Node" parent="BehaviourTree/RootSelector"]
-script = ExtResource("7_n6i84")
-dont_tick = true
-metadata/_custom_type_script = "uid://da8hiin4spe61"
-
-[node name="Has Targets" type="Node" parent="BehaviourTree/RootSelector/Select a target as current_target"]
-script = ExtResource("11_c7rar")
-key_name = "targets"
-metadata/_custom_type_script = "uid://csxhom132d36v"
-
-[node name="Select a Target" type="Node" parent="BehaviourTree/RootSelector/Select a target as current_target"]
-script = ExtResource("8_egt66")
-metadata/_custom_type_script = "uid://dhlcglftj6i0q"
-
-[node name="Invert since we are in a selector and we want to run the next action" type="Node" parent="BehaviourTree/RootSelector/Select a target as current_target"]
-script = ExtResource("10_01n7w")
-metadata/_custom_type_script = "uid://cn7xj52gibn83"
-
-[node name="Return success" type="Node" parent="BehaviourTree/RootSelector/Select a target as current_target/Invert since we are in a selector and we want to run the next action"]
-script = ExtResource("14_01n7w")
-metadata/_custom_type_script = "uid://dhlcglftj6i0q"
-
-[node name="ShouldAttackTarget" type="Node" parent="BehaviourTree/RootSelector"]
-script = ExtResource("7_n6i84")
-dont_tick = true
-metadata/_custom_type_script = "uid://da8hiin4spe61"
-
-[node name="current_target BB value set" type="Node" parent="BehaviourTree/RootSelector/ShouldAttackTarget"]
-script = ExtResource("7_ibj4g")
-key_name = "current_target"
-metadata/_custom_type_script = "uid://csxhom132d36v"
-
-[node name="current_target within attack range" type="Node" parent="BehaviourTree/RootSelector/ShouldAttackTarget"]
-script = ExtResource("8_c7rar")
-range_distance = 30.0
-debug_log = true
-metadata/_custom_type_script = "uid://csxhom132d36v"
-
-[node name="current_target visible" type="Node" parent="BehaviourTree/RootSelector/ShouldAttackTarget" node_paths=PackedStringArray("head")]
-script = ExtResource("9_c7rar")
-head = NodePath("../../../../Upset Ned/rig/Skeleton3D/EyesAttachment/Eyes")
-metadata/_custom_type_script = "uid://csxhom132d36v"
-
-[node name="Go to attacking state" type="Node" parent="BehaviourTree/RootSelector/ShouldAttackTarget"]
+[node name="Idle by default" type="Node" parent="BehaviourTree/RootSelector"]
 script = ExtResource("6_bbos0")
-debug_log = true
-metadata/_custom_type_script = "uid://dhlcglftj6i0q"
-
-[node name="Idle by default Action" type="Node" parent="BehaviourTree/RootSelector"]
-script = ExtResource("6_bbos0")
-debug_log = true
 metadata/_custom_type_script = "uid://dhlcglftj6i0q"
 
 [node name="BehaviourTreeBlackboard" type="Node" parent="."]
 script = ExtResource("5_to1wh")
 metadata/_custom_type_script = "uid://cvd84fakj0hs1"
 
-[node name="StateMachine" type="Node3D" parent="." node_paths=PackedStringArray("anim_tree", "initial_state", "locomotor", "click_shoot")]
+[node name="StateMachine" type="Node3D" parent="." node_paths=PackedStringArray("anim_tree", "initial_state", "locomotor")]
 script = ExtResource("19_e2n8e")
 anim_tree = NodePath("../Upset Ned/AnimationTree")
 initial_state = NodePath("Idle")
 locomotor = NodePath("..")
-click_shoot = NodePath("")
 metadata/_custom_type_script = "uid://b8tm2dsp5o0p4"
 
 [node name="Idle" type="Node3D" parent="StateMachine"]
@@ -1038,4 +1099,6 @@ metadata/_custom_type_script = "uid://bjmyb3rnkdsof"
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 avoidance_enabled = true
 
+[connection signal="emit" from="BehaviourTree/RootSelector/We do have a target branch/What should we do if we have a target?/Maybe Attack/left or right hand shoot selector/left hand shoot sequence/signal fire left action" to="ThinkShoot" method="_on_signal_fire_left_action_emit"]
+[connection signal="emit" from="BehaviourTree/RootSelector/We do have a target branch/What should we do if we have a target?/Maybe Attack/left or right hand shoot selector/right hand shoot sequence/signal fire right action" to="ThinkShoot" method="_on_signal_fire_right_action_emit"]
 [connection signal="velocity_computed" from="NavigationAgent3D" to="StateMachine/PathTo" method="_on_velocity_computed"]

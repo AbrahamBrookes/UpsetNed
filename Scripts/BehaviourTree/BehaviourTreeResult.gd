@@ -5,5 +5,6 @@ class_name BehaviourTreeResult
 enum Status {
 	FAILURE,
 	SUCCESS,
-	RUNNING
+	RUNNING,
+	NOTHING # if we want to continue executing the tree, return NOTHING
 }

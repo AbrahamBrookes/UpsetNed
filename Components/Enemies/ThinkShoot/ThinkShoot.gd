@@ -7,10 +7,13 @@ class_name ThinkShoot
 ## by the cpu
 
 # timers for holding the gun in position for a sec after shooting
-@onready var l_hold_timer: Timer = $l_timer
-@onready var r_hold_timer: Timer = $r_timer
+@onready var l_hold_timer: Timer = $l_hold_timer
+@onready var r_hold_timer: Timer = $r_hold_timer
 
-# timers for waiting between shots
+## The cooldown timer for the left hand shooting
+@export var l_cooldown_timer: Timer
+## The cooldown timer for the right hand shooting
+@export var r_cooldown_timer: Timer
 
 # state bools for if the arms are extended
 var r_shooting: bool = false
@@ -23,12 +26,18 @@ var sliding: bool = false
 @export var anim_tree: AnimationTree
 
 # a reference to the left and right weapons
-@export var l_weapon: Node3D
-@export var r_weapon: Node3D
+@export var l_weapon_slot: WeaponSlot
+@export var r_weapon_slot: WeaponSlot
+
+# a reference to the blackboard so we can grab out the current_target
+@export var blackboard: BehaviourTreeBlackboard
 
 func _ready():
-	pass
-	
+	# start the r timer cooldown with a small offset so they are not in sync
+	l_cooldown_timer.start(0.2)
+	r_cooldown_timer.start(0.4)
+
+
 func _physics_process(_delta: float) -> void:
 	# reset all blends
 	anim_tree.set("parameters/StandingAimRHandBlend/blend_amount", 0)
@@ -50,27 +59,35 @@ func _physics_process(_delta: float) -> void:
 		else:
 			anim_tree.set("parameters/StandingAimLHandBlend/blend_amount", 1)
 			#print("stand shoot L")
-	
 
-# when the player clicks fire_r or fire_l, toggle the related flag
-func _input(event):
-	if event.is_action_pressed("fire_r"):
-		fire_r()
-	elif event.is_action_pressed("fire_l"):
-		fire_l()
-		
-func fire_r():
+
+func _fire_r(target: Vector3):
 	r_shooting = true
 	r_hold_timer.start()
-	r_weapon.fire()
+	r_weapon_slot.fire(target)
+	r_cooldown_timer.start()
 
-func fire_l():
+
+func _fire_l(target: Vector3):
 	l_shooting = true
 	l_hold_timer.start()
-	l_weapon.fire()
-	
+	l_weapon_slot.fire(target)
+	l_cooldown_timer.start()
+
+
 func _on_r_timer_timeout():
 	r_shooting = false
 
+
 func _on_l_timer_timeout():
 	l_shooting = false
+
+
+func _on_signal_fire_left_action_emit() -> void:
+	var target: Node3D = blackboard.get_blackboard_value("current_target")
+	_fire_l(target.global_position)
+
+
+func _on_signal_fire_right_action_emit() -> void:
+	var target: Node3D = blackboard.get_blackboard_value("current_target")
+	_fire_r(target.global_position)

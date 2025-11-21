@@ -6,12 +6,10 @@ class_name BlackboardValueIsSetCondition
 
 @export var key_name: String = "targets"
 
-@export var debug: bool = false
-
 func _tick(blackboard: BehaviourTreeBlackboard) -> int:
 	var value = blackboard.get_blackboard_value(key_name, null)
 	
-	if debug and behaviour_tree.debug:
+	if debug_log and behaviour_tree.debug:
 		print("blackboard value " + key_name + " is: " + str(value))
 
 	if not value:
