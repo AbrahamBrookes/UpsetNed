@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="76.6996mm"
+   height="76.699608mm"
+   viewBox="0 0 76.6996 76.699608"
+   version="1.1"
+   id="svg1"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showguides="false" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-9.7831128,-135.39827)">
+    <g
+       id="g32"
+       transform="translate(-20.238585,0.67878342)">
+      <rect
+         style="fill:none;stroke:#cc17d4;stroke-width:5.29167;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;stroke-opacity:1"
+         id="rect4"
+         width="17.364189"
+         height="17.364189"
+         x="59.689404"
+         y="137.92883"
+         rx="2.5056412"
+         ry="2.7729127"
+         inkscape:export-filename="BehaviourTreeSelector.svg"
+         inkscape:export-xdpi="390.85"
+         inkscape:export-ydpi="390.85" />
+      <rect
+         style="fill:none;stroke:#cc17d4;stroke-width:5.29167;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;stroke-opacity:1"
+         id="rect5"
+         width="17.364189"
+         height="17.364189"
+         x="59.689404"
+         y="164.38719"
+         rx="2.5056412"
+         ry="2.7729127" />
+      <g
+         id="g15"
+         transform="matrix(0.45341507,0,0,0.45065171,25.503543,80.54046)"
+         style="stroke:#cc17d4;stroke-width:2.21224;stroke-opacity:1">
+        <path
+           style="fill:none;stroke:#cc17d4;stroke-width:11.7064;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+           d="M 101.80787,139.96016 88.506341,153.26169"
+           id="path8" />
+        <path
+           style="fill:none;stroke:#cc17d4;stroke-width:11.7064;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+           d="M 101.30469,153.26169 88.003165,139.96016"
+           id="path9" />
+      </g>
+      <rect
+         style="fill:none;stroke:#cc17d4;stroke-width:5.29167;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;stroke-opacity:1"
+         id="rect13"
+         width="17.364189"
+         height="17.364189"
+         x="59.689404"
+         y="190.84555"
+         rx="2.5056412"
+         ry="2.7729127" />
+      <path
+         style="fill:none;stroke:#cc17d4;stroke-width:5.29167;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+         d="m 72.228734,196.43433 -5.414967,5.33968 -2.299506,-2.42078"
+         id="path17"
+         sodipodi:nodetypes="ccc" />
+      <g
+         id="g22"
+         transform="matrix(0.45341507,0,0,0.45065171,25.503543,106.9988)"
+         style="stroke:#cc17d4;stroke-width:2.21224;stroke-opacity:1">
+        <path
+           style="fill:none;stroke:#cc17d4;stroke-width:11.7064;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+           d="M 101.80787,139.96016 88.506341,153.26169"
+           id="path21" />
+        <path
+           style="fill:none;stroke:#cc17d4;stroke-width:11.7064;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+           d="M 101.30469,153.26169 88.003165,139.96016"
+           id="path22" />
+      </g>
+    </g>
+    <rect
+       style="fill:none;fill-opacity:1;stroke:none;stroke-width:5.29167;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       id="rect32"
+       width="76.6996"
+       height="76.6996"
+       x="9.7831125"
+       y="135.39827"
+       rx="2.5056412"
+       ry="2.7729127"
+       inkscape:export-filename="BehaviourTreeSelector.svg"
+       inkscape:export-xdpi="390.85"
+       inkscape:export-ydpi="390.85" />
+  </g>
+</svg>

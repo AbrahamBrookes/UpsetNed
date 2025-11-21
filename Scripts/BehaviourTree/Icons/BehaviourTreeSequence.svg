@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="75.572495mm"
+   height="22.655861mm"
+   viewBox="0 0 75.572495 22.655861"
+   version="1.1"
+   id="svg1"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-57.043569,-82.366338)">
+    <rect
+       style="fill:none;stroke:#cc17d4;stroke-width:5.29167;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;stroke-opacity:1"
+       id="rect1"
+       width="17.364189"
+       height="17.364189"
+       x="59.689404"
+       y="85.012177"
+       rx="2.5056412"
+       ry="2.7729127"
+       inkscape:export-filename="BehaviourTreeSequence.png"
+       inkscape:export-xdpi="390.85"
+       inkscape:export-ydpi="390.85" />
+    <rect
+       style="fill:none;stroke:#cc17d4;stroke-width:5.29167;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;stroke-opacity:1"
+       id="rect2"
+       width="17.364189"
+       height="17.364189"
+       x="86.147728"
+       y="85.012177"
+       rx="2.5056412"
+       ry="2.7729127" />
+    <rect
+       style="fill:none;stroke:#cc17d4;stroke-width:5.29167;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;stroke-opacity:1"
+       id="rect3"
+       width="17.364189"
+       height="17.364189"
+       x="112.60604"
+       y="85.012177"
+       rx="2.5056412"
+       ry="2.7729127" />
+    <path
+       style="fill:none;stroke:#cc17d4;stroke-width:5.29166;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+       d="M 76.696667,93.694275 H 86.736289"
+       id="path3" />
+    <path
+       style="fill:none;stroke:#cc17d4;stroke-width:5.29166;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+       d="m 103.155,93.694275 h 10.03963"
+       id="path4" />
+    <path
+       style="fill:none;stroke:#cc17d4;stroke-width:5.29167;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+       d="m 72.228734,90.600936 -5.414967,5.339677 -2.299506,-2.420777"
+       id="path18"
+       sodipodi:nodetypes="ccc" />
+    <path
+       style="fill:none;stroke:#cc17d4;stroke-width:5.29167;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+       d="m 98.687069,90.600936 -5.414967,5.339677 -2.299506,-2.420777"
+       id="path19"
+       sodipodi:nodetypes="ccc" />
+    <path
+       style="fill:none;stroke:#cc17d4;stroke-width:5.29167;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+       d="m 125.14542,90.600936 -5.41497,5.339677 -2.29951,-2.420777"
+       id="path20"
+       sodipodi:nodetypes="ccc" />
+  </g>
+</svg>

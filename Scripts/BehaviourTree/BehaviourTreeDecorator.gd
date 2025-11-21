@@ -1,3 +1,5 @@
+@icon("res://Scripts/BehaviourTree/Icons/BehaviourTreeDecorator.svg")
+
 extends Node
 
 class_name BehaviourTreeDecorator
