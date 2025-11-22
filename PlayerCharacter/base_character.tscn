@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://t4iqjmqvc8ed"]
+
+[ext_resource type="PackedScene" uid="uid://j2pw5hqayfon" path="res://PlayerCharacter/Import/Upset Ned.glb" id="1_rk5lb"]
+
+[node name="Upset Ned" instance=ExtResource("1_rk5lb")]

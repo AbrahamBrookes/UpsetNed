@@ -483,7 +483,7 @@ blend_mode = 1
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_i84k0"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_sik18"]
-graph_offset = Vector2(-690.0587, 13.922501)
+graph_offset = Vector2(-422.05872, -31.0775)
 nodes/output/position = Vector2(1080, 140)
 nodes/Locomotion/node = SubResource("AnimationNodeStateMachine_hs44b")
 nodes/Locomotion/position = Vector2(-880, 140)
