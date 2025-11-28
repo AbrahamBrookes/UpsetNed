@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://crx807uddxx7r"]
+
+[ext_resource type="PackedScene" uid="uid://dshvowftd7wxl" path="res://Enemies/HammerSmithard/import/Hammer Smithard.glb" id="1_30xsg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u0ybd"]
+albedo_color = Color(0.54497385, 0.5449744, 0.54497427, 1)
+metallic = 1.0
+metallic_specular = 0.34
+roughness = 0.29
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lir76"]
+albedo_color = Color(0.2084139, 0.17552686, 0.16524336, 1)
+roughness = 0.33
+
+[node name="Hammer Smithard" instance=ExtResource("1_30xsg")]
+
+[node name="basemesh_001" parent="rig/Skeleton3D" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_u0ybd")
+surface_material_override/1 = SubResource("StandardMaterial3D_lir76")
