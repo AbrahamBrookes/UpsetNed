@@ -96,6 +96,9 @@ func fire(target_position: Vector3) -> bool:
 				var hit = space_state.intersect_ray(query)
 				if not hit.is_empty():
 					final_position = hit.position
+					print("hit object ", hit.collider.name)
+					if hit.collider.name == "PlayerCharacter":
+						hit.collider.receive_damage()
 
 			projectile.look_at(final_position)
 

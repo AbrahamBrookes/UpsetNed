@@ -103,6 +103,24 @@ transform = Transform3D(-0.981995, 0, -0.18890686, 0, 1, 0, 0.18890686, 0, -0.98
 [node name="BlendLook" parent="EnemyCharacter" index="0" node_paths=PackedStringArray("target")]
 target = NodePath("../../PlayerCharacter")
 
+[node name="BehaviourTree" parent="EnemyCharacter" index="5"]
+debug = false
+
+[node name="Maybe Attack" parent="EnemyCharacter/BehaviourTree/RootSelector/We do have a target branch/What should we do if we have a target?" index="2"]
+debug_log = false
+
+[node name="wait for either attack timer" parent="EnemyCharacter/BehaviourTree/RootSelector/We do have a target branch/What should we do if we have a target?/Maybe Attack" index="0"]
+debug_log = false
+
+[node name="current_target within attack range" parent="EnemyCharacter/BehaviourTree/RootSelector/We do have a target branch/What should we do if we have a target?/Maybe Attack" index="1"]
+debug_log = false
+
+[node name="signal fire left action" parent="EnemyCharacter/BehaviourTree/RootSelector/We do have a target branch/What should we do if we have a target?/Maybe Attack/left or right hand shoot selector/left hand shoot sequence" index="1"]
+debug_log = false
+
+[node name="signal fire right action" parent="EnemyCharacter/BehaviourTree/RootSelector/We do have a target branch/What should we do if we have a target?/Maybe Attack/left or right hand shoot selector/right hand shoot sequence" index="1"]
+debug_log = false
+
 [node name="Prone" parent="EnemyCharacter/StateMachine" index="4" node_paths=PackedStringArray("target")]
 target = NodePath("../../../PlayerCharacter")
 
@@ -123,6 +141,24 @@ transform = Transform3D(-0.99903446, 0, -0.043933224, 0, 1, 0, 0.043933224, 0, -
 
 [node name="BlendLook" parent="EnemyCharacter2" index="0" node_paths=PackedStringArray("target")]
 target = NodePath("../../PlayerCharacter")
+
+[node name="BehaviourTree" parent="EnemyCharacter2" index="5"]
+debug = false
+
+[node name="Maybe Attack" parent="EnemyCharacter2/BehaviourTree/RootSelector/We do have a target branch/What should we do if we have a target?" index="2"]
+debug_log = false
+
+[node name="wait for either attack timer" parent="EnemyCharacter2/BehaviourTree/RootSelector/We do have a target branch/What should we do if we have a target?/Maybe Attack" index="0"]
+debug_log = false
+
+[node name="current_target within attack range" parent="EnemyCharacter2/BehaviourTree/RootSelector/We do have a target branch/What should we do if we have a target?/Maybe Attack" index="1"]
+debug_log = false
+
+[node name="signal fire left action" parent="EnemyCharacter2/BehaviourTree/RootSelector/We do have a target branch/What should we do if we have a target?/Maybe Attack/left or right hand shoot selector/left hand shoot sequence" index="1"]
+debug_log = false
+
+[node name="signal fire right action" parent="EnemyCharacter2/BehaviourTree/RootSelector/We do have a target branch/What should we do if we have a target?/Maybe Attack/left or right hand shoot selector/right hand shoot sequence" index="1"]
+debug_log = false
 
 [editable path="EnemyCharacter"]
 [editable path="EnemyCharacter/Upset Ned2"]

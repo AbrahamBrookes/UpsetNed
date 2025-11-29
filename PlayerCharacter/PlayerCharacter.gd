@@ -19,16 +19,20 @@ class_name DeterministicPlayerCharacter
 # the mouselook component acts like a mixin
 @export var mouselook: Mouselook
 
+# the UI progress bar we are using for health
+@export var ui_healthbar: ProgressBar
+
 func _ready() -> void:
 	if not mesh:
 		print("not mesh")
 	#stateMachine.TransitionTo("Prone")
-	pass;
+	ui_healthbar.value = 100
 	
 func _physics_process(_delta):
 	mouselook.mouseLook()
 
 func receive_damage() -> void:
+	ui_healthbar.value -= 3
 	pass
 
 # proxy the get_aabb down to our mesh

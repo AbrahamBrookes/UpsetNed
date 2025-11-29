@@ -1,4 +1,4 @@
-[gd_scene load_steps=114 format=3 uid="uid://dnngs3f0x460f"]
+[gd_scene load_steps=115 format=3 uid="uid://dnngs3f0x460f"]
 
 [ext_resource type="Script" uid="uid://7islvmlck2q0" path="res://PlayerCharacter/PlayerCharacter.gd" id="1_pult7"]
 [ext_resource type="Script" uid="uid://bt5sy4tn4uif6" path="res://Components/Player/ClickShoot/ClickShoot.gd" id="2_hs44b"]
@@ -403,7 +403,9 @@ node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"SlidingAimLHa
 radius = 0.19140625
 height = 0.991333
 
-[node name="PlayerCharacter" type="CharacterBody3D" node_paths=PackedStringArray("mesh", "animTree", "stateMachine", "camera", "mouselook")]
+[sub_resource type="Theme" id="Theme_7qrv0"]
+
+[node name="PlayerCharacter" type="CharacterBody3D" node_paths=PackedStringArray("mesh", "animTree", "stateMachine", "camera", "mouselook", "ui_healthbar")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 collision_layer = 2
 script = ExtResource("1_pult7")
@@ -413,6 +415,7 @@ stateMachine = NodePath("StateMachine")
 camera = NodePath("CameraPivot/Camera3D")
 camera_target_offset = Vector3(0, 1, 0)
 mouselook = NodePath("Mouselook")
+ui_healthbar = NodePath("CameraPivot/Camera3D/CanvasLayer/MarginContainer/ProgressBar")
 
 [node name="ClickShoot" type="Node" parent="." node_paths=PackedStringArray("anim_tree", "mouselook", "l_weapon_slot", "r_weapon_slot")]
 script = ExtResource("2_hs44b")
@@ -819,6 +822,33 @@ far = 200.0
 [node name="Hitscan" type="RayCast3D" parent="CameraPivot/Camera3D"]
 transform = Transform3D(1, -2.0711829e-07, 1.2602399e-07, 1.2602398e-07, -4.4703484e-08, -1, 2.0711829e-07, 1, -4.4703484e-08, 0, 0, 0)
 target_position = Vector3(0, -100, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="CameraPivot/Camera3D"]
+
+[node name="MarginContainer" type="MarginContainer" parent="CameraPivot/Camera3D/CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_7qrv0")
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="ProgressBar" type="ProgressBar" parent="CameraPivot/Camera3D/CanvasLayer/MarginContainer"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+show_percentage = false
+
+[node name="Control" type="Control" parent="CameraPivot/Camera3D/CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [connection signal="timeout" from="ClickShoot/l_timer" to="ClickShoot" method="_on_l_timer_timeout"]
 [connection signal="timeout" from="ClickShoot/r_timer" to="ClickShoot" method="_on_r_timer_timeout"]
