@@ -559,9 +559,8 @@ script = ExtResource("9_c7rar")
 head = NodePath("../../../../../../Upset Ned2/rig/Skeleton3D/EyesAttachment/Eyes")
 metadata/_custom_type_script = "uid://csxhom132d36v"
 
-[node name="Turn to face target action" type="Node" parent="BehaviourTree/RootSelector/We do have a target branch/What should we do if we have a target?/Look At Target" node_paths=PackedStringArray("node_to_rotate")]
+[node name="Turn to face target action" type="Node" parent="BehaviourTree/RootSelector/We do have a target branch/What should we do if we have a target?/Look At Target"]
 script = ExtResource("10_8aww5")
-node_to_rotate = NodePath("")
 debug_log = true
 metadata/_custom_type_script = "uid://dhlcglftj6i0q"
 
