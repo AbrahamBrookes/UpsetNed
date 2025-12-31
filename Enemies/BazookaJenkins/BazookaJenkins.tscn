@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://btbn4fyqne81m"]
+
+[ext_resource type="PackedScene" uid="uid://cmqdnrhniysvv" path="res://Enemies/EnemyCharacter.tscn" id="1_emjhk"]
+[ext_resource type="PackedScene" uid="uid://0vm37nyoxvwj" path="res://Enemies/BazookaJenkins/import/bazooka_jenkins_inherited.tscn" id="2_eo87h"]
+
+[node name="EnemyCharacter" instance=ExtResource("1_emjhk")]
+
+[node name="Bazooka Jenkins" parent="Upset Ned2/rig/Skeleton3D" index="0" instance=ExtResource("2_eo87h")]
+
+[node name="basemesh" parent="Upset Ned2/rig/Skeleton3D" index="1"]
+visible = false
+
+[editable path="Upset Ned2"]
+[editable path="Upset Ned2/rig/Skeleton3D/Bazooka Jenkins"]

@@ -1,10 +1,19 @@
-[gd_scene load_steps=13 format=3 uid="uid://dxo54nwos0e53"]
+[gd_scene load_steps=16 format=3 uid="uid://dxo54nwos0e53"]
 
 [ext_resource type="PackedScene" uid="uid://dnngs3f0x460f" path="res://PlayerCharacter/PlayerCharacter.tscn" id="1_b51rp"]
 [ext_resource type="Texture2D" uid="uid://b1rjwbiwqsgpc" path="res://Dev/Materials/dev_uv_grid.png" id="1_trq3l"]
 [ext_resource type="PackedScene" uid="uid://cmqdnrhniysvv" path="res://Enemies/EnemyCharacter.tscn" id="3_eg64c"]
 [ext_resource type="PackedScene" uid="uid://d0np1ci4qxbas" path="res://Gameplay/EnemyLogic/PatrolWaypoint.tscn" id="4_4b0uu"]
 [ext_resource type="PackedScene" uid="uid://b4pbqdc7moptv" path="res://Enemies/HammerSmithard/HammerSmithard.tscn" id="5_i2sle"]
+
+[sub_resource type="Sky" id="Sky_okxu4"]
+
+[sub_resource type="Environment" id="Environment_vvd8e"]
+background_mode = 2
+sky = SubResource("Sky_okxu4")
+ambient_light_source = 3
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_f67k7"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_i2sle"]
 vertices = PackedVector3Array(-7.5374603, 0.20312738, -3.778555, -6.7874603, 0.20312738, -3.778555, -6.7874603, 0.20312738, -12.778555, -8.28746, 0.20312738, -3.028555, -11.28746, 0.20312738, 11.471445, -8.28746, 0.20312738, 11.471445, -11.78746, 0.20312738, 12.221445, -38.53746, 0.20312738, -12.778555, -38.53746, 0.20312738, 12.221445, -5.0374603, 0.20312738, -3.028555, -5.0374603, 0.20312738, 0.22144508, 1.4625397, 0.20312738, 0.22144508, 1.4625397, 0.20312738, -3.028555, -5.7874603, 0.20312738, -3.778555, 2.2125397, 0.20312738, -3.778555, 4.2125397, 0.20312738, -12.778555, 4.2125397, 0.20312738, -3.778555, 16.46254, 0.20312738, -3.028555, 16.46254, 0.20312738, -1.2785549, 18.71254, 0.20312738, -1.7785549, 15.71254, 0.20312738, -3.778555, 18.71254, 0.20312738, -12.778555, 3.4625397, 4.7031274, -1.7785549, 3.4625397, 4.7031274, 0.9714451, 5.2125397, 4.7031274, 0.9714451, 5.2125397, 4.7031274, -1.7785549, 7.2125397, 3.4531274, -1.7785549, 7.2125397, 3.4531274, 0.9714451, 8.21254, 3.4531274, 0.9714451, 8.21254, 3.4531274, -1.7785549, 10.21254, 2.4531274, -1.7785549, 10.21254, 2.4531274, 0.9714451, 14.46254, 2.4531274, 0.9714451, 14.46254, 2.4531274, -1.7785549, 15.71254, 0.20312738, 2.971445, 12.96254, 0.20312738, 2.971445, 12.96254, 0.20312738, 5.221445, 16.46254, 0.20312738, 2.221445, 18.71254, 0.20312738, 12.221445, 12.21254, 0.20312738, 5.971445, 9.46254, 0.20312738, 12.221445, 9.71254, 0.20312738, 5.971445, 3.7125397, 0.20312738, -1.5285549, 3.7125397, 0.20312738, 0.7214451, 4.7125397, 0.20312738, 0.7214451, 4.7125397, 0.20312738, -1.5285549, 7.2125397, 0.20312738, -1.5285549, 7.2125397, 0.20312738, 0.7214451, 14.21254, 0.20312738, 0.7214451, 14.21254, 0.20312738, -1.5285549, 5.4625397, 0.20312738, 11.471445, 5.9625397, 0.20312738, 12.221445, 8.21254, 0.20312738, 5.971445, 7.4625397, 0.20312738, 5.221445, 7.4625397, 0.20312738, 2.971445, 2.2125397, 0.20312738, 2.971445, 1.4625397, 0.20312738, 2.221445, -5.0374603, 0.20312738, 11.471445, 9.46254, 1.2031274, 2.971445, 9.46254, 1.2031274, 3.971445, 10.96254, 1.2031274, 3.971445, 10.96254, 1.2031274, 2.971445)
@@ -41,6 +50,19 @@ background_energy_multiplier = 2.16
 sky = SubResource("Sky_i2sle")
 
 [node name="TestMap" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_vvd8e")
+camera_attributes = SubResource("CameraAttributesPractical_f67k7")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.75800914, 0.6522439, 0, -0.6522439, 0.75800914, 0, 2.2799501, 0)
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.88996613, 0.45602658, 0, -0.45602658, -0.88996613, 0, 2.2799501, 0)
+
+[node name="DirectionalLight3D3" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.22102086, -0.44474864, -0.86795646, 0, -0.88996625, 0.45602664, -0.9752692, 0.1007914, 0.19670111, 0, 2.2799501, 0)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7968726, 0)
@@ -93,9 +115,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.838412, 0.49124408, 0.439
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="PlayerCharacter"]
 environment = SubResource("Environment_trq3l")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.057703447, 0.99833375, 0, -0.99833375, 0.057703447, 0, 2.2799501, 0)
 
 [node name="EnemyCharacter" parent="." instance=ExtResource("3_eg64c")]
 transform = Transform3D(-0.981995, 0, -0.18890686, 0, 1, 0, 0.18890686, 0, -0.981995, -12.020884, 0.83079195, 7.094679)
