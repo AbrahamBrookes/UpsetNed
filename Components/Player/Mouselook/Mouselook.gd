@@ -36,7 +36,7 @@ func _input(event):
 		mouse_delta = event.relative * mouse_sensitivity
 
 func _ready() -> void:
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	# Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 	if debug:
 		target_node.visible = true
