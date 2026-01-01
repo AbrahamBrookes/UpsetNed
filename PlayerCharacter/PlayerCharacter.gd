@@ -22,6 +22,9 @@ class_name DeterministicPlayerCharacter
 # the UI progress bar we are using for health
 @export var ui_healthbar: ProgressBar
 
+## the id assigned to us by Godot's multiplayer API - 1 is always the server
+var player_id: int = 1
+
 func _ready() -> void:
 	if not mesh:
 		print("not mesh")
