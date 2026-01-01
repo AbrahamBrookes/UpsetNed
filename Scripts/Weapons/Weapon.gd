@@ -96,7 +96,6 @@ func fire(target_position: Vector3) -> bool:
 				var hit = space_state.intersect_ray(query)
 				if not hit.is_empty():
 					final_position = hit.position
-					print("hit object ", hit.collider.name)
 					if hit.collider.name == "PlayerCharacter":
 						hit.collider.receive_damage()
 
@@ -126,11 +125,9 @@ func fire(target_position: Vector3) -> bool:
 	return true
 
 func _release_projectile(projectile: Node3D) -> void:
-	print('releasing projectile')
 	projectile.visible = false
 	projectile.global_position = Vector3.ZERO
 
 # when we are out of ammo
 func dry_fire() -> bool:
-	print("click!")
 	return false
