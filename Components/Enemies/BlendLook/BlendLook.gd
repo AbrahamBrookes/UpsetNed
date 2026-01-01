@@ -13,6 +13,7 @@ class_name BlendLook
 @export var state_machine: StateMachine
 
 func _physics_process(delta: float) -> void:
+	if not target: return
 	var to_target: Vector3 = target.global_transform.origin - owner.global_transform.origin
 	to_target.y = 0.0
 	if to_target.length_squared() <= 0.0001:
