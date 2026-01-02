@@ -14,7 +14,8 @@ metadata/_custom_type_script = "uid://dj05bq1y7q0ab"
 script = ExtResource("2_r0du0")
 world_root = NodePath("../WorldRoot")
 
-[node name="ClientBootstrapper" type="Node" parent="."]
+[node name="ClientBootstrapper" type="Node" parent="." node_paths=PackedStringArray("world_root")]
 script = ExtResource("3_cm0pq")
+world_root = NodePath("../WorldRoot")
 
 [node name="WorldRoot" type="Node" parent="."]
