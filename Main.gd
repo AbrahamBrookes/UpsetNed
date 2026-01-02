@@ -14,15 +14,19 @@ extends Node
 ## server stuff. If we are not headless we load in all the client stuff. This way
 ## we can write separate code for client and server, and have a "shared" node that
 ## handles RPC calls to talk between both.
+
 class_name Main
 
- # Our bootstrappers
+# Our bootstrappers
 @export var server_bootstrapper: ServerBootstrapper
 @export var client_bootstrapper: ClientBootstrapper
 
+# Dependency injection for testability
+var display_server_provider := DisplayServer
+
 # a helper to isolate the logic we use to check if we are a server
 func running_as_server() -> bool:
-	return DisplayServer.get_name() == "headless"
+	return display_server_provider.get_name() == "headless"
 
 func _ready() -> void:
 	# check for headless mode and bootstrap either the server or the client
@@ -30,11 +34,11 @@ func _ready() -> void:
 		bootstrap_server()
 	else:
 		bootstrap_client()
-		
+
 # Bootstrapping the server means loading up a map and waiting
 func bootstrap_server():
 	server_bootstrapper.boot()
-	
+
 func bootstrap_client():
 	client_bootstrapper.boot()
 	
