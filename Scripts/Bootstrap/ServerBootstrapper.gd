@@ -11,9 +11,27 @@ class_name ServerBootstrapper
 ## The node that we loaded in as the current map and parented to the world root
 var current_map: Node
 
+## the map path we will tell the client to load when it asks
+var current_map_path: String
+
+## the network node we use to make RPC calls
+@export var network: Network
+
 # bootstrap services
 func boot() -> void:
 	print("bootstrapping server app")
+	
+	# create the actual server
+	var server_peer = ENetMultiplayerPeer.new()
+	# make it a server on our chose port
+	server_peer.create_server(8080)
+	# pass it to the built in multiplayer API so this instance of the game
+	# will know it is a server, not a client
+	multiplayer.multiplayer_peer = server_peer
+	
+	# start listening to client connection events
+	multiplayer.peer_connected.connect(peer_connected)
+	#multiplayer.peer_disconnected.connect(rem_player)
 	
 	# get the map from launch args
 	var map = get_launch_arg("map")
@@ -37,6 +55,7 @@ func load_map(map_path: String) -> void:
 		return
 	
 	# otherwise we're all good!
+	current_map_path = map_path
 	
 	# unload any map we have already loaded
 	if current_map:
@@ -46,6 +65,14 @@ func load_map(map_path: String) -> void:
 	current_map = load(map_path).instantiate()
 	current_map.name = "Map"
 	world_root.add_child(current_map)
+	
+## When a peer connects send them the map to load
+func peer_connected(id: int) -> void:
+	print("peer connected with ID: %s - telling them to load map %s" % id % current_map_path)
+	
+	# use rpc_id to make sure we're only telling the client that just connected
+	# so we don't cause all connected clients to reload the map
+	network.rpc_id(id, "client_load_map", current_map_path)
 
 ## A helper to grab a launch arg by key
 func get_launch_arg(key: String, default: String = "") -> String:

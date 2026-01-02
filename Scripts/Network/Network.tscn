@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bl74j7va2y83e"]
+
+[ext_resource type="Script" uid="uid://iwnk3f3yn2fd" path="res://Scripts/Network/Network.gd" id="1_tidfn"]
+
+[node name="Network" type="Node"]
+script = ExtResource("1_tidfn")
+metadata/_custom_type_script = "uid://iwnk3f3yn2fd"

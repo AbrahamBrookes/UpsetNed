@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://b6qqh2cfe7ybu"]
+[gd_scene load_steps=5 format=3 uid="uid://b6qqh2cfe7ybu"]
 
 [ext_resource type="Script" uid="uid://dj05bq1y7q0ab" path="res://Main.gd" id="1_jbe4v"]
 [ext_resource type="Script" uid="uid://dln6b7rnp1k2c" path="res://Scripts/Bootstrap/ServerBootstrapper.gd" id="2_r0du0"]
 [ext_resource type="Script" uid="uid://yald6h7s5cvk" path="res://Scripts/Bootstrap/ClientBootstrapper.gd" id="3_cm0pq"]
+[ext_resource type="PackedScene" uid="uid://bl74j7va2y83e" path="res://Scripts/Network/Network.tscn" id="4_cm0pq"]
 
 [node name="Main" type="Node" node_paths=PackedStringArray("server_bootstrapper", "client_bootstrapper")]
 script = ExtResource("1_jbe4v")
@@ -10,12 +11,19 @@ server_bootstrapper = NodePath("ServerBootstrapper")
 client_bootstrapper = NodePath("ClientBootstrapper")
 metadata/_custom_type_script = "uid://dj05bq1y7q0ab"
 
-[node name="ServerBootstrapper" type="Node" parent="." node_paths=PackedStringArray("world_root")]
+[node name="ServerBootstrapper" type="Node" parent="." node_paths=PackedStringArray("world_root", "network")]
 script = ExtResource("2_r0du0")
 world_root = NodePath("../WorldRoot")
+network = NodePath("../Network")
 
-[node name="ClientBootstrapper" type="Node" parent="." node_paths=PackedStringArray("world_root")]
+[node name="ClientBootstrapper" type="Node" parent="." node_paths=PackedStringArray("world_root", "network")]
 script = ExtResource("3_cm0pq")
+world_root = NodePath("../WorldRoot")
+network = NodePath("../Network")
+
+[node name="Network" parent="." node_paths=PackedStringArray("server_bootstrapper", "client_bootstrapper", "world_root") instance=ExtResource("4_cm0pq")]
+server_bootstrapper = NodePath("../ServerBootstrapper")
+client_bootstrapper = NodePath("../ClientBootstrapper")
 world_root = NodePath("../WorldRoot")
 
 [node name="WorldRoot" type="Node" parent="."]
