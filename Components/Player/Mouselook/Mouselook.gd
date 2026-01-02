@@ -6,8 +6,6 @@ class_name Mouselook
 @export var camera: Camera3D
 @export var camera_pivot: Node3D
 @export var camera_target_offset: Vector3
-var mouse_sensitivity = 0.002
-var mouse_delta = Vector2.ZERO
 
 # the node we rotate left and right
 @export var mesh: Node3D
@@ -25,15 +23,14 @@ var mouse_delta = Vector2.ZERO
 @export var skeleton: Skeleton3D
 @export var shootin_arm_bone_name: String = "DEF-forearm.R"
 
+# the controlling player character
+@export var player_character: DeterministicPlayerCharacter
+
 # debug if ya wanna
 @export var debug: bool = false
 
 # check game preferences global for invert y
 var invert_y = GamePreferences.invert_y
-
-func _input(event):
-	if event is InputEventMouseMotion:
-		mouse_delta = event.relative * mouse_sensitivity
 
 func _ready() -> void:
 	# Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -75,8 +72,6 @@ func mouseLook():
 	anim_tree.set("parameters/SlidingAimRHandBlendSpace/blend_position", blend_value)
 	anim_tree.set("parameters/SlidingAimLHandBlendSpace/blend_position", blend_value)
 
-	# Horizontal mouse — rotate the pivot
-	camera_pivot.rotate_y(-mouse_delta.x)
 	
 	# calclulate invert factor
 	var invert_factor = 1.0
@@ -84,16 +79,21 @@ func mouseLook():
 		invert_factor = -1.0
 
 	# Vertical mouse - move the camera up and down
-	camera.position.y = clamp(
-		camera.position.y - mouse_delta.y * invert_factor,
-		-1.0,
-		9.0
-	)
+	if player_character.input_synchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
+		# Horizontal mouse — rotate the pivot
+		camera_pivot.rotate_y(-player_character.input_synchronizer.mouse_delta.x)
+		
+		# vertical mouse - raise and lower
+		camera.position.y = clamp(
+			camera.position.y - player_character.input_synchronizer.mouse_delta.y * invert_factor,
+			-1.0,
+			9.0
+		)
 	
-	# force the camera to look at a place near the player
-	camera.look_at(camera_pivot.global_position + camera_target_offset)
+		# force the camera to look at a place near the player
+		camera.look_at(camera_pivot.global_position + camera_target_offset)
 
-	mouse_delta = Vector2.ZERO
+	player_character.input_synchronizer.mouse_delta = Vector2.ZERO
 	
 	# draw a sphere where the raycast hits anything
 	var hit_position: Vector3

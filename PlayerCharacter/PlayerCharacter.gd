@@ -22,8 +22,20 @@ class_name DeterministicPlayerCharacter
 # the UI progress bar we are using for health
 @export var ui_healthbar: ProgressBar
 
+## We are using the MultiplayerSynchornizer to sync input to the server
+## so we need a reference to write to
+@export var input_synchronizer: InputSynchronizer
+
 ## the id assigned to us by Godot's multiplayer API - 1 is always the server
-var player_id: int = 1
+@export var player_id: int:
+	# using a setter so we can have side effects
+	set(id):
+		# only run the setter when we have been passed an id
+		if id == 0:
+			return
+		player_id = id
+		# whenever the id is set, set relevant authorities
+		input_synchronizer.set_authority(id)
 
 func _ready() -> void:
 	if not mesh:

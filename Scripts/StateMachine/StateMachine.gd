@@ -86,7 +86,6 @@ func _physics_process(delta):
 
 
 func TransitionTo(new_state_name: String, extra_data = null) -> bool:
-		
 	var new_state = states.get(new_state_name.to_lower())
 	if not new_state:
 		push_error("State " + new_state_name + " not found. Available: " + str(states.keys()))
@@ -97,7 +96,7 @@ func TransitionTo(new_state_name: String, extra_data = null) -> bool:
 		return false
 		
 	if debug_mode:
-		print("Transitioning: ", current_state.name if current_state else "None", " -> ", new_state_name)
+		print("Transitioning: ", current_state.name if current_state else StringName("None"), " -> ", new_state_name)
 	
 	previous_state = current_state
 	
@@ -124,8 +123,8 @@ func travel(new_state_name, extra_data = null):
 func is_in_states(state_names: Array[String]) -> bool:
 	if not current_state:
 		return false
-	for name in state_names:
-		if current_state.name.to_lower() == name.to_lower():
+	for state_name in state_names:
+		if current_state.name.to_lower() == state_name.to_lower():
 			return true
 	return false
 
