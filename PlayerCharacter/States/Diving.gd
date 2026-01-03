@@ -25,7 +25,7 @@ func Enter(_extra_data = null):
 	# want to rotate the mesh to the opposite of velocity when we enter the dive
 	if player_character.velocity.length() > 0.1:
 		var mesh_rotation = mesh.global_transform.basis.get_euler()
-		mesh_rotation.y = atan2(-player_character.velocity.x, -player_character.velocity.z)
+		mesh_rotation.y = atan2(player_character.velocity.x, player_character.velocity.z)
 		mesh.rotation = mesh_rotation
 	
 

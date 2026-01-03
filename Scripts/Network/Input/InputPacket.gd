@@ -1,0 +1,47 @@
+extends RefCounted
+
+## The InputPacket is a struct for sending input to the server, and applying
+## input to a player
+class_name InputPacket
+
+## the client-bound sequence number, so we can count from when a player first
+## starts sending input, and compare it on the server as we receive packets
+var seq: int
+
+## the movement input being held
+var move: Vector2
+
+## is the jump action being held
+var jump: bool
+
+## is the stunt action being held
+var stunt: bool
+
+func _init(
+	_seq: int,
+	_move: Vector2,
+	_jump: bool,
+	_stunt: bool
+):
+	seq = _seq
+	move = _move
+	jump = _jump
+	stunt = _stunt
+	
+## convert the packet to a dictionary for sending over the network
+func to_dict() -> Dictionary:
+	return {
+		"seq": seq,
+		"move": move,
+		"jump": jump,
+		"stunt": stunt
+	}
+
+## convert the packet back to this class once it has been received over the network
+static func from_dict(d: Dictionary) -> InputPacket:
+	return InputPacket.new(
+		d.seq,
+		d.move,
+		d.jump,
+		d.stunt
+	)

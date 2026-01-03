@@ -40,18 +40,15 @@ func Physics_Update(_delta: float):
 
 
 	# Get input
-	var input_direction = Vector2(
-		Input.get_action_strength("run_l") - Input.get_action_strength("run_r"),
-		Input.get_action_strength("run_f") - Input.get_action_strength("run_b")
-	)
-	
+	var input_direction = state_machine.input.current_input.move
+	print(input_direction)
 	# only rotate the mesh whn we're moving
 	if input_direction != Vector2.ZERO:
 		# in this state we want to rotate the mesh to the camera direction
 		# copy the rotation of the camera pivot to the mesh, but only the y axis
 		var camera_rotation = player_character.mouselook.camera_pivot.global_transform.basis.get_euler()
 		var mesh_rotation = mesh.global_transform.basis.get_euler()
-		mesh_rotation.y = camera_rotation.y
+		mesh_rotation.y = camera_rotation.y + PI
 		mesh.rotation = mesh_rotation
 
 	# Update animation

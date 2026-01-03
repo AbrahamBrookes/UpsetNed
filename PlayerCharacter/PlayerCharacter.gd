@@ -8,15 +8,15 @@ class_name DeterministicPlayerCharacter
 # since we are rotating the mesh separately we need a reference to it
 @export var mesh: MeshInstance3D
 # child scripts and the state machine require a reference to the anim tree
-@export var animTree : AnimationTree
+@export var anim_tree : AnimationTree
 # the state machine is our custom rolled state manager
-@export var stateMachine : StateMachine
+@export var state_machine : StateMachine
 
 # bundled player camera
 @export var camera: Camera3D
 @export var camera_target_offset: Vector3
 
-# the mouselook component acts like a mixin
+# the mouselook component controls moving the camera with the mouse
 @export var mouselook: Mouselook
 
 # the UI progress bar we are using for health

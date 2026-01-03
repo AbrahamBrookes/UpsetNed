@@ -1,7 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://bl74j7va2y83e"]
+[gd_scene load_steps=3 format=3 uid="uid://bl74j7va2y83e"]
 
 [ext_resource type="Script" uid="uid://iwnk3f3yn2fd" path="res://Scripts/Network/Network.gd" id="1_tidfn"]
+[ext_resource type="Script" uid="uid://1bii1nvepj3b" path="res://Scripts/Network/Input/NetworkInputHandler.gd" id="2_n7rq3"]
 
-[node name="Network" type="Node"]
+[node name="Network" type="Node" node_paths=PackedStringArray("input_handler")]
 script = ExtResource("1_tidfn")
+input_handler = NodePath("NetworkInputHandler")
 metadata/_custom_type_script = "uid://iwnk3f3yn2fd"
+
+[node name="NetworkInputHandler" type="Node" parent="."]
+script = ExtResource("2_n7rq3")
+metadata/_custom_type_script = "uid://1bii1nvepj3b"

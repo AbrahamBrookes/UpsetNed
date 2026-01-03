@@ -2,11 +2,6 @@
 
 [ext_resource type="Script" uid="uid://cbsxybi0sa02r" path="res://Maps/SpawnPoint.gd" id="1_lix4r"]
 
-[node name="SpawnPoint" type="Node3D" node_paths=PackedStringArray("spawner")]
+[node name="SpawnPoint" type="Node3D"]
 script = ExtResource("1_lix4r")
-spawner = NodePath("MultiplayerSpawner")
 metadata/_custom_type_script = "uid://cbsxybi0sa02r"
-
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("uid://dnngs3f0x460f")
-spawn_path = NodePath("..")

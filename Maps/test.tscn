@@ -1,15 +1,22 @@
-[gd_scene load_steps=10 format=3 uid="uid://dxo54nwos0e53"]
+[gd_scene load_steps=11 format=3 uid="uid://dxo54nwos0e53"]
 
 [ext_resource type="Script" uid="uid://byywho2cl4sjr" path="res://Maps/Map.gd" id="1_3sehy"]
 [ext_resource type="Texture2D" uid="uid://b1rjwbiwqsgpc" path="res://Dev/Materials/dev_uv_grid.png" id="1_ev8si"]
-[ext_resource type="PackedScene" uid="uid://d0np1ci4qxbas" path="res://Gameplay/EnemyLogic/PatrolWaypoint.tscn" id="4_mensd"]
+[ext_resource type="PackedScene" uid="uid://c5esd73ws02te" path="res://UI/Maps/MapStart.tscn" id="2_ev8si"]
 [ext_resource type="PackedScene" uid="uid://bwgwbw0v6yn1q" path="res://Maps/SpawnPoint.tscn" id="4_ppahp"]
 
-[sub_resource type="Sky" id="Sky_okxu4"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ppahp"]
+sky_top_color = Color(0.51179624, 0.8371962, 0.9880919, 1)
+sky_horizon_color = Color(0.4624313, 0.47057068, 0.48686016, 1)
+sky_curve = 0.5795613
+sky_energy_multiplier = 2.94
+
+[sub_resource type="Sky" id="Sky_ev8si"]
+sky_material = SubResource("ProceduralSkyMaterial_ppahp")
 
 [sub_resource type="Environment" id="Environment_vvd8e"]
 background_mode = 2
-sky = SubResource("Sky_okxu4")
+sky = SubResource("Sky_ev8si")
 ambient_light_source = 3
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_f67k7"]
@@ -26,9 +33,12 @@ uv1_scale = Vector3(0.2, 0.2, 0.2)
 uv1_triplanar = true
 point_size = 119.4
 
-[node name="TestMap" type="Node3D" node_paths=PackedStringArray("spawn_points")]
+[node name="TestMap" type="Node3D" node_paths=PackedStringArray("spawn_points", "map_start_screen")]
 script = ExtResource("1_3sehy")
 spawn_points = [NodePath("SpawnPoint")]
+map_start_screen = NodePath("MapStartScreen")
+
+[node name="MapStartScreen" parent="." instance=ExtResource("2_ev8si")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_vvd8e")
@@ -36,12 +46,6 @@ camera_attributes = SubResource("CameraAttributesPractical_f67k7")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.75800914, 0.6522439, 0, -0.6522439, 0.75800914, 0, 2.2799501, 0)
-
-[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.88996613, 0.45602658, 0, -0.45602658, -0.88996613, 0, 2.2799501, 0)
-
-[node name="DirectionalLight3D3" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.22102086, -0.44474864, -0.86795646, 0, -0.88996625, 0.45602664, -0.9752692, 0.1007914, 0.19670111, 0, 2.2799501, 0)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7968726, 0)
@@ -89,17 +93,10 @@ material_override = SubResource("StandardMaterial3D_b51rp")
 use_collision = true
 size = Vector3(1.2172241, 5.5356445, 15.812836)
 
-[node name="PatrolWaypoint3" parent="." instance=ExtResource("4_mensd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.165268, 0.5, 9.277961)
-
-[node name="PatrolWaypoint4" parent="." instance=ExtResource("4_mensd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.457077, 0.5, 9.230534)
-
-[node name="PatrolWaypoint6" parent="." instance=ExtResource("4_mensd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.082134, 0.5, -7.9362493)
-
-[node name="PatrolWaypoint7" parent="." instance=ExtResource("4_mensd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.121941, 0.5, -9.398799)
-
 [node name="SpawnPoint" parent="." instance=ExtResource("4_ppahp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.07839, 1.2081299, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.07839, 6.20813, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, -9, 12, 15)
+
+[connection signal="spawn" from="MapStartScreen" to="." method="_on_map_start_screen_spawn"]

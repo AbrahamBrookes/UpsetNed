@@ -4,23 +4,20 @@ extends Node3D
 ## map-level stuff like choosing which spawn point to spawn a player into.
 class_name Map
 
+## the list of spawn points in the map, for spawning players
 @export var spawn_points: Array[SpawnPoint]
 
-## for now, on ready, spawn a player randmly
+## the map start screen
+@export var map_start_screen: MapStartScreen
+
 func _ready() -> void:
-	spawn_player()
-
-## spawn a player to a random spawn point
-func spawn_player() -> void:
-	# select a random spawn point
-	var spawn_point: SpawnPoint = spawn_points.pick_random()
+	# if we are on the server, hide the main menu screen so we can spectate
+	if Util.running_as_server():
+		map_start_screen.visible = false
 	
-	# guard
-	if not spawn_point: push_error("could not find a spawn point")
+func _on_map_start_screen_spawn() -> void:
+	# hide the map start screen
+	map_start_screen.visible = false
 	
-	# use the MultiplayerSpawner to spawn the defined player scene
-	var player_path = spawn_point.spawner.get_spawnable_scene(0)
-	var player = load(player_path).instantiate()
-
-	spawn_point.add_child(player)
-	
+	# this should only be done on the server
+	Network.server_spawn_player.rpc_id(1)

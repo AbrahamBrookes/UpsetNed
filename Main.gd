@@ -27,23 +27,12 @@ class_name Main
 # Dependency injection for testability
 var display_server_provider := DisplayServer
 
-# a helper to isolate the logic we use to check if we are a server
-func running_as_server() -> bool:
-	return display_server_provider.get_name() == "headless"
-
 func _ready() -> void:
-	# bootstrap shared services first
-	bootstrap_shared()
-	
 	# check for headless mode and bootstrap either the server or the client
-	if running_as_server():
+	if Util.running_as_server():
 		bootstrap_server()
 	else:
 		bootstrap_client()
-
-# Bootstrapping shared services means wiring up nodes
-func bootstrap_shared() -> void:
-	Network.world_root =  world_root
 
 # Bootstrapping the server means loading up a map and waiting
 func bootstrap_server():

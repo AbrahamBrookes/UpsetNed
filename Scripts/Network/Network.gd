@@ -1,79 +1,35 @@
 extends Node
 
 ## The Network node handles setting up multiplayer peers and connecting to servers.
-## This is mainly a dumping ground for RPC calls
+## This is mainly a dumping ground for RPC calls and acts as a central controller
+## between the client and the server
 
-# We need references to the bootstrappers to get their state
-@export var server_bootstrapper: ServerBootstrapper
-@export var client_bootstrapper: ClientBootstrapper
+## proxy to our child nodes that group specific logic
+@export var input_handler: NetworkInputHandler
 
-## the world root is where we load maps into
-var world_root: Node
-
-## The node that we loaded in as the current map and parented to the world root
-var current_map: Node
-
-## the map path we will tell the client to load when it asks
-var current_map_path: String
+## since Network is a global singleton, dependencies must inject themselves
+var client: Client
+var server: Server
 
 ## When a player connects to the server the server tells them to load the map
 ## that is currently running on that server
 @rpc("any_peer")
 func client_load_map(map_path: String) -> void:
-	# check that map exists in our files
-	if not ResourceLoader.exists(map_path):
-		push_error("%s not found in client files! Can not connect to the server runnign this map" % map_path)
-		return
-	
-	# otherwise we're all good!
-	current_map_path = map_path
-	
-	# unload any map we have already loaded
-	if current_map:
-		current_map.queue_free()
-	
-	# load up the passed map
-	current_map = load(map_path).instantiate()
-	current_map.name = "Map"
-	world_root.add_child(current_map)
-	
-## These RPC's are for player actions that we want to send to the server
-@rpc("authority")
-func send_player_fire_r() -> void:
-	# placeholder for now
-	pass
-	
-@rpc("authority")
-func send_player_fire_l() -> void:
-	# placeholder for now
-	pass
+	if not multiplayer.is_server():
+		client.load_map(map_path)
 
-@rpc("authority")
-func send_player_jump() -> void:
-	# placeholder for now
-	pass
+## Before a game, players get a MapStartScreen. Once they set their loadout etc
+## the hit play, and we spawn them into the world on the server using the maps
+## MultiplayerSpawner node so that they are synced to all clients
+@rpc("any_peer")
+func server_spawn_player() -> void:
+	if multiplayer.is_server():
+		server.spawn_player(multiplayer.get_remote_sender_id())
 
-@rpc("authority")
-func send_player_dive() -> void:
-	# placeholder for now
-	pass
-
-@rpc("authority")
-func send_player_reload() -> void:
-	# placeholder for now
-	pass
-
-@rpc("authority")
-func send_player_interact() -> void:
-	# placeholder for now
-	pass
-
-@rpc("authority")
-func send_player_throw_grenade() -> void:
-	# placeholder for now
-	pass
-
-@rpc("authority")
-func send_player_melee() -> void:
-	# placeholder for now
-	pass
+## We send inputs to the server for simulation there
+@rpc("any_peer", "unreliable_ordered")
+func send_input_packet(packet: InputPacket) -> void:
+	print("server send packet")
+	if multiplayer.is_server():
+		print("network applying input")
+		server.apply_input(multiplayer.get_remote_sender_id(), packet)

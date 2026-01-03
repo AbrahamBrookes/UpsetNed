@@ -1,0 +1,98 @@
+extends Node
+
+## This node is our Server entrypoint. It will only exist on the server, not the
+## client. The Network node will generally have RPC calls that delegate to this
+## node as long as the instance is running in server mode. You'll likely see a
+## lot of calls in Network look like this:
+##
+## 	@rpc("authority")
+## 	func spawn_player() -> void:
+##		if multiplayer.is_server():
+##			server.spawn_player
+##
+## This way we can be very explicit about code that runs on the server
+class_name Server
+
+## the world root is where we load maps into
+@export var world_root: Node
+
+## The node that we loaded in as the current map and parented to the world root
+var current_map: Node
+
+## the map path we will tell the client to load when it asks
+var current_map_path: String
+
+## a lokup table of connected players
+var players: Dictionary[int, DeterministicPlayerCharacter] = {}
+
+## On ready we need to inject ourselves into the network singleton
+func _ready() -> void:
+	Network.server = self
+
+## when a player connects we need to tell them to load the map we have loaded
+func peer_connected(id: int) -> void:
+	print("peer connected with ID: %s - telling them to load map %s" % [id, current_map_path])
+	
+	# use rpc_id to make sure we're only telling the client that just connected
+	# so we don't cause all connected clients to reload the map
+	Network.rpc_id(id, "client_load_map", current_map_path)
+
+## A helper to load up a map on the server side. Clients are not connected yet
+## so there's no need to worry about their loading logic here
+func load_map(map_path: String) -> void:
+	# check that map exists in our files
+	if not ResourceLoader.exists(map_path):
+		push_error("%s not found! Close the server down and set a valid --map" % map_path)
+		return
+	
+	# otherwise we're all good!
+	current_map_path = map_path
+	
+	# unload any map we have already loaded
+	if current_map:
+		current_map.queue_free()
+	
+	# load up the passed map
+	current_map = load(map_path).instantiate()
+	current_map.name = "Map"
+	world_root.add_child(current_map)
+
+## Spawn a player into the map. There is a MultiplayerSpawner node watching the
+## current_map's root node for PlayerCharacter.tscn being added
+func spawn_player(peer_id: int):
+	# select a random spawn point
+	var spawn_point: SpawnPoint = current_map.spawn_points.pick_random()
+	
+	# guard
+	if not spawn_point:
+		push_error("could not find a spawn point")
+		return
+	
+	# use the MultiplayerSpawner to spawn our player scene
+	var player: DeterministicPlayerCharacter = preload("res://PlayerCharacter/PlayerCharacter.tscn").instantiate()
+	
+	# set the authority locally
+	player.set_multiplayer_authority(peer_id)
+	
+	world_root.add_child(player)
+	player.transform = spawn_point.global_transform
+	player.name = str(peer_id)
+
+	# add to our lookup table
+	players[peer_id] = player
+
+## when we receive an input packet from a client we need to apply that packet to
+## the player character we are simulating on the server
+func apply_input(peer_id: int, packet: InputPacket) -> void:
+	print("server applying input")
+	# find the player for that peer id
+	var player: DeterministicPlayerCharacter = players.get(peer_id, null)
+	
+	# guard
+	if not player:
+		push_error("could not find player for peer ID: %s" % peer_id)
+		return
+	
+	# apply the input packet to that player
+	player.input_synchronizer.apply_input_packet(packet)
+	

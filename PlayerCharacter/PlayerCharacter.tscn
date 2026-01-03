@@ -1,4 +1,4 @@
-[gd_scene load_steps=118 format=3 uid="uid://dnngs3f0x460f"]
+[gd_scene load_steps=117 format=3 uid="uid://dnngs3f0x460f"]
 
 [ext_resource type="Script" uid="uid://7islvmlck2q0" path="res://PlayerCharacter/PlayerCharacter.gd" id="1_pult7"]
 [ext_resource type="Script" uid="uid://bt5sy4tn4uif6" path="res://Components/Player/ClickShoot/ClickShoot.gd" id="2_hs44b"]
@@ -96,13 +96,13 @@ animation = &"run_r"
 blend_point_0/node = SubResource("AnimationNodeAnimation_8muuj")
 blend_point_0/pos = Vector2(0, 0)
 blend_point_1/node = SubResource("AnimationNodeAnimation_87wd2")
-blend_point_1/pos = Vector2(0, -1)
+blend_point_1/pos = Vector2(0, 1)
 blend_point_2/node = SubResource("AnimationNodeAnimation_1xien")
-blend_point_2/pos = Vector2(0, 1)
+blend_point_2/pos = Vector2(0, -1)
 blend_point_3/node = SubResource("AnimationNodeAnimation_n5h8l")
-blend_point_3/pos = Vector2(1, 1)
+blend_point_3/pos = Vector2(-1, 1)
 blend_point_4/node = SubResource("AnimationNodeAnimation_nbbsc")
-blend_point_4/pos = Vector2(-1, 1)
+blend_point_4/pos = Vector2(1, 1)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qfijf"]
 animation = &"slide_f"
@@ -264,7 +264,7 @@ states/Start/position = Vector2(2, 31)
 states/WallFlip/node = SubResource("AnimationNodeBlendSpace2D_glb63")
 states/WallFlip/position = Vector2(458, -124.46912)
 transitions = ["Start", "Locomote", SubResource("AnimationNodeStateMachineTransition_dyuu2"), "Locomote", "Jumping", SubResource("AnimationNodeStateMachineTransition_ofxpx"), "Jumping", "Locomote", SubResource("AnimationNodeStateMachineTransition_6mx01"), "Locomote", "Falling", SubResource("AnimationNodeStateMachineTransition_hs44b"), "Falling", "Locomote", SubResource("AnimationNodeStateMachineTransition_i84k0"), "Jumping", "Falling", SubResource("AnimationNodeStateMachineTransition_0nfi7"), "Falling", "Jumping", SubResource("AnimationNodeStateMachineTransition_glb63"), "Locomote", "Squatting", SubResource("AnimationNodeStateMachineTransition_7qrv0"), "Squatting", "Locomote", SubResource("AnimationNodeStateMachineTransition_uutuo"), "Jumping", "Sliding", SubResource("AnimationNodeStateMachineTransition_oaojh"), "Falling", "Sliding", SubResource("AnimationNodeStateMachineTransition_jglra"), "Locomote", "Sliding", SubResource("AnimationNodeStateMachineTransition_5vfnn"), "Sliding", "Jumping", SubResource("AnimationNodeStateMachineTransition_nbdcw"), "Sliding", "Falling", SubResource("AnimationNodeStateMachineTransition_jj1e1"), "Sliding", "Locomote", SubResource("AnimationNodeStateMachineTransition_6h7vh"), "Sliding", "Squatting", SubResource("AnimationNodeStateMachineTransition_u4e74"), "Squatting", "Prone", SubResource("AnimationNodeStateMachineTransition_4d3id"), "Prone", "Locomote", SubResource("AnimationNodeStateMachineTransition_d5bsx"), "Sliding", "Prone", SubResource("AnimationNodeStateMachineTransition_87y2k"), "Locomote", "Diving", SubResource("AnimationNodeStateMachineTransition_g6tyu"), "Diving", "Locomote", SubResource("AnimationNodeStateMachineTransition_r7c5m"), "Diving", "Prone", SubResource("AnimationNodeStateMachineTransition_et3bv"), "Jumping", "Diving", SubResource("AnimationNodeStateMachineTransition_oaswr"), "Diving", "Falling", SubResource("AnimationNodeStateMachineTransition_l6drw"), "Locomote", "WallFlip", SubResource("AnimationNodeStateMachineTransition_4sspf"), "WallFlip", "Locomote", SubResource("AnimationNodeStateMachineTransition_2qud1"), "Jumping", "WallFlip", SubResource("AnimationNodeStateMachineTransition_6h5in"), "Diving", "WallFlip", SubResource("AnimationNodeStateMachineTransition_h2qxx"), "Sliding", "WallFlip", SubResource("AnimationNodeStateMachineTransition_sa684"), "Falling", "WallFlip", SubResource("AnimationNodeStateMachineTransition_waumh")]
-graph_offset = Vector2(-11, -208.46912)
+graph_offset = Vector2(-30, -25.469116)
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_0nfi7"]
 filter_enabled = true
@@ -377,7 +377,7 @@ blend_mode = 1
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_i84k0"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_0nfi7"]
-graph_offset = Vector2(-461.5016, -25.7192)
+graph_offset = Vector2(-1331, 235)
 nodes/output/position = Vector2(1080, 140)
 nodes/Locomotion/node = SubResource("AnimationNodeStateMachine_hs44b")
 nodes/Locomotion/position = Vector2(-880, 140)
@@ -407,18 +407,13 @@ height = 0.991333
 
 [sub_resource type="Theme" id="Theme_7qrv0"]
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_6h7vh"]
-properties/0/path = NodePath("InputSynchronizer:input")
-properties/0/spawn = true
-properties/0/replication_mode = 1
-
-[node name="PlayerCharacter" type="CharacterBody3D" node_paths=PackedStringArray("mesh", "animTree", "stateMachine", "camera", "mouselook", "ui_healthbar")]
+[node name="PlayerCharacter" type="CharacterBody3D" node_paths=PackedStringArray("mesh", "anim_tree", "state_machine", "camera", "mouselook", "ui_healthbar")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 collision_layer = 2
 script = ExtResource("1_pult7")
 mesh = NodePath("Upset Ned/rig/Skeleton3D/basemesh")
-animTree = NodePath("Upset Ned/AnimationTree")
-stateMachine = NodePath("StateMachine")
+anim_tree = NodePath("Upset Ned/AnimationTree")
+state_machine = NodePath("StateMachine")
 camera = NodePath("CameraPivot/Camera3D")
 camera_target_offset = Vector3(0, 1, 0)
 mouselook = NodePath("Mouselook")
@@ -533,12 +528,13 @@ target_position = Vector3(0, -0.5, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5043335, 0)
 shape = SubResource("CapsuleShape3D_jglra")
 
-[node name="StateMachine" type="Node3D" parent="." node_paths=PackedStringArray("anim_tree", "initial_state", "click_shoot")]
+[node name="StateMachine" type="Node3D" parent="." node_paths=PackedStringArray("anim_tree", "initial_state", "click_shoot", "input")]
 script = ExtResource("3_52dax")
 anim_tree = NodePath("../Upset Ned/AnimationTree")
 initial_state = NodePath("Locomote")
 debug_mode = true
 click_shoot = NodePath("../ClickShoot")
+input = NodePath("../InputSynchronizer")
 metadata/_custom_type_script = "uid://b8tm2dsp5o0p4"
 
 [node name="Locomote" type="Node3D" parent="StateMachine" node_paths=PackedStringArray("mesh")]
@@ -625,9 +621,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="InputSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_6h7vh")
+[node name="InputSynchronizer" type="Node" parent="." node_paths=PackedStringArray("state_machine")]
 script = ExtResource("20_jj1e1")
+state_machine = NodePath("../StateMachine")
+metadata/_custom_type_script = "uid://dgdi0dn8dsce5"
 
 [connection signal="timeout" from="ClickShoot/l_timer" to="ClickShoot" method="_on_l_timer_timeout"]
 [connection signal="timeout" from="ClickShoot/r_timer" to="ClickShoot" method="_on_r_timer_timeout"]

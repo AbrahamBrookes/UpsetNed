@@ -33,6 +33,10 @@ var states : Dictionary = {}
 var current_state : State
 var previous_state : State
 
+# a reference to the InputSynchronizer if we have one (only when this PlayerCharacter
+# is being controlled by the local instance)
+@export var input: InputSynchronizer
+
 # a divisor value for ticking at less that 60fps if needed
 var tick_divisor: int = 1000
 
@@ -44,6 +48,7 @@ func _ready():
 	
 	playback = anim_tree.get("parameters/Locomotion/playback")
 	
+	# gather and bootstrap our child states
 	for child in get_children():
 		if child is State:
 			states[child.name.to_lower()] = child
@@ -58,7 +63,6 @@ func _ready():
 		TransitionTo(initial_state.name)
 	else:
 		push_error("StateMachine: initial_state not assigned!")
-
 
 func _process(delta):
 	# only tick if the current time ms divisored by tick_divisor is zero
@@ -79,11 +83,13 @@ func _process(delta):
 	if current_state:
 		current_state.Update(delta)
 
-
-func _physics_process(delta):
-	if current_state:
-		current_state.Physics_Update(delta)
-
+func _physics_process(_delta):
+	# we're not running our physics update in lockstep with the client anymore since we are
+	# syncing input to the server and allowing the InputSynchronizer to do client-side prediction.
+	# so don't run the current states Physics_Update here anymore - it gets run from the InputSynchronizer
+	# if current_state:
+	# 	current_state.Physics_Update(delta)
+	pass
 
 func TransitionTo(new_state_name: String, extra_data = null) -> bool:
 		
@@ -124,11 +130,13 @@ func travel(new_state_name, extra_data = null):
 func is_in_states(state_names: Array[String]) -> bool:
 	if not current_state:
 		return false
-	for name in state_names:
-		if current_state.name.to_lower() == name.to_lower():
+	for state_name in state_names:
+		if current_state.name.to_lower() == state_name.to_lower():
 			return true
 	return false
 
 # allow callers to get a given state node if they know its name
 func get_state(state_name: String) -> State:
 	return states.get(state_name.to_lower())
+
+# given an input packet that ah
