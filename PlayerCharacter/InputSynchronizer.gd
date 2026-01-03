@@ -7,7 +7,7 @@ extends Node
 ## This script is a central place to handle input from the player, which can be
 ## read by the clients statemachine as well as being sent to the server, where
 ## the server will also apply it to the state machine it is simulating.
-class_name InputHandler
+class_name InputSynchronizer
 
 ## input will be synced to the server using a MultiplayerSynchronizer node
 @export var input: Dictionary[String, Variant] = {
@@ -32,7 +32,10 @@ func _physics_process(_delta: float) -> void:
 	input.stunting = Input.is_action_pressed("dive")
 
 	# handle one-off presses for actions like shooting
-	if Input.is_action_just_pressed("shoot"):
+	if Input.is_action_just_pressed("fire_r"):
+		Network.send_player_shoot()
+		
+	if Input.is_action_just_pressed("fire_l"):
 		Network.send_player_shoot()
 	
 	if Input.is_action_just_pressed("jump"):

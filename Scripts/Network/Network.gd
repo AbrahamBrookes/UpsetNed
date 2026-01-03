@@ -39,7 +39,12 @@ func client_load_map(map_path: String) -> void:
 	
 ## These RPC's are for player actions that we want to send to the server
 @rpc("authority")
-func send_player_shoot() -> void:
+func send_player_fire_r() -> void:
+	# placeholder for now
+	pass
+	
+@rpc("authority")
+func send_player_fire_l() -> void:
 	# placeholder for now
 	pass
 
