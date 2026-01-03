@@ -1,4 +1,4 @@
-[gd_scene load_steps=116 format=3 uid="uid://dnngs3f0x460f"]
+[gd_scene load_steps=118 format=3 uid="uid://dnngs3f0x460f"]
 
 [ext_resource type="Script" uid="uid://7islvmlck2q0" path="res://PlayerCharacter/PlayerCharacter.gd" id="1_pult7"]
 [ext_resource type="Script" uid="uid://bt5sy4tn4uif6" path="res://Components/Player/ClickShoot/ClickShoot.gd" id="2_hs44b"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://v1p622apney7" path="res://PlayerCharacter/States/DiveSlide.gd" id="12_hs44b"]
 [ext_resource type="Script" uid="uid://cf63mfde4ddvh" path="res://PlayerCharacter/States/DiveProne.gd" id="13_i84k0"]
 [ext_resource type="Script" uid="uid://e1mfums3734w" path="res://PlayerCharacter/States/WallFlip.gd" id="17_glb63"]
+[ext_resource type="Script" uid="uid://dgdi0dn8dsce5" path="res://PlayerCharacter/InputSynchronizer.gd" id="20_jj1e1"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_i84k0"]
 radius = 0.05
@@ -406,6 +407,11 @@ height = 0.991333
 
 [sub_resource type="Theme" id="Theme_7qrv0"]
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_6h7vh"]
+properties/0/path = NodePath("InputSynchronizer:input")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
 [node name="PlayerCharacter" type="CharacterBody3D" node_paths=PackedStringArray("mesh", "animTree", "stateMachine", "camera", "mouselook", "ui_healthbar")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 collision_layer = 2
@@ -618,6 +624,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="InputSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_6h7vh")
+script = ExtResource("20_jj1e1")
 
 [connection signal="timeout" from="ClickShoot/l_timer" to="ClickShoot" method="_on_l_timer_timeout"]
 [connection signal="timeout" from="ClickShoot/r_timer" to="ClickShoot" method="_on_r_timer_timeout"]
