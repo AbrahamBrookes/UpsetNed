@@ -13,7 +13,7 @@ var main_menu: MainMenu
 
 # bootstrap services
 func boot() -> void:
-	print("bootstrapping client app")
+	push_error("bootstrapping client app")
 	
 	# load up the main menu
 	main_menu = load("res://UI/MainMenu/MainMenu.tscn").instantiate()
@@ -41,4 +41,6 @@ func join_server(ip: String, port: int) -> void:
 	# peer_connected signal and then use the network node to RPC the
 	# ClientBootstrapper.load_map method to have the client load the map
 	# when it connects to that standalone server
+	
+	
 	
