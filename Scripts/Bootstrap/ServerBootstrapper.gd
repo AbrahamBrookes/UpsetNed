@@ -14,9 +14,6 @@ var current_map: Node
 ## the map path we will tell the client to load when it asks
 var current_map_path: String
 
-## the network node we use to make RPC calls
-@export var network: Network
-
 # bootstrap services
 func boot() -> void:
 	print("bootstrapping server app")
@@ -72,7 +69,7 @@ func peer_connected(id: int) -> void:
 	
 	# use rpc_id to make sure we're only telling the client that just connected
 	# so we don't cause all connected clients to reload the map
-	network.rpc_id(id, "client_load_map", current_map_path)
+	Network.rpc_id(id, "client_load_map", current_map_path)
 
 ## A helper to grab a launch arg by key
 func get_launch_arg(key: String, default: String = "") -> String:

@@ -11,9 +11,6 @@ class_name ClientBootstrapper
 ## the main menu node
 var main_menu: MainMenu
 
-## we use the network node to talk to the server
-@export var network: Network
-
 # bootstrap services
 func boot() -> void:
 	print("bootstrapping client app")

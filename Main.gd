@@ -21,6 +21,9 @@ class_name Main
 @export var server_bootstrapper: ServerBootstrapper
 @export var client_bootstrapper: ClientBootstrapper
 
+# the world root node that we load and unload maps into
+@export var world_root: Node
+
 # Dependency injection for testability
 var display_server_provider := DisplayServer
 
@@ -29,11 +32,18 @@ func running_as_server() -> bool:
 	return display_server_provider.get_name() == "headless"
 
 func _ready() -> void:
+	# bootstrap shared services first
+	bootstrap_shared()
+	
 	# check for headless mode and bootstrap either the server or the client
 	if running_as_server():
 		bootstrap_server()
 	else:
 		bootstrap_client()
+
+# Bootstrapping shared services means wiring up nodes
+func bootstrap_shared() -> void:
+	Network.world_root =  world_root
 
 # Bootstrapping the server means loading up a map and waiting
 func bootstrap_server():

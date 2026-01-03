@@ -1,15 +1,14 @@
 extends Node
 
 ## The Network node handles setting up multiplayer peers and connecting to servers.
-## This is mainly a dumping ground for RPC calls 
-class_name Network
+## This is mainly a dumping ground for RPC calls
 
 # We need references to the bootstrappers to get their state
 @export var server_bootstrapper: ServerBootstrapper
 @export var client_bootstrapper: ClientBootstrapper
 
 ## the world root is where we load maps into
-@export var world_root: Node
+var world_root: Node
 
 ## The node that we loaded in as the current map and parented to the world root
 var current_map: Node
