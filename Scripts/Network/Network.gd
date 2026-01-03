@@ -37,3 +37,38 @@ func client_load_map(map_path: String) -> void:
 	current_map.name = "Map"
 	world_root.add_child(current_map)
 	
+## These RPC's are for player actions that we want to send to the server
+@rpc("authority")
+func send_player_shoot() -> void:
+	# placeholder for now
+	pass
+
+@rpc("authority")
+func send_player_jump() -> void:
+	# placeholder for now
+	pass
+
+@rpc("authority")
+func send_player_dive() -> void:
+	# placeholder for now
+	pass
+
+@rpc("authority")
+func send_player_reload() -> void:
+	# placeholder for now
+	pass
+
+@rpc("authority")
+func send_player_interact() -> void:
+	# placeholder for now
+	pass
+
+@rpc("authority")
+func send_player_throw_grenade() -> void:
+	# placeholder for now
+	pass
+
+@rpc("authority")
+func send_player_melee() -> void:
+	# placeholder for now
+	pass
