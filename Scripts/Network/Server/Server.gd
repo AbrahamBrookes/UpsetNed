@@ -25,6 +25,9 @@ var current_map_path: String
 ## a lokup table of connected players
 var players: Dictionary[int, DeterministicPlayerCharacter] = {}
 
+## a reference to the player spawner in the main screen, for spawning players
+@export var player_spawner: PlayerSpawner
+
 ## On ready we need to inject ourselves into the network singleton
 func _ready() -> void:
 	Network.server = self
@@ -57,8 +60,8 @@ func load_map(map_path: String) -> void:
 	current_map.name = "Map"
 	world_root.add_child(current_map)
 
-## Spawn a player into the map. There is a MultiplayerSpawner node watching the
-## current_map's root node for PlayerCharacter.tscn being added
+## Spawn a player into the map. This is using the PlayerSpawner's custom spawn
+## function in order to set up the player when they are spawned into the client
 func spawn_player(peer_id: int):
 	# select a random spawn point
 	var spawn_point: SpawnPoint = current_map.spawn_points.pick_random()
@@ -68,15 +71,11 @@ func spawn_player(peer_id: int):
 		push_error("could not find a spawn point")
 		return
 	
-	# use the MultiplayerSpawner to spawn our player scene
-	var player: DeterministicPlayerCharacter = preload("res://PlayerCharacter/PlayerCharacter.tscn").instantiate()
-	
-	# set the authority locally
-	player.set_multiplayer_authority(peer_id)
-	
-	world_root.add_child(player)
-	player.transform = spawn_point.global_transform
-	player.name = str(peer_id)
+	# use the PlayerSpawner to spawn our player scene
+	var player = player_spawner.spawn({
+		"peer_id": peer_id,
+		"transform": spawn_point.global_transform
+	})
 
 	# add to our lookup table
 	players[peer_id] = player
