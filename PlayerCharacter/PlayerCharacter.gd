@@ -6,7 +6,7 @@ class_name DeterministicPlayerCharacter
 # using move_and_slide.
 
 # since we are rotating the mesh separately we need a reference to it
-@export var mesh: MeshInstance3D
+@export var mesh: Node3D
 # child scripts and the state machine require a reference to the anim tree
 @export var anim_tree : AnimationTree
 # the state machine is our custom rolled state manager
@@ -41,3 +41,12 @@ func receive_damage() -> void:
 # proxy the get_aabb down to our mesh
 func get_aabb() -> AABB:
 	return mesh.get_aabb()
+
+func _on_state_machine_indend_to_move(intent: MovementIntent) -> void:
+	# just blindly apply the incoming intent
+	velocity = intent.desired_velocity
+	
+	# rotate the mesh, not the whole object because of camera movement
+	mesh.rotation = intent.desired_rotation
+	
+	move_and_slide()

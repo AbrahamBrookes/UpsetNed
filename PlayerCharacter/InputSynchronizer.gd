@@ -34,8 +34,8 @@ func _physics_process(delta: float) -> void:
 		
 	# construct our input packet from client side inputs
 	var move_dir = Vector2(
-		Input.get_action_strength("run_r") - Input.get_action_strength("run_l"),
-		Input.get_action_strength("run_b") - Input.get_action_strength("run_f")
+		Input.get_action_strength("run_l") - Input.get_action_strength("run_r"),
+		Input.get_action_strength("run_f") - Input.get_action_strength("run_b")
 	)
 	var jumping = Input.is_action_pressed("jump")
 	var stunting = Input.is_action_pressed("dive")

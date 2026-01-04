@@ -1,5 +1,4 @@
 extends Node3D
-class_name StateMachine
 
 ## The state machine applies only to the player character. In our game the player
 ## can be in arange of states, and these states influence things like which animation
@@ -12,6 +11,11 @@ class_name StateMachine
 ## to transition to another state, or the StateMachine can be told to transition to
 ## another state by other objects, such as the player controller script.
 ## See the StateMachineTest.gd script in test/unit/Scripts/StateMachine
+class_name StateMachine
+
+## States calculate input and create a MovementIntent, which they set on the
+## StateMachine, which then emits a signal to move the character
+signal indend_to_move(intent: MovementIntent)
 
 @export var anim_tree : AnimationTree
 # playback is the engine-level animation tree state machine
@@ -103,7 +107,7 @@ func TransitionTo(new_state_name: String, extra_data = null) -> bool:
 		return false
 		
 	if debug_mode:
-		push_error("Transitioning: ", current_state.name if current_state else "None", " -> ", new_state_name)
+		push_error("Transitioning: ", current_state.name if current_state else StringName("None"), " -> ", new_state_name)
 	
 	previous_state = current_state
 	
@@ -139,4 +143,6 @@ func is_in_states(state_names: Array[String]) -> bool:
 func get_state(state_name: String) -> State:
 	return states.get(state_name.to_lower())
 
-# given an input packet that ah
+# given a MovementIntent, emit our movement signal
+func set_movement_intent(intent: MovementIntent) -> void:
+	emit_signal("indend_to_move", intent)
