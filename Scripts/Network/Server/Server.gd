@@ -83,8 +83,10 @@ func spawn_player(peer_id: int):
 
 ## when we receive an input packet from a client we need to apply that packet to
 ## the player character we are simulating on the server
-func apply_input(peer_id: int, packet: InputPacket) -> void:
-	print("server applying input")
+func apply_input(peer_id: int, dict: Dictionary) -> void:
+	# deserialize our input packet
+	var packet = InputPacket.from_dict(dict)
+	
 	# find the player for that peer id
 	var player: DeterministicPlayerCharacter = players.get(peer_id, null)
 	

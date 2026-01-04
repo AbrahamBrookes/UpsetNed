@@ -28,8 +28,6 @@ func server_spawn_player() -> void:
 
 ## We send inputs to the server for simulation there
 @rpc("any_peer", "unreliable_ordered")
-func send_input_packet(packet: InputPacket) -> void:
-	print("server send packet")
+func send_input_packet(packet: Dictionary) -> void:
 	if multiplayer.is_server():
-		print("network applying input")
 		server.apply_input(multiplayer.get_remote_sender_id(), packet)

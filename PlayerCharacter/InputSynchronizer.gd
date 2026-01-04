@@ -51,8 +51,8 @@ func _physics_process(delta: float) -> void:
 		stunting
 	)
 	
-	# send that packet to the server
-	Network.send_input_packet.rpc_id(1, packet)
+	# send that packet to the server - serialize the packet before sending
+	Network.send_input_packet.rpc_id(1, packet.to_dict())
 	
 	# increment the sequence every time we send a packet
 	next_sequence += 1
