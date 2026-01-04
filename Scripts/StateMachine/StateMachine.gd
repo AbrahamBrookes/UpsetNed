@@ -103,7 +103,7 @@ func TransitionTo(new_state_name: String, extra_data = null) -> bool:
 		return false
 		
 	if debug_mode:
-		print("Transitioning: ", current_state.name if current_state else "None", " -> ", new_state_name)
+		push_error("Transitioning: ", current_state.name if current_state else "None", " -> ", new_state_name)
 	
 	previous_state = current_state
 	
