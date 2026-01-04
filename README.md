@@ -7,6 +7,7 @@ Shooty bang bang
 ![session 2](./Media/wall-flip.gif)
 ![Session 5](./Media/jacket-backflip.gif)
 ![Session 8](./Media/mp-server-connected.gif)
+![Session 9](./Media/mp-server-movement.gif)
 
 ## Multiplayer scaffolding
 The way Godot does multiplayer is super streamlined but it feels clunky to me. It seems to force you into a lot of conditionals throughout your code to check if you are on the server or on the client. Or maybe I just don't really understand the authority server pattern that much yet. In any case, this game is multiplayer and I want to have a clear separation between the dedicated server running on a ubuntu box somewhere and the client running on an end users computer.
