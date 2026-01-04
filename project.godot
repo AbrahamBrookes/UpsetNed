@@ -26,6 +26,10 @@ PlayerRegistry="*res://Scripts/Network/Client/PlayerRegistry.gd"
 
 settings/addon_root_folder="res://addons/debug_draw_3d"
 
+[display]
+
+window/stretch/mode="viewport"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/gut/plugin.cfg")
