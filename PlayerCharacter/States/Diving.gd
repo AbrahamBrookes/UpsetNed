@@ -8,8 +8,6 @@ var jump_power_left = 0.0
 
 @export var mesh: Node3D
 
-var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-
 func Enter(_extra_data = null):
 	# toggle animation blend spaces for in-game pointy arms
 	if state_machine.click_shoot:
@@ -28,7 +26,7 @@ func Enter(_extra_data = null):
 	# want to rotate the mesh to the opposite of velocity when we enter the dive
 	if player_character.velocity.length() > 0.1:
 		intent.desired_rotation = mesh.global_transform.basis.get_euler()
-		intent.desired_rotation.y = atan2(player_character.velocity.x, player_character.velocity.z)
+		intent.desired_rotation.y = PI + atan2(player_character.velocity.x, player_character.velocity.z)
 	
 	state_machine.set_movement_intent(intent)
 
@@ -40,12 +38,8 @@ func Physics_Update(delta: float):
 		jump_power_left = 0.0
 		
 	intent.desired_velocity.y += jump_power_left * delta
-
-	# Apply gravity
-	intent.desired_velocity.y -= gravity * delta
 	
 	state_machine.set_movement_intent(intent)
 	
-	# Check if landed (only after moving)
-	if player_character.grounded and player_character.velocity.y <= 0.0:
-		state_machine.TransitionTo("DiveSlide")
+func landed() -> void:
+	state_machine.TransitionTo("DiveSlide")

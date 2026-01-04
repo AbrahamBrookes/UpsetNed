@@ -30,3 +30,7 @@ func Update(_delta: float):
 
 func Physics_Update(_delta: float):
 	pass
+
+# almost all states will use this, they can override it to react
+func landed() -> void:
+	pass

@@ -43,33 +43,26 @@ func Physics_Update(delta: float):
 		intent.desired_velocity.y += jump_power_left * delta
 	else:
 		jump_power_left = 0.0
-
-	# Apply gravity
-	var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-	intent.desired_velocity.y -= gravity * delta
 	
 	# Update animation blend position
 	state_machine.anim_tree.set("parameters/Locomotion/Jumping/blend_position", intent.desired_velocity.y)
 	
 	state_machine.set_movement_intent(intent)
-	# Check if landed (only after moving)
-	if player_character.grounded and intent.desired_velocity.y <= 0.0:
-		# if the player is holding crouch when they land, go to sliding
-		if state_machine.input.current_input.squat:
-			slide()
-			return
-		
-		state_machine.TransitionTo("Locomote")
 
+func landed() -> void:
+	# if the player is holding crouch when they land, go to sliding
+	if state_machine.input.current_input.squat:
+		slide()
+		return
+	
+	state_machine.TransitionTo("Locomote")
 
 # define the actions we can do from this state into other states
 
 # in order to do a wallflip the player needs to press jump while the
 # WallFlipRay is intersecting a wall
 func jump(_data = null):
-	push_error("wall_flip_ray")
 	if wall_flip_ray.is_colliding():
-		push_error("colliding")
 		# get the collision normal to determine flip direction
 		var collision: Vector3 = wall_flip_ray.get_collision_normal()
 		state_machine.TransitionTo("WallFlip", collision)

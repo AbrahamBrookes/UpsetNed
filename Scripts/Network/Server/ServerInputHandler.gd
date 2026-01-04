@@ -15,10 +15,6 @@ var last_input: Dictionary = {}
 ## A reference back to the server node
 @export var server: Server
 
-# and using coyote time for being grounded so we can avoid floor jitters from server ticks
-var on_floor: bool = false
-var grounded_coyote_time: int = 2
-
 ## in physics process, simulate and then acknowledge each input frame per player
 func _physics_process(_delta: float):
 	for peer_id in input_queues.keys():
@@ -41,16 +37,6 @@ func _physics_process(_delta: float):
 
 		# Simulate once per tick
 		player.input_synchronizer.apply_input_packet(input)
-		
-		on_floor = player.is_on_floor()
-
-		if on_floor:
-			player.grounded = true
-			grounded_coyote_time = 2
-		else:
-			grounded_coyote_time -= 1
-			if grounded_coyote_time <= 0:
-				player.grounded = false
 
 		# Send authoritative snapshot
 		send_authoritative_state(peer_id, player, input)

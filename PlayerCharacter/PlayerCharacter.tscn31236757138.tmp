@@ -42,13 +42,13 @@ animation = &"slide_b"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_vby3f"]
 blend_point_0/node = SubResource("AnimationNodeAnimation_tbdv8")
-blend_point_0/pos = Vector2(0, 1)
+blend_point_0/pos = Vector2(0, -1)
 blend_point_1/node = SubResource("AnimationNodeAnimation_uphb3")
-blend_point_1/pos = Vector2(0, -1)
+blend_point_1/pos = Vector2(0, 1)
 blend_point_2/node = SubResource("AnimationNodeAnimation_60yyd")
-blend_point_2/pos = Vector2(1, 0)
+blend_point_2/pos = Vector2(-1, 0)
 blend_point_3/node = SubResource("AnimationNodeAnimation_6ap6v")
-blend_point_3/pos = Vector2(-1, 0)
+blend_point_3/pos = Vector2(1, 0)
 blend_point_4/node = SubResource("AnimationNodeAnimation_cbdk4")
 blend_point_4/pos = Vector2(0, 0)
 blend_mode = 1
@@ -635,7 +635,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[connection signal="landed" from="." to="StateMachine" method="_on_player_character_landed"]
 [connection signal="timeout" from="ClickShoot/l_timer" to="ClickShoot" method="_on_l_timer_timeout"]
 [connection signal="timeout" from="ClickShoot/r_timer" to="ClickShoot" method="_on_r_timer_timeout"]
 [connection signal="intend_to_move" from="StateMachine" to="." method="_on_state_machine_intend_to_move"]
