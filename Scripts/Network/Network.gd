@@ -30,4 +30,12 @@ func server_spawn_player() -> void:
 @rpc("any_peer", "unreliable_ordered")
 func send_input_packet(packet: Dictionary) -> void:
 	if multiplayer.is_server():
-		server.apply_input(multiplayer.get_remote_sender_id(), packet)
+		server.cache_input(multiplayer.get_remote_sender_id(), InputPacket.from_dict(packet))
+
+## When we have processed input, we send the real state back to the client
+@rpc("authority")
+func send_authoritative_state(state: Dictionary):
+	pass
+	if not multiplayer.is_server():
+		PlayerRegistry.local_player.input_synchronizer.reconcile(AuthoritativeState.from_dict(state))
+		

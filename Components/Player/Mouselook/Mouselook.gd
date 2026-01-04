@@ -1,13 +1,12 @@
 extends Node
 
+## MouseLook handles readingt he mouse input and moving the camera around
 class_name Mouselook
 
 # bundled player camera
 @export var camera: Camera3D
 @export var camera_pivot: Node3D
 @export var camera_target_offset: Vector3
-var mouse_sensitivity = 0.002
-var mouse_delta = Vector2.ZERO
 
 # the node we rotate left and right
 @export var mesh: Node3D
@@ -28,12 +27,11 @@ var mouse_delta = Vector2.ZERO
 # debug if ya wanna
 @export var debug: bool = false
 
+# a reference to the input synchronizer to get the mouse delta
+@export var input_synchronizer: InputSynchronizer
+
 # check game preferences global for invert y
 var invert_y = GamePreferences.invert_y
-
-func _input(event):
-	if event is InputEventMouseMotion:
-		mouse_delta = event.relative * mouse_sensitivity
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -45,6 +43,9 @@ func mouseLook():
 	# we have parameters/Locomotion/Sliding/blend_position which is 2d.
 	# when the camera is looking left relative to the character, we want negative x, right positive x
 	# when the camera is looking forward relative to the character, we want positive y, back negative y
+	
+	# the input synchronizer caches our mouse input
+	var mouse_delta = input_synchronizer.current_input.mouse_delta
 	
 	# Get the rotation difference between camera pivot and mesh
 	var relative_rotation = camera_pivot.global_rotation.y - mesh.global_rotation.y

@@ -1,4 +1,4 @@
-[gd_scene load_steps=117 format=3 uid="uid://dnngs3f0x460f"]
+[gd_scene load_steps=118 format=3 uid="uid://dnngs3f0x460f"]
 
 [ext_resource type="Script" uid="uid://7islvmlck2q0" path="res://PlayerCharacter/PlayerCharacter.gd" id="1_pult7"]
 [ext_resource type="Script" uid="uid://bt5sy4tn4uif6" path="res://Components/Player/ClickShoot/ClickShoot.gd" id="2_hs44b"]
@@ -405,6 +405,8 @@ node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"SlidingAimLHa
 radius = 0.19140625
 height = 0.991333
 
+[sub_resource type="SphereMesh" id="SphereMesh_jj1e1"]
+
 [sub_resource type="Theme" id="Theme_7qrv0"]
 
 [node name="PlayerCharacter" type="CharacterBody3D" node_paths=PackedStringArray("mesh", "anim_tree", "state_machine", "camera", "mouselook", "ui_healthbar", "input_synchronizer")]
@@ -420,6 +422,11 @@ mouselook = NodePath("Mouselook")
 ui_healthbar = NodePath("CameraPivot/Camera3D/CanvasLayer/MarginContainer/ProgressBar")
 input_synchronizer = NodePath("InputSynchronizer")
 
+[node name="InputSynchronizer" type="Node" parent="." node_paths=PackedStringArray("state_machine")]
+script = ExtResource("20_jj1e1")
+state_machine = NodePath("../StateMachine")
+metadata/_custom_type_script = "uid://dgdi0dn8dsce5"
+
 [node name="ClickShoot" type="Node" parent="." node_paths=PackedStringArray("anim_tree", "mouselook", "l_weapon_slot", "r_weapon_slot")]
 script = ExtResource("2_hs44b")
 anim_tree = NodePath("../Upset Ned/AnimationTree")
@@ -434,7 +441,7 @@ autostart = true
 [node name="r_timer" type="Timer" parent="ClickShoot"]
 autostart = true
 
-[node name="Mouselook" type="Node" parent="." node_paths=PackedStringArray("camera", "camera_pivot", "mesh", "anim_tree", "raycast", "target_node", "skeleton")]
+[node name="Mouselook" type="Node" parent="." node_paths=PackedStringArray("camera", "camera_pivot", "mesh", "anim_tree", "raycast", "target_node", "skeleton", "input_synchronizer")]
 script = ExtResource("2_jglra")
 camera = NodePath("../CameraPivot/Camera3D")
 camera_pivot = NodePath("../CameraPivot")
@@ -445,6 +452,7 @@ raycast = NodePath("../CameraPivot/Camera3D/Hitscan")
 target_node = NodePath("MouselookTarget")
 skeleton = NodePath("../Upset Ned/rig/Skeleton3D")
 debug = true
+input_synchronizer = NodePath("../InputSynchronizer")
 metadata/_custom_type_script = "uid://dth0jeom0jlgg"
 
 [node name="MouselookTarget" type="Node3D" parent="Mouselook"]
@@ -533,7 +541,6 @@ shape = SubResource("CapsuleShape3D_jglra")
 script = ExtResource("3_52dax")
 anim_tree = NodePath("../Upset Ned/AnimationTree")
 initial_state = NodePath("Locomote")
-debug_mode = true
 locomotor = NodePath("..")
 click_shoot = NodePath("../ClickShoot")
 input = NodePath("../InputSynchronizer")
@@ -592,6 +599,10 @@ metadata/_custom_type_script = "uid://bjmyb3rnkdsof"
 transform = Transform3D(-1, 3.6968583e-08, -7.9221635e-08, 3.369474e-08, 0.9991619, 0.040933967, 8.06685e-08, 0.040933967, -0.9991619, 0, 1.2343175, -1.7668225)
 far = 200.0
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CameraPivot/Camera3D"]
+transform = Transform3D(1, -8.881784e-16, 0, -1.3322676e-15, 1, 0, 1.4210855e-14, 0, 1, 0, 0, 0)
+mesh = SubResource("SphereMesh_jj1e1")
+
 [node name="Hitscan" type="RayCast3D" parent="CameraPivot/Camera3D"]
 transform = Transform3D(1, -2.0711829e-07, 1.2602399e-07, 1.2602398e-07, -4.4703484e-08, -1, 2.0711829e-07, 1, -4.4703484e-08, 0, 0, 0)
 target_position = Vector3(0, -100, 0)
@@ -622,11 +633,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="InputSynchronizer" type="Node" parent="." node_paths=PackedStringArray("state_machine")]
-script = ExtResource("20_jj1e1")
-state_machine = NodePath("../StateMachine")
-metadata/_custom_type_script = "uid://dgdi0dn8dsce5"
 
 [connection signal="timeout" from="ClickShoot/l_timer" to="ClickShoot" method="_on_l_timer_timeout"]
 [connection signal="timeout" from="ClickShoot/r_timer" to="ClickShoot" method="_on_r_timer_timeout"]

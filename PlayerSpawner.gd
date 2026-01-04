@@ -22,4 +22,4 @@ func _on_spawned(node: Node) -> void:
 
 	# if we are the authority on this node, use its camera
 	if node.input_synchronizer.is_multiplayer_authority():
-		node.camera.make_current()
+		PlayerRegistry.set_local_player(node)

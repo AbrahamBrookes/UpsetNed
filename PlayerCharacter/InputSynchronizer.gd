@@ -26,6 +26,21 @@ var current_input: InputPacket
 ## a reference to the state machine so we can tick it
 @export var state_machine: StateMachine
 
+## tracking mouse delta as input
+var last_mouse_delta: Vector2 = Vector2.ZERO
+
+# we'll probably load this from preferences at some point
+var mouse_sensitivity = 0.002
+
+# make sure we start with a current_input in the tube
+func _ready() -> void:
+	current_input = InputPacket.new()
+
+# get the mouse delta from the input event
+func _input(event):
+	if event is InputEventMouseMotion:
+		last_mouse_delta = event.relative * mouse_sensitivity
+
 ## Handle streaming input where the player is holding a button
 func _physics_process(delta: float) -> void:
 	# only run for the controlling instance
@@ -39,7 +54,10 @@ func _physics_process(delta: float) -> void:
 	)
 	var jumping = Input.is_action_pressed("jump")
 	var stunting = Input.is_action_pressed("dive")
-	var mouse_delta = Input.get_last_mouse_velocity()
+	var mouse_delta = last_mouse_delta
+	
+	# reset mouse delta or we get drift because the _input value is cached
+	last_mouse_delta = Vector2.ZERO
 	
 	var packet: InputPacket = InputPacket.new(
 		next_sequence,
@@ -51,6 +69,10 @@ func _physics_process(delta: float) -> void:
 	
 	# send that packet to the server - serialize the packet before sending
 	Network.send_input_packet.rpc_id(1, packet.to_dict())
+
+	# apply the input locally right away - this same method is called on the server
+	# once that rpc goes through
+	apply_input_packet(packet, delta)
 	
 	# increment the sequence every time we send a packet
 	next_sequence += 1
@@ -58,37 +80,80 @@ func _physics_process(delta: float) -> void:
 	# append the packet to our pending inputs for reconciliation later
 	pending_inputs.append(packet)
 
-	# apply the input locally right away
-	apply_input_packet(packet, delta)
-
 	# handle one-off presses for actions like shooting
 	if Input.is_action_just_pressed("fire_r"):
+		# on the server
 		Network.input_handler.send_player_fire_r.rpc_id(1)
+		# locally
+		state_machine.dispatch_action("fire_r")
 		
 	if Input.is_action_just_pressed("fire_l"):
+		# on the server
 		Network.input_handler.send_player_fire_l.rpc_id(1)
+		# locally
+		state_machine.dispatch_action("fire_l")
 	
 	if Input.is_action_just_pressed("jump"):
+		# on the server
 		Network.input_handler.send_player_jump.rpc_id(1)
+		# locally
+		state_machine.dispatch_action("jump")
 	
 	if Input.is_action_just_pressed("dive"):
+		# on the server
 		Network.input_handler.send_player_dive.rpc_id(1)
+		# locally
+		state_machine.dispatch_action("dive")
 
 	if Input.is_action_just_pressed("reload"):
+		# on the server
 		Network.input_handler.send_player_reload.rpc_id(1)
+		# locally
+		state_machine.dispatch_action("reload")
 	
 	if Input.is_action_just_pressed("interact"):
+		# on the server
 		Network.input_handler.send_player_interact.rpc_id(1)
+		# locally
+		state_machine.dispatch_action("interact")
 	
 	if Input.is_action_just_pressed("throw_grenade"):
+		# on the server
 		Network.input_handler.send_player_throw_grenade.rpc_id(1)
+		# locally
+		state_machine.dispatch_action("throw_grenade")
 	
 	if Input.is_action_just_pressed("melee"):
+		# on the server
 		Network.input_handler.send_player_melee.rpc_id(1)
+		# locally
+		state_machine.dispatch_action("melee")
 
-## Apply an input packet and then run the state machine update
+## Apply an input packet and then run the state machine update - this is run
+## locally first, then on the server, and again on reconciliation
 func apply_input_packet(packet: InputPacket, delta: float) -> void:
 	current_input = packet
 	state_machine.current_state.Physics_Update(delta)
-	
+
+## When we receive the server's calculated state we need to reconcile the local
+## state with that, then reapply inputs so we don't drift too far
+func reconcile(state: AuthoritativeState) -> void:
+	var player: DeterministicPlayerCharacter = PlayerRegistry.local_player
+
+	# first, hard snap to authoritative state
+	player.global_position = state.global_position
+	player.velocity = state.velocity
+
+	# then drop any inputs we have locally that server has already processed
+	pending_inputs = pending_inputs.filter(
+		func(p): return p.seq > state.last_sequence
+	)
+
+	# lastly, replay the remaining local inputs so we are only a couple packets
+	# ahead of the server - we also need to marry up the server delta which is
+	# hard set in the project settings
+	var delta = 1.0 / Engine.physics_ticks_per_second
+	for packet in pending_inputs:
+		apply_input_packet(packet, delta)
+
 	

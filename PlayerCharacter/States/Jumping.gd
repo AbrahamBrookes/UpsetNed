@@ -19,16 +19,6 @@ func Enter(_extra_data = null):
 	jump_power_left = max_jump_power
 	
 func Physics_Update(delta: float):
-	
-	# in order to do a wallflip the player needs to press jump while the
-	# WallFlipRay is intersecting a wall
-	if Input.is_action_just_pressed("jump"):
-		print(wall_flip_ray.is_colliding())
-		if wall_flip_ray.is_colliding():
-			# get the collision normal to determine flip direction
-			var collision: Vector3 = wall_flip_ray.get_collision_normal()
-			state_machine.TransitionTo("WallFlip", collision)
-			return
 		
 	# if the player presses dive, dive
 	if Input.is_action_just_pressed("dive"):
@@ -67,3 +57,16 @@ func Physics_Update(delta: float):
 			return
 			
 		state_machine.TransitionTo("Locomote")
+
+
+# define the actions we can do from this state into other states
+
+# in order to do a wallflip the player needs to press jump while the
+# WallFlipRay is intersecting a wall
+func jump(_data = null):
+	print(wall_flip_ray.is_colliding())
+	if wall_flip_ray.is_colliding():
+		# get the collision normal to determine flip direction
+		var collision: Vector3 = wall_flip_ray.get_collision_normal()
+		state_machine.TransitionTo("WallFlip", collision)
+		return

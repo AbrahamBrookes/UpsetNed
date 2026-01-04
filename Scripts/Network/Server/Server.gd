@@ -28,6 +28,9 @@ var players: Dictionary[int, DeterministicPlayerCharacter] = {}
 ## a reference to the player spawner in the main screen, for spawning players
 @export var player_spawner: PlayerSpawner
 
+## a reference to the server input handler child node
+@export var input_handler: ServerInputHandler
+
 ## On ready we need to inject ourselves into the network singleton
 func _ready() -> void:
 	Network.server = self
@@ -79,25 +82,46 @@ func spawn_player(peer_id: int):
 
 	# add to our lookup table
 	players[peer_id] = player
-
-## when we receive an input packet from a client we need to apply that packet to
-## the player character we are simulating on the server
-func apply_input(peer_id: int, dict: Dictionary) -> void:
-	# deserialize our input packet
-	var packet = InputPacket.from_dict(dict)
 	
+## When we receive an input packet from a client we need to cache it so that we
+## can process it on the next server tick
+func cache_input(peer_id: int, input: InputPacket):
+	input_handler.input_cache[peer_id] = input
+
+### when we receive an input packet from a client we need to apply that packet to
+### the player character we are simulating on the server
+#func apply_input(peer_id: int, dict: Dictionary) -> void:
+	## find the player for that peer id
+	#var player: DeterministicPlayerCharacter = get_player(peer_id)
+	#if not player: return
+	#
+	## deserialize our input packet
+	#var packet = InputPacket.from_dict(dict)
+	#
+	## get the server physics delta which is hard-set in preferences
+	#var hz = Engine.physics_ticks_per_second
+	#var physics_delta: float = 1.0 / hz
+	#
+	## apply the input packet to that player
+	#player.input_synchronizer.apply_input_packet(packet, physics_delta)
+
+## when the player presses jump, jump
+func player_jump(peer_id: int) -> void:
+	# find the player for that peer id
+	var player: DeterministicPlayerCharacter = get_player(peer_id)
+	if not player: return
+	
+	player.state_machine.dispatch_action("jump")
+	
+## A helper to get a player from our lookup table
+func get_player(peer_id) -> DeterministicPlayerCharacter:
 	# find the player for that peer id
 	var player: DeterministicPlayerCharacter = players.get(peer_id, null)
 	
 	# guard
 	if not player:
 		push_error("could not find player for peer ID: %s" % peer_id)
-		return
+		return null
 	
-	# get the server physics delta which is hard-set in preferences
-	var hz = Engine.physics_ticks_per_second
-	var physics_delta: float = 1.0 / hz
-	
-	# apply the input packet to that player
-	player.input_synchronizer.apply_input_packet(packet, physics_delta)
+	return player
 	

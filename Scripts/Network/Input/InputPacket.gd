@@ -21,11 +21,11 @@ var jump: bool
 var stunt: bool
 
 func _init(
-	_seq: int,
-	_mouse_delta: Vector2,
-	_move: Vector2,
-	_jump: bool,
-	_stunt: bool
+	_seq: int = 0,
+	_mouse_delta: Vector2 = Vector2.ZERO,
+	_move: Vector2 = Vector2.ZERO,
+	_jump: bool = false,
+	_stunt: bool = false
 ):
 	seq = _seq
 	mouse_delta = _mouse_delta

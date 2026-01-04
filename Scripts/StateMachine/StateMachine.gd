@@ -23,7 +23,7 @@ var playback: AnimationNodeStateMachinePlayback
 # the state to start on, set in the editor
 @export var initial_state: State
 # debug if ya wanna
-@export var debug_mode: bool = false
+@export var debug: bool = false
 
 # the actual thing that drives us - the character body that has the
 # move_and_slide and is_on_floor etc
@@ -60,7 +60,7 @@ func _ready():
 			# child states need a reference to the state machine
 			child.state_machine = self
 
-	if debug_mode:
+	if debug:
 		print("StateMachine: states loaded: ", states.keys())
 	
 	if initial_state:
@@ -106,7 +106,7 @@ func TransitionTo(new_state_name: String, extra_data = null) -> bool:
 	if current_state == new_state and not new_state.allow_self_transition:
 		return false
 		
-	if debug_mode:
+	if debug:
 		push_error("Transitioning: ", current_state.name if current_state else StringName("None"), " -> ", new_state_name)
 	
 	previous_state = current_state
@@ -146,3 +146,17 @@ func get_state(state_name: String) -> State:
 # given a MovementIntent, emit our movement signal
 func set_movement_intent(intent: MovementIntent) -> void:
 	emit_signal("indend_to_move", intent)
+
+# since we are decoupling input for the sake of network, states should not poll
+# input themselves in order to change states. The network needs to be able to
+# call into the state machine in order to change states, and so does the client.
+# To allow this, the state machine will duck-type check the current state to see
+# if the current state is able to transition. States will define their own methods
+# that map to actions, and if they don't react to that action they simply don't
+# implement a method for it
+func dispatch_action(action: String, data = null):
+	if current_state.has_method(action):
+		current_state.call(action, data)
+	else:
+		if debug:
+			print("Action '%s' ignored by state %s" % [action, current_state.name])

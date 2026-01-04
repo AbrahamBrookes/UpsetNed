@@ -14,10 +14,10 @@ func send_player_fire_l() -> void:
 	# placeholder for now
 	pass
 
-@rpc("authority")
+@rpc("any_peer")
 func send_player_jump() -> void:
-	# placeholder for now
-	pass
+	if multiplayer.is_server():
+		Network.server.player_jump(multiplayer.get_remote_sender_id())
 
 @rpc("authority")
 func send_player_dive() -> void:

@@ -29,10 +29,6 @@ func Physics_Update(_delta: float):
 		state_machine.TransitionTo("Squatting")
 		return
 		
-	# if the player presses jump, jump
-	if Input.is_action_just_pressed("jump"):
-		state_machine.TransitionTo("Jumping")
-		return
 		
 	# if the player presses dive, dive
 	if Input.is_action_just_pressed("dive"):
@@ -72,3 +68,9 @@ func Physics_Update(_delta: float):
 	intent.desired_velocity = mesh.global_transform.basis * world_direction
 
 	state_machine.set_movement_intent(intent)
+
+# define the actions we can do from this state into other states
+
+# if the player presses jump, jump
+func jump(_data = null):
+	state_machine.TransitionTo("Jumping")

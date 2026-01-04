@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 GamePreferences="*res://Scripts/Autoloads/GamePreferences.gd"
 Util="*res://Scripts/Util.gd"
 Network="*res://Scripts/Network/Network.tscn"
+PlayerRegistry="*res://Scripts/Network/Client/PlayerRegistry.gd"
 
 [debug_draw_3d]
 
