@@ -22,6 +22,9 @@ class_name DeterministicPlayerCharacter
 # the UI progress bar we are using for health
 @export var ui_healthbar: ProgressBar
 
+# a reference to the input synchronizer
+@export var input_synchronizer: InputSynchronizer
+
 func _ready() -> void:
 	if not mesh:
 		print("not mesh")

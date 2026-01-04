@@ -407,7 +407,7 @@ height = 0.991333
 
 [sub_resource type="Theme" id="Theme_7qrv0"]
 
-[node name="PlayerCharacter" type="CharacterBody3D" node_paths=PackedStringArray("mesh", "anim_tree", "state_machine", "camera", "mouselook", "ui_healthbar")]
+[node name="PlayerCharacter" type="CharacterBody3D" node_paths=PackedStringArray("mesh", "anim_tree", "state_machine", "camera", "mouselook", "ui_healthbar", "input_synchronizer")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 collision_layer = 2
 script = ExtResource("1_pult7")
@@ -418,6 +418,7 @@ camera = NodePath("CameraPivot/Camera3D")
 camera_target_offset = Vector3(0, 1, 0)
 mouselook = NodePath("Mouselook")
 ui_healthbar = NodePath("CameraPivot/Camera3D/CanvasLayer/MarginContainer/ProgressBar")
+input_synchronizer = NodePath("InputSynchronizer")
 
 [node name="ClickShoot" type="Node" parent="." node_paths=PackedStringArray("anim_tree", "mouselook", "l_weapon_slot", "r_weapon_slot")]
 script = ExtResource("2_hs44b")

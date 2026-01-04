@@ -95,6 +95,10 @@ func apply_input(peer_id: int, dict: Dictionary) -> void:
 		push_error("could not find player for peer ID: %s" % peer_id)
 		return
 	
+	# get the server physics delta which is hard-set in preferences
+	var hz = ProjectSettings.get_setting("physics/common/physics_ticks_per_second")
+	var physics_delta: float = 1 / hz
+	
 	# apply the input packet to that player
-	player.input_synchronizer.apply_input_packet(packet)
+	player.input_synchronizer.apply_input_packet(packet, physics_delta)
 	

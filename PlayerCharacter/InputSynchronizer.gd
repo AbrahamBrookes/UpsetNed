@@ -28,10 +28,6 @@ var current_input: InputPacket
 
 ## Handle streaming input where the player is holding a button
 func _physics_process(delta: float) -> void:
-	# never run input on the server
-	if multiplayer.is_server():
-		return
-	
 	# only run for the controlling instance
 	if not is_multiplayer_authority():
 		return
@@ -91,7 +87,6 @@ func _physics_process(delta: float) -> void:
 ## Apply an input packet and then run the state machine update
 func apply_input_packet(packet: InputPacket, delta: float) -> void:
 	current_input = packet
-	print("applying packet")
 	state_machine.current_state.Physics_Update(delta)
 	
 	
