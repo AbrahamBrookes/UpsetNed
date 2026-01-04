@@ -13,13 +13,13 @@ func Physics_Update(_delta: float):
 	# if the previous state was jumping and the player is holding squat
 	# and we have lateral velocity, go to sliding
 	if state_machine.previous_state and state_machine.previous_state.name == "Jumping":
-		if Input.is_action_pressed("squat"):
+		if state_machine.input.current_input.squat:
 			var horizontal_velocity = Vector3(
 				state_machine.locomotor.velocity.x,
 				0.0,
 				state_machine.locomotor.velocity.z
-			
 			)
+			
 			if horizontal_velocity.length() > 0.1:
 				state_machine.TransitionTo("Sliding")
 				return

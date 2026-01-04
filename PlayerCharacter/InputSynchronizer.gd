@@ -54,6 +54,7 @@ func _physics_process(delta: float) -> void:
 	)
 	var jumping = Input.is_action_pressed("jump")
 	var stunting = Input.is_action_pressed("dive")
+	var squatting = Input.is_action_pressed("squat")
 	var mouse_delta = last_mouse_delta
 	
 	# reset mouse delta or we get drift because the _input value is cached
@@ -64,7 +65,8 @@ func _physics_process(delta: float) -> void:
 		mouse_delta,
 		move_dir,
 		jumping,
-		stunting
+		stunting,
+		squatting
 	)
 	
 	# send that packet to the server - serialize the packet before sending
