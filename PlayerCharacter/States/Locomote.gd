@@ -41,7 +41,7 @@ func Physics_Update(_delta: float):
 
 	# Get input
 	var input_direction = state_machine.input.current_input.move
-	print(input_direction)
+	
 	# only rotate the mesh whn we're moving
 	if input_direction != Vector2.ZERO:
 		# in this state we want to rotate the mesh to the camera direction

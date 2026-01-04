@@ -13,10 +13,7 @@ func Enter(_extra_data = null):
 	
 func Physics_Update(delta: float):
 	# Handle horizontal movement while jumping
-	var input_direction = Vector2(
-		Input.get_action_strength("run_l") - Input.get_action_strength("run_r"),
-		Input.get_action_strength("run_f") - Input.get_action_strength("run_b")
-	)
+	var input_direction = state_machine.input.current_input.move
 	var horizontal_input = Vector3(input_direction.x, 0.0, input_direction.y)
 	var world_direction = player_character.global_transform.basis * horizontal_input
 	

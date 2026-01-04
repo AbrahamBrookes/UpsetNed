@@ -24,10 +24,7 @@ func Physics_Update(_delta: float):
 		return
 
 	# Get input
-	#var input_direction = Vector2(
-		#Input.get_action_strength("run_l") - Input.get_action_strength("run_r"),
-		#Input.get_action_strength("run_f") - Input.get_action_strength("run_b")
-	#)
+	#var input_direction = state_machine.input.current_input.move
 #
 	## Update animation
 	#state_machine.anim_tree.set("parameters/Locomotion/Locomote/blend_position", input_direction)
