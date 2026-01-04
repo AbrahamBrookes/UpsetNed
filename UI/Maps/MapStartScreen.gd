@@ -8,7 +8,8 @@ class_name MapStartScreen
 signal spawn
 
 func _ready():
-	emit_signal("spawn")
+	if not Util.running_as_server():
+		emit_signal("spawn")
 
 func _on_spawn_button_pressed() -> void:
 	emit_signal("spawn")
