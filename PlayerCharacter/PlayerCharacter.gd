@@ -43,7 +43,6 @@ func get_aabb() -> AABB:
 	return mesh.get_aabb()
 
 func _on_state_machine_indend_to_move(intent: MovementIntent) -> void:
-	push_error("intend to move", intent.desired_velocity)
 	# just blindly apply the incoming intent
 	velocity = intent.desired_velocity
 	

@@ -106,12 +106,12 @@ func cache_input(peer_id: int, input: InputPacket):
 	#player.input_synchronizer.apply_input_packet(packet, physics_delta)
 
 ## when the player presses jump, jump
-func player_jump(peer_id: int) -> void:
+func dispatch_action(peer_id: int, action: String) -> void:
 	# find the player for that peer id
 	var player: DeterministicPlayerCharacter = get_player(peer_id)
 	if not player: return
 	
-	player.state_machine.dispatch_action("jump")
+	player.state_machine.dispatch_action(action)
 	
 ## A helper to get a player from our lookup table
 func get_player(peer_id) -> DeterministicPlayerCharacter:

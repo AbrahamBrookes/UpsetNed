@@ -2,10 +2,7 @@ extends Node
 
 ## The Network node handles setting up multiplayer peers and connecting to servers.
 ## This is mainly a dumping ground for RPC calls and acts as a central controller
-## between the client and the server
-
-## proxy to our child nodes that group specific logic
-@export var input_handler: NetworkInputHandler
+## between the client and the server - Autoloaded as "Network"
 
 ## since Network is a global singleton, dependencies must inject themselves
 var client: Client
@@ -39,3 +36,8 @@ func send_authoritative_state(state: Dictionary):
 	if not multiplayer.is_server():
 		PlayerRegistry.local_player.input_synchronizer.reconcile(AuthoritativeState.from_dict(state))
 		
+# we react to one-time input presses by dispatching the relevant action to the server
+@rpc("any_peer")
+func dispatch_action(action: String) -> void:
+	if multiplayer.is_server():
+		Network.server.dispatch_action(multiplayer.get_remote_sender_id(), action)

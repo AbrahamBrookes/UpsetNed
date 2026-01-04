@@ -83,49 +83,49 @@ func _physics_process(delta: float) -> void:
 	# handle one-off presses for actions like shooting
 	if Input.is_action_just_pressed("fire_r"):
 		# on the server
-		Network.input_handler.send_player_fire_r.rpc_id(1)
+		Network.dispatch_action.rpc_id(1, "fire_r")
 		# locally
 		state_machine.dispatch_action("fire_r")
 		
 	if Input.is_action_just_pressed("fire_l"):
 		# on the server
-		Network.input_handler.send_player_fire_l.rpc_id(1)
+		Network.dispatch_action.rpc_id(1, "fire_l")
 		# locally
 		state_machine.dispatch_action("fire_l")
 	
 	if Input.is_action_just_pressed("jump"):
 		# on the server
-		Network.input_handler.send_player_jump.rpc_id(1)
+		Network.dispatch_action.rpc_id(1, "jump")
 		# locally
 		state_machine.dispatch_action("jump")
 	
 	if Input.is_action_just_pressed("dive"):
 		# on the server
-		Network.input_handler.send_player_dive.rpc_id(1)
+		Network.dispatch_action.rpc_id(1, "dive")
 		# locally
 		state_machine.dispatch_action("dive")
 
 	if Input.is_action_just_pressed("reload"):
 		# on the server
-		Network.input_handler.send_player_reload.rpc_id(1)
+		Network.dispatch_action.rpc_id(1, "reload")
 		# locally
 		state_machine.dispatch_action("reload")
 	
 	if Input.is_action_just_pressed("interact"):
 		# on the server
-		Network.input_handler.send_player_interact.rpc_id(1)
+		Network.dispatch_action.rpc_id(1, "interact")
 		# locally
 		state_machine.dispatch_action("interact")
 	
 	if Input.is_action_just_pressed("throw_grenade"):
 		# on the server
-		Network.input_handler.send_player_throw_grenade.rpc_id(1)
+		Network.dispatch_action.rpc_id(1, "throw_grenade")
 		# locally
 		state_machine.dispatch_action("throw_grenade")
 	
 	if Input.is_action_just_pressed("melee"):
 		# on the server
-		Network.input_handler.send_player_melee.rpc_id(1)
+		Network.dispatch_action.rpc_id(1, "melee")
 		# locally
 		state_machine.dispatch_action("melee")
 
@@ -155,5 +155,3 @@ func reconcile(state: AuthoritativeState) -> void:
 	var delta = 1.0 / Engine.physics_ticks_per_second
 	for packet in pending_inputs:
 		apply_input_packet(packet, delta)
-
-	
