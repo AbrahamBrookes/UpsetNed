@@ -39,9 +39,11 @@ func _physics_process(delta: float) -> void:
 	)
 	var jumping = Input.is_action_pressed("jump")
 	var stunting = Input.is_action_pressed("dive")
+	var mouse_delta = Input.get_last_mouse_velocity()
 	
 	var packet: InputPacket = InputPacket.new(
 		next_sequence,
+		mouse_delta,
 		move_dir,
 		jumping,
 		stunting

@@ -8,6 +8,9 @@ class_name InputPacket
 ## starts sending input, and compare it on the server as we receive packets
 var seq: int
 
+## the mouse delta for moving the camera
+var mouse_delta: Vector2
+
 ## the movement input being held
 var move: Vector2
 
@@ -19,11 +22,13 @@ var stunt: bool
 
 func _init(
 	_seq: int,
+	_mouse_delta: Vector2,
 	_move: Vector2,
 	_jump: bool,
 	_stunt: bool
 ):
 	seq = _seq
+	mouse_delta = _mouse_delta
 	move = _move
 	jump = _jump
 	stunt = _stunt
@@ -32,6 +37,7 @@ func _init(
 func to_dict() -> Dictionary:
 	return {
 		"seq": seq,
+		"mouse_delta": mouse_delta,
 		"move": move,
 		"jump": jump,
 		"stunt": stunt
@@ -41,6 +47,7 @@ func to_dict() -> Dictionary:
 static func from_dict(d: Dictionary) -> InputPacket:
 	return InputPacket.new(
 		d.seq,
+		d.mouse_delta,
 		d.move,
 		d.jump,
 		d.stunt
