@@ -48,7 +48,7 @@ func Physics_Update(delta: float):
 	player_character.move_and_slide()
 	
 	# Check if landed (only after moving)
-	if player_character.is_on_floor() and player_character.velocity.y <= 0.0:
+	if player_character.grounded and player_character.velocity.y <= 0.0:
 		# if the player is holding crouch when they land, go to sliding
 		if Input.is_action_pressed("squat"):
 			state_machine.TransitionTo("Sliding")

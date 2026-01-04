@@ -82,11 +82,6 @@ func spawn_player(peer_id: int):
 
 	# add to our lookup table
 	players[peer_id] = player
-	
-## When we receive an input packet from a client we need to cache it so that we
-## can process it on the next server tick
-func cache_input(peer_id: int, input: InputPacket):
-	input_handler.input_cache[peer_id] = input
 
 ### when we receive an input packet from a client we need to apply that packet to
 ### the player character we are simulating on the server

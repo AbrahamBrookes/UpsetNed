@@ -12,7 +12,7 @@ func Enter(_extra_data = null):
 		state_machine.click_shoot.sliding = true
 	# set initial slide force based on current horizontal speed
 	var horizontal_velocity = Vector3(player_character.velocity.x, 0.0, player_character.velocity.z)
-	slide_force = horizontal_velocity.length() * 0.5  # arbitrary multiplier for slide power
+	slide_force = horizontal_velocity.length() * 2.0  # arbitrary multiplier for slide power
 	# rotate the mesh to the velocity when we enter the slide
 	if horizontal_velocity.length() > 0.1:
 		var mesh_rotation = mesh.global_transform.basis.get_euler()
@@ -31,7 +31,7 @@ func Physics_Update(delta: float):
 		state_machine.TransitionTo("Locomote")
 		return
 	
-	if not player_character.is_on_floor():
+	if not player_character.grounded:
 		state_machine.TransitionTo("Falling")
 		return
 

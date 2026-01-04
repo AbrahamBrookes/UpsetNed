@@ -97,6 +97,6 @@ size = Vector3(1.2172241, 5.5356445, 15.812836)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.07839, 6.50813, 0)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, -9, 12, 15)
+transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, -19, 17, 18)
 
 [connection signal="spawn" from="MapStartScreen" to="." method="_on_map_start_screen_spawn"]

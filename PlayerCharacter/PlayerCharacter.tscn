@@ -541,6 +541,7 @@ shape = SubResource("CapsuleShape3D_jglra")
 script = ExtResource("3_52dax")
 anim_tree = NodePath("../Upset Ned/AnimationTree")
 initial_state = NodePath("Locomote")
+debug = true
 locomotor = NodePath("..")
 click_shoot = NodePath("../ClickShoot")
 input = NodePath("../InputSynchronizer")
@@ -636,7 +637,7 @@ grow_vertical = 2
 
 [connection signal="timeout" from="ClickShoot/l_timer" to="ClickShoot" method="_on_l_timer_timeout"]
 [connection signal="timeout" from="ClickShoot/r_timer" to="ClickShoot" method="_on_r_timer_timeout"]
-[connection signal="indend_to_move" from="StateMachine" to="." method="_on_state_machine_indend_to_move"]
+[connection signal="intend_to_move" from="StateMachine" to="." method="_on_state_machine_intend_to_move"]
 
 [editable path="Upset Ned"]
 [editable path="Upset Ned/rig/Skeleton3D/Bazooka Jenkins"]

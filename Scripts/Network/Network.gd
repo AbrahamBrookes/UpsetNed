@@ -24,10 +24,10 @@ func server_spawn_player() -> void:
 		server.spawn_player(multiplayer.get_remote_sender_id())
 
 ## We send inputs to the server for simulation there
-@rpc("any_peer", "unreliable_ordered")
+@rpc("any_peer", "unreliable")
 func send_input_packet(packet: Dictionary) -> void:
 	if multiplayer.is_server():
-		server.cache_input(multiplayer.get_remote_sender_id(), InputPacket.from_dict(packet))
+		server.input_handler.cache_input(multiplayer.get_remote_sender_id(), InputPacket.from_dict(packet))
 
 ## When we have processed input, we send the real state back to the client
 @rpc("authority")

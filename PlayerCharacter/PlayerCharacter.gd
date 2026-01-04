@@ -25,10 +25,12 @@ class_name DeterministicPlayerCharacter
 # a reference to the input synchronizer
 @export var input_synchronizer: InputSynchronizer
 
+# we're letting the server decide if we are grounded instead of using is_on_floor()
+var grounded: bool = false
+
 func _ready() -> void:
 	if not mesh:
 		print("not mesh")
-	#stateMachine.TransitionTo("Prone")
 	ui_healthbar.value = 100
 	
 func _physics_process(_delta):
@@ -42,7 +44,7 @@ func receive_damage() -> void:
 func get_aabb() -> AABB:
 	return mesh.get_aabb()
 
-func _on_state_machine_indend_to_move(intent: MovementIntent) -> void:
+func _on_state_machine_intend_to_move(intent: MovementIntent) -> void:
 	# just blindly apply the incoming intent
 	velocity = intent.desired_velocity
 	

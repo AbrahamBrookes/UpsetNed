@@ -42,7 +42,7 @@ func _input(event):
 		last_mouse_delta = event.relative * mouse_sensitivity
 
 ## Handle streaming input where the player is holding a button
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	# only run for the controlling instance
 	if not is_multiplayer_authority():
 		return
@@ -52,7 +52,6 @@ func _physics_process(delta: float) -> void:
 		Input.get_action_strength("run_l") - Input.get_action_strength("run_r"),
 		Input.get_action_strength("run_f") - Input.get_action_strength("run_b")
 	)
-	var jumping = Input.is_action_pressed("jump")
 	var stunting = Input.is_action_pressed("dive")
 	var squatting = Input.is_action_pressed("squat")
 	var mouse_delta = last_mouse_delta
@@ -64,7 +63,6 @@ func _physics_process(delta: float) -> void:
 		next_sequence,
 		mouse_delta,
 		move_dir,
-		jumping,
 		stunting,
 		squatting
 	)
@@ -74,7 +72,7 @@ func _physics_process(delta: float) -> void:
 
 	# apply the input locally right away - this same method is called on the server
 	# once that rpc goes through
-	apply_input_packet(packet, delta)
+	apply_input_packet(packet)
 	
 	# increment the sequence every time we send a packet
 	next_sequence += 1
@@ -99,6 +97,7 @@ func _physics_process(delta: float) -> void:
 		# on the server
 		Network.dispatch_action.rpc_id(1, "jump")
 		# locally
+		state_machine.locomotor.grounded = false
 		state_machine.dispatch_action("jump")
 	
 	if Input.is_action_just_pressed("dive"):
@@ -133,9 +132,8 @@ func _physics_process(delta: float) -> void:
 
 ## Apply an input packet and then run the state machine update - this is run
 ## locally first, then on the server, and again on reconciliation
-func apply_input_packet(packet: InputPacket, delta: float) -> void:
+func apply_input_packet(packet: InputPacket) -> void:
 	current_input = packet
-	state_machine.current_state.Physics_Update(delta)
 
 ## When we receive the server's calculated state we need to reconcile the local
 ## state with that, then reapply inputs so we don't drift too far
@@ -145,6 +143,9 @@ func reconcile(state: AuthoritativeState) -> void:
 	# first, hard snap to authoritative state
 	player.global_position = state.global_position
 	player.velocity = state.velocity
+	player.mesh.rotation = state.rotation
+	player.mouselook.camera_pivot.rotation = state.camera_rotation
+	player.grounded = state.grounded
 
 	# then drop any inputs we have locally that server has already processed
 	pending_inputs = pending_inputs.filter(
@@ -152,8 +153,6 @@ func reconcile(state: AuthoritativeState) -> void:
 	)
 
 	# lastly, replay the remaining local inputs so we are only a couple packets
-	# ahead of the server - we also need to marry up the server delta which is
-	# hard set in the project settings
-	var delta = 1.0 / Engine.physics_ticks_per_second
+	# ahead of the server
 	for packet in pending_inputs:
-		apply_input_packet(packet, delta)
+		apply_input_packet(packet)

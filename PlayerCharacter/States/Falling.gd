@@ -34,5 +34,5 @@ func Physics_Update(delta: float):
 	state_machine.set_movement_intent(intent)
 	
 	# Check if landed (only after moving)
-	if state_machine.locomotor.is_on_floor() and intent.desired_velocity.y <= 0.0:
+	if state_machine.locomotor.grounded and intent.desired_velocity.y <= 0.0:
 		state_machine.TransitionTo("Locomote")

@@ -5,32 +5,63 @@ extends Node
 ## caches incoming inputs and then applies them in it's physics tick
 class_name ServerInputHandler
 
-## the input frames per player that we have cached - this is the last input we
-## received for each player, we overwrite them as they come in
-var input_cache: Dictionary[int, InputPacket]
+## the input frames per player that we have cached
+# peer_id -> Array[InputPacket]
+var input_queues: Dictionary = {}
+
+# peer_id -> InputPacket (last simulated input)
+var last_input: Dictionary = {}
 
 ## A reference back to the server node
 @export var server: Server
 
+# and using coyote time for being grounded so we can avoid floor jitters from server ticks
+var on_floor: bool = false
+var grounded_coyote_time: int = 2
+
 ## in physics process, simulate and then acknowledge each input frame per player
-func _physics_process(delta):
-	for peer_id in input_cache.keys():
-		var input_packet: InputPacket = input_cache[peer_id]
-		
-		# get the server instance of the player
+func _physics_process(_delta: float):
+	for peer_id in input_queues.keys():
 		var player: DeterministicPlayerCharacter = server.get_player(peer_id)
 		if not player:
 			continue
-		
-		# apply the input packet to that player
-		player.input_synchronizer.apply_input_packet(input_packet, delta)
-		
-		# send their authoritative state back to them
-		send_authoritative_state(peer_id, player, input_packet)
-	
-	# clear the cache after processing
-	input_cache.clear()
 
+		var queue: Array[InputPacket] = input_queues.get(peer_id)
+		var input: InputPacket
+		
+		if queue != null and queue.size() > 0:
+			# Consume exactly ONE input per tick
+			input = queue.pop_front()
+			last_input[peer_id] = input
+		else:
+			# Reuse last input (held input continues)
+			input = last_input.get(peer_id)
+			if input == null:
+				continue # nothing to simulate yet
+
+		# Simulate once per tick
+		player.input_synchronizer.apply_input_packet(input)
+		
+		on_floor = player.is_on_floor()
+
+		if on_floor:
+			player.grounded = true
+			grounded_coyote_time = 2
+		else:
+			grounded_coyote_time -= 1
+			if grounded_coyote_time <= 0:
+				player.grounded = false
+
+		# Send authoritative snapshot
+		send_authoritative_state(peer_id, player, input)
+
+## When we receive an input packet from a client we need to cache it so that we
+## can process it on the next server tick
+func cache_input(peer_id: int, input: InputPacket) -> void:
+	if not input_queues.has(peer_id):
+		input_queues[peer_id] = [] as Array[InputPacket]
+	input_queues[peer_id].append(input)
+	
 ## In order to send the authoritative state we need to gather up the data to sync
 ## back to the client and then rpc it on them
 func send_authoritative_state(peer_id: int, player: DeterministicPlayerCharacter, input: InputPacket):
@@ -39,7 +70,9 @@ func send_authoritative_state(peer_id: int, player: DeterministicPlayerCharacter
 		input.seq,
 		player.global_position,
 		player.mesh.rotation,
-		player.velocity
+		player.velocity,
+		player.mouselook.camera_pivot.rotation,
+		player.grounded
 	)
 	
 	# send it back to the client

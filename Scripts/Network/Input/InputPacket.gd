@@ -14,9 +14,6 @@ var mouse_delta: Vector2
 ## the movement input being held
 var move: Vector2
 
-## is the jump action being held
-var jump: bool
-
 ## is the stunt action being held
 var stunt: bool
 
@@ -27,14 +24,12 @@ func _init(
 	_seq: int = 0,
 	_mouse_delta: Vector2 = Vector2.ZERO,
 	_move: Vector2 = Vector2.ZERO,
-	_jump: bool = false,
 	_stunt: bool = false,
 	_squat: bool = false
 ):
 	seq = _seq
 	mouse_delta = _mouse_delta
 	move = _move
-	jump = _jump
 	stunt = _stunt
 	squat = _squat
 	
@@ -44,7 +39,6 @@ func to_dict() -> Dictionary:
 		"seq": seq,
 		"mouse_delta": mouse_delta,
 		"move": move,
-		"jump": jump,
 		"stunt": stunt,
 		"squat": squat
 	}
@@ -55,7 +49,6 @@ static func from_dict(d: Dictionary) -> InputPacket:
 		d.seq,
 		d.mouse_delta,
 		d.move,
-		d.jump,
 		d.stunt,
 		d.squat
 	)

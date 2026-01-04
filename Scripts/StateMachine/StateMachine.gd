@@ -15,7 +15,7 @@ class_name StateMachine
 
 ## States calculate input and create a MovementIntent, which they set on the
 ## StateMachine, which then emits a signal to move the character
-signal indend_to_move(intent: MovementIntent)
+signal intend_to_move(intent: MovementIntent)
 
 @export var anim_tree : AnimationTree
 # playback is the engine-level animation tree state machine
@@ -87,12 +87,12 @@ func _process(delta):
 	if current_state:
 		current_state.Update(delta)
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	# we're not running our physics update in lockstep with the client anymore since we are
 	# syncing input to the server and allowing the InputSynchronizer to do client-side prediction.
 	# so don't run the current states Physics_Update here anymore - it gets run from the InputSynchronizer
-	# if current_state:
-	# 	current_state.Physics_Update(delta)
+	if current_state:
+		current_state.Physics_Update(delta)
 	pass
 
 func TransitionTo(new_state_name: String, extra_data = null) -> bool:
@@ -145,7 +145,7 @@ func get_state(state_name: String) -> State:
 
 # given a MovementIntent, emit our movement signal
 func set_movement_intent(intent: MovementIntent) -> void:
-	emit_signal("indend_to_move", intent)
+	emit_signal("intend_to_move", intent)
 
 # since we are decoupling input for the sake of network, states should not poll
 # input themselves in order to change states. The network needs to be able to
@@ -159,4 +159,4 @@ func dispatch_action(action: String, data = null):
 		current_state.call(action, data)
 	else:
 		if debug:
-			print("Action '%s' ignored by state %s" % [action, current_state.name])
+			push_error("Action '%s' ignored by state %s" % [action, current_state.name])

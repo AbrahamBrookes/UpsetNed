@@ -21,26 +21,12 @@ func Physics_Update(_delta: float):
 			)
 			
 			if horizontal_velocity.length() > 0.1:
-				state_machine.TransitionTo("Sliding")
+				slide()
 				return
-				
-	# if the player presses squat, squat
-	if Input.is_action_just_pressed("squat"):
-		state_machine.TransitionTo("Squatting")
-		return
-		
-		
-	# if the player presses dive, dive
-	if Input.is_action_just_pressed("dive"):
-		state_machine.TransitionTo("Diving")
-		return
 	
-	if not state_machine.locomotor.is_on_floor():
+	if not state_machine.locomotor.grounded:
 		state_machine.TransitionTo("Falling")
 		return
-		
-	# prepare a MovementIntent to send to the locomotor
-	var intent = MovementIntent.new()
 
 	# Get input
 	var input_direction = state_machine.input.current_input.move
@@ -74,3 +60,15 @@ func Physics_Update(_delta: float):
 # if the player presses jump, jump
 func jump(_data = null):
 	state_machine.TransitionTo("Jumping")
+	
+# if the player presses dive, dive
+func dive(_data = null):
+	state_machine.TransitionTo("Diving")
+	
+# if the player presses slide, slide
+func slide(_data = null):
+	state_machine.TransitionTo("Sliding")
+	
+# if the player presses squat, squat
+func squat(_data = null):
+	state_machine.TransitionTo("Squatting")
