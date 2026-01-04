@@ -95,8 +95,8 @@ func apply_input(peer_id: int, dict: Dictionary) -> void:
 		return
 	
 	# get the server physics delta which is hard-set in preferences
-	var hz = ProjectSettings.get_setting("physics/common/physics_ticks_per_second")
-	var physics_delta: float = 1 / hz
+	var hz = Engine.physics_ticks_per_second
+	var physics_delta: float = 1.0 / hz
 	
 	# apply the input packet to that player
 	player.input_synchronizer.apply_input_packet(packet, physics_delta)
