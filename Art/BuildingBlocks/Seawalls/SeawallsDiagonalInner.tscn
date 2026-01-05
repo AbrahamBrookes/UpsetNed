@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=4 uid="uid://b4iwsc6ejkfwi"]
+
+[ext_resource type="Material" uid="uid://8ipottkcjypj" path="res://Art/atlas.material" id="1_cdyuu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rp5wv"]
+size = Vector3(2, 5.3, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j16yg"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_dl1lr"]
+_surfaces = [{
+"aabb": AABB(-1.1998, -5.3, -1.1979998, 2.1998, 5.3, 2.198),
+"format": 34359742465,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAADAAEAAgABAAQAAgAEAAUABQAEAAYABQAGAAcACAAJAAoACAALAAkACwAMAAkACwANAAwADQAOAAwADQAPAA4A"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("AACAvwAAAAAAAIA/AACAP5qZmb4AAIC/AACAv5qZmb4AAIA/AACAPwAAAAAAAIC/7Xx/P6CZmb4PWJm/DJOZv5mZmb7m8n8/7Xx/P5qZqcAPWJm/DJOZv5qZqcDm8n8/MsgEvpqZmb6i25W9N39xvZqZqcAwWyG7MsgEvpqZqcCi25W9N39xvZqZmb4wWyG7ZIlAPJqZqcCi25W9ZIlAPJqZmb6i25W9J39xvZqZqcAxVhO+J39xvZqZmb4xVhO+")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_v8ivb"]
+resource_name = "seawalls_Plane_008"
+_surfaces = [{
+"aabb": AABB(-1.1998, -5.3, -1.1979998, 2.1998, 5.3, 2.198),
+"attribute_data": PackedByteArray("SoAfPQDrPztKgB89AGUfPEqAHz0AZR88SoAfPQDrPztKgB89AGUfPEuAHz2QCfw9SYAfPZgJ/D1LgB89AGQfPEqAHz0AZR88S4AfPQBkHzxKgB89AGUfPEqAHz0AZR88lQC7PABlHzyVALs8mAn8PZUAuzyYCfw9lQC7PABlHzyVALs8AGUfPJUAuzyYCfw9lQC7PJgJ/D2VALs8AGUfPJUAuzwAZR88lQC7PJgJ/D2VALs8mAn8PZUAuzwAZR88"),
+"format": 34359742487,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUA"),
+"material": SubResource("StandardMaterial3D_j16yg"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AACAvwAAAAAAAIA/AACAP5qZmb4AAIC/AACAv5qZmb4AAIA/AACAPwAAAAAAAIC/DJOZv5mZmb7m8n8/7Xx/P5qZqcAPWJm/DJOZv5qZqcDm8n8/7Xx/P6CZmb4PWJm/AACAv5qZmb4AAIA/7Xx/P6CZmb4PWJm/DJOZv5mZmb7m8n8/AACAP5qZmb4AAIC/MsgEvpqZmb6i25W9N39xvZqZqcAwWyG7MsgEvpqZqcCi25W9N39xvZqZmb4wWyG7N39xvZqZmb4wWyG7ZIlAPJqZqcCi25W9N39xvZqZqcAwWyG7ZIlAPJqZmb6i25W9ZIlAPJqZmb6i25W9J39xvZqZqcAxVhO+ZIlAPJqZqcCi25W9J39xvZqZmb4xVhO+/7//f////z//v/9/////P/+//3////8//7//f////z//v/9//v//n/+//3/+//+f/7//f/7//5//v/9//v//n/9/AAD///+//38AAP///7//fwAA////v/9/AAD///+//z//f////z//P/9/////P/8//3////8//z//f////z//v/9/////P/+//3////8//7//f////z//v/9/////P////7////+/////v////7////+/////v////7////+/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_dl1lr")
+
+[node name="SeawallsDiagonalInner" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.65, 0)
+shape = SubResource("BoxShape3D_rp5wv")
+
+[node name="seawall-diagonal" type="MeshInstance3D" parent="."]
+mesh = SubResource("ArrayMesh_v8ivb")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("1_cdyuu")

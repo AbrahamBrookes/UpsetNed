@@ -48,7 +48,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_ri767")
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-theme_override_constants/separation = 35
+theme_override_constants/separation = -20
 
 [node name="COMBAT" type="TextureRect" parent="Base/VBoxContainer"]
 layout_mode = 2

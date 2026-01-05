@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=4 uid="uid://0u0k17xj5d60"]
+
+[ext_resource type="Material" uid="uid://df3aopaqbo4bc" path="res://Art/Textures/Road/Road.material" id="1_cauu5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_68286"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_4tfwn"]
+_surfaces = [{
+"aabb": AABB(-1, 0, -1, 2, 0.049999997, 2),
+"format": 34359742465,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAABAAMABAAFAAEABgAFAAQABgAEAAcACAAGAAcACAAJAAYA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 10,
+"vertex_data": PackedByteArray("AACAPwAAAAAAAIA/AACAP8zMTD0AAIC/AACAPwAAAAAAAIC/AACAP8zMTD0AAIA/ZmZmP8zMTD0AAIA/ZmZmP8zMTD0AAIC/ZmZmPwAAAAAAAIC/ZmZmPwAAAAAAAIA/AACAvwAAAAAAAIA/AACAvwAAAAAAAIC/")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_6v3ow"]
+resource_name = "Curbside_Plane"
+_surfaces = [{
+"aabb": AABB(-1, 0, -1, 2, 0.049999997, 2),
+"attribute_data": PackedByteArray("AAAAAAAAgD8AAAAAAACAPwAAAAAAAIA/AAAAAAAAgD8zM3M/AAAAADMzcz8AAIA/MzNzPwAAgD8zM3M/AAAAAAAAAAAAAIA/MzNzPwAAAAAzM3M/AACAPwAAAAAAAAAAMzNzPwAAgD8AAIA/AAAAAAAAgD8AAIA/MzNzPwAAAAA="),
+"format": 34359742487,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0A"),
+"material": SubResource("StandardMaterial3D_68286"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("AACAPwAAAAAAAIA/AACAP8zMTD0AAIC/AACAPwAAAAAAAIC/AACAP8zMTD0AAIA/ZmZmPwAAAAAAAIC/ZmZmP8zMTD0AAIA/ZmZmPwAAAAAAAIA/ZmZmP8zMTD0AAIC/AACAvwAAAAAAAIA/ZmZmPwAAAAAAAIC/ZmZmPwAAAAAAAIA/AACAvwAAAAAAAIC/ZmZmP8zMTD0AAIA/AACAP8zMTD0AAIC/AACAP8zMTD0AAIA/ZmZmP8zMTD0AAIC/////f////7////9/////v////3////+/////f////78AAP9/////vwAA/3////+/AAD/f////78AAP9/////v/9///////+//3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//3///////78=")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_4tfwn")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tf1hb"]
+size = Vector3(2, 0.1, 2)
+
+[sub_resource type="BoxOccluder3D" id="BoxOccluder3D_3wkgo"]
+size = Vector3(2, 0.1, 2)
+
+[node name="Curbside" type="StaticBody3D"]
+
+[node name="curb-straight" type="MeshInstance3D" parent="."]
+material_override = ExtResource("1_cauu5")
+mesh = SubResource("ArrayMesh_6v3ow")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.050000004, 0)
+shape = SubResource("BoxShape3D_tf1hb")
+
+[node name="OccluderInstance3D" type="OccluderInstance3D" parent="."]
+occluder = SubResource("BoxOccluder3D_3wkgo")

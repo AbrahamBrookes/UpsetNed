@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=4 uid="uid://c3ca4gthrxqif"]
+
+[ext_resource type="Material" uid="uid://df3aopaqbo4bc" path="res://Art/Textures/Road/Road.material" id="1_grysq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5hjc7"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_6t84v"]
+_surfaces = [{
+"aabb": AABB(-1, 0, -1, 2, 0.049999997, 2),
+"format": 34359742465,
+"index_count": 60,
+"index_data": PackedByteArray("AAABAAIAAQADAAIAAQAEAAMAAgADAAUABAABAAYAAgAFAAcAAAACAAcACAAHAAUACAAJAAcAAAAHAAkACQAIAAoAAAAJAAoAAAAKAAsAAAAMAAEADAAGAAEACwAMAAAADAANAAYADQAMAA4ACwAOAAwADgALAA8A"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("ZmZmPwAAAADIdnE/ZmZmPwAAAAAEVls/yHZxPwAAAABmZmY/AACAPwAAAABmZmY/AACAPwAAAAAAAIC/AACAP8zMTD1mZmY/ZmZmPwAAAAAAAIC/yHZxP8zMTD1mZmY/AACAP8zMTD0AAIA/ZmZmP8zMTD3IdnE/ZmZmP8zMTD0AAIA/ZmZmPwAAAAAAAIA/BFZbPwAAAABmZmY/AACAvwAAAAAAAIC/AACAvwAAAABmZmY/AACAvwAAAAAAAIA/")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_r4cai"]
+resource_name = "Curbside_Plane_001"
+_surfaces = [{
+"aabb": AABB(-1, 0, -1, 2, 0.049999997, 2),
+"attribute_data": PackedByteArray("NDNzP2S7eD8zM3M/AqttP3peJD9YWXc/AAAAAAAAgD8AAAAAAACAPzMzcz8AAAAAAqttPzMzcz8AAAAAAAAAADMzcz8AAIA/AAAAADMzcz8AAAAAAACAPzQzcz9ku3g/ZLt4PzMzcz8zM3M/ZLt4P3peJD9YWXc/AACAPwAAgD8zM3M/ZLt4P2S7eD8zM3M/MzNzPwAAgD8AAIA/MzNzP3peJD9YWXc/AACAPzMzcz9ku3g/MzNzPwAAAAAAAIA/NDNzP2S7eD8zM3M/AACAPzMzcz8AAIA/MzNzP2S7eD8="),
+"format": 34359742487,
+"index_count": 60,
+"index_data": PackedByteArray("AAABAAIAAQADAAIAAQAEAAMABAABAAUAAAAGAAEABgAFAAEABgAHAAUACAAGAAAABwAGAAkACAAJAAYACQAIAAoACwAMAA0ACwAOAAwADwAQABEAEAAPABIADwARABMAFAAVABYAFAAXABUAGAAZABoAGAAbABkA"),
+"material": SubResource("StandardMaterial3D_5hjc7"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 28,
+"vertex_data": PackedByteArray("ZmZmPwAAAADIdnE/ZmZmPwAAAAAEVls/yHZxPwAAAABmZmY/AACAPwAAAABmZmY/AACAPwAAAAAAAIC/ZmZmPwAAAAAAAIC/BFZbPwAAAABmZmY/AACAvwAAAAAAAIC/ZmZmPwAAAAAAAIA/AACAvwAAAABmZmY/AACAvwAAAAAAAIA/ZmZmPwAAAADIdnE/yHZxP8zMTD1mZmY/ZmZmP8zMTD3IdnE/yHZxPwAAAABmZmY/AACAP8zMTD0AAIA/ZmZmP8zMTD3IdnE/yHZxP8zMTD1mZmY/ZmZmP8zMTD0AAIA/AACAP8zMTD1mZmY/yHZxPwAAAABmZmY/AACAP8zMTD1mZmY/yHZxP8zMTD1mZmY/AACAPwAAAABmZmY/ZmZmPwAAAADIdnE/ZmZmP8zMTD0AAIA/ZmZmPwAAAAAAAIA/ZmZmP8zMTD3IdnE//3///////7//f///////v/9////ISf8//3///w9X/z//f///53n/P/9///////+//3///////7//f///////v/9///////+//3///////7//f///////vwAA/79YSlfKAAD/v1hKV8oAAP+//3/+fwAA/79YSlfK/3///////7//f///////v/9///////+//3///////7//f///////v/////9K5iUz/////4biQzH/////////P/////890B8oAAD/f/9//n8AAP9//3/+fwAA/3////+/AAD/f/9//n8=")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_6t84v")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tf1hb"]
+size = Vector3(2, 0.1, 2)
+
+[sub_resource type="BoxOccluder3D" id="BoxOccluder3D_yq2vj"]
+size = Vector3(2, 0.1, 2)
+
+[node name="Curbside" type="StaticBody3D"]
+
+[node name="curb-corner-inner" type="MeshInstance3D" parent="."]
+material_override = ExtResource("1_grysq")
+mesh = SubResource("ArrayMesh_r4cai")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.050000004, 0)
+shape = SubResource("BoxShape3D_tf1hb")
+
+[node name="OccluderInstance3D" type="OccluderInstance3D" parent="."]
+occluder = SubResource("BoxOccluder3D_yq2vj")
