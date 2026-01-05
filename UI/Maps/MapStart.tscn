@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://c5esd73ws02te"]
+[gd_scene load_steps=7 format=3 uid="uid://c5esd73ws02te"]
 
 [ext_resource type="Script" uid="uid://b03c1tiqa2t0d" path="res://UI/Maps/MapStartScreen.gd" id="1_l6pvi"]
+[ext_resource type="PackedScene" uid="uid://dr2gf0wqcofcd" path="res://UI/Maps/PlayerSelect/Viewports/HammerSmithard.tscn" id="2_iwwkg"]
+[ext_resource type="PackedScene" uid="uid://d3flgbdq32jid" path="res://UI/Maps/PlayerSelect/Viewports/BazookaJenkins.tscn" id="3_wfnno"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qib3b"]
 content_margin_left = 0.0
@@ -13,6 +15,12 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_wfnno"]
+viewport_path = NodePath("Control/MarginContainer/HBoxContainer/VBoxContainer/GridContainer/HammerSmithard/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_n7g00"]
+viewport_path = NodePath("Control/MarginContainer/HBoxContainer/VBoxContainer/GridContainer/BazookaJenkins/SubViewport")
 
 [node name="MapStartScreen" type="Control"]
 layout_mode = 3
@@ -55,4 +63,58 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Spawn In"
 
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GridContainer" type="GridContainer" parent="Control/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HammerSmithard" type="TextureButton" parent="Control/MarginContainer/HBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture_normal = SubResource("ViewportTexture_wfnno")
+stretch_mode = 5
+
+[node name="SubViewport" type="SubViewport" parent="Control/MarginContainer/HBoxContainer/VBoxContainer/GridContainer/HammerSmithard"]
+own_world_3d = true
+transparent_bg = true
+size = Vector2i(128, 128)
+size_2d_override_stretch = true
+
+[node name="HammerSmithard" parent="Control/MarginContainer/HBoxContainer/VBoxContainer/GridContainer/HammerSmithard/SubViewport" instance=ExtResource("2_iwwkg")]
+
+[node name="BazookaJenkins" type="TextureButton" parent="Control/MarginContainer/HBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture_normal = SubResource("ViewportTexture_n7g00")
+stretch_mode = 5
+
+[node name="SubViewport" type="SubViewport" parent="Control/MarginContainer/HBoxContainer/VBoxContainer/GridContainer/BazookaJenkins"]
+own_world_3d = true
+transparent_bg = true
+size = Vector2i(128, 128)
+
+[node name="HammerSmithard" parent="Control/MarginContainer/HBoxContainer/VBoxContainer/GridContainer/BazookaJenkins/SubViewport" instance=ExtResource("3_wfnno")]
+
 [connection signal="pressed" from="Control/Panel/SpawnButton" to="." method="_on_spawn_button_pressed"]
+
+[editable path="Control/MarginContainer/HBoxContainer/VBoxContainer/GridContainer/HammerSmithard/SubViewport/HammerSmithard"]
