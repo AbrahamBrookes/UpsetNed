@@ -11,27 +11,20 @@ func Enter(_extra_data = null):
 	if state_machine.click_shoot:
 		state_machine.click_shoot.sliding = false
 	
-func Physics_Update(delta: float):
+func Physics_Update(_delta: float):
 	# Handle horizontal movement while jumping
-	var input_direction = Vector2(
-		Input.get_action_strength("run_l") - Input.get_action_strength("run_r"),
-		Input.get_action_strength("run_f") - Input.get_action_strength("run_b")
-	)
+	var input_direction = state_machine.input.current_input.move
 	var horizontal_input = Vector3(input_direction.x, 0.0, input_direction.y)
 	var world_direction = player_character.global_transform.basis * horizontal_input
 	
-	player_character.velocity.x = world_direction.x * move_speed
-	player_character.velocity.z = world_direction.z * move_speed
-
-	# Apply gravity
-	var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-	player_character.velocity.y -= gravity * delta
+	intent.desired_velocity.x = world_direction.x * move_speed
+	intent.desired_velocity.y = state_machine.locomotor.velocity.y
+	intent.desired_velocity.z = world_direction.z * move_speed
 	
 	# Update animation blend position
-	state_machine.anim_tree.set("parameters/Locomotion/Jumping/blend_position", player_character.velocity.y)
+	state_machine.anim_tree.set("parameters/Locomotion/Jumping/blend_position", intent.desired_velocity.y)
+
+	state_machine.set_movement_intent(intent)
 	
-	player_character.move_and_slide()
-	
-	# Check if landed (only after moving)
-	if player_character.is_on_floor() and player_character.velocity.y <= 0.0:
-		state_machine.TransitionTo("Locomote")
+func landed() -> void:
+	state_machine.TransitionTo("Locomote")

@@ -1,0 +1,93 @@
+[gd_scene load_steps=7 format=3 uid="uid://40olympb8hvr"]
+
+[ext_resource type="Script" uid="uid://71ehsww8opp5" path="res://UI/MainMenu/MainMenu.gd" id="1_4elqj"]
+[ext_resource type="Texture2D" uid="uid://3yi4kj1qkoq3" path="res://UI/combat.png" id="1_8x0bb"]
+[ext_resource type="Texture2D" uid="uid://wxyss8rwwjg6" path="res://UI/status.png" id="2_nahvw"]
+[ext_resource type="Texture2D" uid="uid://brl18eawmetj8" path="res://UI/limbo.png" id="3_4elqj"]
+[ext_resource type="FontFile" uid="uid://dc8wd1k4rm0t3" path="res://UI/Fonts/Orbitron-Medium.ttf" id="4_nahvw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ri767"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4elqj")
+
+[node name="Base" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Base"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ri767")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Base"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 35
+
+[node name="COMBAT" type="TextureRect" parent="Base/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_8x0bb")
+stretch_mode = 4
+
+[node name="STATUS" type="TextureRect" parent="Base/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("2_nahvw")
+stretch_mode = 4
+
+[node name="LIMBO" type="TextureRect" parent="Base/VBoxContainer"]
+custom_minimum_size = Vector2(1100, 900)
+layout_mode = 2
+texture = ExtResource("3_4elqj")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="Base"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.82000005
+anchor_right = 1.0
+anchor_bottom = 0.23
+offset_left = 86.359924
+offset_bottom = -38.04001
+grow_horizontal = 0
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="PlayButton" type="Button" parent="Base/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("4_nahvw")
+theme_override_font_sizes/font_size = 48
+text = "Play"
+
+[connection signal="pressed" from="Base/MarginContainer/PlayButton" to="." method="_on_play_button_pressed"]

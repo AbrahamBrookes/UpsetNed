@@ -13,46 +13,32 @@ func Physics_Update(_delta: float):
 	# if the previous state was jumping and the player is holding squat
 	# and we have lateral velocity, go to sliding
 	if state_machine.previous_state and state_machine.previous_state.name == "Jumping":
-		if Input.is_action_pressed("squat"):
-			var horizontal_velocity = Vector3(player_character.velocity.x, 0.0, player_character.velocity.z)
+		if state_machine.input.current_input.squat:
+			var horizontal_velocity = Vector3(
+				state_machine.locomotor.velocity.x,
+				0.0,
+				state_machine.locomotor.velocity.z
+			)
+			
 			if horizontal_velocity.length() > 0.1:
-				state_machine.TransitionTo("Sliding")
+				slide()
 				return
-				
-	# if the player presses squat, squat
-	if Input.is_action_just_pressed("squat"):
-		state_machine.TransitionTo("Squatting")
-		return
-		
-	# if the player presses jump, jump
-	if Input.is_action_just_pressed("jump"):
-		state_machine.TransitionTo("Jumping")
-		return
-		
-	# if the player presses dive, dive
-	if Input.is_action_just_pressed("dive"):
-		state_machine.TransitionTo("Diving")
-		return
 	
-	if not player_character.is_on_floor():
+	if not state_machine.locomotor.grounded:
 		state_machine.TransitionTo("Falling")
 		return
 
-
 	# Get input
-	var input_direction = Vector2(
-		Input.get_action_strength("run_l") - Input.get_action_strength("run_r"),
-		Input.get_action_strength("run_f") - Input.get_action_strength("run_b")
-	)
+	var input_direction = state_machine.input.current_input.move
 	
-	# only rotate the mesh whn we're moving
+	# only rotate the mesh when we're moving
+	var mesh_rotation = mesh.global_transform.basis.get_euler()
 	if input_direction != Vector2.ZERO:
 		# in this state we want to rotate the mesh to the camera direction
 		# copy the rotation of the camera pivot to the mesh, but only the y axis
 		var camera_rotation = player_character.mouselook.camera_pivot.global_transform.basis.get_euler()
-		var mesh_rotation = mesh.global_transform.basis.get_euler()
 		mesh_rotation.y = camera_rotation.y
-		mesh.rotation = mesh_rotation
+	intent.desired_rotation = mesh_rotation
 
 	# Update animation
 	state_machine.anim_tree.set("parameters/Locomotion/Locomote/blend_position", input_direction)
@@ -65,6 +51,24 @@ func Physics_Update(_delta: float):
 	world_direction.z = world_direction.z * move_speed
 
 	# transform the velocity to be facing from the mesh, as it has ben rotated
-	player_character.velocity = mesh.global_transform.basis * world_direction
+	intent.desired_velocity = mesh.global_transform.basis * world_direction
 
-	player_character.move_and_slide()
+	state_machine.set_movement_intent(intent)
+
+# define the actions we can do from this state into other states
+
+# if the player presses jump, jump
+func jump(_data = null):
+	state_machine.TransitionTo("Jumping")
+	
+# if the player presses dive, dive
+func dive(_data = null):
+	state_machine.TransitionTo("Diving")
+	
+# if the player presses slide, slide
+func slide(_data = null):
+	state_machine.TransitionTo("Sliding")
+	
+# if the player presses squat, squat
+func squat(_data = null):
+	state_machine.TransitionTo("Squatting")

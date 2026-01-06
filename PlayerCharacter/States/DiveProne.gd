@@ -10,10 +10,6 @@ func Enter(_extra_data = null):
 	
 func Physics_Update(_delta: float):
 	# if the player isn't holding dive, back to locomote
-	if not Input.is_action_pressed("dive"):
+	if not state_machine.input.current_input.stunt:
 		state_machine.TransitionTo("Locomote")
-		return
-	
-	if not player_character.is_on_floor():
-		state_machine.TransitionTo("Falling")
 		return

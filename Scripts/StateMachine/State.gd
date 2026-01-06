@@ -15,17 +15,22 @@ var animation_override: String = ""
 # the state machine is always the immediate parent of the state it is managing
 var state_machine : StateMachine
 
+## since we may affect movement in the enter and the update we need a class
+## property that is an intent so we can reuse it
+var intent: MovementIntent = MovementIntent.new()
+
 func Enter(_extra_data = null):
 	pass
-
 
 func Exit():
 	pass
 
-
 func Update(_delta: float):
 	pass
 
-
 func Physics_Update(_delta: float):
-	pass 
+	pass
+
+# almost all states will use this, they can override it to react
+func landed() -> void:
+	pass
