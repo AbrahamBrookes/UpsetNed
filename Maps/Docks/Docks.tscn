@@ -68,15 +68,15 @@ orientation = 1
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lip8n"]
 render_priority = 0
 shader = ExtResource("30_cro12")
-shader_parameter/water_color = Color(0.1, 0.35, 0.55, 1)
+shader_parameter/water_color = Color(0.0784, 0.12767999, 0.14, 1)
 shader_parameter/foam_color = Color(0.9, 0.95, 1, 1)
-shader_parameter/wave_height = 0.2
-shader_parameter/wave_speed = 1.2
-shader_parameter/wave_scale = 0.8
-shader_parameter/foam_depth = 0.6
-shader_parameter/foam_strength = 0.83
+shader_parameter/wave_height = 0.06
+shader_parameter/wave_speed = 0.7
+shader_parameter/wave_scale = 0.4
+shader_parameter/foam_width = 0.12
 shader_parameter/foam_noise_scale = 8.0
-shader_parameter/foam_noise_speed = 0.78
+shader_parameter/foam_noise_speed = 0.4
+shader_parameter/foam_strength = 1.0
 
 [node name="Docks" type="Node3D" node_paths=PackedStringArray("spawn_points", "map_start_screen")]
 script = ExtResource("1_ktmrb")
