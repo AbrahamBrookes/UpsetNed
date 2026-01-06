@@ -31,9 +31,15 @@ var players: Dictionary[int, DeterministicPlayerCharacter] = {}
 ## a reference to the server input handler child node
 @export var input_handler: ServerInputHandler
 
+## the letterboxing and vignette layer we show in game
+@export var in_game_ui: CanvasLayer
+
 ## On ready we need to inject ourselves into the network singleton
 func _ready() -> void:
 	Network.server = self
+	
+	## hide in game UI initially
+	#in_game_ui.visible = false
 
 ## when a player connects we need to tell them to load the map we have loaded
 func peer_connected(id: int) -> void:
@@ -82,6 +88,9 @@ func spawn_player(peer_id: int):
 
 	# add to our lookup table
 	players[peer_id] = player
+	
+	## show in game UI
+	in_game_ui.visible = true
 
 ### when we receive an input packet from a client we need to apply that packet to
 ### the player character we are simulating on the server

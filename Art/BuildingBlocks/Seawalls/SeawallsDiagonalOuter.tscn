@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=4 uid="uid://ccx2afonnkg4m"]
+
+[ext_resource type="Material" uid="uid://8ipottkcjypj" path="res://Art/atlas.material" id="1_ptw0r"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nrjeo"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_q4rd7"]
+_surfaces = [{
+"aabb": AABB(-1, -5.3, -1, 2, 5.3, 2),
+"format": 34359742465,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAADAAEAAgABAAQAAgAEAAUABQAEAAYABQAGAAcACAAJAAoACAALAAkACwAMAAkACwANAAwADQAOAAwADQAPAA4A"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("AACAvwAAAAAAAIA/AACAP5qZmb4AAIC/AACAv5qZmb4AAIA/AACAPwAAAAAAAIC/zMxMP5+Zmb79/3+/AACAv5qZmb7OzEw/zMxMP5qZqcD9/3+/AACAv5qZqcDOzEw/MsgEvpqZmb6i25W9N39xvZqZqcAwWyG7MsgEvpqZqcCi25W9N39xvZqZmb4wWyG7ZIlAPJqZqcCi25W9ZIlAPJqZmb6i25W9J39xvZqZqcAxVhO+J39xvZqZmb4xVhO+")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_5svhn"]
+resource_name = "seawalls_Plane_010"
+_surfaces = [{
+"aabb": AABB(-1, -5.3, -1, 2, 5.3, 2),
+"attribute_data": PackedByteArray("SoAfPQDrPztKgB89AGUfPEqAHz0AZR88SoAfPQDrPztKgB89AGUfPEqAHz2YCfw9SoAfPZgJ/D1KgB89wGQfPEqAHz0AZR88SoAfPcBkHzxKgB89AGUfPEqAHz0AZR88lQC7PABlHzyVALs8mAn8PZUAuzyYCfw9lQC7PABlHzyVALs8AGUfPJUAuzyYCfw9lQC7PJgJ/D2VALs8AGUfPJUAuzwAZR88lQC7PJgJ/D2VALs8mAn8PZUAuzwAZR88"),
+"format": 34359742487,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUA"),
+"material": SubResource("StandardMaterial3D_nrjeo"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AACAvwAAAAAAAIA/AACAP5qZmb4AAIC/AACAv5qZmb4AAIA/AACAPwAAAAAAAIC/AACAv5qZmb7OzEw/zMxMP5qZqcD9/3+/AACAv5qZqcDOzEw/zMxMP5+Zmb79/3+/AACAv5qZmb4AAIA/zMxMP5+Zmb79/3+/AACAv5qZmb7OzEw/AACAP5qZmb4AAIC/MsgEvpqZmb6i25W9N39xvZqZqcAwWyG7MsgEvpqZqcCi25W9N39xvZqZmb4wWyG7N39xvZqZmb4wWyG7ZIlAPJqZqcCi25W9N39xvZqZqcAwWyG7ZIlAPJqZmb6i25W9ZIlAPJqZmb6i25W9J39xvZqZqcAxVhO+ZIlAPJqZqcCi25W9J39xvZqZmb4xVhO+/7//f////z//v/9/////P/+//3////8//7//f////z//v/9/////P/+//3////8//7//f////z//v/9/////P/9/AAD///+//38AAP///7//fwAA////v/9/AAD///+//z//f////z//P/9/////P/8//3////8//z//f////z//v/9/////P/+//3////8//7//f////z//v/9/////P////7////+/////v////7////+/////v////7////+/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_q4rd7")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rp5wv"]
+size = Vector3(2, 5.3, 2)
+
+[node name="SeawallsStraight" type="StaticBody3D"]
+
+[node name="seawall-diagonal-outer" type="MeshInstance3D" parent="."]
+mesh = SubResource("ArrayMesh_5svhn")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("1_ptw0r")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.65, 0)
+shape = SubResource("BoxShape3D_rp5wv")

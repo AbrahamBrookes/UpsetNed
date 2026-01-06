@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dicjysv3q25lh"]
+
+[ext_resource type="Script" uid="uid://d17spaxidwmpj" path="res://Art/Props/tintable_prop.gd" id="1_74xf4"]
+
+[node name="TintableProp" type="Node3D"]
+script = ExtResource("1_74xf4")

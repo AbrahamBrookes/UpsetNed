@@ -1,4 +1,4 @@
-[gd_scene load_steps=118 format=3 uid="uid://dnngs3f0x460f"]
+[gd_scene load_steps=119 format=3 uid="uid://dnngs3f0x460f"]
 
 [ext_resource type="Script" uid="uid://7islvmlck2q0" path="res://PlayerCharacter/PlayerCharacter.gd" id="1_pult7"]
 [ext_resource type="Script" uid="uid://bt5sy4tn4uif6" path="res://Components/Player/ClickShoot/ClickShoot.gd" id="2_hs44b"]
@@ -377,7 +377,6 @@ blend_mode = 1
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_i84k0"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_0nfi7"]
-graph_offset = Vector2(-1082, 204)
 nodes/output/position = Vector2(1080, 140)
 nodes/Locomotion/node = SubResource("AnimationNodeStateMachine_hs44b")
 nodes/Locomotion/position = Vector2(-880, 140)
@@ -401,13 +400,19 @@ nodes/SlidingAimRHandBlend/node = SubResource("AnimationNodeBlend2_l6drw")
 nodes/SlidingAimRHandBlend/position = Vector2(60, 100)
 node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"SlidingAimLHandBlend", &"StandingAimLHandBlend", 0, &"Locomotion", &"StandingAimLHandBlend", 1, &"StandingAimLHandBlendSpace", &"StandingAimRHandBlend", 0, &"StandingAimLHandBlend", &"StandingAimRHandBlend", 1, &"StandingAimRHandBlendSpace", &"SlidingAimLHandBlend", 0, &"SlidingAimRHandBlend", &"SlidingAimLHandBlend", 1, &"SlidingAimLHandBlendSpace", &"SlidingAimRHandBlend", 0, &"StandingAimRHandBlend", &"SlidingAimRHandBlend", 1, &"SlidingAimRHandBlendSpace"]
 
+[sub_resource type="CylinderMesh" id="CylinderMesh_jj1e1"]
+top_radius = 0.05
+bottom_radius = 0.05
+height = 0.5
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jglra"]
 radius = 0.19140625
 height = 0.991333
 
-[sub_resource type="SphereMesh" id="SphereMesh_jj1e1"]
-
 [sub_resource type="Theme" id="Theme_7qrv0"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_u4e74"]
+radius = 0.3
 
 [node name="PlayerCharacter" type="CharacterBody3D" node_paths=PackedStringArray("mesh", "anim_tree", "state_machine", "camera", "mouselook", "ui_healthbar", "input_synchronizer")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
@@ -533,6 +538,11 @@ parameters/SlidingAimRHandBlend/blend_amount = 0.0
 transform = Transform3D(1, 8.742278e-08, 8.742278e-08, -8.742278e-08, -4.371139e-08, 1, 8.742278e-08, -1, -4.371138e-08, 0, 0.39741734, 0)
 target_position = Vector3(0, -0.5, 0)
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Upset Ned"]
+transform = Transform3D(1, -8.742278e-08, 8.742278e-08, 8.742278e-08, -4.371139e-08, -1, 8.742278e-08, 1, -4.371138e-08, -2.1251427e-08, 0.4, 0.24308799)
+visible = false
+mesh = SubResource("CylinderMesh_jj1e1")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5043335, 0)
 shape = SubResource("CapsuleShape3D_jglra")
@@ -575,10 +585,11 @@ metadata/_custom_type_script = "uid://bjmyb3rnkdsof"
 script = ExtResource("9_5vfnn")
 metadata/_custom_type_script = "uid://bjmyb3rnkdsof"
 
-[node name="Diving" type="Node3D" parent="StateMachine" node_paths=PackedStringArray("mesh")]
+[node name="Diving" type="Node3D" parent="StateMachine" node_paths=PackedStringArray("mesh", "wall_flip_ray")]
 script = ExtResource("11_6mx01")
 jump_velocity = 4.0
 mesh = NodePath("../../Upset Ned")
+wall_flip_ray = NodePath("../../Upset Ned/WallFlipRay")
 metadata/_custom_type_script = "uid://bjmyb3rnkdsof"
 
 [node name="DiveSlide" type="Node3D" parent="StateMachine" node_paths=PackedStringArray("mesh")]
@@ -599,10 +610,6 @@ metadata/_custom_type_script = "uid://bjmyb3rnkdsof"
 [node name="Camera3D" type="Camera3D" parent="CameraPivot"]
 transform = Transform3D(-1, 3.6968583e-08, -7.9221635e-08, 3.369474e-08, 0.9991619, 0.040933967, 8.06685e-08, 0.040933967, -0.9991619, 0, 1.2343175, -1.7668225)
 far = 200.0
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CameraPivot/Camera3D"]
-transform = Transform3D(1, -8.881784e-16, 0, -1.3322676e-15, 1, 0, 1.4210855e-14, 0, 1, 0, 0, 0)
-mesh = SubResource("SphereMesh_jj1e1")
 
 [node name="Hitscan" type="RayCast3D" parent="CameraPivot/Camera3D"]
 transform = Transform3D(1, -2.0711829e-07, 1.2602399e-07, 1.2602398e-07, -4.4703484e-08, -1, 2.0711829e-07, 1, -4.4703484e-08, 0, 0, 0)
@@ -634,6 +641,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="ShapeCast3D" type="ShapeCast3D" parent="CameraPivot"]
+shape = SubResource("SphereShape3D_u4e74")
 
 [connection signal="landed" from="." to="StateMachine" method="_on_player_character_landed"]
 [connection signal="timeout" from="ClickShoot/l_timer" to="ClickShoot" method="_on_l_timer_timeout"]

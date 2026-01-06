@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://clnk7welk5n8q"]
+
+[ext_resource type="PackedScene" uid="uid://bqbsc243c2vps" path="res://Art/Props/Docks/ship/ship.glb" id="1_mrix2"]
+[ext_resource type="Material" uid="uid://8ipottkcjypj" path="res://Art/atlas.material" id="2_61xfx"]
+
+[node name="ship" instance=ExtResource("1_mrix2")]
+
+[node name="ship" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_61xfx")

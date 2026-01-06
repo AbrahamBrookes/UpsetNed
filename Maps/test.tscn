@@ -11,12 +11,12 @@ sky_horizon_color = Color(0.4624313, 0.47057068, 0.48686016, 1)
 sky_curve = 0.5795613
 sky_energy_multiplier = 2.94
 
-[sub_resource type="Sky" id="Sky_ev8si"]
+[sub_resource type="Sky" id="Sky_ppahp"]
 sky_material = SubResource("ProceduralSkyMaterial_ppahp")
 
 [sub_resource type="Environment" id="Environment_vvd8e"]
 background_mode = 2
-sky = SubResource("Sky_ev8si")
+sky = SubResource("Sky_ppahp")
 ambient_light_source = 3
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_f67k7"]
