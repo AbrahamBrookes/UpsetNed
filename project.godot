@@ -32,7 +32,7 @@ window/stretch/mode="viewport"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gut/plugin.cfg")
+enabled=PackedStringArray("res://addons/boujie_water_shader/plugin.cfg", "res://addons/gut/plugin.cfg")
 
 [gui]
 
@@ -120,4 +120,6 @@ reload={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+lights_and_shadows/directional_shadow/16_bits=false
+anti_aliasing/quality/msaa_3d=2
 occlusion_culling/use_occlusion_culling=true

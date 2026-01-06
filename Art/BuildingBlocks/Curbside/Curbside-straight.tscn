@@ -1,38 +1,58 @@
-[gd_scene load_steps=7 format=4 uid="uid://0u0k17xj5d60"]
+[gd_scene load_steps=8 format=4 uid="uid://0u0k17xj5d60"]
 
-[ext_resource type="Material" uid="uid://df3aopaqbo4bc" path="res://Art/Textures/Road/Road.material" id="1_cauu5"]
+[ext_resource type="Material" uid="uid://8ipottkcjypj" path="res://Art/atlas.material" id="1_cauu5"]
+[ext_resource type="Script" uid="uid://d17spaxidwmpj" path="res://Art/Props/tintable_prop.gd" id="1_kjckv"]
+[ext_resource type="Material" uid="uid://df3aopaqbo4bc" path="res://Art/Textures/Road/Road.material" id="3_rn1lu"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_68286"]
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_4tfwn"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_r4cai"]
 _surfaces = [{
-"aabb": AABB(-1, 0, -1, 2, 0.049999997, 2),
+"aabb": AABB(0.9, 0, -1, 0.100000024, 0.049999997, 2),
 "format": 34359742465,
-"index_count": 24,
-"index_data": PackedByteArray("AAABAAIAAAADAAEABAABAAMABAAFAAEABgAFAAQABgAEAAcACAAGAAcACAAJAAYA"),
+"index_count": 18,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAABAAMABAAFAAEABgAFAAQABgAEAAcA"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 10,
-"vertex_data": PackedByteArray("AACAPwAAAAAAAIA/AACAP8zMTD0AAIC/AACAPwAAAAAAAIC/AACAP8zMTD0AAIA/ZmZmP8zMTD0AAIA/ZmZmP8zMTD0AAIC/ZmZmPwAAAAAAAIC/ZmZmPwAAAAAAAIA/AACAvwAAAAAAAIA/AACAvwAAAAAAAIC/")
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AACAPwAAAAAAAIA/AACAP8zMTD0AAIC/AACAPwAAAAAAAIC/AACAP8zMTD0AAIA/ZmZmP8zMTD0AAIA/ZmZmP8zMTD0AAIC/ZmZmPwAAAAAAAIC/ZmZmPwAAAAAAAIA/")
+}, {
+"aabb": AABB(-1, 0, -1, 1.9, 1e-05, 2),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAAP//AAD//wAAAAAAAP//AAD//wAAAAAAAAAAAAA=")
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_6v3ow"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_kjckv"]
 resource_name = "Curbside_Plane"
 _surfaces = [{
-"aabb": AABB(-1, 0, -1, 2, 0.049999997, 2),
-"attribute_data": PackedByteArray("AAAAAAAAgD8AAAAAAACAPwAAAAAAAIA/AAAAAAAAgD8zM3M/AAAAADMzcz8AAIA/MzNzPwAAgD8zM3M/AAAAAAAAAAAAAIA/MzNzPwAAAAAzM3M/AACAPwAAAAAAAAAAMzNzPwAAgD8AAIA/AAAAAAAAgD8AAIA/MzNzPwAAAAA="),
+"aabb": AABB(0.9, 0, -1, 0.100000024, 0.049999997, 2),
+"attribute_data": PackedByteArray("QoN+P54O7j5Cg34/ng7uPkKDfj+eDu4+QoN+P54O7j5Cg34/ng7uPkKDfj+eDu4+QoN+P54O7j5Cg34/ng7uPkKDfj+eDu4+QoN+P54O7j5Cg34/ng7uPkKDfj+eDu4+"),
 "format": 34359742487,
-"index_count": 24,
-"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0A"),
-"material": SubResource("StandardMaterial3D_68286"),
+"index_count": 18,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkA"),
+"material": ExtResource("1_cauu5"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 16,
-"vertex_data": PackedByteArray("AACAPwAAAAAAAIA/AACAP8zMTD0AAIC/AACAPwAAAAAAAIC/AACAP8zMTD0AAIA/ZmZmPwAAAAAAAIC/ZmZmP8zMTD0AAIA/ZmZmPwAAAAAAAIA/ZmZmP8zMTD0AAIC/AACAvwAAAAAAAIA/ZmZmPwAAAAAAAIC/ZmZmPwAAAAAAAIA/AACAvwAAAAAAAIC/ZmZmP8zMTD0AAIA/AACAP8zMTD0AAIC/AACAP8zMTD0AAIA/ZmZmP8zMTD0AAIC/////f////7////9/////v////3////+/////f////78AAP9/////vwAA/3////+/AAD/f////78AAP9/////v/9///////+//3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//3///////78=")
+"vertex_count": 12,
+"vertex_data": PackedByteArray("AACAPwAAAAAAAIA/AACAP8zMTD0AAIC/AACAPwAAAAAAAIC/AACAP8zMTD0AAIA/ZmZmPwAAAAAAAIC/ZmZmP8zMTD0AAIA/ZmZmPwAAAAAAAIA/ZmZmP8zMTD0AAIC/ZmZmP8zMTD0AAIA/AACAP8zMTD0AAIC/AACAP8zMTD0AAIA/ZmZmP8zMTD0AAIC/////f////7////9/////v////3////+/////f////78AAP9/////vwAA/3////+/AAD/f////78AAP9/////v/9///////+//3///////7//f///////v/9///////+/")
+}, {
+"aabb": AABB(-1, 0, -1, 1.9, 1e-05, 2),
+"attribute_data": PackedByteArray("mv0Uxpr9FMaa/RTGmv0Uxg=="),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"material": ExtResource("3_rn1lu"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAAP///7///wAAAAD/v///AAD///+/AAAAAAAA/7////9/////f////3////9/")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_4tfwn")
+shadow_mesh = SubResource("ArrayMesh_r4cai")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tf1hb"]
 size = Vector3(2, 0.1, 2)
@@ -40,11 +60,11 @@ size = Vector3(2, 0.1, 2)
 [sub_resource type="BoxOccluder3D" id="BoxOccluder3D_3wkgo"]
 size = Vector3(2, 0.1, 2)
 
-[node name="Curbside" type="StaticBody3D"]
+[node name="CurbsideStraight" type="StaticBody3D"]
+script = ExtResource("1_kjckv")
 
-[node name="curb-straight" type="MeshInstance3D" parent="."]
-material_override = ExtResource("1_cauu5")
-mesh = SubResource("ArrayMesh_6v3ow")
+[node name="Mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("ArrayMesh_kjckv")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

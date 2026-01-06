@@ -8,7 +8,7 @@ var jump_power_left = 0.0
 
 @export var mesh: Node3D
 
-@export var wall_flip_ray: Node3D
+@export var wall_flip_ray: RayCast3D
 
 func Enter(_extra_data = null):
 	# toggle animation blend spaces for in-game pointy arms

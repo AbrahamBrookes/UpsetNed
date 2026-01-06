@@ -1,59 +1,86 @@
-[gd_scene load_steps=27 format=3 uid="uid://bm1vawluanrrm"]
+[gd_scene load_steps=37 format=3 uid="uid://bm1vawluanrrm"]
 
 [ext_resource type="Script" uid="uid://byywho2cl4sjr" path="res://Maps/Map.gd" id="1_ktmrb"]
 [ext_resource type="PackedScene" uid="uid://bwgwbw0v6yn1q" path="res://Maps/SpawnPoint.tscn" id="2_j53go"]
 [ext_resource type="PackedScene" uid="uid://c5esd73ws02te" path="res://UI/Maps/MapStart.tscn" id="2_kojqu"]
+[ext_resource type="Texture2D" uid="uid://cea73qe8jepi" path="res://Art/Stole/jettelly.com/Blue Sky Skybox Pack/clouds horizon/panorama_image.png" id="3_1uhr4"]
 [ext_resource type="PackedScene" uid="uid://c3ca4gthrxqif" path="res://Art/BuildingBlocks/Curbside/Curbside-corner-inner.tscn" id="3_kojqu"]
 [ext_resource type="PackedScene" uid="uid://0u0k17xj5d60" path="res://Art/BuildingBlocks/Curbside/Curbside-straight.tscn" id="4_ix2iv"]
 [ext_resource type="PackedScene" uid="uid://cmbikqvix0if2" path="res://Art/BuildingBlocks/Curbside/Curbside-flat.tscn" id="5_dcrem"]
 [ext_resource type="PackedScene" uid="uid://dhnttnom7v7vt" path="res://Art/BuildingBlocks/Curbside/Curbside-diagonal.tscn" id="6_au022"]
 [ext_resource type="PackedScene" uid="uid://cnkkqusqhjid" path="res://Art/BuildingBlocks/Seawalls/Seawalls-corner.tscn" id="8_gkl51"]
-[ext_resource type="PackedScene" uid="uid://cvrrl4ppmn113" path="res://Art/Props/Docks/ShippingContainer/ShippingContainer.tscn" id="8_ix2iv"]
-[ext_resource type="Texture2D" uid="uid://2udw6sym142g" path="res://Art/Props/Docks/ShippingContainer/dif.png" id="9_dcrem"]
 [ext_resource type="PackedScene" uid="uid://b4iwsc6ejkfwi" path="res://Art/BuildingBlocks/Seawalls/SeawallsDiagonalInner.tscn" id="9_g6sv0"]
 [ext_resource type="PackedScene" uid="uid://cjvew8kmalp65" path="res://Art/BuildingBlocks/Seawalls/Seawalls-straight.tscn" id="10_poso3"]
 [ext_resource type="PackedScene" uid="uid://c6rr4p8hsr7pp" path="res://Art/BuildingBlocks/Curbside/Curbside-corner-outer.tscn" id="11_poso3"]
 [ext_resource type="PackedScene" uid="uid://bgc56ywi0xyve" path="res://Art/Props/Docks/bollard_01/bollard_01.tscn" id="12_g6sv0"]
+[ext_resource type="PackedScene" uid="uid://cqh7ncee7jefg" path="res://Art/Props/Docks/ShippingContainer/ShippingContainerMedium.tscn" id="14_8khyd"]
 [ext_resource type="PackedScene" uid="uid://ccx2afonnkg4m" path="res://Art/BuildingBlocks/Seawalls/SeawallsDiagonalOuter.tscn" id="14_fblgb"]
 [ext_resource type="PackedScene" uid="uid://77ymv36nxw0e" path="res://Art/Props/Docks/ShippingContainer/ShippingContainerLong.tscn" id="16_8jmw5"]
 [ext_resource type="PackedScene" uid="uid://d0gy30jahmhpm" path="res://Art/Props/Docks/ShippingContainer/ShippingContainerShort.tscn" id="16_8khyd"]
-[ext_resource type="PackedScene" uid="uid://jb0xrx0ktl33" path="res://Art/Props/Docks/ship/ship.tscn" id="20_q1vmm"]
+[ext_resource type="PackedScene" uid="uid://dsyk2dd5yrr3n" path="res://Art/Props/Docks/barrel_plastic_01/barrel_plastic_01.tscn" id="16_vsx47"]
+[ext_resource type="PackedScene" uid="uid://clnk7welk5n8q" path="res://Art/Props/Docks/ship/ship_i.tscn" id="18_vsx47"]
+[ext_resource type="PackedScene" uid="uid://cwuq5f7wbiq1h" path="res://Art/Props/Docks/streetlight_01/streetlight_01.tscn" id="19_85nx3"]
+[ext_resource type="PackedScene" uid="uid://cfyf7yawitv4e" path="res://Art/Props/Docks/Forklift/Forklift.tscn" id="20_q1vmm"]
+[ext_resource type="PackedScene" uid="uid://c5ht2vrt50tws" path="res://Art/Props/Docks/loaded_pallet_01/loaded_pallet_01.tscn" id="21_7ahgg"]
+[ext_resource type="PackedScene" uid="uid://bkevqu3iretnc" path="res://Art/Props/Docks/pallet_stack/pallet_stack_mix_1.tscn" id="22_28evx"]
+[ext_resource type="PackedScene" uid="uid://m3s1yvd5gjtb" path="res://Art/Props/Docks/pallet_stack/pallet_stack_mix_2.tscn" id="23_xe2d4"]
+[ext_resource type="PackedScene" uid="uid://jyacr86805g5" path="res://Art/Props/Docks/pallet_stack/pallet_stack_tint.tscn" id="24_eujs5"]
+[ext_resource type="PackedScene" uid="uid://cra6mn3n8iqag" path="res://Art/Props/Docks/pallet_stack/pallet_stack_wood.tscn" id="25_os1tm"]
+[ext_resource type="PackedScene" uid="uid://bkd7eyjuf0xph" path="res://Art/Props/Docks/trash/trash_boxes_01.tscn" id="26_os1tm"]
+[ext_resource type="PackedScene" uid="uid://cme35tvv7eqlv" path="res://Art/Props/Docks/trash/trash_boxes_02.tscn" id="27_1uhr4"]
+[ext_resource type="PackedScene" uid="uid://o5gmvg67ojao" path="res://Art/Props/Docks/trash/trash_boxes_03.tscn" id="28_cro12"]
+[ext_resource type="Shader" uid="uid://dy7nf2mv83lid" path="res://Maps/Docks/DocksWater.gdshader" id="30_cro12"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gkl51"]
-sky_top_color = Color(0.51179624, 0.8371962, 0.9880919, 1)
-sky_horizon_color = Color(0.4624313, 0.47057068, 0.48686016, 1)
-sky_curve = 0.5795613
-sky_energy_multiplier = 2.94
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_cro12"]
+panorama = ExtResource("3_1uhr4")
 
 [sub_resource type="Sky" id="Sky_ev8si"]
-sky_material = SubResource("ProceduralSkyMaterial_gkl51")
+sky_material = SubResource("PanoramaSkyMaterial_cro12")
 
 [sub_resource type="Environment" id="Environment_g6sv0"]
 background_mode = 2
 sky = SubResource("Sky_ev8si")
-ambient_light_source = 3
+ambient_light_source = 2
+ambient_light_color = Color(0.55, 0.6, 0.65, 1)
+ambient_light_energy = 1.25
+tonemap_mode = 3
+tonemap_exposure = 0.75
+tonemap_white = 1.1
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.7, 0.78, 0.85, 1)
+fog_light_energy = 1.5
+fog_density = 0.1
+fog_sky_affect = 0.0
+fog_depth_curve = 0.48296815
+fog_depth_end = 200.0
+adjustment_contrast = 1.05
+adjustment_saturation = 0.8
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_poso3"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8jmw5"]
-albedo_color = Color(0.0666666, 0, 1, 1)
-albedo_texture = ExtResource("9_dcrem")
+[sub_resource type="QuadMesh" id="QuadMesh_lgg11"]
+size = Vector2(250, 250)
+subdivide_width = 250
+subdivide_depth = 250
+orientation = 1
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fblgb"]
-albedo_color = Color(0, 0.10000014, 1, 1)
-albedo_texture = ExtResource("9_dcrem")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8khyd"]
-albedo_color = Color(1, 0.8000001, 0, 1)
-albedo_texture = ExtResource("9_dcrem")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vsx47"]
-albedo_color = Color(0, 0.86, 0.15766673, 1)
-albedo_texture = ExtResource("9_dcrem")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lip8n"]
+render_priority = 0
+shader = ExtResource("30_cro12")
+shader_parameter/water_color = Color(0.1, 0.35, 0.55, 1)
+shader_parameter/foam_color = Color(0.9, 0.95, 1, 1)
+shader_parameter/wave_height = 0.2
+shader_parameter/wave_speed = 1.2
+shader_parameter/wave_scale = 0.8
+shader_parameter/foam_depth = 0.6
+shader_parameter/foam_strength = 0.83
+shader_parameter/foam_noise_scale = 8.0
+shader_parameter/foam_noise_speed = 0.78
 
 [node name="Docks" type="Node3D" node_paths=PackedStringArray("spawn_points", "map_start_screen")]
 script = ExtResource("1_ktmrb")
-spawn_points = [NodePath("SpawnPoint")]
+spawn_points = [NodePath("SpawnPoint"), NodePath("SpawnPoint2")]
 map_start_screen = NodePath("MapStartScreen")
 
 [node name="MapStartScreen" parent="." instance=ExtResource("2_kojqu")]
@@ -63,10 +90,20 @@ environment = SubResource("Environment_g6sv0")
 camera_attributes = SubResource("CameraAttributesPractical_poso3")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.75800914, 0.6522439, 0, -0.6522439, 0.75800914, 0, 2.2799501, 0)
+transform = Transform3D(0.81325316, 0.19363269, 0.5487492, -0.5819101, 0.27061296, 0.76690894, 0, -0.9430138, 0.33275366, 0, 7.2228403, 0)
+light_color = Color(1, 0.9920456, 0.95468724, 1)
+light_energy = 1.3
+light_angular_distance = 8.0
+light_specular = 0.0
+shadow_enabled = true
+shadow_bias = 0.6
+shadow_normal_bias = 1.75
+
+[node name="SpawnPoint2" parent="." instance=ExtResource("2_j53go")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 5)
 
 [node name="SpawnPoint" parent="." instance=ExtResource("2_j53go")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1, -35)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.457626, 4, -65.75362)
 
 [node name="curbside" type="Node3D" parent="."]
 
@@ -513,6 +550,8 @@ transform = Transform3D(-1, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -1, -14,
 
 [node name="Curbside362" parent="curbside" instance=ExtResource("4_ix2iv")]
 transform = Transform3D(-1, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -1, -14, -0.05, -16)
+albedo_tint = Color(0.6052743, 0.6052743, 0.6052743, 1)
+tint_surface_index = 1
 
 [node name="Curbside203" parent="curbside" instance=ExtResource("4_ix2iv")]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -24, -0.05, 12)
@@ -1089,6 +1128,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52, 0, -8)
 
 [node name="Curbside481" parent="curbside" instance=ExtResource("5_dcrem")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52, 0, -12)
+albedo_tint = Color(0.6052743, 0.6052743, 0.6052743, 1)
 
 [node name="Curbside490" parent="curbside" instance=ExtResource("5_dcrem")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52, 0, -82)
@@ -1785,6 +1825,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, -18)
 
 [node name="Curbside497" parent="curbside" instance=ExtResource("5_dcrem")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52, 0, -16)
+albedo_tint = Color(0.6052743, 0.6052743, 0.6052743, 1)
 
 [node name="Curbside498" parent="curbside" instance=ExtResource("5_dcrem")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 0, -16)
@@ -1800,12 +1841,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -16)
 
 [node name="Curbside502" parent="curbside" instance=ExtResource("5_dcrem")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, -16)
+albedo_tint = Color(0.2687806, 0.49327886, 0.665072, 1)
 
 [node name="Curbside503" parent="curbside" instance=ExtResource("5_dcrem")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, -16)
 
 [node name="Curbside482" parent="curbside" instance=ExtResource("5_dcrem")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52, 0, -14)
+albedo_tint = Color(0.6052743, 0.6052743, 0.6052743, 1)
 
 [node name="Curbside434" parent="curbside" instance=ExtResource("4_ix2iv")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -28, 0, 18)
@@ -2046,6 +2089,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, -0.05, -10)
 
 [node name="Curbside484" parent="curbside" instance=ExtResource("5_dcrem")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52, 0, -10)
+albedo_tint = Color(0.6052743, 0.6052743, 0.6052743, 1)
 
 [node name="Curbside1256" parent="curbside" instance=ExtResource("5_dcrem")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, 12)
@@ -2082,6 +2126,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, -8)
 
 [node name="Curbside1267" parent="curbside" instance=ExtResource("5_dcrem")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, -12)
+albedo_tint = Color(0.6052743, 0.6052743, 0.6052743, 1)
 
 [node name="Curbside1268" parent="curbside" instance=ExtResource("5_dcrem")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, -82)
@@ -2184,12 +2229,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, -18)
 
 [node name="Curbside1301" parent="curbside" instance=ExtResource("5_dcrem")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, -16)
+albedo_tint = Color(0.6052743, 0.6052743, 0.6052743, 1)
 
 [node name="Curbside1302" parent="curbside" instance=ExtResource("5_dcrem")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, -14)
+albedo_tint = Color(0.6052743, 0.6052743, 0.6052743, 1)
 
 [node name="Curbside1303" parent="curbside" instance=ExtResource("5_dcrem")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, -10)
+albedo_tint = Color(0.6052743, 0.6052743, 0.6052743, 1)
 
 [node name="Curbside1208" parent="curbside" instance=ExtResource("5_dcrem")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48, 0, 12)
@@ -2226,6 +2274,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48, 0, -8)
 
 [node name="Curbside1219" parent="curbside" instance=ExtResource("5_dcrem")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48, 0, -12)
+albedo_tint = Color(0.6052743, 0.6052743, 0.6052743, 1)
 
 [node name="Curbside1220" parent="curbside" instance=ExtResource("5_dcrem")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48, 0, -82)
@@ -2328,12 +2377,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48, 0, -18)
 
 [node name="Curbside1253" parent="curbside" instance=ExtResource("5_dcrem")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48, 0, -16)
+albedo_tint = Color(0.6052743, 0.6052743, 0.6052743, 1)
 
 [node name="Curbside1254" parent="curbside" instance=ExtResource("5_dcrem")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48, 0, -14)
+albedo_tint = Color(0.6052743, 0.6052743, 0.6052743, 1)
 
 [node name="Curbside1255" parent="curbside" instance=ExtResource("5_dcrem")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48, 0, -10)
+albedo_tint = Color(0.6052743, 0.6052743, 0.6052743, 1)
 
 [node name="Curbside1160" parent="curbside" instance=ExtResource("5_dcrem")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 12)
@@ -2370,6 +2422,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, -8)
 
 [node name="Curbside1171" parent="curbside" instance=ExtResource("5_dcrem")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, -12)
+albedo_tint = Color(0.6052743, 0.6052743, 0.6052743, 1)
 
 [node name="Curbside1172" parent="curbside" instance=ExtResource("5_dcrem")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, -82)
@@ -2472,12 +2525,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, -18)
 
 [node name="Curbside1205" parent="curbside" instance=ExtResource("5_dcrem")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, -16)
+albedo_tint = Color(0.6052743, 0.6052743, 0.6052743, 1)
 
 [node name="Curbside1206" parent="curbside" instance=ExtResource("5_dcrem")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, -14)
+albedo_tint = Color(0.6052743, 0.6052743, 0.6052743, 1)
 
 [node name="Curbside1207" parent="curbside" instance=ExtResource("5_dcrem")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, -10)
+albedo_tint = Color(0.6052743, 0.6052743, 0.6052743, 1)
 
 [node name="Curbside1112" parent="curbside" instance=ExtResource("5_dcrem")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44, 0, 12)
@@ -3977,36 +4033,46 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 8)
 
 [node name="Curbside114" parent="curbside" instance=ExtResource("3_kojqu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 6)
+albedo_tint = Color(0.6052743, 0.6052743, 0.6052743, 1)
 
 [node name="Curbside29" parent="curbside" instance=ExtResource("3_kojqu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 8)
+albedo_tint = Color(0.6052743, 0.6052743, 0.6052743, 1)
 
 [node name="Curbside73" parent="curbside" instance=ExtResource("3_kojqu")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4, 0, -4)
+albedo_tint = Color(0.6052743, 0.6052743, 0.6052743, 1)
 
 [node name="Curbside158" parent="curbside" instance=ExtResource("3_kojqu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.000001, -0.05, -6)
+albedo_tint = Color(0.6052743, 0.6052743, 0.6052743, 1)
 
 [node name="Curbside231" parent="curbside" instance=ExtResource("3_kojqu")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -14.000001, -0.05, -14)
+albedo_tint = Color(0.6052743, 0.6052743, 0.6052743, 1)
 
 [node name="_StaticBody3D_58178" parent="curbside" instance=ExtResource("6_au022")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2, 0, -4)
 
 [node name="Curbside1304" parent="curbside" instance=ExtResource("11_poso3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 18)
+albedo_tint = Color(0.6052743, 0.6052743, 0.6052743, 1)
 
 [node name="Curbside1305" parent="curbside" instance=ExtResource("11_poso3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, -0.05, -6)
+albedo_tint = Color(0.6052743, 0.6052743, 0.6052743, 1)
 
 [node name="Curbside1306" parent="curbside" instance=ExtResource("11_poso3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, -0.05, 12)
+albedo_tint = Color(0.6052743, 0.6052743, 0.6052743, 1)
 
 [node name="Curbside1307" parent="curbside" instance=ExtResource("11_poso3")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -26, -0.05, 12)
+albedo_tint = Color(0.6052743, 0.6052743, 0.6052743, 1)
 
 [node name="Curbside1308" parent="curbside" instance=ExtResource("11_poso3")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -26, -0.05, -14)
+albedo_tint = Color(0.6052743, 0.6052743, 0.6052743, 1)
 
 [node name="seawalls" type="Node3D" parent="."]
 
@@ -4273,209 +4339,369 @@ transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.70710
 
 [node name="ShippingContainers" type="Node3D" parent="."]
 
-[node name="ShippingContainer" parent="ShippingContainers" instance=ExtResource("8_ix2iv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2)
-
-[node name="ShippingContainer8" parent="ShippingContainers" instance=ExtResource("8_ix2iv")]
-transform = Transform3D(0.99999523, 0, -0.0030892193, 0, 1, 0, 0.0030892193, 0, 0.99999523, 5.424311, 1.5249972, -51.917973)
-
-[node name="ShippingContainer11" parent="ShippingContainers" instance=ExtResource("8_ix2iv")]
-transform = Transform3D(0.99999523, 0, -0.0030892193, 0, 1, 0, 0.0030892193, 0, 0.99999523, 0.12431115, 6.524997, -51.917976)
-
-[node name="ShippingContainer14" parent="ShippingContainers" instance=ExtResource("8_ix2iv")]
-transform = Transform3D(0.99999523, 0, -0.0030892193, 0, 1, 0, 0.0030892193, 0, 0.99999523, 2.8243113, 6.524997, -51.917976)
-
-[node name="ShippingContainer15" parent="ShippingContainers" instance=ExtResource("8_ix2iv")]
-transform = Transform3D(0.99999523, 0, -0.0030892193, 0, 1, 0, 0.0030892193, 0, 0.99999523, 5.524311, 6.524997, -51.917976)
-
-[node name="ShippingContainer16" parent="ShippingContainers" instance=ExtResource("8_ix2iv")]
-transform = Transform3D(0.99999523, 0, -0.0030892193, 0, 1, 0, 0.0030892193, 0, 0.99999523, 8.224311, 6.524997, -51.917976)
-
-[node name="ShippingContainer4" parent="ShippingContainers" instance=ExtResource("8_ix2iv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0, 2)
-
-[node name="ShippingContainer6" parent="ShippingContainers" instance=ExtResource("8_ix2iv")]
-transform = Transform3D(0.99785894, 0, 0.06540313, 0, 1, 0, -0.06540313, 0, 0.99785894, -31.4, 5, -10.400001)
-
-[node name="Cube_001" parent="ShippingContainers/ShippingContainer6" index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_8jmw5")
-
-[node name="ShippingContainer5" parent="ShippingContainers" instance=ExtResource("8_ix2iv")]
-transform = Transform3D(0.25881907, 0, -0.9659258, 0, 1, 0, 0.9659258, 0, 0.25881907, -38, 0, 13)
-
-[node name="ShippingContainer2" parent="ShippingContainers" instance=ExtResource("8_ix2iv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 2)
-
-[node name="Cube_001" parent="ShippingContainers/ShippingContainer2" index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_fblgb")
-
-[node name="ShippingContainer3" parent="ShippingContainers" instance=ExtResource("8_ix2iv")]
-transform = Transform3D(0.9659258, 0, 0.25881904, 0, 1, 0, -0.25881904, 0, 0.9659258, 4, 2.5, 2)
-
-[node name="ShippingContainerLong" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.3, 0, 8)
-
-[node name="long" parent="ShippingContainers/ShippingContainerLong" index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_8khyd")
-
-[node name="ShippingContainerLong2" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.400002, 0, -14.500001)
-
-[node name="long" parent="ShippingContainers/ShippingContainerLong2" index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_8jmw5")
-
-[node name="ShippingContainerLong3" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.400002, 2.4999998, -14.500001)
-
-[node name="long" parent="ShippingContainers/ShippingContainerLong3" index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_8khyd")
-
-[node name="ShippingContainerLong13" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.400002, 0, -5.6000004)
-
-[node name="ShippingContainerLong14" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.400002, 2.4999998, -5.6000004)
-
-[node name="long" parent="ShippingContainers/ShippingContainerLong14" index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_vsx47")
-
-[node name="ShippingContainerLong11" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.7, 0, 8)
-
-[node name="long" parent="ShippingContainers/ShippingContainerLong11" index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_8khyd")
-
-[node name="ShippingContainerLong12" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.7, 2.4999998, 8)
-
-[node name="ShippingContainerLong9" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43, 0, 8)
-
-[node name="ShippingContainerLong10" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43, 2.4999998, 8)
-
-[node name="long" parent="ShippingContainers/ShippingContainerLong10" index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_8jmw5")
-
-[node name="ShippingContainerLong4" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.3, 2.4999998, 8)
-
-[node name="ShippingContainerLong6" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.1525574e-07, 1.524997, -28.281391)
-
-[node name="ShippingContainerLong19" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.1525574e-07, 1.5249972, -37.1502)
-
-[node name="ShippingContainerLong17" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.1525574e-07, 1.5249968, -49)
-
-[node name="ShippingContainerLong20" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6999993, 1.524997, -49)
-
-[node name="ShippingContainerLong22" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.099999, 1.5249972, -40)
-
-[node name="ShippingContainerLong23" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6999993, 6.5000005, -43.1)
-
-[node name="ShippingContainerLong24" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5762787e-07, 6.5000005, -43.1)
-
-[node name="ShippingContainerLong27" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.099999, 6.5000005, -43.1)
-
-[node name="ShippingContainerLong28" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.3999996, 6.5000005, -43.1)
-
-[node name="ShippingContainerLong34" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5762787e-07, 6.5000005, -34.3)
-
-[node name="ShippingContainerLong35" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.099999, 6.5000005, -34.3)
-
-[node name="ShippingContainerLong36" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.3999996, 6.5000005, -34.3)
-
-[node name="ShippingContainerLong29" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6999993, 6.5000005, -25.5)
-
-[node name="ShippingContainerLong30" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5762787e-07, 6.5000005, -25.5)
-
-[node name="ShippingContainerLong31" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.099999, 6.5000005, -25.5)
-
-[node name="ShippingContainerLong32" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.3999996, 6.5000005, -25.5)
-
-[node name="ShippingContainer17" parent="ShippingContainers" instance=ExtResource("8_ix2iv")]
-transform = Transform3D(0.99999523, 0, -0.0030892193, 0, 1, 0, 0.0030892193, 0, 0.99999523, 0.12431115, 4.024997, -51.917976)
-
-[node name="ShippingContainer18" parent="ShippingContainers" instance=ExtResource("8_ix2iv")]
-transform = Transform3D(0.99999523, 0, -0.0030892193, 0, 1, 0, 0.0030892193, 0, 0.99999523, 2.8243113, 4.024997, -51.917976)
-
-[node name="ShippingContainer19" parent="ShippingContainers" instance=ExtResource("8_ix2iv")]
-transform = Transform3D(0.99999523, 0, -0.0030892193, 0, 1, 0, 0.0030892193, 0, 0.99999523, 5.524311, 4.024997, -51.917976)
-
-[node name="ShippingContainer20" parent="ShippingContainers" instance=ExtResource("8_ix2iv")]
-transform = Transform3D(0.99999523, 0, -0.0030892193, 0, 1, 0, 0.0030892193, 0, 0.99999523, 8.224311, 4.024997, -51.917976)
-
-[node name="ShippingContainerLong33" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6999993, 4.0000005, -43.1)
-
-[node name="ShippingContainerLong37" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5762787e-07, 4.0000005, -43.1)
-
-[node name="ShippingContainerLong38" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.099999, 4.0000005, -43.1)
-
-[node name="ShippingContainerLong39" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.3999996, 4.0000005, -43.1)
-
-[node name="ShippingContainerLong40" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5762787e-07, 4.0000005, -34.3)
-
-[node name="ShippingContainerLong41" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.099999, 4.0000005, -34.3)
-
-[node name="ShippingContainerLong42" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.3999996, 4.0000005, -34.3)
-
-[node name="ShippingContainerLong43" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6999993, 4.0000005, -25.5)
-
-[node name="ShippingContainerLong44" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5762787e-07, 4.0000005, -25.5)
-
-[node name="ShippingContainerLong45" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.099999, 4.0000005, -25.5)
-
-[node name="ShippingContainerLong46" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.3999996, 4.0000005, -25.5)
-
-[node name="ShippingContainerLong25" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.099999, 1.5249972, -24.6)
-
-[node name="ShippingContainerLong26" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.3999996, 1.5249972, -24.6)
-
-[node name="ShippingContainerLong15" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.7, 0, 8)
-
-[node name="ShippingContainer7" parent="ShippingContainers" instance=ExtResource("16_8khyd")]
-transform = Transform3D(0.99785894, 0, -0.06540313, 0, 1, 0, 0.06540313, 0, 0.99785894, -29.9, 2.5, 0)
-
-[node name="ShippingContainer9" parent="ShippingContainers" instance=ExtResource("16_8khyd")]
-transform = Transform3D(0.99785894, 0, 0.06540313, 0, 1, 0, -0.06540313, 0, 0.99785894, 7.5000005, 1.524997, -33.399994)
-
-[node name="ShippingContainer10" parent="ShippingContainers" instance=ExtResource("16_8khyd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.4000006, 1.524997, -43.3)
-
-[node name="ShippingContainer13" parent="ShippingContainers" instance=ExtResource("16_8khyd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.200001, 1.524997, -54.3)
-
-[node name="ShippingContainer12" parent="ShippingContainers" instance=ExtResource("16_8khyd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9604645e-07, 1.524997, -24.7)
+[node name="ShippingContainer" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
+transform = Transform3D(-0.049052373, 0, -0.7483942, 0, 0.75, 0, 0.7483942, 0, -0.049052373, -27.22628, 0, -21)
+albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
+
+[node name="ShippingContainer20" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
+transform = Transform3D(-2.2351742e-08, 0, -0.75000006, 0, 0.7500001, 0, 0.75000006, 0, -2.2351742e-08, -35.92628, 0, -38.2)
+albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
+
+[node name="ShippingContainer21" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
+transform = Transform3D(-2.2351742e-08, 0, -0.75000006, 0, 0.7500001, 0, 0.75000006, 0, -2.2351742e-08, -35.92628, 1.8750002, -38.2)
+albedo_tint = Color(0.78, 0.17628, 0.109199986, 1)
+
+[node name="ShippingContainer22" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
+transform = Transform3D(-0.049052373, 0, -0.7483942, 0, 0.75, 0, 0.7483942, 0, -0.049052373, -29.22628, 0, -38)
+albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
+
+[node name="ShippingContainer23" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
+transform = Transform3D(-0.049052373, 0, -0.7483942, 0, 0.75, 0, 0.7483942, 0, -0.049052373, -29.22628, 1.8750002, -38)
+albedo_tint = Color(0.88, 0.7773333, 0, 1)
+
+[node name="ShippingContainer17" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
+transform = Transform3D(-0.75000006, 0, 6.7055225e-08, 0, 0.7500001, 0, -6.7055225e-08, 0, -0.75000006, -26.52628, 1.8750004, -30.5)
+albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
+
+[node name="ShippingContainer19" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
+transform = Transform3D(-0.75000006, 0, 6.7055225e-08, 0, 0.7500001, 0, -6.7055225e-08, 0, -0.75000006, -39.22628, 1.8750004, -28)
+albedo_tint = Color(0.87, 0.319, 0, 1)
+
+[node name="ShippingContainer18" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
+transform = Transform3D(-0.7495799, 0, 0.025101941, 0, 0.75000024, 0, -0.025101941, 0, -0.7495799, -31.826279, -5.2154064e-08, -29.7)
+albedo_tint = Color(0.34918335, 0.7, 0.02099998, 1)
+
+[node name="ShippingContainer4" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0.0737196, 1.5249968, -24.100002)
+albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
+
+[node name="ShippingContainer5" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 2.0737195, 1.5249968, -50.5)
+albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
+
+[node name="ShippingContainer6" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 4.0737195, 1.5249968, -50.5)
+albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
+
+[node name="ShippingContainer29" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 4.0737195, 3.3999968, -50.5)
+albedo_tint = Color(0.78, 0.17628, 0.109199986, 1)
+
+[node name="ShippingContainer7" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 6.0737195, 1.5249968, -50.5)
+albedo_tint = Color(0.88, 0.7773333, 0, 1)
+
+[node name="ShippingContainer8" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 8.07372, 1.5249968, -24.100002)
+albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
+
+[node name="ShippingContainer15" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0.0737196, 1.5249968, -30.700003)
+albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
+
+[node name="ShippingContainer16" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 8.07372, 1.524997, -30.700003)
+albedo_tint = Color(0.34918335, 0.7, 0.02099998, 1)
+
+[node name="ShippingContainer13" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0.0737196, 1.5249968, -37.300003)
+albedo_tint = Color(0.34918335, 0.7, 0.02099998, 1)
+
+[node name="ShippingContainer14" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 8.07372, 1.5249968, -37.300003)
+albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
+
+[node name="ShippingContainer11" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0.0737196, 3.3999968, -47.9)
+albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
+
+[node name="ShippingContainer32" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0.0737196, 5.2749968, -32.1)
+albedo_tint = Color(0.88, 0.7773333, 0, 1)
+
+[node name="ShippingContainer42" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 8.27372, 5.2749968, -36.1)
+albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
+
+[node name="ShippingContainer33" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 2.0737195, 5.2749968, -50.5)
+albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
+
+[node name="ShippingContainer34" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 4.0737195, 5.2749968, -50.5)
+albedo_tint = Color(0.34918335, 0.7, 0.02099998, 1)
+
+[node name="ShippingContainer35" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 6.0737195, 5.2749968, -50.5)
+albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
+
+[node name="ShippingContainer36" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 8.073719, 5.2749968, -50.5)
+albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
+
+[node name="ShippingContainer12" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 8.07372, 1.5249968, -43.9)
+albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
+
+[node name="ShippingContainer31" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 8.07372, 3.3999968, -45.9)
+albedo_tint = Color(0.78, 0.17628, 0.109199986, 1)
+
+[node name="ShippingContainer9" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0.0737196, 1.5249968, -50.5)
+albedo_tint = Color(0.78, 0.17628, 0.109199986, 1)
+
+[node name="ShippingContainer10" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 8.07372, 1.5249968, -50.5)
+albedo_tint = Color(0.78, 0.17628, 0.109199986, 1)
+
+[node name="ShippingContainerMedium" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -26.390766, 0, -28)
+albedo_tint = Color(0.34918335, 0.7, 0.02099998, 1)
+
+[node name="ShippingContainerMedium2" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -39.208374, 0, -27.621426)
+albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
+
+[node name="ShippingContainerMedium3" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -39.477276, 0, -23.121426)
+albedo_tint = Color(0.78, 0.17628, 0.109199986, 1)
+
+[node name="ShippingContainer25" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
+transform = Transform3D(-0.75000006, 0, 6.7055225e-08, 0, 0.7500001, 0, -6.7055225e-08, 0, -0.75000006, -39.22628, 1.8750004, -37)
+albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
+
+[node name="ShippingContainerMedium10" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -39.208374, 0, -36.621426)
+albedo_tint = Color(0.88, 0.7773333, 0, 1)
+
+[node name="ShippingContainerMedium11" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -39.477276, 0, -32.121426)
+albedo_tint = Color(0.78, 0.17628, 0.109199986, 1)
+
+[node name="ShippingContainer24" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
+transform = Transform3D(-0.75000006, 0, 6.7055225e-08, 0, 0.7500001, 0, -6.7055225e-08, 0, -0.75000006, -21.52628, 1.8750004, -27.5)
+albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
+
+[node name="ShippingContainer46" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
+transform = Transform3D(-0.75000006, 0, 6.7055225e-08, 0, 0.7500001, 0, -6.7055225e-08, 0, -0.75000006, -6.5262794, 7.450581e-09, -2.5)
+albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
+
+[node name="ShippingContainer47" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
+transform = Transform3D(-3.4271682e-08, 0, -0.75000006, 0, 0.75000024, 0, 0.75000006, 0, -3.4271682e-08, -1.2910651, 0, -1.6862099)
+albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
+
+[node name="ShippingContainerMedium8" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -21.508373, 0, -27.121426)
+albedo_tint = Color(0.88, 0.7773333, 0, 1)
+
+[node name="ShippingContainerMedium9" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -21.777275, 0, -22.621426)
+albedo_tint = Color(0.78, 0.17628, 0.109199986, 1)
+
+[node name="ShippingContainerMedium13" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
+transform = Transform3D(-0.75, 0, 6.556708e-08, 0, 0.75, 0, -6.556708e-08, 0, -0.75, 8.136835, 3.3999968, -34.19882)
+albedo_tint = Color(0.78, 0.17628, 0.109199986, 1)
+
+[node name="ShippingContainerMedium14" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
+transform = Transform3D(-0.75, 0, 6.556708e-08, 0, 0.75, 0, -6.556708e-08, 0, -0.75, 8.136835, 3.3999968, -38.69882)
+albedo_tint = Color(0.34918335, 0.7, 0.02099998, 1)
+
+[node name="ShippingContainerMedium5" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -29.777275, 0, -32.621426)
+albedo_tint = Color(0.78, 0.17628, 0.109199986, 1)
+
+[node name="ShippingContainerMedium4" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
+transform = Transform3D(0.003010638, 0, -0.74999404, 0, 0.7500001, 0, 0.74999404, 0, 0.003010638, -24.970493, 1.875, -20.860933)
+albedo_tint = Color(0.78, 0.17628, 0.109199986, 1)
+
+[node name="ShippingContainerMedium6" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
+transform = Transform3D(0.003010638, 0, -0.74999404, 0, 0.7500001, 0, 0.74999404, 0, 0.003010638, -29.716938, 1.875, -26.860933)
+albedo_tint = Color(0.78, 0.17628, 0.109199986, 1)
+
+[node name="ShippingContainerMedium7" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
+transform = Transform3D(0.003010638, 0, -0.74999404, 0, 0.7500001, 0, 0.74999404, 0, 0.003010638, -30.616938, 3.7500002, -38.060932)
+albedo_tint = Color(0.78, 0.17628, 0.109199986, 1)
+
+[node name="ShippingContainer2" parent="ShippingContainers" instance=ExtResource("16_8khyd")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -28.4948, 0, -28)
+albedo_tint = Color(0.78, 0.17628, 0.109199986, 1)
+
+[node name="ShippingContainer3" parent="ShippingContainers" instance=ExtResource("16_8khyd")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -25.992996, 0, -34)
+albedo_tint = Color(0.87, 0.319, 0, 1)
+
+[node name="ShippingContainer28" parent="ShippingContainers" instance=ExtResource("16_8khyd")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0.007003784, 1.5249972, -43.986332)
+albedo_tint = Color(0.87, 0.319, 0, 1)
+
+[node name="ShippingContainer44" parent="ShippingContainers" instance=ExtResource("16_8khyd")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 2.0070038, 1.5249972, -41.986332)
+albedo_tint = Color(0.87, 0.319, 0, 1)
+
+[node name="ShippingContainer37" parent="ShippingContainers" instance=ExtResource("16_8khyd")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 4.007004, 1.524997, -35.986332)
+albedo_tint = Color(0.88, 0.7773333, 0, 1)
+
+[node name="ShippingContainer41" parent="ShippingContainers" instance=ExtResource("16_8khyd")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 4.007004, 3.399997, -35.986332)
+albedo_tint = Color(0.87, 0.319, 0, 1)
+
+[node name="ShippingContainer38" parent="ShippingContainers" instance=ExtResource("16_8khyd")]
+transform = Transform3D(-0.75, 0, 6.556708e-08, 0, 0.75, 0, -6.556708e-08, 0, -0.75, 8.252557, 3.399997, -23.03391)
+albedo_tint = Color(0.87, 0.319, 0, 1)
+
+[node name="ShippingContainer45" parent="ShippingContainers" instance=ExtResource("16_8khyd")]
+transform = Transform3D(-0.75, 0, 6.556708e-08, 0, 0.75, 0, -6.556708e-08, 0, -0.75, 4.252557, 1.875, -1.0339108)
+albedo_tint = Color(0.87, 0.319, 0, 1)
+
+[node name="ShippingContainer49" parent="ShippingContainers" instance=ExtResource("16_8khyd")]
+transform = Transform3D(0.049052306, 0, -0.7483942, 0, 0.75, 0, 0.7483942, 0, 0.049052306, -1.7474432, 1.875, -1.8339107)
+albedo_tint = Color(0.34918335, 0.7, 0.02099998, 1)
+
+[node name="ShippingContainer43" parent="ShippingContainers" instance=ExtResource("16_8khyd")]
+transform = Transform3D(-0.75, 0, 6.556708e-08, 0, 0.75, 0, -6.556708e-08, 0, -0.75, 8.252557, 3.399997, -41.433914)
+albedo_tint = Color(0.87, 0.319, 0, 1)
+
+[node name="ShippingContainer39" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0.0737196, 3.3999968, -36.7)
+albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
+
+[node name="ShippingContainerMedium15" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0.3227249, 3.3999968, -43.421425)
+albedo_tint = Color(0.78, 0.17628, 0.109199986, 1)
+
+[node name="ShippingContainerMedium16" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0.12272491, 3.3999968, -29.221424)
+albedo_tint = Color(0.78, 0.17628, 0.109199986, 1)
+
+[node name="ShippingContainerMedium21" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 2.122725, 1.524997, -29.221424)
+albedo_tint = Color(0.78, 0.17628, 0.109199986, 1)
+
+[node name="ShippingContainerMedium17" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0.12272491, 5.2749968, -46.021423)
+albedo_tint = Color(0.78, 0.17628, 0.109199986, 1)
+
+[node name="ShippingContainerMedium19" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0.12272491, 5.2749968, -41.521423)
+albedo_tint = Color(0.78, 0.17628, 0.109199986, 1)
+
+[node name="ShippingContainer40" parent="ShippingContainers" instance=ExtResource("16_8khyd")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0.007003784, 5.2749968, -38.78633)
+albedo_tint = Color(0.87, 0.319, 0, 1)
+
+[node name="ShippingContainerMedium18" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0.12272491, 3.3999968, -24.721424)
+albedo_tint = Color(0.88, 0.7773333, 0, 1)
+
+[node name="ShippingContainerMedium20" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0.12272491, 5.2749968, -25.721424)
+albedo_tint = Color(0.78, 0.17628, 0.109199986, 1)
+
+[node name="ShippingContainerMedium22" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 4.122725, 7.450581e-09, -0.7214241)
+albedo_tint = Color(0.78, 0.17628, 0.109199986, 1)
+
+[node name="ShippingContainerMedium23" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -4.577275, 7.450581e-09, 2.278576)
+albedo_tint = Color(0.88, 0.7773333, 0, 1)
+
+[node name="ShippingContainerMedium25" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -6.577275, 1.8750002, -2.721424)
+albedo_tint = Color(0.78, 0.17628, 0.109199986, 1)
+
+[node name="ShippingContainerMedium26" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
+transform = Transform3D(-3.278354e-08, 0, 0.75, 0, 0.75, 0, -0.75, 0, -3.278354e-08, 0.9875108, 1.8750002, -1.6352146)
+albedo_tint = Color(0.78, 0.17628, 0.109199986, 1)
+
+[node name="ShippingContainer48" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
+transform = Transform3D(-0.75000006, 0, 6.7055225e-08, 0, 0.7500001, 0, -6.7055225e-08, 0, -0.75000006, -6.5262794, 7.450581e-09, 4.2)
+albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
+
+[node name="ShippingContainerMedium27" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -6.577275, 1.8750002, 6.4785757)
+albedo_tint = Color(0.78, 0.17628, 0.109199986, 1)
+
+[node name="ShippingContainerMedium24" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
+transform = Transform3D(0.62360203, 0, -0.4166776, 0, 0.75, 0, 0.4166776, 0, 0.62360203, -4.577275, 1.8750004, 2.278576)
+albedo_tint = Color(0.78, 0.17628, 0.109199986, 1)
+
+[node name="ShippingContainer30" parent="ShippingContainers" instance=ExtResource("16_8khyd")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 6.1070037, 3.3999968, -54.386333)
+albedo_tint = Color(0.87, 0.319, 0, 1)
+
+[node name="ShippingContainer26" parent="ShippingContainers" instance=ExtResource("16_8khyd")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -38.992996, 3.7500005, -27)
+albedo_tint = Color(0.34918335, 0.7, 0.02099998, 1)
+
+[node name="ShippingContainer27" parent="ShippingContainers" instance=ExtResource("16_8khyd")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -28.216524, 1.8750002, -22)
+albedo_tint = Color(0.34918335, 0.7, 0.02099998, 1)
+
+[node name="TintableProp" parent="ShippingContainers" instance=ExtResource("16_vsx47")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.050856, -0.050000057, -21.990517)
+albedo_tint = Color(0.7493332, 0.133221, 0.13694993, 1)
+
+[node name="TintableProp2" parent="ShippingContainers" instance=ExtResource("16_vsx47")]
+transform = Transform3D(-0.44853932, 0, 0.8937633, 0, 1, 0, -0.8937633, 0, -0.44853932, -21.990194, -0.050000057, -20.085184)
+albedo_tint = Color(0.19139999, 0.3533167, 0.58, 1)
+
+[node name="TintableProp6" parent="ShippingContainers" instance=ExtResource("16_vsx47")]
+transform = Transform3D(0.9855443, 0, -0.16941829, 0, 1, 0, 0.16941829, 0, 0.9855443, -21.40794, -0.050000057, -20.107489)
+albedo_tint = Color(0.19139999, 0.3533167, 0.58, 1)
+
+[node name="TintableProp5" parent="ShippingContainers" instance=ExtResource("16_vsx47")]
+transform = Transform3D(-0.8205711, 0, 0.5715444, 0, 1, 0, -0.5715444, 0, -0.8205711, -22.573458, -0.050000057, -20.072607)
+albedo_tint = Color(0.19139999, 0.3533167, 0.58, 1)
+
+[node name="TintableProp3" parent="ShippingContainers" instance=ExtResource("16_vsx47")]
+transform = Transform3D(-0.999277, 0, -0.038021527, 0, 1, 0, 0.038021527, 0, -0.999277, -21.678967, -0.050000057, -19.574541)
+albedo_tint = Color(0.19139999, 0.3533167, 0.58, 1)
+
+[node name="TintableProp14" parent="ShippingContainers" instance=ExtResource("16_vsx47")]
+transform = Transform3D(-0.999277, 0, -0.038021527, 0, 1, 0, 0.038021527, 0, -0.999277, 4.9210334, 7.450581e-09, 1.8254589)
+albedo_tint = Color(0.71, 0.2366667, 0, 1)
+
+[node name="TintableProp15" parent="ShippingContainers" instance=ExtResource("16_vsx47")]
+transform = Transform3D(-0.5235548, 0, -0.8519921, 0, 1, 0, 0.8519921, 0, -0.5235548, 4.9210334, 7.450581e-09, 2.425459)
+albedo_tint = Color(0.34407577, 0.34407574, 0.34407574, 1)
+
+[node name="TintableProp16" parent="ShippingContainers" instance=ExtResource("16_vsx47")]
+transform = Transform3D(0.7763655, 0, -0.630283, 0, 1, 0, 0.630283, 0, 0.7763655, 5.4210334, 7.450581e-09, 2.125459)
+albedo_tint = Color(0.34407577, 0.34407574, 0.34407574, 1)
+
+[node name="TintableProp12" parent="ShippingContainers" instance=ExtResource("16_vsx47")]
+transform = Transform3D(-0.999277, 0, -0.038021527, 0, 1, 0, 0.038021527, 0, -0.999277, -30.578966, -0.050000057, -30.074541)
+albedo_tint = Color(0.46618086, 0.4661808, 0.4661808, 1)
+
+[node name="TintableProp13" parent="ShippingContainers" instance=ExtResource("16_vsx47")]
+transform = Transform3D(-0.999277, 0, -0.038021527, 0, 1, 0, 0.038021527, 0, -0.999277, -30.578966, 0.54999983, -30.074541)
+albedo_tint = Color(0.46618086, 0.4661808, 0.4661808, 1)
+
+[node name="TintableProp4" parent="ShippingContainers" instance=ExtResource("16_vsx47")]
+transform = Transform3D(-0.9976116, 0, 0.06907737, 0, 1, 0, -0.06907737, 0, -0.9976116, -22.258644, -0.050000057, -19.577257)
+albedo_tint = Color(0.19139999, 0.3533167, 0.58, 1)
+
+[node name="TintableProp7" parent="ShippingContainers" instance=ExtResource("16_vsx47")]
+transform = Transform3D(0.90545785, 0, 0.42443654, 0, 1, 0, -0.42443654, 0, 0.90545785, -4.804129, 7.450581e-09, -47.422558)
+albedo_tint = Color(0.19139999, 0.3533167, 0.58, 1)
+
+[node name="TintableProp8" parent="ShippingContainers" instance=ExtResource("16_vsx47")]
+transform = Transform3D(-0.19575793, 0, -0.98065245, 0, 1, 0, 0.98065245, 0, -0.19575793, -4.779741, 7.450581e-09, -46.79201)
+albedo_tint = Color(0.19139999, 0.3533167, 0.58, 1)
+
+[node name="TintableProp9" parent="ShippingContainers" instance=ExtResource("16_vsx47")]
+transform = Transform3D(0.59332055, 0, 0.80496633, 0, 1, 0, -0.80496633, 0, 0.59332055, -4.7818637, 7.450581e-09, -48.01492)
+albedo_tint = Color(0.19139999, 0.3533167, 0.58, 1)
+
+[node name="TintableProp10" parent="ShippingContainers" instance=ExtResource("16_vsx47")]
+transform = Transform3D(-0.011239586, 0, 0.9999369, 0, 1, 0, -0.9999369, 0, -0.011239586, -5.314206, -0.050000057, -47.09643)
+albedo_tint = Color(0.19139999, 0.3533167, 0.58, 1)
+
+[node name="TintableProp11" parent="ShippingContainers" instance=ExtResource("16_vsx47")]
+transform = Transform3D(0.09577623, 0, 0.995403, 0, 1, 0, -0.995403, 0, 0.09577623, -5.3423467, -0.050000057, -47.715015)
+albedo_tint = Color(0.19139999, 0.3533167, 0.58, 1)
 
 [node name="Bollards" type="Node3D" parent="."]
 
@@ -4644,16 +4870,125 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -73)
 [node name="Bollard19" parent="Bollards" instance=ExtResource("12_g6sv0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -77)
 
-[node name="StaticBody3D" parent="." instance=ExtResource("20_q1vmm")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 4.1, 4, -11.8)
+[node name="ship" parent="." instance=ExtResource("18_vsx47")]
+transform = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, 4.1, 4, -11.8)
+
+[node name="Streetlights" type="Node3D" parent="."]
+
+[node name="streetlight_012" parent="Streetlights" instance=ExtResource("19_85nx3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, -21)
+
+[node name="streetlight_020" parent="Streetlights" instance=ExtResource("19_85nx3")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -21, 0, -17)
+
+[node name="streetlight_021" parent="Streetlights" instance=ExtResource("19_85nx3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29, 0, -13)
+
+[node name="streetlight_022" parent="Streetlights" instance=ExtResource("19_85nx3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29, 0, -5)
+
+[node name="streetlight_023" parent="Streetlights" instance=ExtResource("19_85nx3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29, 0, 3)
+
+[node name="streetlight_024" parent="Streetlights" instance=ExtResource("19_85nx3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29, 0, 11)
+
+[node name="streetlight_025" parent="Streetlights" instance=ExtResource("19_85nx3")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -9, 0, 11)
+
+[node name="streetlight_026" parent="Streetlights" instance=ExtResource("19_85nx3")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -8, 0, 3)
+
+[node name="streetlight_027" parent="Streetlights" instance=ExtResource("19_85nx3")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -23, 0, 15)
+
+[node name="streetlight_028" parent="Streetlights" instance=ExtResource("19_85nx3")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -15, 0, 15)
+
+[node name="streetlight_013" parent="Streetlights" instance=ExtResource("19_85nx3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, -29)
+
+[node name="streetlight_014" parent="Streetlights" instance=ExtResource("19_85nx3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, -37)
+
+[node name="streetlight_015" parent="Streetlights" instance=ExtResource("19_85nx3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, -45)
+
+[node name="streetlight_016" parent="Streetlights" instance=ExtResource("19_85nx3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, -53)
+
+[node name="streetlight_017" parent="Streetlights" instance=ExtResource("19_85nx3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, -61)
+
+[node name="streetlight_018" parent="Streetlights" instance=ExtResource("19_85nx3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, -69)
+
+[node name="streetlight_019" parent="Streetlights" instance=ExtResource("19_85nx3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, -77)
+
+[node name="Forklift" parent="." instance=ExtResource("20_q1vmm")]
+transform = Transform3D(-0.13052621, 0, -0.9914449, 0, 1, 0, 0.9914449, 0, -0.13052621, -39.991444, 0.45633608, -19.130526)
+albedo_tint = Color(0.8106278, 0.4098696, 0.0043741227, 1)
+
+[node name="Forklift3" parent="." instance=ExtResource("20_q1vmm")]
+transform = Transform3D(0.99785894, 0, -0.06540311, 0, 1, 0, 0.06540311, 0, 0.99785894, -27.930685, 0.45633608, -17.53181)
+albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
+
+[node name="TintableProp2" parent="." instance=ExtResource("21_7ahgg")]
+transform = Transform3D(-0.13052621, 0, -0.9914449, 0, 1, 0, 0.9914449, 0, -0.13052621, -38.008556, 0.06999993, -18.869474)
+albedo_tint = Color(0.39, 0.47433335, 0.5, 1)
+
+[node name="Forklift2" parent="." instance=ExtResource("20_q1vmm")]
+transform = Transform3D(-0.13052621, 0, -0.9914449, 0, 1, 0, 0.9914449, 0, -0.13052621, 2.0085564, 0.4563361, 1.8694744)
+albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
+
+[node name="TintableProp7" parent="." instance=ExtResource("21_7ahgg")]
+transform = Transform3D(-0.13052621, 0, -0.9914449, 0, 1, 0, 0.9914449, 0, -0.13052621, 3.9914436, 0.06999994, 2.1305256)
+albedo_tint = Color(0.39, 0.47433335, 0.5, 1)
+
+[node name="TintableProp3" parent="." instance=ExtResource("21_7ahgg")]
+transform = Transform3D(-0.13052621, 0, -0.9914449, 0, 1, 0, 0.9914449, 0, -0.13052621, -4.0085564, 0.06999995, -45.769478)
+albedo_tint = Color(0.44, 0.41536, 0.3784, 1)
+
+[node name="TintableProp4" parent="." instance=ExtResource("21_7ahgg")]
+transform = Transform3D(-1.4901161e-08, 0, -1, 0, 1, 0, 1, 0, -1.4901161e-08, -4.0085564, 0.06999995, -46.769478)
+albedo_tint = Color(0.3562683, 0.43625793, 0.44432056, 1)
+
+[node name="TintableProp5" parent="." instance=ExtResource("21_7ahgg")]
+transform = Transform3D(-0.06540315, 0, -0.99785894, 0, 1, 0, 0.99785894, 0, -0.06540315, -4.0085564, 0.06999995, -47.769478)
+albedo_tint = Color(0.3562683, 0.43625793, 0.44432056, 1)
+
+[node name="TintableProp6" parent="." instance=ExtResource("21_7ahgg")]
+transform = Transform3D(-1.4901161e-08, 0, -1, 0, 1, 0, 1, 0, -1.4901161e-08, -4.0085564, 0.06999995, -48.769478)
+albedo_tint = Color(0.3562683, 0.43625793, 0.44432056, 1)
+
+[node name="pallet_stack_mix_1" parent="." instance=ExtResource("22_28evx")]
+transform = Transform3D(-0.99785894, 0, 0.06540322, 0, 1, 0, -0.06540322, 0, -0.99785894, -27.798822, 0.07265628, -19.535973)
+albedo_tint = Color(0.17099923, 0.6125928, 0.8149668, 1)
+
+[node name="pallet_stack_mix_2" parent="." instance=ExtResource("23_xe2d4")]
+transform = Transform3D(0.9996033, 0, -0.028165895, 0, 1, 0, 0.028165895, 0, 0.9996033, -26.701176, 0.07265628, -19.464027)
+albedo_tint = Color(0.74, 0.1554, 0.1554, 1)
+
+[node name="pallet_stack_mix_3" parent="." instance=ExtResource("24_eujs5")]
+transform = Transform3D(0.99785894, 0, -0.06540313, 0, 1, 0, 0.06540313, 0, 0.99785894, -25.603533, 0.07265628, -19.37459)
+albedo_tint = Color(0.047837034, 0.4530661, 0.5590847, 1)
+
+[node name="pallet_stack_wood" parent="." instance=ExtResource("25_os1tm")]
+transform = Transform3D(0.99785894, 0, -0.06540313, 0, 1, 0, 0.06540313, 0, 0.99785894, -28.896467, 0.07265628, -19.607916)
+
+[node name="trash_box_01" parent="." instance=ExtResource("26_os1tm")]
+transform = Transform3D(0.20699212, 0.03642741, 0.7718985, 0.019755121, 0.7986, -0.042985037, -0.77250504, 0.030183138, 0.20573035, -23.600872, 0.060293417, -18.472864)
+
+[node name="trash_box_02" parent="." instance=ExtResource("27_1uhr4")]
+transform = Transform3D(-0.42426407, 0, 0.42426407, 0, 0.6, 0, -0.42426407, 0, -0.42426407, -24.302944, 0.0828114, -19.187939)
+
+[node name="trash_box_03" parent="." instance=ExtResource("28_cro12")]
+transform = Transform3D(0.9469301, 0, 0.32143945, 0, 1, 0, -0.32143945, 0, 0.9469301, -24.407438, 0.066475965, -17.333672)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.1156194, 9.247678e-08)
+mesh = SubResource("QuadMesh_lgg11")
+surface_material_override/0 = SubResource("ShaderMaterial_lip8n")
 
 [connection signal="spawn" from="MapStartScreen" to="." method="_on_map_start_screen_spawn"]
-
-[editable path="ShippingContainers/ShippingContainer6"]
-[editable path="ShippingContainers/ShippingContainer2"]
-[editable path="ShippingContainers/ShippingContainerLong"]
-[editable path="ShippingContainers/ShippingContainerLong2"]
-[editable path="ShippingContainers/ShippingContainerLong3"]
-[editable path="ShippingContainers/ShippingContainerLong14"]
-[editable path="ShippingContainers/ShippingContainerLong11"]
-[editable path="ShippingContainers/ShippingContainerLong10"]

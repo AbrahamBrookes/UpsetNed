@@ -1,8 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://cmbikqvix0if2"]
+[gd_scene load_steps=9 format=3 uid="uid://cmbikqvix0if2"]
 
 [ext_resource type="Material" uid="uid://df3aopaqbo4bc" path="res://Art/Textures/Road/Road.material" id="1_b3g34"]
+[ext_resource type="Script" uid="uid://d17spaxidwmpj" path="res://Art/Props/tintable_prop.gd" id="1_gm48e"]
+[ext_resource type="Texture2D" uid="uid://byqwnd1ngx54d" path="res://Art/Textures/Road/asphalt.png" id="3_ouden"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r1xtv"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wrt55"]
+albedo_color = Color(0.581033, 0.58103293, 0.5810329, 1)
+albedo_texture = ExtResource("3_ouden")
+uv1_scale = Vector3(0.25, 0.25, 0.25)
+uv1_triplanar = true
+uv1_world_triplanar = true
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_1rael"]
 _surfaces = [{
@@ -25,7 +32,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 6,
 "index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 3, 0, 1, 0),
-"material": SubResource("StandardMaterial3D_r1xtv"),
+"material": SubResource("StandardMaterial3D_wrt55"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 4,
@@ -40,9 +47,10 @@ size = Vector3(2, 0.1, 2)
 [sub_resource type="BoxOccluder3D" id="BoxOccluder3D_l04lq"]
 size = Vector3(2, 0.1, 2)
 
-[node name="Curbside" type="StaticBody3D"]
+[node name="CurbsideFlat" type="StaticBody3D"]
+script = ExtResource("1_gm48e")
 
-[node name="flat" type="MeshInstance3D" parent="."]
+[node name="Mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 0, 0, 0)
 material_override = ExtResource("1_b3g34")
 mesh = SubResource("ArrayMesh_ub7qm")
