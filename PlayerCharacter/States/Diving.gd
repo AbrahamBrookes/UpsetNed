@@ -14,12 +14,21 @@ func Enter(_extra_data = null):
 	# toggle animation blend spaces for in-game pointy arms
 	if state_machine.click_shoot:
 		state_machine.click_shoot.sliding = true
+		
+	## Apply the current input to the dive when it starts
+	var input_direction = state_machine.input.current_input.move
+	#rotate input to camera
+	var horizontal_input = Vector3(input_direction.x, 0.0, input_direction.y)
+	var world_direction = horizontal_input.rotated(
+		Vector3.UP,
+		player_character.mouselook.camera_pivot.global_transform.basis.get_euler().y
+	)
 
 	# Apply immediate upward impulse
 	intent.desired_velocity = Vector3(
-		player_character.velocity.x,
+		world_direction.x * 5,
 		jump_velocity,
-		player_character.velocity.z
+		world_direction.z * 5
 	)
 	
 	jump_power_left = max_jump_power

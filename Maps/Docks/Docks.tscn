@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://bm1vawluanrrm"]
+[gd_scene load_steps=41 format=3 uid="uid://bm1vawluanrrm"]
 
 [ext_resource type="Script" uid="uid://byywho2cl4sjr" path="res://Maps/Map.gd" id="1_ktmrb"]
 [ext_resource type="PackedScene" uid="uid://bwgwbw0v6yn1q" path="res://Maps/SpawnPoint.tscn" id="2_j53go"]
@@ -30,6 +30,8 @@
 [ext_resource type="PackedScene" uid="uid://cme35tvv7eqlv" path="res://Art/Props/Docks/trash/trash_boxes_02.tscn" id="27_1uhr4"]
 [ext_resource type="PackedScene" uid="uid://o5gmvg67ojao" path="res://Art/Props/Docks/trash/trash_boxes_03.tscn" id="28_cro12"]
 [ext_resource type="Shader" uid="uid://dy7nf2mv83lid" path="res://Maps/Docks/DocksWater.gdshader" id="30_cro12"]
+[ext_resource type="PackedScene" uid="uid://bag575umtmde3" path="res://Art/Props/Docks/warehouse_01/warehouse_01.tscn" id="30_lip8n"]
+[ext_resource type="PackedScene" uid="uid://b68l1esyvi87c" path="res://Art/Props/Docks/outer/outer.tscn" id="31_lgg11"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_cro12"]
 panorama = ExtResource("3_1uhr4")
@@ -60,27 +62,43 @@ adjustment_saturation = 0.8
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_poso3"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_lgg11"]
-size = Vector2(250, 250)
-subdivide_width = 250
-subdivide_depth = 250
+size = Vector2(1500, 1500)
+subdivide_width = 500
+subdivide_depth = 500
 orientation = 1
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_lgg11"]
+noise_type = 2
+frequency = 1.0
+fractal_octaves = 2
+fractal_weighted_strength = 0.57
+cellular_return_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_lip8n"]
+noise = SubResource("FastNoiseLite_lgg11")
+seamless = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lip8n"]
 render_priority = 0
 shader = ExtResource("30_cro12")
-shader_parameter/water_color = Color(0.0784, 0.12767999, 0.14, 1)
-shader_parameter/foam_color = Color(0.9, 0.95, 1, 1)
-shader_parameter/wave_height = 0.06
-shader_parameter/wave_speed = 0.7
-shader_parameter/wave_scale = 0.4
-shader_parameter/foam_width = 0.12
-shader_parameter/foam_noise_scale = 8.0
-shader_parameter/foam_noise_speed = 0.4
-shader_parameter/foam_strength = 1.0
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_lip8n")
+shader_parameter/waver_amplitude = 0.5
+shader_parameter/waver_speed = 0.0
+shader_parameter/scroll_speed = 0.0
+shader_parameter/deep_color = Color(0.10099409, 0.23233438, 0.5062029, 1)
+shader_parameter/mid_color = Color(0.117972456, 0.45228076, 0.99999803, 1)
+shader_parameter/shallow_color = Color(0.14654341, 0.6265886, 0.90259147, 1)
+shader_parameter/whitecap_frequency = 1.0
+shader_parameter/whitecap_mask_frequency = 4.0
+shader_parameter/wave_amplitude = 0.3
+shader_parameter/wave_wavelength = 8.0
+shader_parameter/wave_speed = 1.0
+shader_parameter/wave_steepness = 2.0
+shader_parameter/wave_direction = Vector2(1, 0.3)
 
 [node name="Docks" type="Node3D" node_paths=PackedStringArray("spawn_points", "map_start_screen")]
 script = ExtResource("1_ktmrb")
-spawn_points = [NodePath("SpawnPoint"), NodePath("SpawnPoint2")]
+spawn_points = [NodePath("SpawnPoint")]
 map_start_screen = NodePath("MapStartScreen")
 
 [node name="MapStartScreen" parent="." instance=ExtResource("2_kojqu")]
@@ -99,11 +117,8 @@ shadow_enabled = true
 shadow_bias = 0.6
 shadow_normal_bias = 1.75
 
-[node name="SpawnPoint2" parent="." instance=ExtResource("2_j53go")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 5)
-
 [node name="SpawnPoint" parent="." instance=ExtResource("2_j53go")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.457626, 4, -65.75362)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.542374, 1, -50.753616)
 
 [node name="curbside" type="Node3D" parent="."]
 
@@ -4340,7 +4355,7 @@ transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.70710
 [node name="ShippingContainers" type="Node3D" parent="."]
 
 [node name="ShippingContainer" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
-transform = Transform3D(-0.049052373, 0, -0.7483942, 0, 0.75, 0, 0.7483942, 0, -0.049052373, -27.22628, 0, -21)
+transform = Transform3D(0.016361132, 0, -0.74982166, 0, 0.7500001, 0, 0.74982166, 0, 0.016361132, -23.22628, 0, -56.8)
 albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
 
 [node name="ShippingContainer20" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
@@ -4512,7 +4527,7 @@ transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -29.777275, 0, -32.6
 albedo_tint = Color(0.78, 0.17628, 0.109199986, 1)
 
 [node name="ShippingContainerMedium4" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
-transform = Transform3D(0.003010638, 0, -0.74999404, 0, 0.7500001, 0, 0.74999404, 0, 0.003010638, -24.970493, 1.875, -20.860933)
+transform = Transform3D(0.003010638, 0, -0.74999404, 0, 0.7500001, 0, 0.74999404, 0, 0.003010638, -23.170494, 1.875, -56.86093)
 albedo_tint = Color(0.78, 0.17628, 0.109199986, 1)
 
 [node name="ShippingContainerMedium6" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
@@ -4635,7 +4650,15 @@ albedo_tint = Color(0.87, 0.319, 0, 1)
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -38.992996, 3.7500005, -27)
 albedo_tint = Color(0.34918335, 0.7, 0.02099998, 1)
 
-[node name="ShippingContainer27" parent="ShippingContainers" instance=ExtResource("16_8khyd")]
+[node name="ShippingContainer50" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
+transform = Transform3D(-0.049052373, 0, -0.7483942, 0, 0.75, 0, 0.7483942, 0, -0.049052373, -27.22628, 0, -21)
+albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
+
+[node name="ShippingContainerMedium12" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
+transform = Transform3D(0.003010638, 0, -0.74999404, 0, 0.7500001, 0, 0.74999404, 0, 0.003010638, -24.970493, 1.875, -20.860933)
+albedo_tint = Color(0.78, 0.17628, 0.109199986, 1)
+
+[node name="ShippingContainer51" parent="ShippingContainers" instance=ExtResource("16_8khyd")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -28.216524, 1.8750002, -22)
 albedo_tint = Color(0.34918335, 0.7, 0.02099998, 1)
 
@@ -4938,6 +4961,14 @@ albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
 transform = Transform3D(-0.13052621, 0, -0.9914449, 0, 1, 0, 0.9914449, 0, -0.13052621, -38.008556, 0.06999993, -18.869474)
 albedo_tint = Color(0.39, 0.47433335, 0.5, 1)
 
+[node name="Forklift4" parent="." instance=ExtResource("20_q1vmm")]
+transform = Transform3D(1.3411045e-07, 0, 1, 0, 1, 0, -1, 0, 1.3411045e-07, -22.861212, 0.45633608, -49.768616)
+albedo_tint = Color(0.8106278, 0.4098696, 0.0043741227, 1)
+
+[node name="TintableProp8" parent="." instance=ExtResource("21_7ahgg")]
+transform = Transform3D(1.3411045e-07, 0, 1, 0, 1, 0, -1, 0, 1.3411045e-07, -24.861208, 0.06999993, -49.76861)
+albedo_tint = Color(0.39, 0.47433335, 0.5, 1)
+
 [node name="Forklift2" parent="." instance=ExtResource("20_q1vmm")]
 transform = Transform3D(-0.13052621, 0, -0.9914449, 0, 1, 0, 0.9914449, 0, -0.13052621, 2.0085564, 0.4563361, 1.8694744)
 albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
@@ -4986,9 +5017,34 @@ transform = Transform3D(-0.42426407, 0, 0.42426407, 0, 0.6, 0, -0.42426407, 0, -
 [node name="trash_box_03" parent="." instance=ExtResource("28_cro12")]
 transform = Transform3D(0.9469301, 0, 0.32143945, 0, 1, 0, -0.32143945, 0, 0.9469301, -24.407438, 0.066475965, -17.333672)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.1156194, 9.247678e-08)
+[node name="Warehouse02" parent="." instance=ExtResource("30_lip8n")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -30.234077, 0.014017701, -53.97867)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Warehouse02"]
+transform = Transform3D(1, 4.3711385e-08, 4.3711392e-08, -4.371139e-08, -4.371139e-08, 1, 4.371139e-08, -1, -4.3711385e-08, 0, 7.1051054, 0)
+spot_range = 30.0
+spot_attenuation = -0.5
+spot_angle = 62.34
+spot_angle_attenuation = 1.8660662
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="Warehouse02"]
+transform = Transform3D(1, 4.3711385e-08, 4.3711392e-08, -4.371139e-08, -4.371139e-08, 1, 4.371139e-08, -1, -4.3711385e-08, 6, 7.1051054, 0)
+spot_range = 30.0
+spot_attenuation = -0.5
+spot_angle = 62.34
+spot_angle_attenuation = 1.8660662
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Warehouse02"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3050652, 3.7847762, 0)
+light_energy = 5.0
+omni_range = 6.3239036
+
+[node name="sea" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 169.31104, -2.2351313, -88.787415)
 mesh = SubResource("QuadMesh_lgg11")
 surface_material_override/0 = SubResource("ShaderMaterial_lip8n")
+
+[node name="Outer" parent="." instance=ExtResource("31_lgg11")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, -32.8, 0.49999997, -129.4)
 
 [connection signal="spawn" from="MapStartScreen" to="." method="_on_map_start_screen_spawn"]

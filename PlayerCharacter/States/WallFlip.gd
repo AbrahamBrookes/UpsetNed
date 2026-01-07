@@ -49,3 +49,7 @@ func landed() -> void:
 		return
 		
 	state_machine.TransitionTo("Locomote")
+
+func dive(_data = null) -> void:
+	# we can dive from a wallflip
+	state_machine.TransitionTo("Diving")
