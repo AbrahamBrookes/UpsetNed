@@ -68,6 +68,13 @@ func load_map(map_path: String) -> void:
 	current_map = load(map_path).instantiate()
 	current_map.name = "Map"
 	world_root.add_child(current_map)
+	
+	# hide the map start screen
+	Network.client.toggle_map_start_screen(false)
+	
+	# set the maps server_camera to current
+	current_map.server_camera.make_current()
+	
 
 ## Spawn a player into the map. This is using the PlayerSpawner's custom spawn
 ## function in order to set up the player when they are spawned into the client

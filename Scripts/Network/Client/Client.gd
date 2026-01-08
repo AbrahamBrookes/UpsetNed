@@ -23,6 +23,9 @@ var current_map: Node
 ## the map path we will tell the client to load when it asks
 var current_map_path: String
 
+## a reference to the in-game UI
+@export var in_game_ui: InGameUI
+
 ## On ready we need to inject ourselves into the network singleton
 func _ready() -> void:
 	Network.client = self
@@ -45,8 +48,23 @@ func load_map(map_path: String) -> void:
 	current_map = load(map_path).instantiate()
 	current_map.name = "Map"
 	world_root.add_child(current_map)
+	
+	# show the map start screen
+	toggle_map_start_screen(true)
 
 ## hide/show the start map screen
 func toggle_map_start_screen(state: bool = true):
 	if current_map:
-		current_map.map_start_screen.visible = state
+		in_game_ui.map_start_screen.visible = state
+		
+		# if showing
+		if state:
+			# allow mouse input
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		# else hiding
+		else:
+			# set the server camera current
+			current_map.server_camera.make_current()
+			# capture mouse input
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+			

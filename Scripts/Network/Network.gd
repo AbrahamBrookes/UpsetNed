@@ -31,6 +31,12 @@ func server_despawn_player() -> void:
 	if multiplayer.is_server():
 		server.despawn_player(multiplayer.get_remote_sender_id())
 
+## hide/show the map start screen on the client
+@rpc("authority")
+func client_toggle_map_start_screen(state: bool = true):
+	if not multiplayer.is_server():
+		client.toggle_map_start_screen(state)
+
 ## We send inputs to the server for simulation there
 @rpc("any_peer", "unreliable")
 func send_input_packet(packet: Dictionary) -> void:

@@ -92,5 +92,3 @@ func kill() -> void:
 	Network.server_despawn_player.rpc_id(1)
 	
 	Network.client.toggle_map_start_screen(true)
-	# free up the mouse
-	Input.mouse_mode = Input.MOUSE_MODE_CONFINED

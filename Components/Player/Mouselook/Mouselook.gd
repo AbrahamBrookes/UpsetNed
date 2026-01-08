@@ -34,8 +34,6 @@ class_name Mouselook
 var invert_y = GamePreferences.invert_y
 
 func _ready() -> void:
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	
 	if debug:
 		target_node.visible = true
 	

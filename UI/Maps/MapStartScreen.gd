@@ -4,12 +4,9 @@ extends Control
 ## a character model, loadout and spawn in
 class_name MapStartScreen
 
-## tell context that we are ready to spawn
-signal spawn
-
-func _ready():
-	if not Util.running_as_server():
-		emit_signal("spawn")
-
 func _on_spawn_button_pressed() -> void:
-	emit_signal("spawn")
+	# hide the map start screen
+	Network.client.toggle_map_start_screen(false)
+	
+	# this should only be done on the server
+	Network.server_spawn_player.rpc_id(1)
