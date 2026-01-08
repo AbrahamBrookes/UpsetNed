@@ -99,12 +99,6 @@ func _physics_process(_delta: float) -> void:
 		# locally
 		state_machine.dispatch_action("jump")
 	
-	if Input.is_action_just_pressed("squat"):
-		# on the server
-		Network.dispatch_action.rpc_id(1, "squat")
-		# locally
-		state_machine.dispatch_action("squat")
-	
 	if Input.is_action_just_pressed("dive"):
 		# on the server
 		Network.dispatch_action.rpc_id(1, "dive")

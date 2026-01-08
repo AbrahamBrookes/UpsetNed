@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b6qqh2cfe7ybu"]
+[gd_scene load_steps=12 format=3 uid="uid://b6qqh2cfe7ybu"]
 
 [ext_resource type="Script" uid="uid://dj05bq1y7q0ab" path="res://Main.gd" id="1_jbe4v"]
 [ext_resource type="Script" uid="uid://dln6b7rnp1k2c" path="res://Scripts/Network/Bootstrap/ServerBootstrapper.gd" id="2_r0du0"]
@@ -8,6 +8,8 @@
 [ext_resource type="Script" uid="uid://cvbf60l5g0b0y" path="res://PlayerSpawner.gd" id="6_3dxm6"]
 [ext_resource type="Script" uid="uid://b4puit2xwerld" path="res://Scripts/Network/Server/ServerInputHandler.gd" id="6_lgr22"]
 [ext_resource type="Shader" uid="uid://ck0x3yofbljku" path="res://ScreenShader.gdshader" id="8_trn2v"]
+[ext_resource type="Script" uid="uid://blb7l565igemv" path="res://InGameUI.gd" id="8_wkp8b"]
+[ext_resource type="PackedScene" uid="uid://c5esd73ws02te" path="res://UI/Maps/MapStart.tscn" id="9_03owx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_03owx"]
 shader = ExtResource("8_trn2v")
@@ -30,9 +32,10 @@ server = NodePath("../Server")
 script = ExtResource("3_cm0pq")
 world_root = NodePath("../WorldRoot")
 
-[node name="Client" type="Node" parent="." node_paths=PackedStringArray("world_root")]
+[node name="Client" type="Node" parent="." node_paths=PackedStringArray("world_root", "in_game_ui")]
 script = ExtResource("4_fos0i")
 world_root = NodePath("../WorldRoot")
+in_game_ui = NodePath("../In-game UI")
 metadata/_custom_type_script = "uid://drn5jhcdhqg3v"
 
 [node name="Server" type="Node" parent="." node_paths=PackedStringArray("world_root", "player_spawner", "input_handler", "in_game_ui")]
@@ -40,7 +43,7 @@ script = ExtResource("5_3dxm6")
 world_root = NodePath("../WorldRoot")
 player_spawner = NodePath("../MultiplayerSpawner")
 input_handler = NodePath("ServerInputHandler")
-in_game_ui = NodePath("../CanvasLayer")
+in_game_ui = NodePath("../In-game UI")
 metadata/_custom_type_script = "uid://ea413p73jbg1"
 
 [node name="ServerInputHandler" type="Node" parent="Server" node_paths=PackedStringArray("server")]
@@ -56,9 +59,11 @@ spawn_path = NodePath("../WorldRoot")
 spawn_limit = 16
 script = ExtResource("6_3dxm6")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="In-game UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("map_start_screen")]
+script = ExtResource("8_wkp8b")
+map_start_screen = NodePath("MapStartScreen")
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+[node name="Vignette" type="ColorRect" parent="In-game UI"]
 material = SubResource("ShaderMaterial_03owx")
 anchors_preset = 15
 anchor_right = 1.0
@@ -67,7 +72,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="letterboxing" type="Control" parent="CanvasLayer"]
+[node name="letterboxing" type="Control" parent="In-game UI"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -76,7 +81,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="top" type="ColorRect" parent="CanvasLayer/letterboxing"]
+[node name="top" type="ColorRect" parent="In-game UI/letterboxing"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 1
 anchors_preset = -1
@@ -88,7 +93,7 @@ size_flags_vertical = 0
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="bottom" type="ColorRect" parent="CanvasLayer/letterboxing"]
+[node name="bottom" type="ColorRect" parent="In-game UI/letterboxing"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 1
 anchors_preset = 12
@@ -100,5 +105,8 @@ grow_vertical = 0
 size_flags_vertical = 0
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
+
+[node name="MapStartScreen" parent="In-game UI" instance=ExtResource("9_03owx")]
+visible = false
 
 [connection signal="spawned" from="MultiplayerSpawner" to="MultiplayerSpawner" method="_on_spawned"]

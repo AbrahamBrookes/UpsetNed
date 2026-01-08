@@ -8,21 +8,18 @@ func Enter(_extra_data = null):
 	# toggle animation blend spaces for in-game pointy arms
 	if state_machine.click_shoot:
 		state_machine.click_shoot.sliding = false
+		
+	# if we are landing and the player is holding squat
+	# and we have lateral velocity, go to sliding
+	if state_machine.previous_state:
+		if state_machine.previous_state.name == "Jumping" or state_machine.previous_state.name == "StandingBackflip":
+			if state_machine.input.current_input.squat:
+				squat_or_slide()
 
 func Physics_Update(_delta: float):
-	# if the previous state was jumping and the player is holding squat
-	# and we have lateral velocity, go to sliding
-	if state_machine.previous_state and state_machine.previous_state.name == "Jumping":
-		if state_machine.input.current_input.squat:
-			var horizontal_velocity = Vector3(
-				state_machine.locomotor.velocity.x,
-				0.0,
-				state_machine.locomotor.velocity.z
-			)
-			
-			if horizontal_velocity.length() > 0.1:
-				slide()
-				return
+	if state_machine.input.current_input.squat:
+		squat_or_slide()
+		return
 	
 	if not state_machine.locomotor.grounded:
 		state_machine.TransitionTo("Falling")
@@ -69,6 +66,17 @@ func dive(_data = null):
 func slide(_data = null):
 	state_machine.TransitionTo("Sliding")
 	
-# if the player presses squat, squat
-func squat(_data = null):
-	state_machine.TransitionTo("Squatting")
+func squat_or_slide():
+	var horizontal_velocity = Vector3(
+		state_machine.locomotor.velocity.x,
+		0.0,
+		state_machine.locomotor.velocity.z
+	)
+	
+	if horizontal_velocity.length() > 0.05:
+		slide()
+		return
+	else:
+		state_machine.TransitionTo("Squatting")
+	
+	

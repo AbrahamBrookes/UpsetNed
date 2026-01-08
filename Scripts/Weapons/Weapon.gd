@@ -126,7 +126,6 @@ func fire(target_position: Vector3) -> bool:
 	return true
 
 func _release_projectile(projectile: Node3D) -> void:
-	print('releasing projectile')
 	projectile.visible = false
 	projectile.global_position = Vector3.ZERO
 

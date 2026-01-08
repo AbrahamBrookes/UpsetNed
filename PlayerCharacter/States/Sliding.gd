@@ -6,6 +6,11 @@ extends State
 
 @export var mesh: Node3D
 
+# when the player enters a slide from locomote, for a split second they can do a StandingBackflip
+var can_backflip: bool
+# and this is managed by a timer
+@export var can_backflip_timer: Timer
+
 func Enter(_extra_data = null):
 	# toggle animation blend spaces for in-game pointy arms
 	if state_machine.click_shoot:
@@ -27,6 +32,10 @@ func Enter(_extra_data = null):
 	
 	state_machine.set_movement_intent(intent)
 	
+	# start the can_backflip_timer
+	can_backflip = true
+	can_backflip_timer.start()
+	
 
 func Physics_Update(delta: float):
 	# if slide force is less than the threshold, back to locomote
@@ -47,3 +56,12 @@ func Physics_Update(delta: float):
 
 	# Decrease slide force over time
 	slide_force -= slide_decay * delta  # arbitrary slide decay rate
+
+func jump(_data = null) -> void:
+	# if we can backflip, backflip
+	if can_backflip:
+		state_machine.TransitionTo("StandingBackflip")
+
+
+func _on_timer_timeout() -> void:
+	can_backflip = false

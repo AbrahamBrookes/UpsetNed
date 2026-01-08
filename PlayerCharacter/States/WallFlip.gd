@@ -42,7 +42,11 @@ func Physics_Update(delta: float):
 	
 	state_machine.set_movement_intent(intent)
 	
-func landed() -> void:
+	if state_machine.locomotor.grounded:
+		land()
+		return
+	
+func land() -> void:
 	# if the player is holding crouch when they land, go to sliding
 	if state_machine.input.current_input.squat:
 		state_machine.TransitionTo("Sliding")

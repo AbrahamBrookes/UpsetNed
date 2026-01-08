@@ -48,8 +48,12 @@ func Physics_Update(delta: float):
 	state_machine.anim_tree.set("parameters/Locomotion/Jumping/blend_position", intent.desired_velocity.y)
 	
 	state_machine.set_movement_intent(intent)
+	
+	if state_machine.locomotor.grounded:
+		land()
+		return
 
-func landed() -> void:
+func land() -> void:
 	# if the player is holding crouch when they land, go to sliding
 	if state_machine.input.current_input.squat:
 		slide()

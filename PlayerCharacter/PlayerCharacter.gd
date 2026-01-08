@@ -11,6 +11,8 @@ signal landed
 
 # since we are rotating the mesh separately we need a reference to it
 @export var mesh: Node3D
+# the animation player, for direct fenagling
+@export var animation_player: AnimationPlayer
 # child scripts and the state machine require a reference to the anim tree
 @export var anim_tree : AnimationTree
 # the state machine is our custom rolled state manager

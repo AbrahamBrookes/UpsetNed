@@ -70,8 +70,9 @@ func Physics_Update(delta: float):
 	
 	state_machine.set_movement_intent(intent)
 	
-func landed() -> void:
-	state_machine.TransitionTo("DiveSlide")
+	if state_machine.locomotor.grounded:
+		state_machine.TransitionTo("DiveSlide")
+		return
 
 # in order to do a wallflip the player needs to press jump while the
 # WallFlipRay is intersecting a wall

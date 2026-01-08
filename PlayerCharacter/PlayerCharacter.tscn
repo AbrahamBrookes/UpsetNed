@@ -1,4 +1,4 @@
-[gd_scene load_steps=119 format=3 uid="uid://dnngs3f0x460f"]
+[gd_scene load_steps=120 format=3 uid="uid://dnngs3f0x460f"]
 
 [ext_resource type="Script" uid="uid://7islvmlck2q0" path="res://PlayerCharacter/PlayerCharacter.gd" id="1_pult7"]
 [ext_resource type="Script" uid="uid://bt5sy4tn4uif6" path="res://Components/Player/ClickShoot/ClickShoot.gd" id="2_hs44b"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://cf63mfde4ddvh" path="res://PlayerCharacter/States/DiveProne.gd" id="13_i84k0"]
 [ext_resource type="Script" uid="uid://e1mfums3734w" path="res://PlayerCharacter/States/WallFlip.gd" id="17_glb63"]
 [ext_resource type="Script" uid="uid://dgdi0dn8dsce5" path="res://PlayerCharacter/InputSynchronizer.gd" id="20_jj1e1"]
+[ext_resource type="Script" uid="uid://c7mlgom4vi50j" path="res://PlayerCharacter/States/StandingBackflip.gd" id="21_6h7vh"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_i84k0"]
 radius = 0.05
@@ -377,6 +378,7 @@ blend_mode = 1
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_i84k0"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_0nfi7"]
+graph_offset = Vector2(-1027.7852, 151.01651)
 nodes/output/position = Vector2(1080, 140)
 nodes/Locomotion/node = SubResource("AnimationNodeStateMachine_hs44b")
 nodes/Locomotion/position = Vector2(-880, 140)
@@ -414,11 +416,12 @@ height = 0.991333
 [sub_resource type="SphereShape3D" id="SphereShape3D_u4e74"]
 radius = 0.3
 
-[node name="PlayerCharacter" type="CharacterBody3D" node_paths=PackedStringArray("mesh", "anim_tree", "state_machine", "camera", "mouselook", "ui_healthbar", "input_synchronizer")]
+[node name="PlayerCharacter" type="CharacterBody3D" node_paths=PackedStringArray("mesh", "animation_player", "anim_tree", "state_machine", "camera", "mouselook", "ui_healthbar", "input_synchronizer")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 collision_layer = 2
 script = ExtResource("1_pult7")
 mesh = NodePath("Upset Ned")
+animation_player = NodePath("Upset Ned/AnimationPlayer")
 anim_tree = NodePath("Upset Ned/AnimationTree")
 state_machine = NodePath("StateMachine")
 camera = NodePath("CameraPivot/Camera3D")
@@ -517,7 +520,7 @@ metadata/_custom_type_script = "uid://x8ew2ykbok2f"
 [node name="AnimationTree" type="AnimationTree" parent="Upset Ned"]
 tree_root = SubResource("AnimationNodeBlendTree_0nfi7")
 anim_player = NodePath("../AnimationPlayer")
-parameters/Locomotion/Diving/blend_position = Vector2(0, 0)
+parameters/Locomotion/Diving/blend_position = Vector2(0.075645804, 0.08520174)
 parameters/Locomotion/Falling/blend_position = 0.0
 parameters/Locomotion/Jumping/blend_position = -0.10051811
 parameters/Locomotion/Locomote/blend_position = Vector2(-0.9920477, 1)
@@ -576,10 +579,15 @@ metadata/_custom_type_script = "uid://bjmyb3rnkdsof"
 script = ExtResource("7_oaojh")
 metadata/_custom_type_script = "uid://bjmyb3rnkdsof"
 
-[node name="Sliding" type="Node3D" parent="StateMachine" node_paths=PackedStringArray("mesh")]
+[node name="Sliding" type="Node3D" parent="StateMachine" node_paths=PackedStringArray("mesh", "can_backflip_timer")]
 script = ExtResource("7_jglra")
 mesh = NodePath("../../Upset Ned")
+can_backflip_timer = NodePath("Timer")
 metadata/_custom_type_script = "uid://bjmyb3rnkdsof"
+
+[node name="Timer" type="Timer" parent="StateMachine/Sliding"]
+wait_time = 0.1
+one_shot = true
 
 [node name="Prone" type="Node3D" parent="StateMachine"]
 script = ExtResource("9_5vfnn")
@@ -603,6 +611,10 @@ metadata/_custom_type_script = "uid://bjmyb3rnkdsof"
 
 [node name="WallFlip" type="Node3D" parent="StateMachine"]
 script = ExtResource("17_glb63")
+metadata/_custom_type_script = "uid://bjmyb3rnkdsof"
+
+[node name="StandingBackflip" type="Node3D" parent="StateMachine"]
+script = ExtResource("21_6h7vh")
 metadata/_custom_type_script = "uid://bjmyb3rnkdsof"
 
 [node name="CameraPivot" type="Node3D" parent="."]
@@ -649,6 +661,7 @@ shape = SubResource("SphereShape3D_u4e74")
 [connection signal="timeout" from="ClickShoot/l_timer" to="ClickShoot" method="_on_l_timer_timeout"]
 [connection signal="timeout" from="ClickShoot/r_timer" to="ClickShoot" method="_on_r_timer_timeout"]
 [connection signal="intend_to_move" from="StateMachine" to="." method="_on_state_machine_intend_to_move"]
+[connection signal="timeout" from="StateMachine/Sliding/Timer" to="StateMachine/Sliding" method="_on_timer_timeout"]
 
 [editable path="Upset Ned"]
 [editable path="Upset Ned/rig/Skeleton3D/Bazooka Jenkins"]

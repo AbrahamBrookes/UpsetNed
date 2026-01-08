@@ -160,6 +160,3 @@ func dispatch_action(action: String, data = null):
 	else:
 		if debug:
 			push_error("Action '%s' ignored by state %s" % [action, current_state.name])
-
-func _on_player_character_landed() -> void:
-	current_state.landed()
