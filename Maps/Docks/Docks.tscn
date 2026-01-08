@@ -96,10 +96,9 @@ shader_parameter/wave_speed = 1.0
 shader_parameter/wave_steepness = 2.0
 shader_parameter/wave_direction = Vector2(1, 0.3)
 
-[node name="Docks" type="Node3D" node_paths=PackedStringArray("spawn_points", "map_start_screen", "server_camera")]
+[node name="Docks" type="Node3D" node_paths=PackedStringArray("spawn_points", "server_camera")]
 script = ExtResource("1_ktmrb")
 spawn_points = [NodePath("SpawnPoint")]
-map_start_screen = NodePath("")
 server_camera = NodePath("ServerCamera")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -107,7 +106,7 @@ environment = SubResource("Environment_g6sv0")
 camera_attributes = SubResource("CameraAttributesPractical_poso3")
 
 [node name="ServerCamera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 3, 9, 10)
+transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, -20, 9, -43)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.81325316, 0.19363269, 0.5487492, -0.5819101, 0.27061296, 0.76690894, 0, -0.9430138, 0.33275366, 0, 7.2228403, 0)
