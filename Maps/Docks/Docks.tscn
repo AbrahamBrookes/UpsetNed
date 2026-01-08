@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://bm1vawluanrrm"]
+[gd_scene load_steps=42 format=3 uid="uid://bm1vawluanrrm"]
 
 [ext_resource type="Script" uid="uid://byywho2cl4sjr" path="res://Maps/Map.gd" id="1_ktmrb"]
 [ext_resource type="PackedScene" uid="uid://bwgwbw0v6yn1q" path="res://Maps/SpawnPoint.tscn" id="2_j53go"]
@@ -32,6 +32,7 @@
 [ext_resource type="Shader" uid="uid://dy7nf2mv83lid" path="res://Maps/Docks/DocksWater.gdshader" id="30_cro12"]
 [ext_resource type="PackedScene" uid="uid://bag575umtmde3" path="res://Art/Props/Docks/warehouse_01/warehouse_01.tscn" id="30_lip8n"]
 [ext_resource type="PackedScene" uid="uid://b68l1esyvi87c" path="res://Art/Props/Docks/outer/outer.tscn" id="31_lgg11"]
+[ext_resource type="PackedScene" uid="uid://veifyrvkohpc" path="res://Gameplay/KillBox/KillBox.tscn" id="33_0q28q"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_cro12"]
 panorama = ExtResource("3_1uhr4")
@@ -118,7 +119,7 @@ shadow_bias = 0.6
 shadow_normal_bias = 1.75
 
 [node name="SpawnPoint" parent="." instance=ExtResource("2_j53go")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.542374, 1, -50.753616)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.542374, 1, -53.753616)
 
 [node name="curbside" type="Node3D" parent="."]
 
@@ -5047,4 +5048,9 @@ surface_material_override/0 = SubResource("ShaderMaterial_lip8n")
 [node name="Outer" parent="." instance=ExtResource("31_lgg11")]
 transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, -32.8, 0.49999997, -129.4)
 
+[node name="KillBox" parent="." instance=ExtResource("33_0q28q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, -5, -51)
+
 [connection signal="spawn" from="MapStartScreen" to="." method="_on_map_start_screen_spawn"]
+
+[editable path="KillBox"]

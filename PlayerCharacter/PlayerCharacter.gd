@@ -86,3 +86,11 @@ func _on_state_machine_intend_to_move(intent: MovementIntent) -> void:
 		grounded_coyote_time -= 1
 		if grounded_coyote_time <= 0:
 			grounded = false
+
+# kill the player
+func kill() -> void:
+	Network.server_despawn_player.rpc_id(1)
+	
+	Network.client.toggle_map_start_screen(true)
+	# free up the mouse
+	Input.mouse_mode = Input.MOUSE_MODE_CONFINED

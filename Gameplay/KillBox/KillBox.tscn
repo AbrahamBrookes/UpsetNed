@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://veifyrvkohpc"]
+
+[ext_resource type="Script" uid="uid://c1yntyd5ma62t" path="res://Gameplay/KillBox/KillBox.gd" id="1_usdps"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_usdps"]
+size = Vector3(226, 1, 222)
+
+[node name="KillBox" type="Node3D"]
+script = ExtResource("1_usdps")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 6
+collision_mask = 6
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_usdps")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

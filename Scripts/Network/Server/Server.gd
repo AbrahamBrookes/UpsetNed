@@ -91,6 +91,14 @@ func spawn_player(peer_id: int):
 	
 	## show in game UI
 	in_game_ui.visible = true
+	
+## Despawn a player from the world
+func despawn_player(peer_id: int):
+	var player = players[peer_id]
+	# tear down the node
+	player.queue_free()
+	# remove from our list so we don't get null access
+	players.erase(peer_id)
 
 ### when we receive an input packet from a client we need to apply that packet to
 ### the player character we are simulating on the server

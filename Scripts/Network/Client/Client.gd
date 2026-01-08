@@ -45,3 +45,8 @@ func load_map(map_path: String) -> void:
 	current_map = load(map_path).instantiate()
 	current_map.name = "Map"
 	world_root.add_child(current_map)
+
+## hide/show the start map screen
+func toggle_map_start_screen(state: bool = true):
+	if current_map:
+		current_map.map_start_screen.visible = state

@@ -23,6 +23,14 @@ func server_spawn_player() -> void:
 	if multiplayer.is_server():
 		server.spawn_player(multiplayer.get_remote_sender_id())
 
+## players need to despawn without breaking their game
+@rpc("any_peer")
+func server_despawn_player() -> void:
+	# remove the player on the server and the MultiplayerSpawner will propagate
+	# the node removal to clients
+	if multiplayer.is_server():
+		server.despawn_player(multiplayer.get_remote_sender_id())
+
 ## We send inputs to the server for simulation there
 @rpc("any_peer", "unreliable")
 func send_input_packet(packet: Dictionary) -> void:
