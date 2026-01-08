@@ -93,6 +93,9 @@ func _physics_process(delta):
 	# so don't run the current states Physics_Update here anymore - it gets run from the InputSynchronizer
 	if current_state:
 		current_state.Physics_Update(delta)
+		# apply mouselook blendspaces after running state animations to avoid popping
+		# when we change states due to too-quick blendspace changes
+		current_state.player_character.mouselook.mouseLook()
 	pass
 
 func TransitionTo(new_state_name: String, extra_data = null) -> bool:

@@ -13,7 +13,7 @@ var jump_power_left = 0.0
 func Enter(_extra_data = null):
 	# toggle animation blend spaces for in-game pointy arms
 	if state_machine.click_shoot:
-		state_machine.click_shoot.sliding = true
+		state_machine.click_shoot.current_clickshoot_state = ClickShoot.ClickShootState.DIVING
 		
 	## Apply the current input to the dive when it starts
 	var input_direction = state_machine.input.current_input.move
@@ -37,7 +37,7 @@ func Enter(_extra_data = null):
 	# want to rotate the mesh to the opposite of velocity when we enter the dive
 	if player_character.velocity.length() > 0.1:
 		intent.desired_rotation = mesh.global_transform.basis.get_euler()
-		intent.desired_rotation.y = PI + atan2(player_character.velocity.x, player_character.velocity.z)
+		intent.desired_rotation.y = atan2(player_character.velocity.x, player_character.velocity.z)
 	
 	state_machine.set_movement_intent(intent)
 

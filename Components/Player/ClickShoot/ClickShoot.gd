@@ -14,8 +14,16 @@ class_name ClickShoot
 var r_shooting: bool = false
 var l_shooting: bool = false
 
-# states will have to toggle us between standing and sliding modes
-var sliding: bool = false
+# states will have to toggle us between standing and sliding modes - this is used
+# to toggle on and off animation layers used to offset the hands when shooting
+enum ClickShootState {
+	SLIDING,
+	DIVING,
+	STANDING,
+	SQUATTING
+}
+# the current clickshoot state
+var current_clickshoot_state: ClickShootState = ClickShootState.STANDING
 
 # the anim tree for looking
 @export var anim_tree: AnimationTree
@@ -36,21 +44,29 @@ func _physics_process(_delta: float) -> void:
 	anim_tree.set("parameters/StandingAimLHandBlend/blend_amount", 0)
 	anim_tree.set("parameters/SlidingAimLHandBlend/blend_amount", 0)
 	anim_tree.set("parameters/SlidingAimRHandBlend/blend_amount", 0)
+	anim_tree.set("parameters/DivingAimLHandBlend/blend_amount", 0)
+	anim_tree.set("parameters/DivingAimRHandBlend/blend_amount", 0)
 	
 	if r_shooting:
-		if sliding:
+		if current_clickshoot_state == ClickShootState.SLIDING:
 			anim_tree.set("parameters/SlidingAimRHandBlend/blend_amount", 1)
 			#print("slide shoot R")
-		else:
+		if current_clickshoot_state == ClickShootState.STANDING:
 			anim_tree.set("parameters/StandingAimRHandBlend/blend_amount", 1)
 			#print("stand shoot R")
+		if current_clickshoot_state == ClickShootState.DIVING:
+			anim_tree.set("parameters/DivingAimRHandBlend/blend_amount", 1)
+			#print("dive shoot R")
 	if l_shooting:
-		if sliding:
+		if current_clickshoot_state == ClickShootState.SLIDING:
 			anim_tree.set("parameters/SlidingAimLHandBlend/blend_amount", 1)
 			#print("slide shoot L")
-		else:
+		if current_clickshoot_state == ClickShootState.STANDING:
 			anim_tree.set("parameters/StandingAimLHandBlend/blend_amount", 1)
 			#print("stand shoot L")
+		if current_clickshoot_state == ClickShootState.DIVING:
+			anim_tree.set("parameters/DivingAimLHandBlend/blend_amount", 1)
+			#print("dive shoot L")
 	
 
 # when the player clicks fire_r or fire_l, toggle the related flag

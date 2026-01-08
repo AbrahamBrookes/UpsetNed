@@ -19,11 +19,11 @@ func Exit(_extra_data = null):
 	player_character.anim_tree.set("parameters/AnimSpeed/scale", 2.0)
 
 func Enter(_extra_data = null):
-	player_character.anim_tree.set("parameters/AnimSpeed/scale", -2.0)
-	
 	# toggle animation blend spaces for in-game pointy arms
 	if state_machine.click_shoot:
-		state_machine.click_shoot.sliding = false
+		state_machine.click_shoot.current_clickshoot_state = ClickShoot.ClickShootState.STANDING
+		
+	player_character.anim_tree.set("parameters/AnimSpeed/scale", -2.0)
 
 	# Apply immediate upward impulse
 	intent.desired_velocity = Vector3(

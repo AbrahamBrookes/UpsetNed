@@ -7,7 +7,7 @@ extends State
 func Enter(_extra_data = null):
 	# toggle animation blend spaces for in-game pointy arms
 	if state_machine.click_shoot:
-		state_machine.click_shoot.sliding = false
+		state_machine.click_shoot.current_clickshoot_state = ClickShoot.ClickShootState.STANDING
 		
 	# if we are landing and the player is holding squat
 	# and we have lateral velocity, go to sliding

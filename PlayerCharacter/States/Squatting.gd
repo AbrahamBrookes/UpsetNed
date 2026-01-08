@@ -5,7 +5,7 @@ extends State
 func Enter(_extra_data = null):
 	# toggle animation blend spaces for in-game pointy arms
 	if state_machine.click_shoot:
-		state_machine.click_shoot.sliding = false
+		state_machine.click_shoot.current_clickshoot_state = ClickShoot.ClickShootState.STANDING
 
 func Physics_Update(_delta: float):
 	# if the player releases squat, go back to locomote

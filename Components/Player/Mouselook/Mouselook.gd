@@ -73,6 +73,8 @@ func mouseLook():
 	anim_tree.set("parameters/StandingAimLHandBlendSpace/blend_position", blend_value)
 	anim_tree.set("parameters/SlidingAimRHandBlendSpace/blend_position", blend_value)
 	anim_tree.set("parameters/SlidingAimLHandBlendSpace/blend_position", blend_value)
+	anim_tree.set("parameters/DivingAimRHandBlendSpace/blend_position", blend_value)
+	anim_tree.set("parameters/DivingAimLHandBlendSpace/blend_position", blend_value)
 
 	# Horizontal mouse — rotate the pivot
 	camera_pivot.rotate_y(-mouse_delta.x)

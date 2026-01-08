@@ -13,7 +13,7 @@ var jump_power_left = 0.0
 func Enter(_extra_data = null):
 	# toggle animation blend spaces for in-game pointy arms
 	if state_machine.click_shoot:
-		state_machine.click_shoot.sliding = false
+		state_machine.click_shoot.current_clickshoot_state = ClickShoot.ClickShootState.STANDING
 
 	# Apply immediate upward impulse
 	intent.desired_velocity = Vector3(

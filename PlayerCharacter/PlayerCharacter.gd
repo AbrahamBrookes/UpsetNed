@@ -51,9 +51,6 @@ func _ready() -> void:
 	if not mesh:
 		print("not mesh")
 	ui_healthbar.value = 100
-	
-func _physics_process(_delta):
-	mouselook.mouseLook()
 
 func receive_damage() -> void:
 	ui_healthbar.value -= 3

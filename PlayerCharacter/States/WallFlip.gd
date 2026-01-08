@@ -13,9 +13,9 @@ var jump_power_left = 0.0
 
 ## must pass in the ray cast collision so we can get the wall normal
 func Enter(extra_data: Vector3 = Vector3.BACK):
-	# toggle animation blend spaces for in-game pointy arms TODO: animations for shooting during wall flip
-	# if state_machine.click_shoot:
-	# 	state_machine.click_shoot.sliding = true
+	# toggle animation blend spaces for in-game pointy arms
+	if state_machine.click_shoot:
+		state_machine.click_shoot.current_clickshoot_state = ClickShoot.ClickShootState.STANDING
 	
 	# apply wall flip impulse
 	intent.desired_velocity = player_character.velocity + extra_data * jump_velocity

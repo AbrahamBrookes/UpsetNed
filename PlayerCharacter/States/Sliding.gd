@@ -14,7 +14,7 @@ var can_backflip: bool
 func Enter(_extra_data = null):
 	# toggle animation blend spaces for in-game pointy arms
 	if state_machine.click_shoot:
-		state_machine.click_shoot.sliding = true
+		state_machine.click_shoot.current_clickshoot_state = ClickShoot.ClickShootState.SLIDING
 		
 	# set initial slide force based on current horizontal speed
 	var horizontal_velocity = Vector3(player_character.velocity.x, 0.0, player_character.velocity.z)
