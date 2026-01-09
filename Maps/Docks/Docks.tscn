@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://bm1vawluanrrm"]
+[gd_scene load_steps=43 format=3 uid="uid://bm1vawluanrrm"]
 
 [ext_resource type="Script" uid="uid://byywho2cl4sjr" path="res://Maps/Map.gd" id="1_ktmrb"]
 [ext_resource type="PackedScene" uid="uid://bwgwbw0v6yn1q" path="res://Maps/SpawnPoint.tscn" id="2_j53go"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://77ymv36nxw0e" path="res://Art/Props/Docks/ShippingContainer/ShippingContainerLong.tscn" id="16_8jmw5"]
 [ext_resource type="PackedScene" uid="uid://d0gy30jahmhpm" path="res://Art/Props/Docks/ShippingContainer/ShippingContainerShort.tscn" id="16_8khyd"]
 [ext_resource type="PackedScene" uid="uid://dsyk2dd5yrr3n" path="res://Art/Props/Docks/barrel_plastic_01/barrel_plastic_01.tscn" id="16_vsx47"]
+[ext_resource type="PackedScene" uid="uid://ck03gw0km805n" path="res://Art/Props/Vehicles/Trucks/truck_freighter_01/truck_freighter_01.tscn" id="17_xl3tl"]
 [ext_resource type="PackedScene" uid="uid://clnk7welk5n8q" path="res://Art/Props/Docks/ship/ship_i.tscn" id="18_vsx47"]
 [ext_resource type="PackedScene" uid="uid://cwuq5f7wbiq1h" path="res://Art/Props/Docks/streetlight_01/streetlight_01.tscn" id="19_85nx3"]
 [ext_resource type="PackedScene" uid="uid://cfyf7yawitv4e" path="res://Art/Props/Docks/Forklift/Forklift.tscn" id="20_q1vmm"]
@@ -32,6 +33,7 @@
 [ext_resource type="PackedScene" uid="uid://bag575umtmde3" path="res://Art/Props/Docks/warehouse_01/warehouse_01.tscn" id="30_lip8n"]
 [ext_resource type="PackedScene" uid="uid://b68l1esyvi87c" path="res://Art/Props/Docks/outer/outer.tscn" id="31_lgg11"]
 [ext_resource type="PackedScene" uid="uid://veifyrvkohpc" path="res://Gameplay/KillBox/KillBox.tscn" id="33_0q28q"]
+[ext_resource type="PackedScene" uid="uid://bc6tqnttfwgit" path="res://Art/Props/Docks/warehouse_02/warehouse_02.glb" id="33_xl3tl"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_cro12"]
 panorama = ExtResource("3_1uhr4")
@@ -4724,6 +4726,22 @@ albedo_tint = Color(0.19139999, 0.3533167, 0.58, 1)
 transform = Transform3D(0.09577623, 0, 0.995403, 0, 1, 0, -0.995403, 0, 0.09577623, -5.3423467, -0.050000057, -47.715015)
 albedo_tint = Color(0.19139999, 0.3533167, 0.58, 1)
 
+[node name="TruckFreighter01" parent="ShippingContainers" instance=ExtResource("17_xl3tl")]
+transform = Transform3D(0.34928343, 0, 0.022385139, 0, 0.35, 0, -0.022385139, 0, 0.34928343, -24, 0.42854023, 12)
+albedo_tint = Color(0.82, 0.25857332, 0.17219998, 1)
+
+[node name="TruckFreighter04" parent="ShippingContainers" instance=ExtResource("17_xl3tl")]
+transform = Transform3D(0.34928343, 0, 0.022385139, 0, 0.35, 0, -0.022385139, 0, 0.34928343, -22, 0.4785403, -31)
+albedo_tint = Color(0.17219998, 0.40972674, 0.82, 1)
+
+[node name="TruckFreighter02" parent="ShippingContainers" instance=ExtResource("17_xl3tl")]
+transform = Transform3D(0.34988448, 0, 0.008990947, 0, 0.35, 0, -0.008990947, 0, 0.34988448, -20, 0.42854023, 12)
+albedo_tint = Color(0.82, 0.25857332, 0.17219998, 1)
+
+[node name="TruckFreighter03" parent="ShippingContainers" instance=ExtResource("17_xl3tl")]
+transform = Transform3D(0.3497923, 0, -0.012056091, 0, 0.35, 0, 0.012056091, 0, 0.3497923, -16.3, 0.42854023, 12)
+albedo_tint = Color(0.66, 0.66, 0.66, 1)
+
 [node name="Bollards" type="Node3D" parent="."]
 
 [node name="Bollard01" parent="Bollards" instance=ExtResource("12_g6sv0")]
@@ -5047,5 +5065,8 @@ transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, -32.8, 0.49999997, -129
 
 [node name="KillBox" parent="." instance=ExtResource("33_0q28q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, -5, -51)
+
+[node name="warehouse_022" parent="." instance=ExtResource("33_xl3tl")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -29, 0, -56)
 
 [editable path="KillBox"]
