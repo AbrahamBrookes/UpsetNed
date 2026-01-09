@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=4 uid="uid://d0gy30jahmhpm"]
+[gd_scene load_steps=12 format=4 uid="uid://d0gy30jahmhpm"]
 
 [ext_resource type="Script" uid="uid://d17spaxidwmpj" path="res://Art/Props/tintable_prop.gd" id="1_4vy8g"]
 [ext_resource type="Texture2D" uid="uid://2udw6sym142g" path="res://Art/Props/Docks/ShippingContainer/dif.png" id="2_r06vn"]
+[ext_resource type="PackedScene" uid="uid://d3h1pqc4xpwsp" path="res://Art/Props/SurfaceMaterials/metal_surface.tscn" id="3_4vy8g"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bmm4b"]
 
@@ -59,7 +60,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_rwcvw")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r06vn"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7xjai"]
 albedo_color = Color(0.82, 0.008199992, 0.008199992, 1)
 albedo_texture = ExtResource("2_r06vn")
 
@@ -73,15 +74,16 @@ size = Vector3(2.6000001, 2.5, 3.5)
 [sub_resource type="BoxOccluder3D" id="BoxOccluder3D_jwhks"]
 size = Vector3(1.6, 2.5, 2.4)
 
-[node name="ShippingContainerShort" type="StaticBody3D"]
+[node name="ShippingContainerShort" type="StaticBody3D" node_paths=PackedStringArray("mesh")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
 script = ExtResource("1_4vy8g")
 albedo_tint = Color(0.82, 0.008199992, 0.008199992, 1)
+mesh = NodePath("Mesh")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_llyl2")
 skeleton = NodePath("")
-surface_material_override/0 = SubResource("StandardMaterial3D_r06vn")
+surface_material_override/0 = SubResource("StandardMaterial3D_7xjai")
 surface_material_override/1 = SubResource("StandardMaterial3D_4vy8g")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -91,3 +93,5 @@ shape = SubResource("BoxShape3D_tbdvi")
 [node name="OccluderInstance3D" type="OccluderInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9802322e-08, 1.25, 1.2)
 occluder = SubResource("BoxOccluder3D_jwhks")
+
+[node name="ShotReceiver" parent="." instance=ExtResource("3_4vy8g")]

@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=4 uid="uid://jb0xrx0ktl33"]
+[gd_scene load_steps=6 format=4 uid="uid://jb0xrx0ktl33"]
 
 [ext_resource type="Material" uid="uid://8ipottkcjypj" path="res://Art/atlas.material" id="1_k68q5"]
+[ext_resource type="PackedScene" uid="uid://d3h1pqc4xpwsp" path="res://Art/Props/SurfaceMaterials/metal_surface.tscn" id="2_6y6md"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_vcqkt"]
 _surfaces = [{
@@ -49,3 +50,6 @@ transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="@StaticBody3D@101691"]
 shape = SubResource("ConcavePolygonShape3D_l1mqq")
+
+[node name="ShotReceiver" parent="@StaticBody3D@101691" instance=ExtResource("2_6y6md")]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, 0)

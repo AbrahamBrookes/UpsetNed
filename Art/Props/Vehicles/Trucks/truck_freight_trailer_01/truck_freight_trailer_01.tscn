@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=4 uid="uid://juwwv5v7vt1g"]
+[gd_scene load_steps=9 format=4 uid="uid://juwwv5v7vt1g"]
 
 [ext_resource type="PackedScene" uid="uid://css2sdjd7aqyh" path="res://Art/Props/Vehicles/Trucks/truck_freight_trailer_01/truck_freight_trailer_01.glb" id="1_lodw7"]
 [ext_resource type="Script" uid="uid://d17spaxidwmpj" path="res://Art/Props/tintable_prop.gd" id="2_j4dke"]
 [ext_resource type="Material" uid="uid://8ipottkcjypj" path="res://Art/atlas.material" id="3_b4pi6"]
 [ext_resource type="Texture2D" uid="uid://ch7ohev7dkmja" path="res://Art/atlas.png" id="4_j4dke"]
+[ext_resource type="PackedScene" uid="uid://d3h1pqc4xpwsp" path="res://Art/Props/SurfaceMaterials/metal_surface.tscn" id="5_b4pi6"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_loxas"]
 _surfaces = [{
@@ -72,3 +73,6 @@ mesh = NodePath("truck_freight_trailer_01")
 [node name="truck_freight_trailer_01" parent="." index="0"]
 mesh = SubResource("ArrayMesh_miaq7")
 surface_material_override/0 = SubResource("StandardMaterial3D_b4pi6")
+
+[node name="ShotReceiver" parent="@StaticBody3D@56755" index="1" instance=ExtResource("5_b4pi6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 6)

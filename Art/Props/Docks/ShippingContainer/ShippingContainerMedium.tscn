@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=4 uid="uid://cqh7ncee7jefg"]
+[gd_scene load_steps=11 format=4 uid="uid://cqh7ncee7jefg"]
 
 [ext_resource type="Script" uid="uid://d17spaxidwmpj" path="res://Art/Props/tintable_prop.gd" id="1_8jrkj"]
 [ext_resource type="Material" uid="uid://bbfx131vtfgnq" path="res://Art/Props/Docks/ShippingContainer/ShippingContainer.material" id="2_5ql24"]
 [ext_resource type="Texture2D" uid="uid://2udw6sym142g" path="res://Art/Props/Docks/ShippingContainer/dif.png" id="3_jbkcx"]
+[ext_resource type="PackedScene" uid="uid://d3h1pqc4xpwsp" path="res://Art/Props/SurfaceMaterials/metal_surface.tscn" id="4_5ql24"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8jrkj"]
 albedo_color = Color(0.66245234, 0.6624523, 0.66245234, 1)
@@ -60,7 +61,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_6il74")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ql24"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jylyi"]
 albedo_texture = ExtResource("3_jbkcx")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tbdvi"]
@@ -69,14 +70,15 @@ size = Vector3(2.6000001, 2.5, 5.9)
 [sub_resource type="BoxOccluder3D" id="BoxOccluder3D_jwhks"]
 size = Vector3(1.5, 2.5, 4.1)
 
-[node name="ShippingContainerMedium" type="StaticBody3D"]
+[node name="ShippingContainerMedium" type="StaticBody3D" node_paths=PackedStringArray("mesh")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
 script = ExtResource("1_8jrkj")
+mesh = NodePath("Mesh")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_5ql24")
 skeleton = NodePath("")
-surface_material_override/0 = SubResource("StandardMaterial3D_5ql24")
+surface_material_override/0 = SubResource("StandardMaterial3D_jylyi")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9802322e-08, 1.25, 0)
@@ -85,3 +87,5 @@ shape = SubResource("BoxShape3D_tbdvi")
 [node name="OccluderInstance3D" type="OccluderInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9802322e-08, 1.25, 0)
 occluder = SubResource("BoxOccluder3D_jwhks")
+
+[node name="ShotReceiver" parent="." instance=ExtResource("4_5ql24")]

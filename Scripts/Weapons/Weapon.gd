@@ -65,28 +65,36 @@ func fire(target_position: Vector3) -> bool:
 	#if rounds_left <= 0:
 		#return dry_fire()
 	#rounds_left -= 1
-
-	# add 0.5 on the y axis to aim at center of mass
-	target_position.y += 0.5
-
+	
+	# figure out where we were pointing and shoot a bullet at it
 	# add a bit of randomness to simulate inaccuracy
 	target_position.x += randf_range(-accuracy_deviation, accuracy_deviation)
 	target_position.y += randf_range(-accuracy_deviation, accuracy_deviation)
 	target_position.z += randf_range(-accuracy_deviation, accuracy_deviation)
 
+	var muzzle_position = muzzle.global_transform.origin
+	var direction = target_position - muzzle_position
+	
+	# not sure what this is
+	if direction.length_squared() == 0.0:
+		direction = -muzzle.global_transform.basis.z
+	
+	var direction_normalized = direction.normalized()
+	var ray_end = muzzle_position + direction_normalized * max_range
+	
+	# tell the server we shot our weapon - send the physics query to the server
+	# and have them run it on their machine
+	Network.player_shot_weapon.rpc_id(1, PlayerShotWeaponEvent.new(
+		muzzle_position,
+		ray_end
+	).to_dict())
+	
 	# find the first inactive projectile in the pool
 	for projectile in projectile_pool:
 		if not projectile.visible:
 			# activate and fire the projectile
 			projectile.visible = true
-			var muzzle_position = muzzle.global_transform.origin
 			projectile.global_position = muzzle_position
-			var direction = target_position - muzzle_position
-			if direction.length_squared() == 0.0:
-				direction = -muzzle.global_transform.basis.z
-			var direction_normalized = direction.normalized()
-
-			var ray_end = muzzle_position + direction_normalized * max_range
 			var final_position = ray_end
 			var space_state = get_world_3d().direct_space_state if is_inside_tree() else null
 			if space_state:
@@ -96,9 +104,15 @@ func fire(target_position: Vector3) -> bool:
 				var hit = space_state.intersect_ray(query)
 				if not hit.is_empty():
 					final_position = hit.position
-					print("hit object ", hit.collider.name)
+					#print("client ", hit.position)
 					if hit.collider.name == "PlayerCharacter":
 						hit.collider.receive_damage()
+					var shot_receiver = hit.collider.get_node_or_null("ShotReceiver") as ShotReceiver
+					if shot_receiver:
+						print("font")
+						shot_receiver.receive_shot(hit.position, hit.normal)
+					else:
+						print('nay')
 
 			projectile.look_at(final_position)
 

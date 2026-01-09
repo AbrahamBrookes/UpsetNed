@@ -54,4 +54,11 @@ func send_authoritative_state(state: Dictionary):
 @rpc("any_peer")
 func dispatch_action(action: String) -> void:
 	if multiplayer.is_server():
-		Network.server.dispatch_action(multiplayer.get_remote_sender_id(), action)
+		server.dispatch_action(multiplayer.get_remote_sender_id(), action)
+		
+# the player shoots a weapon and needs to tell the server
+@rpc("any_peer")
+func player_shot_weapon(event: Dictionary) -> void:
+	if multiplayer.is_server():
+		server.player_shot_weapon(event, multiplayer.get_remote_sender_id())
+		

@@ -1,0 +1,96 @@
+[gd_scene load_steps=13 format=3 uid="uid://csjaahs7lis2m"]
+
+[ext_resource type="Script" uid="uid://b28byf2hcj6ke" path="res://Art/Particles/ImpactMetal01.gd" id="1_j6v2v"]
+[ext_resource type="Texture2D" uid="uid://c04w18d0rmxqp" path="res://Art/Particles/dust.png" id="1_jextj"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_j6v2v"]
+particle_flag_align_y = true
+velocity_pivot = Vector3(0, 1, 1)
+direction = Vector3(0, 2, 0)
+initial_velocity_min = 40.0
+initial_velocity_max = 50.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dgtny"]
+blend_mode = 1
+cull_mode = 2
+albedo_color = Color(1, 0.36666667, 0, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_p7dot"]
+material = SubResource("StandardMaterial3D_dgtny")
+size = Vector2(0.03, 0.15)
+
+[sub_resource type="Gradient" id="Gradient_p7dot"]
+offsets = PackedFloat32Array(0, 0.84823847)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_v3j3q"]
+gradient = SubResource("Gradient_p7dot")
+
+[sub_resource type="Curve" id="Curve_ye4jn"]
+_limits = [0.0, 100.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, -3.127639, 0, 0, Vector2(0.99493676, 25.097656), 6.59822, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_e3el1"]
+curve = SubResource("Curve_ye4jn")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_eeg5m"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+angle_min = -193.59999
+angle_max = 155.1
+direction = Vector3(0, 1, 0)
+spread = 90.849
+flatness = 0.208
+initial_velocity_min = 2.0
+initial_velocity_max = 2.5
+angular_velocity_min = 19.999983
+angular_velocity_max = 39.999985
+gravity = Vector3(0, 2, 0)
+damping_min = 0.1
+damping_max = 0.5
+damping_curve = SubResource("CurveTexture_e3el1")
+scale_min = 0.049999997
+scale_over_velocity_min = 4.0
+scale_over_velocity_max = 4.0
+color_ramp = SubResource("GradientTexture1D_v3j3q")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w2xxc"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+diffuse_mode = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.59717613, 0.59717613, 0.5971761, 1)
+albedo_texture = ExtResource("1_jextj")
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_4y6o0"]
+material = SubResource("StandardMaterial3D_w2xxc")
+size = Vector2(0.2, 0.2)
+
+[node name="ImpactMetal01" type="Node3D" node_paths=PackedStringArray("particles1", "particles2")]
+script = ExtResource("1_j6v2v")
+particles1 = NodePath("CPUParticles3D")
+particles2 = NodePath("CPUParticles3D2")
+
+[node name="CPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+emitting = false
+amount = 16
+lifetime = 1.33
+one_shot = true
+speed_scale = 3.81
+explosiveness = 0.93
+randomness = 0.25
+process_material = SubResource("ParticleProcessMaterial_j6v2v")
+draw_pass_1 = SubResource("QuadMesh_p7dot")
+
+[node name="CPUParticles3D2" type="GPUParticles3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+emitting = false
+one_shot = true
+speed_scale = 3.0
+explosiveness = 0.95
+process_material = SubResource("ParticleProcessMaterial_eeg5m")
+draw_pass_1 = SubResource("QuadMesh_4y6o0")

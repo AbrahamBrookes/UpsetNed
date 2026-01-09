@@ -23,20 +23,25 @@ var camera_rotation: Vector3
 # let the server decide if we are on the floor or not
 var grounded: bool
 
+# the server tick at this state
+var server_tick: int
+
 func _init(
 	_last_sequence: int = 0,
 	_global_position: Vector3 = Vector3.ZERO,
 	_rotation: Vector3 = Vector3.ZERO,
 	_velocity: Vector3 = Vector3.ZERO,
 	_camera_rotation: Vector3 = Vector3.ZERO,
-	_grounded: bool = true
+	_grounded: bool = true,
+	_server_tick: int = Network.server.server_tick
 ) -> void:
 	last_sequence = _last_sequence
 	global_position = _global_position
 	rotation = _rotation
 	velocity = _velocity
 	camera_rotation = _camera_rotation
-	grounded= _grounded
+	grounded = _grounded
+	server_tick = _server_tick
 	
 ## convert to a dictionary for sending over the network
 func to_dict() -> Dictionary:
@@ -46,7 +51,8 @@ func to_dict() -> Dictionary:
 		"rotation": rotation,
 		"velocity": velocity,
 		"camera_rotation": camera_rotation,
-		"grounded": grounded
+		"grounded": grounded,
+		"server_tick": server_tick,
 	}
 
 ## convert back to this class once it has been received over the network
@@ -57,5 +63,6 @@ static func from_dict(d: Dictionary) -> AuthoritativeState:
 		d.rotation,
 		d.velocity,
 		d.camera_rotation,
-		d.grounded
+		d.grounded,
+		d.server_tick
 	)

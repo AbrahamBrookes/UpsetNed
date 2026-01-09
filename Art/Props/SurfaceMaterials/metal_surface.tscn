@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3h1pqc4xpwsp"]
+
+[ext_resource type="Script" uid="uid://8ulgxy72xdcn" path="res://Components/ShotReceiver.gd" id="1_hiyrv"]
+[ext_resource type="Script" uid="uid://b06dgxth1vvv0" path="res://Art/Props/Docks/ShippingContainer/ShippingContainerShot.gd" id="2_d8gsy"]
+[ext_resource type="PackedScene" uid="uid://csjaahs7lis2m" path="res://Art/Particles/impact_metal_01.tscn" id="3_m2b35"]
+
+[node name="ShotReceiver" type="Node3D"]
+script = ExtResource("1_hiyrv")
+metadata/_custom_type_script = "uid://8ulgxy72xdcn"
+
+[node name="Shot handler" type="Node" parent="." node_paths=PackedStringArray("particles")]
+script = ExtResource("2_d8gsy")
+particles = NodePath("../ImpactMetal01")
+
+[node name="ImpactMetal01" parent="." instance=ExtResource("3_m2b35")]
+
+[connection signal="shot_received" from="." to="Shot handler" method="_on_shot_receiver_shot_received"]

@@ -81,17 +81,17 @@ func _physics_process(_delta: float) -> void:
 	pending_inputs.append(packet)
 
 	# handle one-off presses for actions like shooting
-	if Input.is_action_just_pressed("fire_r"):
-		# on the server
-		Network.dispatch_action.rpc_id(1, "fire_r")
-		# locally
-		state_machine.dispatch_action("fire_r")
-		
-	if Input.is_action_just_pressed("fire_l"):
-		# on the server
-		Network.dispatch_action.rpc_id(1, "fire_l")
-		# locally
-		state_machine.dispatch_action("fire_l")
+	#if Input.is_action_just_pressed("fire_r"):
+		## on the server
+		#Network.dispatch_action.rpc_id(1, "fire_r")
+		## locally
+		#state_machine.dispatch_action("fire_r")
+		#
+	#if Input.is_action_just_pressed("fire_l"):
+		## on the server
+		#Network.dispatch_action.rpc_id(1, "fire_l")
+		## locally
+		#state_machine.dispatch_action("fire_l")
 	
 	if Input.is_action_just_pressed("jump"):
 		# on the server

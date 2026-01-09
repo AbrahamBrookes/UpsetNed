@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=4 uid="uid://bg7td7yspbml"]
+[gd_scene load_steps=5 format=4 uid="uid://bg7td7yspbml"]
 
 [ext_resource type="Material" uid="uid://8ipottkcjypj" path="res://Art/atlas.material" id="1_cauwj"]
+[ext_resource type="PackedScene" uid="uid://d3h1pqc4xpwsp" path="res://Art/Props/SurfaceMaterials/metal_surface.tscn" id="2_omfey"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_d5ua6"]
 _surfaces = [{
@@ -37,3 +38,5 @@ shadow_mesh = SubResource("ArrayMesh_d5ua6")
 [node name="HangingLight01" type="MeshInstance3D"]
 mesh = SubResource("ArrayMesh_omfey")
 skeleton = NodePath("")
+
+[node name="ShotReceiver" parent="." instance=ExtResource("2_omfey")]

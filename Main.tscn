@@ -46,7 +46,7 @@ input_handler = NodePath("ServerInputHandler")
 in_game_ui = NodePath("../In-game UI")
 metadata/_custom_type_script = "uid://ea413p73jbg1"
 
-[node name="ServerInputHandler" type="Node" parent="Server" node_paths=PackedStringArray("server")]
+[node name="ServerInputHandler" type="Node3D" parent="Server" node_paths=PackedStringArray("server")]
 script = ExtResource("6_lgr22")
 server = NodePath("..")
 metadata/_custom_type_script = "uid://b4puit2xwerld"

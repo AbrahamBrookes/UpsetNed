@@ -11,6 +11,8 @@ class_name TintableProp
 
 @export var mesh: MeshInstance3D
 
+@export var shot_receiver: ShotReceiver
+
 func _ready():
 	# if we don't have a mesh, try find a node called Mesh
 	if not mesh:
@@ -33,3 +35,5 @@ func apply_tint():
 	mesh.set_surface_override_material(tint_surface_index, mat)
 
 	mat.albedo_color = albedo_tint
+	
+# proxy get_shot down to our ShotReceiver if we have one

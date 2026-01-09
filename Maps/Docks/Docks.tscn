@@ -109,7 +109,7 @@ environment = SubResource("Environment_g6sv0")
 camera_attributes = SubResource("CameraAttributesPractical_poso3")
 
 [node name="ServerCamera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, -20, 9, -43)
+transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, -20, 9, -27)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.81325316, 0.19363269, 0.5487492, -0.5819101, 0.27061296, 0.76690894, 0, -0.9430138, 0.33275366, 0, 7.2228403, 0)
@@ -5668,390 +5668,313 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 8, 0
 
 [node name="ShippingContainers" type="Node3D" parent="."]
 
-[node name="ShippingContainer" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("16_8jmw5")]
+[node name="ShippingContainer" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
 transform = Transform3D(0.016361132, 0, -0.74982166, 0, 0.7500001, 0, 0.74982166, 0, 0.016361132, -23.22628, 0, -56.8)
 albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainer20" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("16_8jmw5")]
+[node name="ShippingContainer20" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
 transform = Transform3D(-2.2351742e-08, 0, -0.75000006, 0, 0.7500001, 0, 0.75000006, 0, -2.2351742e-08, -35.92628, 0, -38.2)
 albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainer21" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("16_8jmw5")]
+[node name="ShippingContainer21" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
 transform = Transform3D(-2.2351742e-08, 0, -0.75000006, 0, 0.7500001, 0, 0.75000006, 0, -2.2351742e-08, -35.92628, 1.8750002, -38.2)
 albedo_tint = Color(0.78, 0.17628, 0.109199986, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainer22" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("16_8jmw5")]
+[node name="ShippingContainer22" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
 transform = Transform3D(-0.049052373, 0, -0.7483942, 0, 0.75, 0, 0.7483942, 0, -0.049052373, -29.22628, 0, -38)
 albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainer23" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("16_8jmw5")]
+[node name="ShippingContainer23" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
 transform = Transform3D(-0.049052373, 0, -0.7483942, 0, 0.75, 0, 0.7483942, 0, -0.049052373, -29.22628, 1.8750002, -38)
 albedo_tint = Color(0.88, 0.7773333, 0, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainer17" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("16_8jmw5")]
+[node name="ShippingContainer17" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
 transform = Transform3D(-0.75000006, 0, 6.7055225e-08, 0, 0.7500001, 0, -6.7055225e-08, 0, -0.75000006, -26.52628, 1.8750004, -30.5)
 albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainer19" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("16_8jmw5")]
+[node name="ShippingContainer19" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
 transform = Transform3D(-0.75000006, 0, 6.7055225e-08, 0, 0.7500001, 0, -6.7055225e-08, 0, -0.75000006, -39.22628, 1.8750004, -28)
 albedo_tint = Color(0.87, 0.319, 0, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainer18" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("16_8jmw5")]
+[node name="ShippingContainer18" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
 transform = Transform3D(-0.7495799, 0, 0.025101941, 0, 0.75000024, 0, -0.025101941, 0, -0.7495799, -31.826279, -5.2154064e-08, -29.7)
 albedo_tint = Color(0.34918335, 0.7, 0.02099998, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainer4" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("16_8jmw5")]
+[node name="ShippingContainer4" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0.0737196, 1.5249968, -24.100002)
 albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainer5" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("16_8jmw5")]
+[node name="ShippingContainer5" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 2.0737195, 1.5249968, -50.5)
 albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainer6" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("16_8jmw5")]
+[node name="ShippingContainer6" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 4.0737195, 1.5249968, -50.5)
 albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainer29" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("16_8jmw5")]
+[node name="ShippingContainer29" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 4.0737195, 3.3999968, -50.5)
 albedo_tint = Color(0.78, 0.17628, 0.109199986, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainer7" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("16_8jmw5")]
+[node name="ShippingContainer7" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 6.0737195, 1.5249968, -50.5)
 albedo_tint = Color(0.88, 0.7773333, 0, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainer8" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("16_8jmw5")]
+[node name="ShippingContainer8" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 8.07372, 1.5249968, -24.100002)
 albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainer15" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("16_8jmw5")]
+[node name="ShippingContainer15" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0.0737196, 1.5249968, -30.700003)
 albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainer16" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("16_8jmw5")]
+[node name="ShippingContainer16" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 8.07372, 1.524997, -30.700003)
 albedo_tint = Color(0.34918335, 0.7, 0.02099998, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainer13" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("16_8jmw5")]
+[node name="ShippingContainer13" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0.0737196, 1.5249968, -37.300003)
 albedo_tint = Color(0.34918335, 0.7, 0.02099998, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainer14" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("16_8jmw5")]
+[node name="ShippingContainer14" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 8.07372, 1.5249968, -37.300003)
 albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainer11" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("16_8jmw5")]
+[node name="ShippingContainer11" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0.0737196, 3.3999968, -47.9)
 albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainer32" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("16_8jmw5")]
+[node name="ShippingContainer32" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0.0737196, 5.2749968, -32.1)
 albedo_tint = Color(0.88, 0.7773333, 0, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainer42" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("16_8jmw5")]
+[node name="ShippingContainer42" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 8.27372, 5.2749968, -36.1)
 albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainer33" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("16_8jmw5")]
+[node name="ShippingContainer33" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 2.0737195, 5.2749968, -50.5)
 albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainer34" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("16_8jmw5")]
+[node name="ShippingContainer34" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 4.0737195, 5.2749968, -50.5)
 albedo_tint = Color(0.34918335, 0.7, 0.02099998, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainer35" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("16_8jmw5")]
+[node name="ShippingContainer35" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 6.0737195, 5.2749968, -50.5)
 albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainer36" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("16_8jmw5")]
+[node name="ShippingContainer36" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 8.073719, 5.2749968, -50.5)
 albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainer12" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("16_8jmw5")]
+[node name="ShippingContainer12" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 8.07372, 1.5249968, -43.9)
 albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainer31" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("16_8jmw5")]
+[node name="ShippingContainer31" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 8.07372, 3.3999968, -45.9)
 albedo_tint = Color(0.78, 0.17628, 0.109199986, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainer9" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("16_8jmw5")]
+[node name="ShippingContainer9" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0.0737196, 1.5249968, -50.5)
 albedo_tint = Color(0.78, 0.17628, 0.109199986, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainer10" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("16_8jmw5")]
+[node name="ShippingContainer10" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 8.07372, 1.5249968, -50.5)
 albedo_tint = Color(0.78, 0.17628, 0.109199986, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainerMedium" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("14_8khyd")]
+[node name="ShippingContainerMedium" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -26.390766, 0, -28)
 albedo_tint = Color(0.34918335, 0.7, 0.02099998, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainerMedium2" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("14_8khyd")]
+[node name="ShippingContainerMedium2" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -39.208374, 0, -27.621426)
 albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainerMedium3" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("14_8khyd")]
+[node name="ShippingContainerMedium3" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -39.477276, 0, -23.121426)
 albedo_tint = Color(0.78, 0.17628, 0.109199986, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainer25" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("16_8jmw5")]
+[node name="ShippingContainer25" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
 transform = Transform3D(-0.75000006, 0, 6.7055225e-08, 0, 0.7500001, 0, -6.7055225e-08, 0, -0.75000006, -39.22628, 1.8750004, -37)
 albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainerMedium10" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("14_8khyd")]
+[node name="ShippingContainerMedium10" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -39.208374, 0, -36.621426)
 albedo_tint = Color(0.88, 0.7773333, 0, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainerMedium11" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("14_8khyd")]
+[node name="ShippingContainerMedium11" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -39.477276, 0, -32.121426)
 albedo_tint = Color(0.78, 0.17628, 0.109199986, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainer24" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("16_8jmw5")]
+[node name="ShippingContainer24" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
 transform = Transform3D(-0.75000006, 0, 6.7055225e-08, 0, 0.7500001, 0, -6.7055225e-08, 0, -0.75000006, -21.52628, 1.8750004, -27.5)
 albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainer46" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("16_8jmw5")]
+[node name="ShippingContainer46" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
 transform = Transform3D(-0.75000006, 0, 6.7055225e-08, 0, 0.7500001, 0, -6.7055225e-08, 0, -0.75000006, -6.5262794, 7.450581e-09, -2.5)
 albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainer47" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("16_8jmw5")]
+[node name="ShippingContainer47" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
 transform = Transform3D(-3.4271682e-08, 0, -0.75000006, 0, 0.75000024, 0, 0.75000006, 0, -3.4271682e-08, -1.2910651, 0, -1.6862099)
 albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainerMedium8" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("14_8khyd")]
+[node name="ShippingContainerMedium8" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -21.508373, 0, -27.121426)
 albedo_tint = Color(0.88, 0.7773333, 0, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainerMedium9" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("14_8khyd")]
+[node name="ShippingContainerMedium9" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -21.777275, 0, -22.621426)
 albedo_tint = Color(0.78, 0.17628, 0.109199986, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainerMedium13" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("14_8khyd")]
+[node name="ShippingContainerMedium13" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
 transform = Transform3D(-0.75, 0, 6.556708e-08, 0, 0.75, 0, -6.556708e-08, 0, -0.75, 8.136835, 3.3999968, -34.19882)
 albedo_tint = Color(0.78, 0.17628, 0.109199986, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainerMedium14" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("14_8khyd")]
+[node name="ShippingContainerMedium14" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
 transform = Transform3D(-0.75, 0, 6.556708e-08, 0, 0.75, 0, -6.556708e-08, 0, -0.75, 8.136835, 3.3999968, -38.69882)
 albedo_tint = Color(0.34918335, 0.7, 0.02099998, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainerMedium5" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("14_8khyd")]
+[node name="ShippingContainerMedium5" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -29.777275, 0, -32.621426)
 albedo_tint = Color(0.78, 0.17628, 0.109199986, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainerMedium4" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("14_8khyd")]
+[node name="ShippingContainerMedium4" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
 transform = Transform3D(0.003010638, 0, -0.74999404, 0, 0.7500001, 0, 0.74999404, 0, 0.003010638, -23.170494, 1.875, -56.86093)
 albedo_tint = Color(0.78, 0.17628, 0.109199986, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainerMedium6" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("14_8khyd")]
+[node name="ShippingContainerMedium6" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
 transform = Transform3D(0.003010638, 0, -0.74999404, 0, 0.7500001, 0, 0.74999404, 0, 0.003010638, -29.716938, 1.875, -26.860933)
 albedo_tint = Color(0.78, 0.17628, 0.109199986, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainerMedium7" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("14_8khyd")]
+[node name="ShippingContainerMedium7" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
 transform = Transform3D(0.003010638, 0, -0.74999404, 0, 0.7500001, 0, 0.74999404, 0, 0.003010638, -30.616938, 3.7500002, -38.060932)
 albedo_tint = Color(0.78, 0.17628, 0.109199986, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainer2" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("16_8khyd")]
+[node name="ShippingContainer2" parent="ShippingContainers" instance=ExtResource("16_8khyd")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -28.4948, 0, -28)
 albedo_tint = Color(0.78, 0.17628, 0.109199986, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainer3" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("16_8khyd")]
+[node name="ShippingContainer3" parent="ShippingContainers" instance=ExtResource("16_8khyd")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -25.992996, 0, -34)
 albedo_tint = Color(0.87, 0.319, 0, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainer28" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("16_8khyd")]
+[node name="ShippingContainer28" parent="ShippingContainers" instance=ExtResource("16_8khyd")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0.007003784, 1.5249972, -43.986332)
 albedo_tint = Color(0.87, 0.319, 0, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainer44" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("16_8khyd")]
+[node name="ShippingContainer44" parent="ShippingContainers" instance=ExtResource("16_8khyd")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 2.0070038, 1.5249972, -41.986332)
 albedo_tint = Color(0.87, 0.319, 0, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainer37" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("16_8khyd")]
+[node name="ShippingContainer37" parent="ShippingContainers" instance=ExtResource("16_8khyd")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 4.007004, 1.524997, -35.986332)
 albedo_tint = Color(0.88, 0.7773333, 0, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainer41" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("16_8khyd")]
+[node name="ShippingContainer41" parent="ShippingContainers" instance=ExtResource("16_8khyd")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 4.007004, 3.399997, -35.986332)
 albedo_tint = Color(0.87, 0.319, 0, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainer38" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("16_8khyd")]
+[node name="ShippingContainer38" parent="ShippingContainers" instance=ExtResource("16_8khyd")]
 transform = Transform3D(-0.75, 0, 6.556708e-08, 0, 0.75, 0, -6.556708e-08, 0, -0.75, 8.252557, 3.399997, -23.03391)
 albedo_tint = Color(0.87, 0.319, 0, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainer45" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("16_8khyd")]
+[node name="ShippingContainer45" parent="ShippingContainers" instance=ExtResource("16_8khyd")]
 transform = Transform3D(-0.75, 0, 6.556708e-08, 0, 0.75, 0, -6.556708e-08, 0, -0.75, 4.252557, 1.875, -1.0339108)
 albedo_tint = Color(0.87, 0.319, 0, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainer49" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("16_8khyd")]
+[node name="ShippingContainer49" parent="ShippingContainers" instance=ExtResource("16_8khyd")]
 transform = Transform3D(0.049052306, 0, -0.7483942, 0, 0.75, 0, 0.7483942, 0, 0.049052306, -1.7474432, 1.875, -1.8339107)
 albedo_tint = Color(0.34918335, 0.7, 0.02099998, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainer43" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("16_8khyd")]
+[node name="ShippingContainer43" parent="ShippingContainers" instance=ExtResource("16_8khyd")]
 transform = Transform3D(-0.75, 0, 6.556708e-08, 0, 0.75, 0, -6.556708e-08, 0, -0.75, 8.252557, 3.399997, -41.433914)
 albedo_tint = Color(0.87, 0.319, 0, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainer39" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("16_8jmw5")]
+[node name="ShippingContainer39" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0.0737196, 3.3999968, -36.7)
 albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainerMedium15" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("14_8khyd")]
+[node name="ShippingContainerMedium15" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0.3227249, 3.3999968, -43.421425)
 albedo_tint = Color(0.78, 0.17628, 0.109199986, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainerMedium16" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("14_8khyd")]
+[node name="ShippingContainerMedium16" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0.12272491, 3.3999968, -29.221424)
 albedo_tint = Color(0.78, 0.17628, 0.109199986, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainerMedium21" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("14_8khyd")]
+[node name="ShippingContainerMedium21" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 2.122725, 1.524997, -29.221424)
 albedo_tint = Color(0.78, 0.17628, 0.109199986, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainerMedium17" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("14_8khyd")]
+[node name="ShippingContainerMedium17" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0.12272491, 5.2749968, -46.021423)
 albedo_tint = Color(0.78, 0.17628, 0.109199986, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainerMedium19" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("14_8khyd")]
+[node name="ShippingContainerMedium19" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0.12272491, 5.2749968, -41.521423)
 albedo_tint = Color(0.78, 0.17628, 0.109199986, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainer40" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("16_8khyd")]
+[node name="ShippingContainer40" parent="ShippingContainers" instance=ExtResource("16_8khyd")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0.007003784, 5.2749968, -38.78633)
 albedo_tint = Color(0.87, 0.319, 0, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainerMedium18" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("14_8khyd")]
+[node name="ShippingContainerMedium18" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0.12272491, 3.3999968, -24.721424)
 albedo_tint = Color(0.88, 0.7773333, 0, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainerMedium20" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("14_8khyd")]
+[node name="ShippingContainerMedium20" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0.12272491, 5.2749968, -25.721424)
 albedo_tint = Color(0.78, 0.17628, 0.109199986, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainerMedium22" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("14_8khyd")]
+[node name="ShippingContainerMedium22" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 4.122725, 7.450581e-09, -0.7214241)
 albedo_tint = Color(0.78, 0.17628, 0.109199986, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainerMedium23" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("14_8khyd")]
+[node name="ShippingContainerMedium23" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -4.577275, 7.450581e-09, 2.278576)
 albedo_tint = Color(0.88, 0.7773333, 0, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainerMedium25" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("14_8khyd")]
+[node name="ShippingContainerMedium25" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -6.577275, 1.8750002, -2.721424)
 albedo_tint = Color(0.78, 0.17628, 0.109199986, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainerMedium26" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("14_8khyd")]
+[node name="ShippingContainerMedium26" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
 transform = Transform3D(-3.278354e-08, 0, 0.75, 0, 0.75, 0, -0.75, 0, -3.278354e-08, 0.9875108, 1.8750002, -1.6352146)
 albedo_tint = Color(0.78, 0.17628, 0.109199986, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainer48" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("16_8jmw5")]
+[node name="ShippingContainer48" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
 transform = Transform3D(-0.75000006, 0, 6.7055225e-08, 0, 0.7500001, 0, -6.7055225e-08, 0, -0.75000006, -6.5262794, 7.450581e-09, 4.2)
 albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainerMedium27" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("14_8khyd")]
+[node name="ShippingContainerMedium27" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -6.577275, 1.8750002, 6.4785757)
 albedo_tint = Color(0.78, 0.17628, 0.109199986, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainerMedium24" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("14_8khyd")]
+[node name="ShippingContainerMedium24" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
 transform = Transform3D(0.62360203, 0, -0.4166776, 0, 0.75, 0, 0.4166776, 0, 0.62360203, -4.577275, 1.8750004, 2.278576)
 albedo_tint = Color(0.78, 0.17628, 0.109199986, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainer30" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("16_8khyd")]
+[node name="ShippingContainer30" parent="ShippingContainers" instance=ExtResource("16_8khyd")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 6.1070037, 3.3999968, -54.386333)
 albedo_tint = Color(0.87, 0.319, 0, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainer26" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("16_8khyd")]
+[node name="ShippingContainer26" parent="ShippingContainers" instance=ExtResource("16_8khyd")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -38.992996, 3.7500005, -27)
 albedo_tint = Color(0.34918335, 0.7, 0.02099998, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainer50" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("16_8jmw5")]
+[node name="ShippingContainer50" parent="ShippingContainers" instance=ExtResource("16_8jmw5")]
 transform = Transform3D(-0.049052373, 0, -0.7483942, 0, 0.75, 0, 0.7483942, 0, -0.049052373, -27.22628, 0, -21)
 albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainerMedium12" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("14_8khyd")]
+[node name="ShippingContainerMedium12" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
 transform = Transform3D(0.003010638, 0, -0.74999404, 0, 0.7500001, 0, 0.74999404, 0, 0.003010638, -24.970493, 1.875, -20.860933)
 albedo_tint = Color(0.78, 0.17628, 0.109199986, 1)
-mesh = NodePath("Mesh")
 
-[node name="ShippingContainer51" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("16_8khyd")]
+[node name="ShippingContainer51" parent="ShippingContainers" instance=ExtResource("16_8khyd")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -28.216524, 1.8750002, -22)
 albedo_tint = Color(0.34918335, 0.7, 0.02099998, 1)
-mesh = NodePath("Mesh")
 
 [node name="TintableProp" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("16_vsx47")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.050856, -0.050000057, -21.990517)
@@ -6133,25 +6056,17 @@ transform = Transform3D(0.09577623, 0, 0.995403, 0, 1, 0, -0.995403, 0, 0.095776
 albedo_tint = Color(0.19139999, 0.3533167, 0.58, 1)
 mesh = NodePath("Mesh")
 
-[node name="TruckFreighter01" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("17_xl3tl")]
+[node name="TruckFreighter01" parent="ShippingContainers" instance=ExtResource("17_xl3tl")]
 transform = Transform3D(0.34928343, 0, 0.022385139, 0, 0.35, 0, -0.022385139, 0, 0.34928343, -24, 0.42854023, 12)
 albedo_tint = Color(0.82, 0.25857332, 0.17219998, 1)
-mesh = NodePath("Mesh")
 
-[node name="TruckFreighter04" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("17_xl3tl")]
-transform = Transform3D(0.34928343, 0, 0.022385139, 0, 0.35, 0, -0.022385139, 0, 0.34928343, -22, 0.4785403, -31)
-albedo_tint = Color(0.17219998, 0.40972674, 0.82, 1)
-mesh = NodePath("Mesh")
-
-[node name="TruckFreighter02" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("17_xl3tl")]
+[node name="TruckFreighter02" parent="ShippingContainers" instance=ExtResource("17_xl3tl")]
 transform = Transform3D(0.34988448, 0, 0.008990947, 0, 0.35, 0, -0.008990947, 0, 0.34988448, -20, 0.42854023, 12)
 albedo_tint = Color(0.82, 0.25857332, 0.17219998, 1)
-mesh = NodePath("Mesh")
 
-[node name="TruckFreighter03" parent="ShippingContainers" node_paths=PackedStringArray("mesh") instance=ExtResource("17_xl3tl")]
-transform = Transform3D(0.3497923, 0, -0.012056091, 0, 0.35, 0, 0.012056091, 0, 0.3497923, -16.3, 0.42854023, 12)
-albedo_tint = Color(0.66, 0.66, 0.66, 1)
-mesh = NodePath("Mesh")
+[node name="TruckFreighter03" parent="ShippingContainers" instance=ExtResource("17_xl3tl")]
+transform = Transform3D(0.3497923, 0, -0.012056091, 0, 0.35, 0, 0.012056091, 0, 0.3497923, -13.699999, 0.42854023, -26)
+albedo_tint = Color(0.9290437, 0.5566898, 0.14952731, 1)
 
 [node name="truck_freight_trailer_012" parent="ShippingContainers" instance=ExtResource("18_2qk77")]
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, -24.1, 0.42854023, 12)
@@ -6162,8 +6077,31 @@ transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, -20.1, 0.42854023, 1
 albedo_tint = Color(0.23759998, 0.6123334, 0.88, 1)
 
 [node name="truck_freight_trailer_014" parent="ShippingContainers" instance=ExtResource("18_2qk77")]
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, -13.5, 0.42854023, -26)
+albedo_tint = Color(0.9290437, 0.5566898, 0.14952731, 1)
+
+[node name="TruckFreighter05" parent="ShippingContainers" instance=ExtResource("17_xl3tl")]
+transform = Transform3D(0.3497923, 0, -0.012056091, 0, 0.35, 0, 0.012056091, 0, 0.3497923, -13.699999, 0.42854023, -37)
+albedo_tint = Color(0.66, 0.66, 0.66, 1)
+
+[node name="TruckFreighter06" parent="ShippingContainers" instance=ExtResource("17_xl3tl")]
+transform = Transform3D(0.3497923, 0, -0.012056091, 0, 0.35, 0, 0.012056091, 0, 0.3497923, -13.699999, 0.42854023, -48)
+albedo_tint = Color(0.2921899, 0.29219007, 0.29219002, 1)
+
+[node name="truck_freight_trailer_016" parent="ShippingContainers" instance=ExtResource("18_2qk77")]
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, -13.5, 0.42854023, -37)
+albedo_tint = Color(0.228, 0.5167999, 0.95, 1)
+
+[node name="TruckFreighter04" parent="ShippingContainers" instance=ExtResource("17_xl3tl")]
+transform = Transform3D(0.3497923, 0, -0.012056091, 0, 0.35, 0, 0.012056091, 0, 0.3497923, -16.3, 0.42854023, 12)
+albedo_tint = Color(0.66, 0.66, 0.66, 1)
+
+[node name="truck_freight_trailer_015" parent="ShippingContainers" instance=ExtResource("18_2qk77")]
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, -16.1, 0.42854023, 12)
 albedo_tint = Color(0.7744, 0.86416, 0.88, 1)
+
+[node name="ShippingContainerMedium28" parent="ShippingContainers" instance=ExtResource("14_8khyd")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -20, 0, -48)
 
 [node name="Bollards" type="Node3D" parent="."]
 
@@ -6388,35 +6326,31 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, -69)
 [node name="streetlight_019" parent="Streetlights" instance=ExtResource("19_85nx3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, -77)
 
-[node name="Forklift" parent="." node_paths=PackedStringArray("mesh") instance=ExtResource("20_q1vmm")]
+[node name="Forklift" parent="." instance=ExtResource("20_q1vmm")]
 transform = Transform3D(-0.13052621, 0, -0.9914449, 0, 1, 0, 0.9914449, 0, -0.13052621, -39.991444, 0.45633608, -19.130526)
 albedo_tint = Color(0.8106278, 0.4098696, 0.0043741227, 1)
-mesh = NodePath("Mesh")
 
-[node name="Forklift3" parent="." node_paths=PackedStringArray("mesh") instance=ExtResource("20_q1vmm")]
+[node name="Forklift3" parent="." instance=ExtResource("20_q1vmm")]
 transform = Transform3D(0.99785894, 0, -0.06540311, 0, 1, 0, 0.06540311, 0, 0.99785894, -27.930685, 0.45633608, -17.53181)
 albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
-mesh = NodePath("Mesh")
 
 [node name="TintableProp2" parent="." node_paths=PackedStringArray("mesh") instance=ExtResource("21_7ahgg")]
 transform = Transform3D(-0.13052621, 0, -0.9914449, 0, 1, 0, 0.9914449, 0, -0.13052621, -38.008556, 0.06999993, -18.869474)
 albedo_tint = Color(0.39, 0.47433335, 0.5, 1)
 mesh = NodePath("Mesh")
 
-[node name="Forklift4" parent="." node_paths=PackedStringArray("mesh") instance=ExtResource("20_q1vmm")]
+[node name="Forklift4" parent="." instance=ExtResource("20_q1vmm")]
 transform = Transform3D(1.3411045e-07, 0, 1, 0, 1, 0, -1, 0, 1.3411045e-07, -22.861212, 0.45633608, -49.768616)
 albedo_tint = Color(0.8106278, 0.4098696, 0.0043741227, 1)
-mesh = NodePath("Mesh")
 
 [node name="TintableProp8" parent="." node_paths=PackedStringArray("mesh") instance=ExtResource("21_7ahgg")]
 transform = Transform3D(1.3411045e-07, 0, 1, 0, 1, 0, -1, 0, 1.3411045e-07, -24.861208, 0.06999993, -49.76861)
 albedo_tint = Color(0.39, 0.47433335, 0.5, 1)
 mesh = NodePath("Mesh")
 
-[node name="Forklift2" parent="." node_paths=PackedStringArray("mesh") instance=ExtResource("20_q1vmm")]
+[node name="Forklift2" parent="." instance=ExtResource("20_q1vmm")]
 transform = Transform3D(-0.13052621, 0, -0.9914449, 0, 1, 0, 0.9914449, 0, -0.13052621, 2.0085564, 0.4563361, 1.8694744)
 albedo_tint = Color(0.28800002, 0.35040003, 0.6, 1)
-mesh = NodePath("Mesh")
 
 [node name="TintableProp7" parent="." node_paths=PackedStringArray("mesh") instance=ExtResource("21_7ahgg")]
 transform = Transform3D(-0.13052621, 0, -0.9914449, 0, 1, 0, 0.9914449, 0, -0.13052621, 3.9914436, 0.06999994, 2.1305256)

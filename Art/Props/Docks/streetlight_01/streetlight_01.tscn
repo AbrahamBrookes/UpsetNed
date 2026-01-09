@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=4 uid="uid://cwuq5f7wbiq1h"]
+[gd_scene load_steps=8 format=4 uid="uid://cwuq5f7wbiq1h"]
 
 [ext_resource type="PackedScene" uid="uid://chb32bexgsvlg" path="res://Art/Props/Docks/streetlight_01/streetlight_01.glb" id="1_aflbe"]
 [ext_resource type="Material" uid="uid://8ipottkcjypj" path="res://Art/atlas.material" id="2_avkrs"]
+[ext_resource type="PackedScene" uid="uid://d3h1pqc4xpwsp" path="res://Art/Props/SurfaceMaterials/metal_surface.tscn" id="3_ixwmt"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_pfsqv"]
 _surfaces = [{
@@ -56,3 +57,5 @@ shape = SubResource("CylinderShape3D_avkrs")
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="1"]
 transform = Transform3D(0.9810297, -0.19385767, 0, 0.19385767, 0.9810297, 0, 0, 0, 1, 1.2329526, 5.971249, 0)
 shape = SubResource("BoxShape3D_ixwmt")
+
+[node name="ShotReceiver" parent="StaticBody3D" index="2" instance=ExtResource("3_ixwmt")]

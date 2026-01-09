@@ -34,6 +34,12 @@ var players: Dictionary[int, DeterministicPlayerCharacter] = {}
 ## the letterboxing and vignette layer we show in game
 @export var in_game_ui: CanvasLayer
 
+## track our own server tick - inc 1 each physics tick
+var server_tick: int
+
+func _physics_process(_delta: float) -> void:
+	server_tick += 1;
+
 ## On ready we need to inject ourselves into the network singleton
 func _ready() -> void:
 	Network.server = self
@@ -143,4 +149,10 @@ func get_player(peer_id) -> DeterministicPlayerCharacter:
 		return null
 	
 	return player
-	
+
+## When the player shoots their weapon we need to react and resimulate to check
+## if we reckon they hit something
+func player_shot_weapon(event: Dictionary, peer_id: int) ->void:
+	var shoot_event = PlayerShotWeaponEvent.from_dict(event)
+	# delegate out to the input handler, where the rest of this logic is
+	input_handler.player_shot_weapon(shoot_event, peer_id)
