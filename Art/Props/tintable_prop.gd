@@ -9,9 +9,13 @@ class_name TintableProp
 
 @export var tint_surface_index := 0
 
-@onready var mesh: MeshInstance3D = $Mesh
+@export var mesh: MeshInstance3D
 
 func _ready():
+	# if we don't have a mesh, try find a node called Mesh
+	if not mesh:
+		mesh = $Mesh
+		
 	apply_tint()
 
 func apply_tint():
