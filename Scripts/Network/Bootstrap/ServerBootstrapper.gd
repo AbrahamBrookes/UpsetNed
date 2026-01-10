@@ -15,7 +15,7 @@ func boot() -> void:
 	# create the actual server
 	var server_peer = ENetMultiplayerPeer.new()
 	# make it a server on our chose port
-	server_peer.create_server(8080)
+	server_peer.create_server(9043) # TODO: make this dynamic depending on server flags
 	# pass it to the built in multiplayer API so this instance of the game
 	# will know it is a server, not a client
 	multiplayer.multiplayer_peer = server_peer
@@ -32,7 +32,7 @@ func boot() -> void:
 
 	# concatenate the maps path to the passed arg so you can just pass the tscn
 	# name and maybe a sub path if ya wanna
-	map = "res://maps/%s.tscn" % map
+	map = "res://Maps/%s.tscn" % map
 	
 	# attempt to load that map
 	server.load_map(map)

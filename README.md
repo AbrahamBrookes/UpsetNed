@@ -30,3 +30,92 @@ I'm hoping this system will give us a bunch of advantages, namely:
  - Allowing servers to tell clients which map to load
  - Allowing servers to tell clients to load community-created maps using ResourceLoader and .pck files
  - Encouraging devs (me) to separate out networky stuff from shooty stuff
+
+## Dedicated Server Ubuntu Install
+### Build and upload server files
+Installing the server to `/opt/combat-status-limbo-dedicated-server` on the ubuntu host so this means build the dedicated server locally and then upload the files to that directory on the server. You should copy up these files:
+```
+libdd3d.linux.editor.x86_64.so
+UpsetNed.pck
+UpsetNed.sh
+UpsetNed.x86_64
+```
+### Adding a server user
+Add a new user to run the server ("combatstatuslimboserveruser")
+```
+sudo useradd --system --home /opt/combat-status-limbo-dedicated-server --shell /usr/sbin/nologin combatstatuslimboserveruser
+```
+Give that user permissions over the server
+```
+sudo chown -R combatstatuslimboserveruser:combatstatuslimboserveruser /opt/combat-status-limbo-dedicated-server
+```
+Make the server executable
+```
+chmod +x /opt/combat-status-limbo-dedicated-server/UpsetNed.x86_64
+```
+### Create a systemd service
+Create the ocnfiguration file: `sudo nano /etc/systemd/system/combat-status-limbo-dedicated-server.service`:
+contents:
+```
+[Unit]
+Description=Combat Status: Limbo Godot Dedicated Server
+After=network.target
+
+[Service]
+Type=simple
+User=combatstatuslimboserveruser
+Group=combatstatuslimboserveruser
+WorkingDirectory=/opt/combat-status-limbo-dedicated-server
+
+ExecStart=/opt/combat-status-limbo-dedicated-server/UpsetNed.x86_64 \
+  --headless \
+  --server \
+  --port 9043 \
+  --map=Docks/Docks \
+  --mode=server
+
+Restart=always
+RestartSec=2
+
+# hard limits so it doesn’t explode silently
+LimitNOFILE=65535
+
+[Install]
+WantedBy=multi-user.target
+```
+^ note the `User`, `Group`, `WorkingDirectory` and flags on `ExecStart`
+Reload to pick up the config:
+```
+sudo systemctl daemon-reload
+```
+Use systemd to start the service:
+```
+sudo systemctl start combat-status-limbo-dedicated-server
+```
+And enable it to run on boot:
+```
+sudo systemctl enable combat-status-limbo-dedicated-server
+```
+If you have issues, check status:
+```
+systemctl status combat-status-limbo-dedicated-server
+```
+Tail logs:
+```
+journalctl -u combat-status-limbo-dedicated-server -f
+```
+## Open ports to the server
+The port will be used by clients to connect to the server and will be unique to each server instance
+```
+sudo ufw allow 9043/tcp
+sudo ufw allow 9043/udp
+```
+## Reuploading changed binaries
+Down the service first:
+```
+sudo systemctl stop combat-status-limbo-dedicated-server
+```
+then upload the new files and then restart the server:
+```
+sudo systemctl start combat-status-limbo-dedicated-server
+```
