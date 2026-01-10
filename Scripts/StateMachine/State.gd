@@ -15,6 +15,9 @@ var animation_override: String = ""
 # the state machine is always the immediate parent of the state it is managing
 var state_machine : StateMachine
 
+# the index we are at in our parent state machine, for network serialization
+var state_index: int
+
 ## since we may affect movement in the enter and the update we need a class
 ## property that is an intent so we can reuse it
 var intent: MovementIntent = MovementIntent.new()

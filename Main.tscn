@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://b6qqh2cfe7ybu"]
+[gd_scene load_steps=13 format=3 uid="uid://b6qqh2cfe7ybu"]
 
 [ext_resource type="Script" uid="uid://dj05bq1y7q0ab" path="res://Main.gd" id="1_jbe4v"]
 [ext_resource type="Script" uid="uid://dln6b7rnp1k2c" path="res://Scripts/Network/Bootstrap/ServerBootstrapper.gd" id="2_r0du0"]
 [ext_resource type="Script" uid="uid://yald6h7s5cvk" path="res://Scripts/Network/Bootstrap/ClientBootstrapper.gd" id="3_cm0pq"]
 [ext_resource type="Script" uid="uid://drn5jhcdhqg3v" path="res://Scripts/Network/Client/Client.gd" id="4_fos0i"]
 [ext_resource type="Script" uid="uid://ea413p73jbg1" path="res://Scripts/Network/Server/Server.gd" id="5_3dxm6"]
+[ext_resource type="Script" uid="uid://cv8rdew35br1q" path="res://Scripts/Network/Client/AuthoritativeClientSynchronizer.gd" id="5_20pc6"]
 [ext_resource type="Script" uid="uid://cvbf60l5g0b0y" path="res://PlayerSpawner.gd" id="6_3dxm6"]
 [ext_resource type="Script" uid="uid://b4puit2xwerld" path="res://Scripts/Network/Server/ServerInputHandler.gd" id="6_lgr22"]
 [ext_resource type="Shader" uid="uid://ck0x3yofbljku" path="res://ScreenShader.gdshader" id="8_trn2v"]
@@ -32,11 +33,16 @@ server = NodePath("../Server")
 script = ExtResource("3_cm0pq")
 world_root = NodePath("../WorldRoot")
 
-[node name="Client" type="Node" parent="." node_paths=PackedStringArray("world_root", "in_game_ui")]
+[node name="Client" type="Node" parent="." node_paths=PackedStringArray("world_root", "in_game_ui", "authoritative_synchronizer")]
 script = ExtResource("4_fos0i")
 world_root = NodePath("../WorldRoot")
 in_game_ui = NodePath("../In-game UI")
+authoritative_synchronizer = NodePath("AuthoritativeClientSynchronizer")
 metadata/_custom_type_script = "uid://drn5jhcdhqg3v"
+
+[node name="AuthoritativeClientSynchronizer" type="Node3D" parent="Client"]
+script = ExtResource("5_20pc6")
+metadata/_custom_type_script = "uid://cv8rdew35br1q"
 
 [node name="Server" type="Node" parent="." node_paths=PackedStringArray("world_root", "player_spawner", "input_handler", "in_game_ui")]
 script = ExtResource("5_3dxm6")

@@ -27,7 +27,7 @@ var playback: AnimationNodeStateMachinePlayback
 
 # the actual thing that drives us - the character body that has the
 # move_and_slide and is_on_floor etc
-@export var locomotor: CharacterBody3D
+@export var locomotor: DeterministicPlayerCharacter
 
 # aimspaces for arms when shooting is done using the 
 # ClickShoot component. States need a reference to it
@@ -36,6 +36,8 @@ var playback: AnimationNodeStateMachinePlayback
 var states : Dictionary = {}
 var current_state : State
 var previous_state : State
+# it's better to send an int than a string over websockets so keep an indexed list of states
+var state_indexed_list: Array
 
 # a reference to the InputSynchronizer if we have one (only when this PlayerCharacter
 # is being controlled by the local instance)
@@ -56,9 +58,12 @@ func _ready():
 	for child in get_children():
 		if child is State:
 			states[child.name.to_lower()] = child
+			var index = state_indexed_list.size()
+			state_indexed_list.append(child)
 			child.Transitioned.connect(TransitionTo)
 			# child states need a reference to the state machine
 			child.state_machine = self
+			child.state_index = index
 
 	if debug:
 		print("StateMachine: states loaded: ", states.keys())
@@ -96,7 +101,9 @@ func _physics_process(delta):
 		# apply mouselook blendspaces after running state animations to avoid popping
 		# when we change states due to too-quick blendspace changes
 		current_state.player_character.mouselook.mouseLook()
-	pass
+		
+	# tick the server
+	#Network.send_client_authoritative_state.rpc_id(1)
 
 func TransitionTo(new_state_name: String, extra_data = null) -> bool:
 		
@@ -132,6 +139,15 @@ func TransitionTo(new_state_name: String, extra_data = null) -> bool:
 # an alias for TransitionTo
 func travel(new_state_name, extra_data = null):
 	TransitionTo(new_state_name, extra_data)
+	
+# flick straight to a state without runnign the enter and exit code
+func flick(new_state_name):
+	var new_state = states.get(new_state_name.to_lower())
+	if not new_state:
+		push_error("Flicking to state " + new_state_name + " not found. Available: " + str(states.keys()))
+		return false
+	current_state = new_state
+	
 
 # allow external scripts to check our current state against a list of states
 func is_in_states(state_names: Array[String]) -> bool:

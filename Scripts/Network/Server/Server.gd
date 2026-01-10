@@ -39,6 +39,9 @@ var server_tick: int
 
 func _physics_process(_delta: float) -> void:
 	server_tick += 1;
+	
+	# send all the connected clients the state as we know it
+	send_client_states()
 
 ## On ready we need to inject ourselves into the network singleton
 func _ready() -> void:
@@ -155,4 +158,35 @@ func get_player(peer_id) -> DeterministicPlayerCharacter:
 func player_shot_weapon(event: Dictionary, peer_id: int) ->void:
 	var shoot_event = PlayerShotWeaponEvent.from_dict(event)
 	# delegate out to the input handler, where the rest of this logic is
-	input_handler.player_shot_weapon(shoot_event, peer_id)
+	#input_handler.player_shot_weapon(shoot_event, peer_id)
+
+## Each tick the server sends all locations to all clients for simulation. Here
+## we gather up all the state we need and dispatch them over the network
+func send_client_states() -> void:
+	if not multiplayer.is_server():
+		return
+		
+	if server_tick % 3 != 0:
+		return
+	
+	if multiplayer.multiplayer_peer == null:
+		return
+
+	if multiplayer.multiplayer_peer.get_connection_status() != MultiplayerPeer.CONNECTION_CONNECTED:
+		return
+
+	if multiplayer.get_peers().is_empty():
+		return
+		
+	var states: Dictionary = {} # [peer_id: ClientAuthoritativeState]
+	for player_id in players.keys():
+		var player = players[player_id]
+		states[player_id] = ClientAuthoritativeState.new(
+			server_tick,
+			player.global_position,
+			player.mesh.global_rotation,
+			player.velocity,
+			player.mouselook.camera_pivot.global_rotation,
+			player.state_machine.current_state.state_index
+		).to_dict()
+	Network.server_send_client_states.rpc(states)

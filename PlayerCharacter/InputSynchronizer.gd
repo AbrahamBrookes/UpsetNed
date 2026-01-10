@@ -133,25 +133,3 @@ func _physics_process(_delta: float) -> void:
 ## locally first, then on the server, and again on reconciliation
 func apply_input_packet(packet: InputPacket) -> void:
 	current_input = packet
-
-## When we receive the server's calculated state we need to reconcile the local
-## state with that, then reapply inputs so we don't drift too far
-func reconcile(state: AuthoritativeState) -> void:
-	var player: DeterministicPlayerCharacter = PlayerRegistry.local_player
-
-	# first, hard snap to authoritative state
-	player.global_position = state.global_position
-	player.velocity = state.velocity
-	player.mesh.rotation = state.rotation
-	player.mouselook.camera_pivot.rotation = state.camera_rotation
-	player.grounded = state.grounded
-
-	# then drop any inputs we have locally that server has already processed
-	pending_inputs = pending_inputs.filter(
-		func(p): return p.seq > state.last_sequence
-	)
-
-	# lastly, replay the remaining local inputs so we are only a couple packets
-	# ahead of the server
-	for packet in pending_inputs:
-		apply_input_packet(packet)

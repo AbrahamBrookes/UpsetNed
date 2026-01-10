@@ -26,6 +26,9 @@ var current_map_path: String
 ## a reference to the in-game UI
 @export var in_game_ui: InGameUI
 
+## a reference to the authoritative client synchronizer
+@export var authoritative_synchronizer: AuthoritativeClientSynchronizer
+
 ## On ready we need to inject ourselves into the network singleton
 func _ready() -> void:
 	Network.client = self
@@ -51,6 +54,9 @@ func load_map(map_path: String) -> void:
 	
 	# show the map start screen
 	toggle_map_start_screen(true)
+	
+	# start server tick loop
+	#Network.client_tick_server.rpc_id(1)
 
 ## hide/show the start map screen
 func toggle_map_start_screen(state: bool = true):

@@ -16,10 +16,12 @@ func _spawn_player(data: Dictionary) -> Node:
 	return player
 
 func _on_spawned(node: Node) -> void:
-	node = node as DeterministicPlayerCharacter
-	if not node:
+	var player = node as DeterministicPlayerCharacter
+	if not player:
 		return
 
 	# if we are the authority on this node, use its camera
-	if node.input_synchronizer.is_multiplayer_authority():
-		PlayerRegistry.set_local_player(node)
+	if player.input_synchronizer.is_multiplayer_authority():
+		PlayerRegistry.set_local_player(player)
+	else: 
+		PlayerRegistry.append_remote_player(player)

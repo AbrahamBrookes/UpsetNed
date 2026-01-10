@@ -62,3 +62,7 @@ func player_shot_weapon(event: Dictionary) -> void:
 	if multiplayer.is_server():
 		server.player_shot_weapon(event, multiplayer.get_remote_sender_id())
 		
+# when the server is sending all player states to all players for replication
+@rpc("authority")
+func server_send_client_states(states: Dictionary) -> void:
+	client.authoritative_synchronizer.apply_authoritative_states(states)
