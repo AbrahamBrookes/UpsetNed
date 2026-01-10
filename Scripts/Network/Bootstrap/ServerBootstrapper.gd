@@ -13,7 +13,10 @@ func boot() -> void:
 	print("bootstrapping server app")
 	
 	# create the actual server
-	var server_peer = ENetMultiplayerPeer.new()
+	# itch.io requires websockets for browser builds
+	var server_peer = WebSocketMultiplayerPeer.new()
+	# enet is faster though apparently
+	# var server_peer = ENetMultiplayerPeer.new()
 	# make it a server on our chose port
 	server_peer.create_server(9043) # TODO: make this dynamic depending on server flags
 	# pass it to the built in multiplayer API so this instance of the game

@@ -29,10 +29,18 @@ func join_server(ip: String, port: int) -> void:
 	# tear down the main menu
 	main_menu.queue_free()
 	
-	# create a multiplayer peer
-	var client_peer = ENetMultiplayerPeer.new()
+	# itch.io - using websockets for browser builds
+	var client_peer: MultiplayerPeer = WebSocketMultiplayerPeer.new()
+	# when building for web, use the domain name for the websockets server
+	#client_peer.create_client("wss://csl.turtlegully.com")
+	# for dev just use localhost
+	client_peer.create_client("ws://127.0.0.1:9043")
+		
+	# not itch.io - enet is faster apparently
+	#client_peer = ENetMultiplayerPeer.new()
 	# make it a client connecting to the server ip and port
-	client_peer.create_client(ip, port)
+	#client_peer.create_client(ip, port)
+	
 	# pass it to the built in multiplayer API so this instance of the game
 	# will know it is a client, not a server
 	multiplayer.multiplayer_peer = client_peer
