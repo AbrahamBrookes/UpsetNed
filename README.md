@@ -119,3 +119,24 @@ then upload the new files and then restart the server:
 ```
 sudo systemctl start combat-status-limbo-dedicated-server
 ```
+## Setting up caddy to run the websockets server to route from client to godot at 4093
+https://caddyserver.com/docs/install#debian-ubuntu-raspbian
+```
+sudo apt install -y debian-keyring debian-archive-keyring apt-transport-https curl
+curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg
+curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list
+chmod o+r /usr/share/keyrings/caddy-stable-archive-keyring.gpg
+chmod o+r /etc/apt/sources.list.d/caddy-stable.list
+sudo apt update
+sudo apt install caddy
+```
+then create a caddyfile at `/etc/caddy/Caddyfile` with contents like:
+```
+csl.turtlegully.com
+reverse_proxy localhost:9043
+```
+then restart caddy:
+```
+sudo systemctl restart caddy
+```
+That just routes websockets traffic over an ssl-secured connection to the godot server running on 9043. You need your own domain for this to work properly.
