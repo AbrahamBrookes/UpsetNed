@@ -8,6 +8,11 @@ func Enter(_extra_data = null):
 		state_machine.click_shoot.current_clickshoot_state = ClickShoot.ClickShootState.STANDING
 
 func Physics_Update(_delta: float):
+	# standing backflip from squat
+	if Input.is_action_just_pressed("jump"):
+		jump()
+		return
+		
 	# if the player releases squat, go back to locomote
 	if not state_machine.input.current_input.squat:
 		state_machine.TransitionTo("Locomote")

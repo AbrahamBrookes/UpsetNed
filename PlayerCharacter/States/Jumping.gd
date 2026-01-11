@@ -28,6 +28,14 @@ func Enter(_extra_data = null):
 	jump_power_left = max_jump_power
 	
 func Physics_Update(delta: float):
+	if Input.is_action_just_pressed("jump"):
+		jump()
+		return
+	
+	if Input.is_action_just_pressed("dive"):
+		dive()
+		return
+	
 	# Handle horizontal movement while jumping
 	var input_direction = state_machine.input.current_input.move
 	var horizontal_input = Vector3(input_direction.x, 0.0, input_direction.y)

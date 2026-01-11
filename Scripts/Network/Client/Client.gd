@@ -63,9 +63,6 @@ func load_map(map_path: String) -> void:
 	
 	# show the map start screen
 	toggle_map_start_screen(true)
-	
-	# start server tick loop
-	#Network.client_tick_server.rpc_id(1)
 
 ## hide/show the start map screen
 func toggle_map_start_screen(state: bool = true):

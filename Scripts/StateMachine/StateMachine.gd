@@ -39,9 +39,9 @@ var previous_state : State
 # it's better to send an int than a string over websockets so keep an indexed list of states
 var state_indexed_list: Array
 
-# a reference to the InputSynchronizer if we have one (only when this PlayerCharacter
+# a reference to the ControllerInput if we have one (only when this PlayerCharacter
 # is being controlled by the local instance)
-@export var input: InputSynchronizer
+@export var input: ControllerInput
 
 # a divisor value for ticking at less that 60fps if needed
 var tick_divisor: int = 1000
@@ -93,9 +93,6 @@ func _process(delta):
 		current_state.Update(delta)
 
 func _physics_process(delta):
-	# we're not running our physics update in lockstep with the client anymore since we are
-	# syncing input to the server and allowing the InputSynchronizer to do client-side prediction.
-	# so don't run the current states Physics_Update here anymore - it gets run from the InputSynchronizer
 	if current_state:
 		current_state.Physics_Update(delta)
 		# apply mouselook blendspaces after running state animations to avoid popping

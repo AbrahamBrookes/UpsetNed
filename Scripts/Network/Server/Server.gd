@@ -156,11 +156,16 @@ func send_client_states() -> void:
 		if not player:
 			return
 		
+		# we're sending from the servers pawns to the clients pawns here
+		var locomotion_blendspace: Vector2 = player.anim_tree.get("parameters/Locomotion/Locomote/blend_position")
+			
+		
 		states[player_id] = ClientAuthoritativeState.new(
 			server_tick,
 			player.global_position,
 			player.mesh.global_rotation,
-			player.current_state
+			player.current_state,
+			locomotion_blendspace
 		).to_dict()
 		
 	# send the collated data to all clients

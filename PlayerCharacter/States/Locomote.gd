@@ -17,11 +17,19 @@ func Enter(_extra_data = null):
 				squat_or_slide()
 
 func Physics_Update(_delta: float):
-	if state_machine.input.current_input.squat:
+	if Input.is_action_just_pressed("squat"):
 		squat_or_slide()
 		return
 	
-	if not state_machine.locomotor.is_on_floor():
+	if Input.is_action_just_pressed("jump"):
+		jump()
+		return
+	
+	if Input.is_action_just_pressed("dive"):
+		dive()
+		return
+	
+	if not player_character.is_on_floor():
 		state_machine.TransitionTo("Falling")
 		return
 
@@ -53,18 +61,13 @@ func Physics_Update(_delta: float):
 	state_machine.set_movement_intent(intent)
 
 # define the actions we can do from this state into other states
-
 # if the player presses jump, jump
-func jump(_data = null):
+func jump():
 	state_machine.TransitionTo("Jumping")
 	
 # if the player presses dive, dive
-func dive(_data = null):
+func dive():
 	state_machine.TransitionTo("Diving")
-	
-# if the player presses slide, slide
-func slide(_data = null):
-	state_machine.TransitionTo("Sliding")
 	
 func squat_or_slide():
 	var horizontal_velocity = Vector3(
@@ -77,6 +80,13 @@ func squat_or_slide():
 		slide()
 		return
 	else:
-		state_machine.TransitionTo("Squatting")
+		squat()
+		return
 	
+# if the player presses squat, squat
+func squat():
+	state_machine.TransitionTo("Squatting")
 	
+# if the player presses slide, slide
+func slide():
+	state_machine.TransitionTo("Sliding")

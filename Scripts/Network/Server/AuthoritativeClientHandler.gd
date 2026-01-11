@@ -18,6 +18,18 @@ func apply_authoritative_state(state: Dictionary, peer_id: StringName):
 	
 	# check we got a valid player
 	if not player:
+		## maybe spawn a new pawn
+		#push_error("spawning PlayerPawn")
+		## otherwise we want to spawn the pawn
+		#var new_node = remote_player_scene.instantiate()
+		## set the name to the peer id for easy lookup
+		#new_node.name = str(peer_id)
+		## attach them to the worldRoot node
+		#world_root.add_child(new_node)
+		## position them after adding them
+		#new_node.global_position = position
+		## register a remote player with the player registry
+		#PlayerRegistry.append_remote_player(new_node)
 		return
 		
 	# deserialize the state and apply it
@@ -26,20 +38,18 @@ func apply_authoritative_state(state: Dictionary, peer_id: StringName):
 	if not state:
 		return
 
-	# lerp these values for smoothness
-	# player.global_position = state.global_position
-	# player.mesh.global_rotation = state.rotation
-	# player.velocity = state.velocity
+	## update the pawns position etc in the local simulation 
+	# TODO: we'll lerp this between history frames later
 	player.global_position = state.global_position
 	player.mesh.global_rotation = state.rotation
 	player.anim_tree.set("parameters/Locomotion/Locomote/blend_position", state.locomotion_blendspace)
-	
-	Network.server.server_tick = state.server_tick
 	
 	var next_state = state.current_state
 	if player.current_state != next_state:
 		player.set_current_state(next_state)
 	
+	# record the history for server playback
+	record_history(peer_id, parsed_state)
 	
 
 ## receive a list of authoritative states and apply them to your local players
@@ -109,7 +119,7 @@ func player_shot_weapon(event: PlayerShotWeaponEvent, peer_id: int) -> void:
 
 
 ## When we move all the pawns on the board, we cache their locations for playback
-func record_history(peer_id: int, state: ClientAuthoritativeState) -> void:
+func record_history(peer_id: StringName, state: ClientAuthoritativeState) -> void:
 	var arr: Array = history.get(peer_id, [])
 	# if we haven't run yet, set our array size
 	if arr.is_empty():

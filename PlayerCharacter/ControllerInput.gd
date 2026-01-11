@@ -1,18 +1,9 @@
 extends Node
 
-## Since we are in a multiplayer game we need to siphon the controls through to
-## the server and read back the input for drift compensation. We will keep all
-## the movement code the same as it is on the client now, but the server will
-## send back the _correct_ positions and the client will rectify any drift.
-## This script is a central place to handle input from the player, which can be
-## read by the clients statemachine as well as being sent to the server, where
-## the server will also apply it to the state machine it is simulating.
-## One off actions like shooting or jumping will be RPC'd to the server since
-## that gives us a more reliable way to ensure the message gets through and they
-## are one off actions that require reliability over latency, for which we'll 
-## use our autoloaded network node. Steaming inputs like directional input will
-## be unreliably RPC'd to the server using our InputPacket struct
-class_name InputSynchronizer
+## Think of this class as the literal controller the user is holding - be it a
+## keyboard and mouse or a console controller. It listens to user input with
+## relation to moving their PlayerPawn around their local simulation
+class_name ControllerInput
 
 ## Hold a local sequence of input packets, for reconciliation
 var next_sequence: int = 0
@@ -52,6 +43,7 @@ func _physics_process(_delta: float) -> void:
 	var stunting = Input.is_action_pressed("dive")
 	var squatting = Input.is_action_pressed("squat")
 	var mouse_delta = last_mouse_delta
+	
 	
 	# reset mouse delta or we get drift because the _input value is cached
 	last_mouse_delta = Vector2.ZERO

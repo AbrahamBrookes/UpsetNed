@@ -59,6 +59,6 @@ func Physics_Update(delta: float):
 
 	state_machine.set_movement_intent(intent)
 	
-	if state_machine.locomotor.grounded:
+	if state_machine.locomotor.is_on_floor():
 		state_machine.TransitionTo("Locomote")
 		return

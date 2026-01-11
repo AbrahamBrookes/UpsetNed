@@ -37,13 +37,15 @@ func Enter(_extra_data = null):
 	# want to rotate the mesh to the opposite of velocity when we enter the dive
 	if player_character.velocity.length() > 0.1:
 		intent.desired_rotation = mesh.global_transform.basis.get_euler()
-		intent.desired_rotation.y = atan2(player_character.velocity.x, player_character.velocity.z)
+		intent.desired_rotation.y = atan2(-player_character.velocity.x, -player_character.velocity.z)
 	
 	state_machine.set_movement_intent(intent)
 
 func Physics_Update(delta: float):
-	if wall_flip_ray.is_colliding():
-		print('ray')
+	
+	if Input.is_action_just_pressed("jump"):
+		jump()
+		return
 	
 	# allow a tiny bit of input control if we have stalled
 	if player_character.velocity.length() < 3.0:

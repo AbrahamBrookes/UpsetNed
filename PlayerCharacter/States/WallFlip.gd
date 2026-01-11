@@ -33,6 +33,11 @@ func Enter(extra_data: Vector3 = Vector3.BACK):
 	
 
 func Physics_Update(delta: float):
+	
+	if Input.is_action_just_pressed("dive"):
+		dive()
+		return
+		
 	# Apply additional jump power while button held (optional)
 	if jump_power_left > 0.0:
 		jump_power_left -= jump_decay_rate * delta
@@ -42,7 +47,7 @@ func Physics_Update(delta: float):
 	
 	state_machine.set_movement_intent(intent)
 	
-	if state_machine.locomotor.grounded:
+	if state_machine.locomotor.is_on_floor():
 		land()
 		return
 	

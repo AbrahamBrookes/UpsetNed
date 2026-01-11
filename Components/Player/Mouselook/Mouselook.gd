@@ -27,8 +27,8 @@ class_name Mouselook
 # debug if ya wanna
 @export var debug: bool = false
 
-# a reference to the input synchronizer to get the mouse delta
-@export var input_synchronizer: InputSynchronizer
+# a reference to the contorller input to get the mouse delta
+@export var controller_input: ControllerInput
 
 # check game preferences global for invert y
 var invert_y = GamePreferences.invert_y
@@ -43,7 +43,7 @@ func mouseLook():
 	# when the camera is looking forward relative to the character, we want positive y, back negative y
 	
 	# the input synchronizer caches our mouse input
-	var mouse_delta = input_synchronizer.current_input.mouse_delta
+	var mouse_delta = controller_input.current_input.mouse_delta
 	
 	# Get the rotation difference between camera pivot and mesh
 	var relative_rotation = camera_pivot.global_rotation.y - mesh.global_rotation.y

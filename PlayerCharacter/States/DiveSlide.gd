@@ -23,7 +23,7 @@ func Enter(_extra_data = null):
 	# rotate the mesh to the velocity when we enter the slide
 	if horizontal_velocity.length() > 0.1:
 		var mesh_rotation = mesh.global_transform.basis.get_euler()
-		mesh_rotation.y = atan2(horizontal_velocity.x, horizontal_velocity.z)
+		mesh_rotation.y = atan2(-horizontal_velocity.x, -horizontal_velocity.z)
 		intent.desired_rotation = mesh_rotation
 
 func Physics_Update(delta: float):

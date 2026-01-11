@@ -28,7 +28,7 @@ func Enter(_extra_data = null):
 	# rotate the mesh to the velocity when we enter the slide
 	if horizontal_velocity.length() > 0.1:
 		intent.desired_rotation = mesh.global_transform.basis.get_euler()
-		intent.desired_rotation.y = atan2(player_character.velocity.x, player_character.velocity.z)
+		intent.desired_rotation.y = atan2(-player_character.velocity.x, -player_character.velocity.z)
 	
 	state_machine.set_movement_intent(intent)
 	
@@ -38,6 +38,12 @@ func Enter(_extra_data = null):
 	
 
 func Physics_Update(delta: float):
+	
+	if Input.is_action_just_pressed("jump"):
+		jump()
+		return
+		
+		
 	# if slide force is less than the threshold, back to locomote
 	if slide_force < 1.0:
 		state_machine.TransitionTo("Prone")
