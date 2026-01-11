@@ -5,10 +5,6 @@ class_name DeterministicPlayerCharacter
 # of using a RigidBody3D and applying forces, we are using a PlayerCharacter3D and driving movement
 # using move_and_slide.
 
-# a signal to emit when we land ater being airborne, to separate physics concerns
-# out of our state machine logic
-signal landed
-
 # since we are rotating the mesh separately we need a reference to it
 @export var mesh: Node3D
 # the animation player, for direct fenagling
@@ -30,13 +26,6 @@ signal landed
 
 # a reference to the input synchronizer
 @export var input_synchronizer: InputSynchronizer
-
-# we're letting the server decide if we are grounded instead of using is_on_floor()
-# and using coyote time for being grounded so we can avoid floor jitters from server ticks
-var grounded: bool = false
-var grounded_coyote_time: int = 2
-# and tracking if we were airborne last tick to handle landing
-var was_airborne_last_tick: bool = false
 
 # grab gravity once
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -71,20 +60,7 @@ func _on_state_machine_intend_to_move(intent: MovementIntent) -> void:
 	# rotate the mesh, not the whole object because of camera movement
 	mesh.rotation = intent.desired_rotation
 	
-	# for landing detection, below
-	var was_airborne: bool = not grounded
-	
 	move_and_slide()
-		
-	if is_on_floor():
-		grounded = true
-		grounded_coyote_time = 2
-		if was_airborne:
-			emit_signal("landed")
-	else:
-		grounded_coyote_time -= 1
-		if grounded_coyote_time <= 0:
-			grounded = false
 
 # kill the player
 func kill() -> void:

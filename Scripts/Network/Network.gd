@@ -16,12 +16,24 @@ func client_load_map(map_path: String) -> void:
 		client.load_map(map_path)
 
 ## Before a game, players get a MapStartScreen. Once they set their loadout etc
-## the hit play, and we spawn them into the world on the server using the maps
-## MultiplayerSpawner node so that they are synced to all clients
+## they hit play and request the server to spawn them
 @rpc("any_peer")
-func server_spawn_player() -> void:
+func client_request_spawn() -> void:
 	if multiplayer.is_server():
 		server.spawn_player(multiplayer.get_remote_sender_id())
+
+## Once the client has requested the spawn and the server has configured it, the server
+## tells the client to spawn their player with the same configuration
+@rpc("authority")
+func client_spawn_player(position: Vector3, peer_id: int):
+	client.spawn_player(peer_id, position)
+	
+## Each connected client will be streaming their authoritative state to the server.
+## I realise we usually use server as authority but websockets are so laggy we're going the other way
+@rpc("any_peer")
+func client_send_state(state: Dictionary):
+	if multiplayer.is_server():
+		server.authoritative_handler.apply_authoritative_state(state, str(multiplayer.get_remote_sender_id()))
 
 ## players need to despawn without breaking their game
 @rpc("any_peer")
@@ -36,25 +48,6 @@ func server_despawn_player() -> void:
 func client_toggle_map_start_screen(state: bool = true):
 	if not multiplayer.is_server():
 		client.toggle_map_start_screen(state)
-
-## We send inputs to the server for simulation there
-@rpc("any_peer", "unreliable")
-func send_input_packet(packet: Dictionary) -> void:
-	if multiplayer.is_server():
-		server.input_handler.cache_input(multiplayer.get_remote_sender_id(), InputPacket.from_dict(packet))
-
-## When we have processed input, we send the real state back to the client
-@rpc("authority")
-func send_authoritative_state(state: Dictionary):
-	pass
-	if not multiplayer.is_server():
-		PlayerRegistry.local_player.input_synchronizer.reconcile(AuthoritativeState.from_dict(state))
-		
-# we react to one-time input presses by dispatching the relevant action to the server
-@rpc("any_peer")
-func dispatch_action(action: String) -> void:
-	if multiplayer.is_server():
-		server.dispatch_action(multiplayer.get_remote_sender_id(), action)
 		
 # the player shoots a weapon and needs to tell the server
 @rpc("any_peer")
@@ -65,4 +58,4 @@ func player_shot_weapon(event: Dictionary) -> void:
 # when the server is sending all player states to all players for replication
 @rpc("authority")
 func server_send_client_states(states: Dictionary) -> void:
-	client.authoritative_synchronizer.apply_authoritative_states(states)
+	server.authoritative_handler.apply_authoritative_states(states)

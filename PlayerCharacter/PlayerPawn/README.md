@@ -1,0 +1,2 @@
+# res://PlayerCharacter/PlayerPawn
+The PlayerPawn is a simple, dumb doll of a player character. This is how we simulate remote players to the local player and on the server. It doesn't contain any fancy logic around how to listen to input and transition states, rather it's only what we need to show a skinned mesh running around. Maybe this could also be agnostic enough to be used within the player character, or be controlled by an enemy ai

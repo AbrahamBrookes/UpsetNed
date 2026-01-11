@@ -17,9 +17,6 @@ class_name InputSynchronizer
 ## Hold a local sequence of input packets, for reconciliation
 var next_sequence: int = 0
 
-## A list of inputs that the server hasn't agreed to yet
-var pending_inputs: Array[InputPacket]
-
 ## the current input that the state machine will read from when it ticks
 var current_input: InputPacket
 
@@ -68,7 +65,7 @@ func _physics_process(_delta: float) -> void:
 	)
 	
 	# send that packet to the server - serialize the packet before sending
-	Network.send_input_packet.rpc_id(1, packet.to_dict())
+	#Network.send_input_packet.rpc_id(1, packet.to_dict())
 
 	# apply the input locally right away - this same method is called on the server
 	# once that rpc goes through
@@ -76,58 +73,6 @@ func _physics_process(_delta: float) -> void:
 	
 	# increment the sequence every time we send a packet
 	next_sequence += 1
-	
-	# append the packet to our pending inputs for reconciliation later
-	pending_inputs.append(packet)
-
-	# handle one-off presses for actions like shooting
-	#if Input.is_action_just_pressed("fire_r"):
-		## on the server
-		#Network.dispatch_action.rpc_id(1, "fire_r")
-		## locally
-		#state_machine.dispatch_action("fire_r")
-		#
-	#if Input.is_action_just_pressed("fire_l"):
-		## on the server
-		#Network.dispatch_action.rpc_id(1, "fire_l")
-		## locally
-		#state_machine.dispatch_action("fire_l")
-	
-	if Input.is_action_just_pressed("jump"):
-		# on the server
-		Network.dispatch_action.rpc_id(1, "jump")
-		# locally
-		state_machine.dispatch_action("jump")
-	
-	if Input.is_action_just_pressed("dive"):
-		# on the server
-		Network.dispatch_action.rpc_id(1, "dive")
-		# locally
-		state_machine.dispatch_action("dive")
-
-	if Input.is_action_just_pressed("reload"):
-		# on the server
-		Network.dispatch_action.rpc_id(1, "reload")
-		# locally
-		state_machine.dispatch_action("reload")
-	
-	if Input.is_action_just_pressed("interact"):
-		# on the server
-		Network.dispatch_action.rpc_id(1, "interact")
-		# locally
-		state_machine.dispatch_action("interact")
-	
-	if Input.is_action_just_pressed("throw_grenade"):
-		# on the server
-		Network.dispatch_action.rpc_id(1, "throw_grenade")
-		# locally
-		state_machine.dispatch_action("throw_grenade")
-	
-	if Input.is_action_just_pressed("melee"):
-		# on the server
-		Network.dispatch_action.rpc_id(1, "melee")
-		# locally
-		state_machine.dispatch_action("melee")
 
 ## Apply an input packet and then run the state machine update - this is run
 ## locally first, then on the server, and again on reconciliation

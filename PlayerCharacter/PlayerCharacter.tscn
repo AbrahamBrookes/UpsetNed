@@ -1,6 +1,7 @@
 [gd_scene load_steps=177 format=4 uid="uid://dnngs3f0x460f"]
 
 [ext_resource type="Script" uid="uid://7islvmlck2q0" path="res://PlayerCharacter/PlayerCharacter.gd" id="1_pult7"]
+[ext_resource type="Script" uid="uid://dgdi0dn8dsce5" path="res://PlayerCharacter/InputSynchronizer.gd" id="2_2qud1"]
 [ext_resource type="Script" uid="uid://bt5sy4tn4uif6" path="res://Components/Player/ClickShoot/ClickShoot.gd" id="2_hs44b"]
 [ext_resource type="Script" uid="uid://dth0jeom0jlgg" path="res://Components/Player/Mouselook/Mouselook.gd" id="2_jglra"]
 [ext_resource type="Script" uid="uid://b8tm2dsp5o0p4" path="res://Scripts/StateMachine/StateMachine.gd" id="3_52dax"]
@@ -25,7 +26,6 @@
 [ext_resource type="PackedScene" uid="uid://c1sljnrbc54is" path="res://Enemies/BazookaJenkins/import/Bazooka Jenkins.glb" id="13_2qud1"]
 [ext_resource type="Script" uid="uid://cf63mfde4ddvh" path="res://PlayerCharacter/States/DiveProne.gd" id="13_i84k0"]
 [ext_resource type="Script" uid="uid://e1mfums3734w" path="res://PlayerCharacter/States/WallFlip.gd" id="17_glb63"]
-[ext_resource type="Script" uid="uid://dgdi0dn8dsce5" path="res://PlayerCharacter/InputSynchronizer.gd" id="20_jj1e1"]
 [ext_resource type="Script" uid="uid://c7mlgom4vi50j" path="res://PlayerCharacter/States/StandingBackflip.gd" id="21_6h7vh"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_i84k0"]
@@ -48651,7 +48651,7 @@ height = 0.991333
 [sub_resource type="SphereShape3D" id="SphereShape3D_u4e74"]
 radius = 0.3
 
-[node name="PlayerCharacter" type="CharacterBody3D" node_paths=PackedStringArray("mesh", "animation_player", "anim_tree", "state_machine", "camera", "mouselook", "ui_healthbar", "input_synchronizer")]
+[node name="PlayerCharacter2" type="CharacterBody3D" node_paths=PackedStringArray("mesh", "animation_player", "anim_tree", "state_machine", "camera", "mouselook", "ui_healthbar", "input_synchronizer")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 collision_layer = 2
 script = ExtResource("1_pult7")
@@ -48666,9 +48666,8 @@ ui_healthbar = NodePath("CameraPivot/Camera3D/CanvasLayer/MarginContainer/Progre
 input_synchronizer = NodePath("InputSynchronizer")
 
 [node name="InputSynchronizer" type="Node" parent="." node_paths=PackedStringArray("state_machine")]
-script = ExtResource("20_jj1e1")
+script = ExtResource("2_2qud1")
 state_machine = NodePath("../StateMachine")
-metadata/_custom_type_script = "uid://dgdi0dn8dsce5"
 
 [node name="ClickShoot" type="Node" parent="." node_paths=PackedStringArray("anim_tree", "mouselook", "l_weapon_slot", "r_weapon_slot")]
 script = ExtResource("2_hs44b")
@@ -49150,7 +49149,6 @@ grow_vertical = 2
 [node name="ShapeCast3D" type="ShapeCast3D" parent="CameraPivot"]
 shape = SubResource("SphereShape3D_u4e74")
 
-[connection signal="landed" from="." to="StateMachine" method="_on_player_character_landed"]
 [connection signal="timeout" from="ClickShoot/l_timer" to="ClickShoot" method="_on_l_timer_timeout"]
 [connection signal="timeout" from="ClickShoot/r_timer" to="ClickShoot" method="_on_r_timer_timeout"]
 [connection signal="intend_to_move" from="StateMachine" to="." method="_on_state_machine_intend_to_move"]

@@ -9,4 +9,4 @@ func _on_spawn_button_pressed() -> void:
 	Network.client.toggle_map_start_screen(false)
 	
 	# this should only be done on the server
-	Network.server_spawn_player.rpc_id(1)
+	Network.client_request_spawn.rpc_id(1)

@@ -103,7 +103,7 @@ func _physics_process(delta):
 		current_state.player_character.mouselook.mouseLook()
 		
 	# tick the server
-	#Network.send_client_authoritative_state.rpc_id(1)
+	Network.client.authoritative_synchronizer.send_state_to_server()
 
 func TransitionTo(new_state_name: String, extra_data = null) -> bool:
 		
@@ -139,15 +139,6 @@ func TransitionTo(new_state_name: String, extra_data = null) -> bool:
 # an alias for TransitionTo
 func travel(new_state_name, extra_data = null):
 	TransitionTo(new_state_name, extra_data)
-	
-# flick straight to a state without runnign the enter and exit code
-func flick(new_state_name):
-	var new_state = states.get(new_state_name.to_lower())
-	if not new_state:
-		push_error("Flicking to state " + new_state_name + " not found. Available: " + str(states.keys()))
-		return false
-	current_state = new_state
-	
 
 # allow external scripts to check our current state against a list of states
 func is_in_states(state_names: Array[String]) -> bool:
@@ -165,17 +156,3 @@ func get_state(state_name: String) -> State:
 # given a MovementIntent, emit our movement signal
 func set_movement_intent(intent: MovementIntent) -> void:
 	emit_signal("intend_to_move", intent)
-
-# since we are decoupling input for the sake of network, states should not poll
-# input themselves in order to change states. The network needs to be able to
-# call into the state machine in order to change states, and so does the client.
-# To allow this, the state machine will duck-type check the current state to see
-# if the current state is able to transition. States will define their own methods
-# that map to actions, and if they don't react to that action they simply don't
-# implement a method for it
-func dispatch_action(action: String, data = null):
-	if current_state.has_method(action):
-		current_state.call(action, data)
-	else:
-		if debug:
-			push_error("Action '%s' ignored by state %s" % [action, current_state.name])

@@ -14,30 +14,25 @@ var global_position: Vector3
 # the rotation of the rotatable player mesh
 var rotation: Vector3
 
-# the velocity of the player
-var velocity: Vector3
-
-# the rotation of the camera
-var camera_rotation: Vector3
-
 # the current state of the state machine - an integer for serialization
 # see StateMachine state_indexed_list
-var current_state: int
+var current_state: StringName
+
+# we need to send some blendspace values to match animations
+var locomotion_blendspace: Vector2
 
 func _init(
 	_server_tick: int = Network.server.server_tick,
 	_global_position: Vector3 = Vector3.ZERO,
 	_rotation: Vector3 = Vector3.ZERO,
-	_velocity: Vector3 = Vector3.ZERO,
-	_camera_rotation: Vector3 = Vector3.ZERO,
-	_current_state: int = 0,
+	_current_state: StringName = '',
+	_locomotion_blendspace: Vector2 = Vector2.ZERO
 ) -> void:
 	server_tick = _server_tick
 	global_position = _global_position
 	rotation = _rotation
-	velocity = _velocity
-	camera_rotation = _camera_rotation
 	current_state = _current_state
+	locomotion_blendspace = _locomotion_blendspace
 	
 ## convert to a dictionary for sending over the network
 func to_dict() -> Dictionary:
@@ -45,9 +40,8 @@ func to_dict() -> Dictionary:
 		"server_tick": server_tick,
 		"global_position": global_position,
 		"rotation": rotation,
-		"velocity": velocity,
-		"camera_rotation": camera_rotation,
 		"current_state": current_state,
+		"locomotion_blendspace": locomotion_blendspace,
 	}
 
 ## convert back to this class once it has been received over the network
@@ -56,7 +50,6 @@ static func from_dict(d: Dictionary) -> ClientAuthoritativeState:
 		d.server_tick,
 		d.global_position,
 		d.rotation,
-		d.velocity,
-		d.camera_rotation,
 		d.current_state,
+		d.locomotion_blendspace,
 	)

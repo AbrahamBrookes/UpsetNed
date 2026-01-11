@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b6qqh2cfe7ybu"]
+[gd_scene load_steps=12 format=3 uid="uid://b6qqh2cfe7ybu"]
 
 [ext_resource type="Script" uid="uid://dj05bq1y7q0ab" path="res://Main.gd" id="1_jbe4v"]
 [ext_resource type="Script" uid="uid://dln6b7rnp1k2c" path="res://Scripts/Network/Bootstrap/ServerBootstrapper.gd" id="2_r0du0"]
@@ -6,8 +6,7 @@
 [ext_resource type="Script" uid="uid://drn5jhcdhqg3v" path="res://Scripts/Network/Client/Client.gd" id="4_fos0i"]
 [ext_resource type="Script" uid="uid://ea413p73jbg1" path="res://Scripts/Network/Server/Server.gd" id="5_3dxm6"]
 [ext_resource type="Script" uid="uid://cv8rdew35br1q" path="res://Scripts/Network/Client/AuthoritativeClientSynchronizer.gd" id="5_20pc6"]
-[ext_resource type="Script" uid="uid://cvbf60l5g0b0y" path="res://PlayerSpawner.gd" id="6_3dxm6"]
-[ext_resource type="Script" uid="uid://b4puit2xwerld" path="res://Scripts/Network/Server/ServerInputHandler.gd" id="6_lgr22"]
+[ext_resource type="Script" uid="uid://bn8e0i35ek88i" path="res://Scripts/Network/Server/AuthoritativeClientHandler.gd" id="7_wkp8b"]
 [ext_resource type="Shader" uid="uid://ck0x3yofbljku" path="res://ScreenShader.gdshader" id="8_trn2v"]
 [ext_resource type="Script" uid="uid://blb7l565igemv" path="res://InGameUI.gd" id="8_wkp8b"]
 [ext_resource type="PackedScene" uid="uid://c5esd73ws02te" path="res://UI/Maps/MapStart.tscn" id="9_03owx"]
@@ -44,26 +43,18 @@ metadata/_custom_type_script = "uid://drn5jhcdhqg3v"
 script = ExtResource("5_20pc6")
 metadata/_custom_type_script = "uid://cv8rdew35br1q"
 
-[node name="Server" type="Node" parent="." node_paths=PackedStringArray("world_root", "player_spawner", "input_handler", "in_game_ui")]
+[node name="Server" type="Node" parent="." node_paths=PackedStringArray("world_root", "in_game_ui", "authoritative_handler")]
 script = ExtResource("5_3dxm6")
 world_root = NodePath("../WorldRoot")
-player_spawner = NodePath("../MultiplayerSpawner")
-input_handler = NodePath("ServerInputHandler")
 in_game_ui = NodePath("../In-game UI")
+authoritative_handler = NodePath("AuthoritativeClientHandler")
 metadata/_custom_type_script = "uid://ea413p73jbg1"
 
-[node name="ServerInputHandler" type="Node3D" parent="Server" node_paths=PackedStringArray("server")]
-script = ExtResource("6_lgr22")
-server = NodePath("..")
-metadata/_custom_type_script = "uid://b4puit2xwerld"
+[node name="AuthoritativeClientHandler" type="Node3D" parent="Server"]
+script = ExtResource("7_wkp8b")
+metadata/_custom_type_script = "uid://bn8e0i35ek88i"
 
 [node name="WorldRoot" type="Node3D" parent="."]
-
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("uid://dnngs3f0x460f")
-spawn_path = NodePath("../WorldRoot")
-spawn_limit = 16
-script = ExtResource("6_3dxm6")
 
 [node name="In-game UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("map_start_screen")]
 script = ExtResource("8_wkp8b")
@@ -114,5 +105,3 @@ color = Color(0, 0, 0, 1)
 
 [node name="MapStartScreen" parent="In-game UI" instance=ExtResource("9_03owx")]
 visible = false
-
-[connection signal="spawned" from="MultiplayerSpawner" to="MultiplayerSpawner" method="_on_spawned"]

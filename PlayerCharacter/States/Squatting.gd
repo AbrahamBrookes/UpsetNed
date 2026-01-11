@@ -14,7 +14,7 @@ func Physics_Update(_delta: float):
 		return
 		
 	
-	if not state_machine.locomotor.grounded:
+	if not state_machine.locomotor.is_on_floor():
 		state_machine.TransitionTo("Falling")
 		return
 		

@@ -29,6 +29,15 @@ var current_map_path: String
 ## a reference to the authoritative client synchronizer
 @export var authoritative_synchronizer: AuthoritativeClientSynchronizer
 
+## the client is given the server_tick from the server
+var server_tick: int
+
+# the local player controller player character scene to spawn
+var local_player_scene = load("res://PlayerCharacter/PlayerCharacter.tscn")
+
+# the remote player, playerpawn scene to load for remote players
+var remote_player_scene = load("res://PlayerCharacter/PlayerPawn/PlayerPawn.tscn")
+
 ## On ready we need to inject ourselves into the network singleton
 func _ready() -> void:
 	Network.client = self
@@ -74,3 +83,33 @@ func toggle_map_start_screen(state: bool = true):
 			# capture mouse input
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 			
+## When the server tells us to spawn a player it might be us or it might be a
+## different player, so we need to know which scene to spawn - our player controller
+## or the player pawn
+func spawn_player(peer_id: int, position: Vector3):
+	# if we are spawning ourselves, use the DeterministicPlayerCharacter
+	if peer_id == multiplayer.get_unique_id():
+		push_error("spawning DeterministicPlayerCharacter")
+		var new_node = local_player_scene.instantiate() as DeterministicPlayerCharacter
+		# set the name to the peer id for easy lookup
+		new_node.name = str(peer_id)
+		new_node.set_multiplayer_authority(peer_id)
+		# attach them to the worldRoot node
+		world_root.add_child(new_node)
+		# position them after adding them
+		new_node.global_position = position
+		# register it with the player registry
+		PlayerRegistry.set_local_player(new_node)
+	else:
+		push_error("spawning PlayerPawn")
+		# otherwise we want to spawn the pawn
+		var new_node = remote_player_scene.instantiate()
+		# set the name to the peer id for easy lookup
+		new_node.name = str(peer_id)
+		# attach them to the worldRoot node
+		world_root.add_child(new_node)
+		# position them after adding them
+		new_node.global_position = position
+		# register a remote player with the player registry
+		PlayerRegistry.append_remote_player(new_node)
+		

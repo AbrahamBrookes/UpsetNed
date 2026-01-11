@@ -21,7 +21,7 @@ func Physics_Update(_delta: float):
 		squat_or_slide()
 		return
 	
-	if not state_machine.locomotor.grounded:
+	if not state_machine.locomotor.is_on_floor():
 		state_machine.TransitionTo("Falling")
 		return
 
@@ -29,19 +29,19 @@ func Physics_Update(_delta: float):
 	var input_direction = state_machine.input.current_input.move
 	
 	# only rotate the mesh when we're moving
-	var mesh_rotation = mesh.global_transform.basis.get_euler()
+	intent.desired_rotation = player_character.mesh.rotation
 	if input_direction != Vector2.ZERO:
-		# in this state we want to rotate the mesh to the camera direction
+		# in this state we want to rotate the mesh to the direction we're facing
 		# copy the rotation of the camera pivot to the mesh, but only the y axis
 		var camera_rotation = player_character.mouselook.camera_pivot.global_transform.basis.get_euler()
-		mesh_rotation.y = camera_rotation.y
-	intent.desired_rotation = mesh_rotation
+		intent.desired_rotation.y = camera_rotation.y + PI
+	
 
 	# Update animation
 	state_machine.anim_tree.set("parameters/Locomotion/Locomote/blend_position", input_direction)
 
 	# Handle horizontal movement
-	var horizontal_input = Vector3(input_direction.x, 0.0, input_direction.y)
+	var horizontal_input = Vector3(-input_direction.x, 0.0, -input_direction.y)
 	var world_direction = global_transform.basis * horizontal_input
 	
 	world_direction.x = world_direction.x * move_speed

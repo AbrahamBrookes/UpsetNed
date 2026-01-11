@@ -25,17 +25,17 @@ var current_map_path: String
 ## a lokup table of connected players
 var players: Dictionary[int, DeterministicPlayerCharacter] = {}
 
-## a reference to the player spawner in the main screen, for spawning players
-@export var player_spawner: PlayerSpawner
-
-## a reference to the server input handler child node
-@export var input_handler: ServerInputHandler
+# the remote player, playerpawn scene to load for remote players
+var remote_player_scene = load("res://PlayerCharacter/PlayerPawn/PlayerPawn.tscn")
 
 ## the letterboxing and vignette layer we show in game
 @export var in_game_ui: CanvasLayer
 
 ## track our own server tick - inc 1 each physics tick
 var server_tick: int
+
+## handler for receiving client-authority locations and updating them in sim
+@export var authoritative_handler: AuthoritativeClientHandler
 
 func _physics_process(_delta: float) -> void:
 	server_tick += 1;
@@ -85,8 +85,8 @@ func load_map(map_path: String) -> void:
 	current_map.server_camera.make_current()
 	
 
-## Spawn a player into the map. This is using the PlayerSpawner's custom spawn
-## function in order to set up the player when they are spawned into the client
+## Spawn a player into the map. This is running on the server side and is the kick
+## off for the clients to spawn their copy as well
 func spawn_player(peer_id: int):
 	# select a random spawn point
 	var spawn_point: SpawnPoint = current_map.spawn_points.pick_random()
@@ -96,69 +96,41 @@ func spawn_player(peer_id: int):
 		push_error("could not find a spawn point")
 		return
 	
-	# use the PlayerSpawner to spawn our player scene
-	var player = player_spawner.spawn({
-		"peer_id": peer_id,
-		"transform": spawn_point.global_transform
-	})
-
-	# add to our lookup table
-	players[peer_id] = player
+	# blast out a player spawn to all clients
+	Network.client_spawn_player.rpc(spawn_point.global_position, peer_id)
+	
+	# spawn a pawn on the server
+	push_error("spawning PlayerPawn")
+	# otherwise we want to spawn the pawn
+	var new_node = remote_player_scene.instantiate()
+	# set the name to the peer id for easy lookup
+	new_node.name = str(peer_id)
+	# attach them to the worldRoot node
+	world_root.add_child(new_node)
+	# position them after adding them
+	new_node.global_position = spawn_point.global_position
+	# register a remote player with the player registry
+	PlayerRegistry.append_remote_player(new_node)
 	
 	## show in game UI
 	in_game_ui.visible = true
 	
 ## Despawn a player from the world
 func despawn_player(peer_id: int):
-	var player = players[peer_id]
+	var player = PlayerRegistry.get_player(peer_id)
 	# tear down the node
 	player.queue_free()
 	# remove from our list so we don't get null access
-	players.erase(peer_id)
-
-### when we receive an input packet from a client we need to apply that packet to
-### the player character we are simulating on the server
-#func apply_input(peer_id: int, dict: Dictionary) -> void:
-	## find the player for that peer id
-	#var player: DeterministicPlayerCharacter = get_player(peer_id)
-	#if not player: return
-	#
-	## deserialize our input packet
-	#var packet = InputPacket.from_dict(dict)
-	#
-	## get the server physics delta which is hard-set in preferences
-	#var hz = Engine.physics_ticks_per_second
-	#var physics_delta: float = 1.0 / hz
-	#
-	## apply the input packet to that player
-	#player.input_synchronizer.apply_input_packet(packet, physics_delta)
-
-## when the player presses jump, jump
-func dispatch_action(peer_id: int, action: String) -> void:
-	# find the player for that peer id
-	var player: DeterministicPlayerCharacter = get_player(peer_id)
-	if not player: return
-	
-	player.state_machine.dispatch_action(action)
+	PlayerRegistry.remove_player(peer_id)
 	
 ## A helper to get a player from our lookup table
-func get_player(peer_id) -> DeterministicPlayerCharacter:
-	# find the player for that peer id
-	var player: DeterministicPlayerCharacter = players.get(peer_id, null)
-	
-	# guard
-	if not player:
-		push_error("could not find player for peer ID: %s" % peer_id)
-		return null
-	
-	return player
+func get_player(peer_id):
+	return PlayerRegistry.get_player(peer_id)
 
 ## When the player shoots their weapon we need to react and resimulate to check
 ## if we reckon they hit something
 func player_shot_weapon(event: Dictionary, peer_id: int) ->void:
 	var shoot_event = PlayerShotWeaponEvent.from_dict(event)
-	# delegate out to the input handler, where the rest of this logic is
-	#input_handler.player_shot_weapon(shoot_event, peer_id)
 
 ## Each tick the server sends all locations to all clients for simulation. Here
 ## we gather up all the state we need and dispatch them over the network
@@ -179,14 +151,17 @@ func send_client_states() -> void:
 		return
 		
 	var states: Dictionary = {} # [peer_id: ClientAuthoritativeState]
-	for player_id in players.keys():
-		var player = players[player_id]
+	for player_id in PlayerRegistry.remote_players.keys():
+		var player = PlayerRegistry.get_remote_player(str(player_id)) as PlayerPawn
+		if not player:
+			return
+		
 		states[player_id] = ClientAuthoritativeState.new(
 			server_tick,
 			player.global_position,
 			player.mesh.global_rotation,
-			player.velocity,
-			player.mouselook.camera_pivot.global_rotation,
-			player.state_machine.current_state.state_index
+			player.current_state
 		).to_dict()
+		
+	# send the collated data to all clients
 	Network.server_send_client_states.rpc(states)
